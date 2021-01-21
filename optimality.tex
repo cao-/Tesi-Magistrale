@@ -8,7 +8,7 @@ $$
 \eqalign{ \form{h}{f-s_{X,f}}_Φ &=  \bform{\sum_{k=1}^N\gamma_k Φ(\cdot, x_k)}{f-s_{X,f}}_Φ\cr
 							     &= \sum_{k=1}^N\gamma_k \form{Φ(\cdot, x_k)}{f-s_{X,f}}_Φ \cr
 							     &= \sum_{k=1}^N \gamma_k (f-s_{X,f})(x_k) = 0,
-}\eqmark[orthog]
+}
 $$
 because of the reproducing property of the kernel and the fact that by definition $s_{X,f}$ takes the same values of~$f$ at each data site~$x_k$. By using the concept of {\em projection} that is defined in any Hilbert space (see Stein~\cite[stein_2009]), what we have just said can be restated in the following way.
 
@@ -29,7 +29,7 @@ f = s_{X,f} + \epsilon_x(f).
 $$
 The orthogonality of the two components implies the following {\em Pythagorean identity},
 $$
-\norm{f}_Φ^2=\norm{s_{f,X}}_Φ^2+\norm{\epsilon_x(f)}^2.
+\norm{f}_Φ^2=\norm{s_{X,f}}_Φ^2+\norm{\epsilon_x(f)}^2. \eqmark[pythag]
 $$ 
 
 
@@ -49,22 +49,20 @@ $$
 \norm{s_{X,f}}_Φ = \min_{\,g\,\in\, \Cal I_{X,f}}\norm{\,g}_Φ.
 $$
 \proof
-By using the trick of adding and subtracting a function~$g\in\Cal I_{X, f}$, we can expand the square of the norm of~$s_{X,f}$ as follows,
+Let $g$ be any function in~$\Cal I_{X, f}$.  The Pythagorean identity~\ref[pythag] applied to~$g$ says that
 $$
-\eqalign{\norm{s_{X,f}}_Φ^2 &= \form{s_{X,f}}{s_{X,f}}_Φ          \cr
-						 &= \form{s_{X,f}}{s_{X,f}-g+g}_Φ  \cr
-						 &= \form{s_{X,f}}{s_{X,f}-g}_Φ + \form{s_{X,f}}{g}_Φ  \cr
-}
+\norm{s_{X, g}}_Φ^2+\norm{g-s_{X,g}}_Φ^2=\norm g_Φ^2
 $$
-Similarly as in~\ref[orthog], the term $\form{s_{X,f}}{s_{X,f}-g}_Φ$ is shown to be zero; by applying the Cauchy-Shwarz inequality to the other term we get,
+But the interpolant~$s_{X,g}\in\Cal S_{Φ,X}$ of~$g$ coincides with the interpolant~$s_{X, f}\in\Cal S_{Φ, X}$ of~$f$, since the functions $f$ and~$g$ assume the same values at the points of~$X$.
+It follows therefore that 
 $$
-\norm{s_{X,f}}_Φ^2=\form{s_{X,f}}{g}_Φ\leq\norm{s_{X, f}}_Φ\norm g_Φ,\eqno (\lower.5ex\hbox{*})
+\norm{s_{X, f}}_Φ^2+\norm{g-s_{X,f}}_Φ^2=\norm g_Φ^2
 $$
 and hence that
 $$
-\norm{s_{X, f}}_Φ \leq \norm{g}_Φ\mathbox{,\quad for all $g\in\Cal I_{X,f}$.}
+\norm{s_{X, f}}_Φ^2\leq\norm g_Φ^2.
 $$
- Notice that in~$(\lower.5ex\hbox{*})$ equality holds if and only if $g$ and $s_{X,f}$ are linearly dependent.  Since we know that~$\Cal S_{Φ, X}\cap\Cal I_{X, f} = \{s_{X,f}\}$, the only case in which equality  holds in~$(\lower.5ex\hbox{*})$ is when~$g=s_{X,f}$.   This means that the minimum of the norm is realised {\em only} by~$s_{X, f}$. \hfill\QED
+Notice that in the last expression equality holds if and only if $\norm{g-s_{X,f}}_Φ^2 = 0$, i.e.,  if and only if~$g = s_{X,f}$.  This means that the minimum of the norm is realised {\em only} by~$s_{X, f}$. \hfill\QED
 %\postskip
 
 
