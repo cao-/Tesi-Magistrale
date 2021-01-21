@@ -1,0 +1,113 @@
+
+
+Let $X = \{\range x_N/\}$ be a finite set of scattered points in some domain~$\Omega\subseteq \R^d$; and let $F=\{\range f_N/\}$ be real numbers representing the values attained at those points by a certain function~$f$.  Our goal is to recover the function~$f$ in~$\Omega$, with the sole information that it maps the {\em data sites}~$\range x_N/$ to the {\em data values}~$\range f_N/$.  Of course, we can't expect to be able to predict the values of~$f$ at all points~$x$ knowing only information about~$f$ on a finite set of points.  Therefore we need some additional knowledge about~$f$, for instance the space of functions~$\cal S$ to which our function~$f$ belongs.  As an example, if we are given a set of~$N$ data sites~$X\subset \R$ and an arbitrary set of $N$ data values~$F$, and moreover we know that the function~$f$ to be recovered is a polynomial of degree at most~$N-1$, then we can completely recover~$f$ at every point~$x\in\R$.  With these considerations in mind, we can state the interpolation problem in the following way.
+
+\medskip
+
+\frame{\line{\hfil\hsize=.97\hsize\vbox{\kern0.5ex
+\noindent{\bf Problem.} Given a set $X = \{\range x_N/\}$ of $N$ {\em distinct} points in a domain~$\Omega\subseteq \R^d$, a set  $F=\{\range f_N/\}$ of $N$ real numbers, and a class~$\cal S$ of real-valued functions defined on~$\Omega$, find a function~$s\in\cal S$ which interpolates the pair of data~$(X, F)$, i.e., a function~$s$ such that 
+$$
+s(x_j) = f_j\mathbox{,\quad for all $j\in\{1,2,\dots, N\}$.}\eqmark[intcond]
+$$
+}\hfil}}
+\medskip
+
+\noindent The choice of the class~$\Cal S$ of functions among which we attempt to find the interpolant~$s$ of the pair of data~$(X, F)$ must depend on the application we are considering and eventually on some other knowledge we have about the sampled function~$f$. 
+
+We can make some considerations to restrict the choices for the space~$\Cal S$ where we can set the interpolation problem.    As for now, we restrict our attention to a {\em fixed} set of data sites~$X\subset\Omega$, and try to characterize the space of functions~$\Cal S$ suitable for solving the interpolation problem at the locations~$X$.   First of all, we require that for every set of function values~$F$ the space~$\Cal S$ contains at least one function which agrees with~$F$ at the locations~$X$---there should always be a solution for the interpolation problem among the functions in~$\Cal S$.  Secondarily, this solution should be unique, if we aim at having a predictable recovery process.  Besides the {\em existence and uniqueness} of the interpolating function, it is reasonable to require that if some data $\range f_N/$ are recovered by the function~$s$, then the $α$-scaled version $\range α f_N/$ of the same data  should be recovered by the $α$-scaled function~$α s$---so, if $s$ belongs to $\Cal S$, then also $α s$ should belong to~$\Cal S$ for all~$α\in\R$; it is also reasonable to require that if the two sets of data $\range f_N/$ and $\range g_N/$ are recovered respectively by the functions $s$ and~$t$, then the function \hbox{$s+t$} should recover the set of data $f_1+g_1, f_2+g_2, \dots, f_N+g_N$---so, if  $s$ and~$t$ belong to $\Cal S$, then also their sum \hbox{$s+t$} should belong to~$\Cal S$.  All of what we have just said can be summed up by saying that the space~$\Cal S$ should be a {\em linear space} which is {\em nondegenerate}\fnote{By saying that $\Cal S$ is nondegenerate for~$X$ we mean that the zero function is the only function in $\Cal S$ which vanishes on~$X$; or, equivalently, that there can’t be two distinct functions in~$\Cal S$ which have the same values at all points of~$X$.} for~$X$; and, moreover, that the recovery process should also be linear.
+
+Suppose by now that $\Cal S$ is a finite-dimensional linear space, with dimension~$M$, and let $\{\range B_M/\}$ be a basis for it. A function $s\in\Cal S$ can be expressed as a linear combination of the  basis elements, namely
+$$
+s = \sum_{k=1}^M α_k B_k, \quad\mathbox{for some real coefficients $\rangeα_M/$.}
+$$
+The {\em interpolating conditions} in~\ref[intcond] now become a linear system of~$N$ equations,
+$$
+\sum_{k=1}^M α_k B_k(x_j) = f_j, \quad\mathbox{for $j\in\{1,2,\dots, N\}$,}
+$$
+which can be written in matrix form as
+$$
+\Bm{Aα} =  \Bm f,  \eqmark[system]
+$$
+after having defined the {\em interpolation matrix} $\Bm A$ as the $N\times M$~matrix with elements~$A_{j,k} = B_k(x_j)$, and the two vectors $\Bmα \coloneq (\rangeα_M/)^T$ and~$\Bm f \coloneq (\range f_N/)^T$.
+If~the dimension~$M$ of the space~$\Cal S$ were less than the number~$N$ of data sites, then the $M$~columns of~$\Bm A$ couldn’t span the whole of~$\R^N$, so there would be some sets of data values~$F$ for which  there is no interpolant in the space of functions~$\Cal S$; if instead~$M$ were greater than~$N$, then we would lose the uniqueness property of the solution, because for each set of data values~$F$ we could find more than one vector of coefficients~$\Bmα$, and hence more than one interpolating function (and of course the same would happen if $\Cal S$ were infinite-dimensional).  In conclusion, a good space $\Cal S$ for the interpolation problem on a fixed set~$X$ of $N$~data sites is a nondegenerate linear space of  {\em dimension~$N$}.  The required property for~$\Cal S$ of being nondegenerate for~$X$ translates in requiring that the $N\times N$ interpolation matrix~$A$ is {\em invertible}. 
+
+\preskip
+\label[poly]
+\example
+If $\Cal S$ is the space $\Cal P_{N-1}$ of {\em polynomial functions} with real coefficients and degree less than or equal to~$N-1$, then $\Cal S$ is a  linear space of dimension~$N$.
+It turns out that this space is nondegenerate for each set~$X\subset\R$ of $N$ points---in fact, for every set of data values~$F$ there is one and only one polynomial of degree strictly less than $N$ which agrees with~$F$ at the locations~$X$.  Notice that the same space~$\Cal P_{N-1}$ can be used with any data set~$X\subset\R$, as long as $|X|=N$, because its only dependence on~$X$ is the number~$N$ of points in~$X$.
+\medskip
+
+\example
+Let $X=\{\range x_N/\}\subset[a,b]\subset\R$ be a set of $N$ data sites in the interval~$[a,b]$, such that $a<x_1<x_2<\cdots<x_N<b$. 
+If $\Cal S$ is the space~$\Cal{N}(X)$ of {\em natural cubic splines} defined in the interval~$[a, b]$ and having knots~$X$, that is the space
+$$
+\Cal{N}(X) = \bigl\{\,s\in\Cal C^2([a,b])\,: \ s|_{[a,x_1]}, s|_{[x_N, b]}\in\Cal P_1, \mathbox{and } s|_{[x_j, x_{j+1}]}\in\Cal P_3\mathbox{ for all~$j$}\,\bigr\}\mathbox,
+$$
+then $\Cal S$ is a linear space of dimension~$N$, which is nondegenerate for~$X$ (more details can be found in Wendland~\cite[wendland_2004], at the section  “Learning from splines”).
+Differently from the previous example, here the space~$\Cal S$ (where lay the interpolants to the pairs of data~$(X, F)$, for each~$F$) depends on the locations~$X$.  So this space~$\Cal S$ allows to interpolate only on one fixed set of locations---if we change the locations, we also have to change the space accordingly.
+\medskip
+
+\label[dist]
+\example
+Given $X=\{\range x_N/\}\subset\Omega\subseteq\R^d$, define for each~$k\in\{1, 2, \dots, N\}$ the function~$B_k(x)\coloneq\norm{x-x_k}$, denoting by~$\norm{\cdot}$  the Euclidean norm.  Then the linear space
+$$
+\Cal S = \langle\range B_N/\rangle = \bigl\{\,\sum_{k=1}^N α_k B_k\,:\,\, α_k\in\R\mathbox{ for all~$k$}\,\bigr\}
+$$
+of functions~$\Omega\to\R$ generated by the functions~$\{\range B_N/\}$ has dimension~$N$ and it is nondegenerate for~$X$.  In fact, it is known that the interpolation matrix arising in \ref[system] is always non-singular (Fasshauer~\cite[fasshauer_2007], chapter~1).  Explicitly, this matrix, which is called {\em distance matrix}, takes the form
+$$
+\Bm A=\pmatrix{\norm{x_1-x_1} & \norm{x_1-x_2} & \dots & \norm{x_1-x_N}\cr
+		              \norm{x_2-x_1} & \norm{x_2-x_2} & \dots & \norm{x_2-x_N}\cr
+		              \vdots      & \vdots     & \ddots& \vdots    \cr
+		              \norm{x_N-x_1} & \norm{x_N-x_2} & \dots & \norm{x_N-x_N} }\mathbox.
+$$
+It has zeros on the diagonal entries, and is strictly positive on all the other entries.  As in the previous example---the space of natural splines---this space~$\Cal S$ depends on the data sites~$X$.  Anyway, it is quite general, in the sense that it can be defined for any arbitrary dimension~$d$ of the underlying Euclidean space~$\R^d\supseteq\Omega$.  In dimension~\hbox{$d=1$} it coincides with the space of piecewise linear functions on the knots~$X$.
+\postskip
+
+
+A space~$\Cal S$ of dimension~$M$ strictly less than~$N=|X|$ can actually be successfully used, if we relax the interpolating conditions~\ref[intcond] and instead we look for a function~$s$ which only approximates  the given data values~$F$ at the given locations~$X$, i.e., a function~$s\in\Cal S$ such that~$s(x_j) \approx f_j$ for all $j\in\{1,2,\dots, N\}$.
+This modified version of the interpolation problem may be useful in some applications, for instance when there is  noise in the data, where it is meaningless to try and find a function which perfectly agrees with the data values at the data sites. It turns out that, if we intend to approximate the data in the sense of {\em least squares approximation}, then the approximate version of the problem is somehow equivalent to an actual slightly different interpolation problem.
+This approach, in fact, consists in taking a space~$\Cal S$ with dimension $M< N$ and then, instead of solving the exact version of the system~\ref[system] (which may be impossible if $\Bm f$ doesn’t belong to the column space of~$\Bm A$, as  already previously noted),  in finding the vector~$\Bmα$ which minimizes the Euclidean norm of~$\Bm A\Bm α - \Bm f$.  This is equivalent to taking the orthogonal projection~$P_{\!\!\Bm A\,} \Bm f$ of~$\Bm f$ onto the column space of~$\Bm A$ and solving the system~$\Bm A\Bmα = P_{\!\!\Bm A\,} \Bm f$, which now obviously has solution. Usually, the approximate solution is found by solving the equivalent system of {\em normal equations}, i.e., the system~$\Bm A^T\!\Bm A\Bmα = \Bm A^T\Bm f$.
+The main advantage of the least squares approximation method over the standard interpolation method is the fact that the former leads to a linear system of fewer equations than the latter, reducing the computational cost.  In the following we won’t pursue the least square method, but instead consider always only the exact interpolating conditions~\ref[intcond].  More about the topic of least squares approximation can be found in Fasshauer~\cite[fasshauer_2007].
+
+
+At this point, after having characterized the spaces~$\Cal S$ suitable for the interpolation problem on a fixed data set~$X$, one may wonder if it is possible to build a space of functions which can be used to interpolate function values on an arbitrary data set~$X$.   Of course, for what we said about the dimension of an interpolating space~$\Cal S$ for a fixed~$X$, we can only aim at finding spaces suitable for interpolation on all data sets~$X$ of a fixed size~$N$---otherwise $\Cal S$ would be required to have multiple dimensions, which is not possible.  A space of this kind, i.e., an $N$-dimensional linear space~$\cal S$ of real-valued functions, defined on a domain~$\Omega$ (which contains at least $N$ points), that is nondegenerate for each set~$X=\{\range x_N/\}\in\Omega$ of $N$ distinct points, is called a {\em Haar space} of dimension~$N$ on~$\Omega$.  We have already seen an example of Haar space, at least in the monodimensional case, namely the space of polynomial functions~$\Cal P_{N-1}$ of degree strictly less than~$N$ (example~\ref[poly]).  Do Haar spaces exist also in higher dimensions?  The answer is given by the following result.
+
+\preskip
+\label[mcth]
+\theorem[(Mairhuber-Curtis)]  There exists no Haar space~$\Cal S$ of dimension~$N\geq2$ on a domain~$\Omega\subseteq\R^d$ containing at least an interior point,  if $d\geq 2$.
+
+\proof Suppose that a Haar space~$\Cal S$ of dimension~$N\geq2$ on such a domain~$\Omega$ indeed exists, and let $\Cal B=\{\range B_N/\}$ be a basis for it.   The assumption on~$\Omega$ says that there exists a point~$p\in X$ and a number~$\delta>0$ such that the ball~$B(p, \delta)$ of centre~$p$ and radius~$\delta$ is entirely contained inside of~$\Omega$.  Let now~$X=\{\range x_N/\}$ be a set of $N$ points contained in the ball~$B(p, \delta)$. Being the dimension~$d$ of the space  at least~$2$, there is enough room for two paths~$c_1$ and~$c_2$ that swap the points~$x_1$ and~$x_2$ without having additional intersections, besides the starting and ending points, nor touching any of the other points of~$X$.  Formally, there exist two continuous curves~$c_1, c_2:[0,1]\to B(p, \delta)$ such that
+$$
+\left\{\eqalign{x_1 &= c_1(0) = c_2(1)\cr
+                 x_2 &= c_1(1) = c_2(0)}\right.
+\quad\mathbox{and}\quad
+\left\{\eqalign{&c_1(t)\neq c_2(t)\cr
+		&c_1(t), c_2(t)\notin X}\right.
+\quad\mathbox{for all~$t\in(0,1)$.}
+$$
+Let $\Bm A_t$ be the interpolation matrix associated to the basis~$\Cal B$ and the data sites
+$$
+X_t=\{c_1(t), c_2(t), x_3, x_4, \dots, x_N\}\mathbox,
+$$
+that is the matrix
+$$
+\Bm A_t=\pmatrix{B_1(c_1(t)) & B_2(c_1(t)) & \dots & B_N(c_1(t))\cr
+		                  B_1(c_2(t)) & B_2(c_2(t)) & \dots & B_N(c_2(t))\cr
+		                  B_1(x_3) & B_2(x_3) & \dots & B_N(x_3)\cr
+		                  B_1(x_4) & B_2(x_4) & \dots & B_N(x_4)\cr
+		 		\vdots      & \vdots     & \ddots& \vdots    \cr
+		 		B_1(x_N) & B_2(x_N) & \dots & B_N(x_N)}\mathbox.
+$$ 
+Notice that~$X_t$ has $N$ distinct elements for all~$t$, because of the property of the two curves~$c_1$, $c_2$, so it is indeed a legitimate set of locations of size~$N$.
+Finally, define  for each~$t\in[0,1]$ the function
+$$
+D(t)\coloneq\det\Bm A_t\mathbox.
+$$
+This function is continuous on the whole domain~$[0,1]$, and  it  has the property that $D(1)=-D(0)$.
+  In fact, swapping two rows of a matrix (the first two rows in this case) has the effect of changing the sign of its determinant.  Thus, there should be a number~$\xi\in(0,1)$ such that~$D(\xi)=0$. But this is impossible, since $\Cal S$ is assumed to be nondegenerate for each set of locations~$X$, and so in particular  for~$X_\xi$. \hfill\QED
+%\postskip
+
+% Multivariate polynomials
+%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%

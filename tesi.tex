@@ -1,0 +1,68 @@
+\useOpTeX  % We are using OpTeX, not LaTeX :)
+
+\load[patches, tesimac]
+
+
+\hyperlinks \Black \Black
+\outlines 1
+
+\enlang
+%\fontfam [Latin Modern]  \let\semibold\relax
+%\fontfam[BaskervilleMTmod] \let\semibold\relax
+%\fontfam[times]  \let\semibold\relax
+\fontfam[EBGaramond]
+%\OpTeX
+
+\margins/1 a4 (100,95,130,145)pt
+%\typosize[12/14.181818]
+%\typosize[12.1/14.3]
+\typosize[12.21/14.43]
+\parindent 1.5em
+\parskip 1.5ex
+\clubpenalty=10000
+\widowpenalty=10000
+
+\tocpage
+
+
+\sec The interpolation problem
+\input the-interpolation-problem
+
+\sec Positive definite functions
+\input positive-definite-functions
+
+\sec Native spaces
+\input native-spaces
+%  Sobolev spaces
+
+\sec Error estimates
+\input error-estimates
+
+\sec Optimality
+\input optimality
+
+
+
+%\sec stability and trade-off principle (Fasshauer)
+%\sec Increment of the norm
+%\sec Gibbs and Runge phenomena
+%\sec Variably scaled kernels
+%\sec Fake nodes
+%\sec Cross validation
+%\sec Partition of unity
+
+
+%\sec Kernel based interpolation
+
+
+
+% manual tuning of parameter
+
+% BIBLIOGRAPHY
+\let\_mtext\ignoreit
+\nonum\chap Bibliography
+\def\_opwarning#1{}
+\usebib/s (simple) biblist
+
+
+\bye

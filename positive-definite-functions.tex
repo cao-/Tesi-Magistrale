@@ -1,0 +1,152 @@
+
+
+The Mairhuber-Curtis theorem forces us to let the space~$\Cal S$ {\em depend on the data sites}~$X$, unless we are in dimension~$d=1$, since it says that it is not possible in higher dimensions to build an interpolating space which can work for every data sites.  As before, we start by considering only one fixed set of points~$X\subset\Omega\subseteq\R^d$, where the dimension~$d$ can be arbitrary.  If the space~$\Cal S$ has to depend on the data sites~$X=\{\range x_N/\}$, then it should have basis elements whose expressions depend on~$X$. 
+The most straightforward way to achieve this is to take a {\em single} function
+$$
+Φ:\,\Omega\times\Omega\to\R
+$$
+and use it to generate the data-dependent basis functions~$B_k(x)\coloneq Φ(x, x_k)$, whose combinations define the space
+$$
+\Cal S_{Φ, X}\coloneq \langle\range B_N/\rangle = \bigl\{\,\sum_{k=1}^N α_k Φ(\cdot, x_k)\,:\,\, α_k\in\R\mathbox{ for all~$k$}\,\bigr\}\mathbox.
+$$
+The so constructed linear space~$\Cal S_{Φ, X}$ is nondegenerate for~$X$ if and only if the associated interpolation matrix
+$$
+\Bm A_{Φ, X}=\pmatrix{Φ(x_1, x_1) & Φ(x_1, x_2) & \dots & Φ(x_1, x_N)\cr
+		              Φ(x_2, x_1)& Φ(x_2, x_2) & \dots & Φ(x_2, x_N)\cr
+		              \vdots      & \vdots     & \ddots& \vdots    \cr
+		              Φ(x_N, x_1) & Φ(x_N, x_2) & \dots & Φ(x_N, x_N) }\eqmark[intmat]
+$$
+is invertible.  The invertibility of~$\Bm A_{Φ, X}$ of course depends on the function~$Φ$, so not all functions can be successfully used.   Notice that, if the interpolation matrix is invertible, then the set of functions~$\range B_N/$ are actually a {\em basis} for~$\Cal S_{Φ, X}$, since they are linearly independent functions.
+
+Now we let~$X$ vary. If we wish to have a recovery process that works on all of~$\R^d$ and is {\em invariant} under Euclidean transformations, which is a very reasonable request\fnote{In other applications it may be useful to require other kinds of transformational invariances, for instance the rotational invariance if we are working on a sphere in~$\R^d$.  See Shaback~\cite[shaback_1997], chapter~3.} in most of the applications, then the space generating function~$Φ$ can be taken of the simpler form
+$$
+Φ(x,y) = \phi(\norm{x-y})\mathbox{,\quad $x,y\in\Omega$,}\eqmark[phi]
+$$
+for some function~$\phi:[0,\infty)\to\R$. Roughly speaking, the property of invariance under Euclidean transformations means that, for any pair~$(X, F)$ of data sets and any Euclidean transformation~$\Cal T$,  the same result is obtained either if we first transform the set of points~$X$ through~$\Cal T$ and then interpolate them, or if we reverse the order and apply the transformation after the interpolation. A function of the form~\ref[phi] does exactly the job, because it depends on~$x, y$ only through the norm of their difference, which is itself invariant under a Euclidean transformation.
+If $Φ$ has the {\em radial} form~\ref[phi], then the interpolation matrix~\ref[intmat] is simply a function of the distance matrix that appeared in example~\ref[dist].  Explicitly, in this case the interpolation matrix is
+$$
+\Bm A_{Φ, X}=\pmatrix{\phi(\norm{x_1 -x_1}) &\phi(\norm{x_1 -x_2}) & \dots & \phi(\norm{x_1 -x_N})\cr
+		              \phi(\norm{x_2 -x_1})& \phi(\norm{x_2 -x_2}) & \dots & \phi(\norm{x_2 -x_N})\cr
+		              \vdots      & \vdots     & \ddots& \vdots    \cr
+		              \phi(\norm{x_N -x_1}) & \phi(\norm{x_N -x_2}) & \dots & \phi(\norm{x_N -x_N}) }\mathbox.\eqmark[intmatphi]
+$$
+
+If $\phi$ is the identity function, just like in example~\ref[dist], then the matrix~$\Bm A_{Φ, X}$ is invertible, so the space~$\Cal S_{Φ, X}$ is nondegenerate for~$X$ and can be used to interpolate on the set of locations~$X$.   Are there other functions~$Φ$ whose associated interpolation matrices are invertible?  Luckily, there is a special class of  functions for which the matrix~$\Bm A_{Φ, X}$ is guaranteed to be invertible, regardless of the given data sites~$X$, namely the class of positive-definite functions.
+\preskip
+\definition A function~$Φ:\,\Omega\times\Omega\to\R$ is {\em positive definite}\fnote{Often in the literature one can instead read~{\em strictly positive definite} function, to denote a function that leads to positive definite matrices.  Here we prefer to use the more coherent term {\em positive definite}, like some authors do (e.g., Wendland~\cite[wendland_2004], Shaback~\cite[shaback_1997]).} if for any choice of a finite subset~$X=\{\range x_N/\}\subset\R^d$ of $N$~different points the matrix
+$$
+\Bm A_{Φ, X}=\bigl(Φ(x_k, x_j)\bigr)_{1\leq j,k\leq N}
+$$
+is positive-definite. Also, a function~$\phi:[0,\infty)\to\R$ is said to be {\em positive definite on~$\R^d$} if its associated function~$Φ:\,\Omega\times\Omega\to\R$,  with~$\Omega\subseteq\R^d$ and defined as in~\ref[phi], is positive definite.
+\postskip
+
+\noindent It is known that a positive-definite matrix has positive determinant, and hence it is invertible.  Therefore, if $Φ$ is a positive definite function, the interpolation matrix $\Bm A_{Φ, X}$ is invertible for each set~$X$ of data sites.  It may seem strange at first that there can be a univariate function~$\phi$ which makes all the interpolation matrices~\ref[intmatphi] positive definite no matter which points are chosen and how many, but indeed it is the case. Even more, as we will see in a moment, there are actually functions that work in every space dimension.
+
+
+
+
+Finding positive definite univariate functions~$\phi$ seems to be a challenging task.  Fortunately, there is a simple characterisation of these functions in terms of monotone functions.
+\preskip
+\definition
+A function~$\psi:[0,\infty)\to\R$ is {\em completely monotone} if it is continuous on~$[0,\infty)$, infinitely differentiable on~$(0,\infty)$ and has derivatives with alternating signs, i.e.,
+$$
+(-1)^h \psi^{(h)}(r)\geq0\mathbox{,\quad for every~$r>0$ and~$h=0,1,2,\dots$}
+$$
+\postskip
+
+By using tools from Analysis and Measure Theory, one can arrive to the following result.  Details about its derivation can be found in Wendland~\cite[wendland_2004] or Fasshauer~\cite[fasshauer_2007].
+
+\preskip
+\theorem
+A function~$\psi:[0,\infty)\to\R$ is completely monotone and not constant if and only if the function~$\phi:[0,\infty)\to\R$ defined by
+$$
+\phi(r)\coloneq \psi(r^2)\mathbox{,\quad $r\geq0$}
+$$
+ is positive definite on~$\R^d$ for any~$d$.
+\postskip
+
+\noindent This theorem allows us to build positive definite functions, that work for any space dimension, simply by finding completely monotone functions and then composing  them with the square function.
+
+\preskip
+\example[(Gaussians)] The functions
+$$
+\psi(r)=e^{-\epsilon r}\mathbox{,\quad $\epsilon\geq0$}
+$$
+are completely monotone.  In fact, $(-1)^h \psi^{(h)}(r)=\epsilon^h e^{-\epsilon r}\geq0$ for each~$h=0,1,2,\dots$ \,As a consequence, the compositions
+$$
+\phi(r) = e^{-\epsilon r^2}\mathbox{,\quad $\epsilon\geq0$}
+$$
+are positive definite on~$\R^d$ for each space dimension~$d$.
+\medskip
+
+\example[(Inverse Multiquadrics)]
+The functions
+$$
+\psi(r) = {1\over(1+r)^\epsilon}\mathbox{,\quad $\epsilon\geq0$}
+$$
+are completely monotone since $(-1)^h \psi^{(h)}(r)=(-1)^{2h}\epsilon(\epsilon+1)\dots(\epsilon+h-1)(1+r)^{-\epsilon-h}\geq0$ for each~$h = 0,1,2,\dots$  \,This is equivalent to saying that
+$$
+\phi(r) = {1\over(1+r^2)^\epsilon}\mathbox{,\quad $\epsilon\geq0$}
+$$
+is a family of functions that are positive definite on~$\R^d$ for each~$d$.
+\postskip
+
+By now we have seen some examples of univariate functions which are positive definite on~$\R^d$ for each~$d$.  There are also functions which are positive definite only on some but not all space dimensions, as we are going to see.  But first we notice that if a function~$\phi$ is positive definite on~$\R^d$ then of course it is positive definite also on~$\R^k$ for all~$k<d$, since $\R^k$ can be seen as a subspace of~$\R^d$.
+
+\preskip
+\definition
+A function~$\psi:[0,\infty)\to\R$ is {\em $k$-times monotone} if it is continuous on~$[0,\infty)$, it is $k$-times differentiable on~$(0,\infty)$ and
+$$
+(-1)^h \psi^{(h)}(r)\geq0\mathbox{,\quad for every~$r>0$ and~$h=0,1,\dots k$.}
+$$
+\postskip
+
+\noindent In terms of this definition, a completely monotone function turns out to be a function which is $k$-times monotone for each~$k$.  In analogy to the case of completely monotone functions, there is also a relationship between $k$-times monotone functions and positive definite functions.
+
+\preskip
+\theorem
+Let $k$ be a positive integer.  If~$\phi:[0,\infty)\to\R$ is $k$-times monotone and not constant, then $\phi$ is also positive definite on~$\R^d$ for any~$d$ such that~$\lfloor d/2\rfloor\leq k-2$.
+\medskip
+
+
+
+
+\example
+The {\em truncated power function}
+$$
+\psi_k(r) = (1-r)^k_+\mathbox{,\quad $k\in\BbbN$}
+$$
+is $k$-times monotone since $(-1)^h\psi_k^{(h)}=k(k-1)\dots(k-h+1)(1-r)^{k-h}_+\geq0$ for each~$h=0,1,\dots,k$, hence it is positive definite on $\R^d$ for any dimension~$d$ such that~$\lfloor d/2\rfloor\leq k-2$.
+\postskip
+
+\noindent The truncated power functions are compactly supported.  This is an advantage, since a compactly supported function can lead to an interpolation system whose matrix is sparse, so a system which is good from the computational point of view.  However, a single function from this family cannot be used for interpolation on~$\R^d$ for all~$d$.   Indeed, it is known (Wendland \cite[wendland_2004], chapter~$9$), that a non-trivial continuous function~$\phi$ which is positive definite on~$\R^d$ for all~$d$ cannot have zeros, thus we can’t expect to find a compactly supported function~$\phi$ which is positive definite on~$\R^d$ for all~$d$. 
+
+A truncated power function~$\phi$  leads to a function~$Φ$, defined by~\ref[phi], which is not very regular, as it is no more than continuous.  Since the basis functions will determine the smoothness of the approximant, it is necessary to have also smoother functions with local support. One example of such functions is given by the Wendland’s family of functions.
+
+\preskip
+\example[(Wendland’s functions)]
+Let $\phi$ be such that~$t\mapsto t\phi(t)\in L^1([0,\infty))$, and define the integral operator~$I$ via
+$$
+(I\,\phi)(r)=\int_r^\infty t\phi(t)\,dt\mathbox{,\quad $r\geq0$.}
+$$
+Then, starting from the truncated power functions  of the previous example and repeatedly applying the operator~$I$ it is possible to build compactly supported functions~$\phi_{d,k}$ (the subscript~$d$ is the space dimension, while the subscript~$k$ is related to the number of applied iterations of the integral operator) which have polynomial representations and are of the lowest possible degree relative to their smoothness and the space dimension.  Details about this construction are present for instance in Wendland~\cite[wendland_2004], chapter~9. 
+We report in table~\ref[wentab], up to positive constant factors, the functions that can be obtained starting from the truncated power function of degree~$2$, along with their smoothness.  These are the most used Wendland’s compactly supported functions, since they work for dimensions~$d\leq 3$.
+%\postskip
+
+
+\label[wentab]
+\topinsert
+\centerline{\semibold\bf Wendland’s functions}
+\smallskip
+\centerline{%
+\table{ccc}{       					                                \crl
+$\hskip.5em k\hskip.5em$ & $\phi_{3,k}(r)$                                    & smoothness   \crl
+$0$ & $(1-r)^2_+$				           & $\Cal C^0$     \cr
+$1$ & $(1-r)^4_+(4r+1)$	 	           & $\Cal C^2$     \cr
+$2$ & $(1-r)^6_+(35r^2+18r+3)$             & $\Cal C^4$     \cr
+$3$ & $(1-r)^8_+(32r^3+25r^2+8r+1)$ & $\Cal C^6$      \crl
+}}
+\cskip
+\caption/t
+\relax List of the Wendland’s functions~$\phi_{3,k}$ for $k=0,1,2,3$.  The smoothness of these functions (more properly, of their even extensions to the real line)  is~$\Cal C^{2k}$.  They are positive definite on~$\R^d$ for all~$d\leq3$.
+\endinsert
