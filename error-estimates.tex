@@ -100,7 +100,29 @@ $$
 			      &= \sqrt{Φ(x_j,x_j) -A_{j,j}} = 0.
 }
 $$
-The power function therefore is a function which depends only on the kernel and the data sites; it is always positive and bounded above by the function~$x\mapsto\sqrt{Φ(x,x)}$; and it has value zero at the data sites.  If the kernel~$Φ$ belongs to~$\Cal C^k(\Omega\times\Omega)$, then also $P_X$ belongs to~$\Cal C^k(\Omega)$ (in particular, $P_X$ is continuous if $Φ$~is continuous); if the kernel is translational invariant (for instance, a radial kernel), then $P_X$ is bounded above by a constant, because  in this case $Φ(x,x)$ does not depend on~$x$.
+If instead we take a point~$x\notin X$, then $P_X(x)>0$.  In fact, the expression for the power function can be rewritten as
+$$
+\eqalign{P_X(x)&= \sqrt{Φ(x,x)-\Bm b(x)^T\Bm A^{-1}\Bm b(x)}   \cr
+		           &=\rlap{$\sqrt{\phantom{\displaystyle\pmatrix{\Bm A^{-1}\cr -1}^T 
+		                 \pmatrix{\Bm A & \Bm b(x) \cr
+		                                    \Bm b(x)^T & Φ(x,x)}
+			       \pmatrix{\Bm A^{-1}\Bm b(x) \cr -1}}}$}
+			       \,\,\,\displaystyle\pmatrix{\Bm A^{-1}\cr -1}^T 
+		                 \underbrace{\displaystyle\pmatrix{\Bm A & \Bm b(x) \cr
+		                                    						 \Bm b(x)^T & Φ(x,x)}}_{\displaystyle\Bm A_{Φ,\.\. X\cup\{x\}}}
+			       \pmatrix{\Bm A^{-1}\Bm b(x) \cr -1},
+}
+$$
+and this quantity is strictly positive, because the interpolating matrix~$\Bm A_{Φ,\.\.X\cup\{x\}}$ associated to the set of locations~$X\cup\{x\}$ is positive definite.
+
+
+
+%\underbrace{\displaystyle\pmatrix{\Bm A & \Bm b(x) \cr
+%		                 								   \Bm b(x)^T & Φ(x,x)}}_{\displaystyle\Bm A_{Φ,\.\. X\cup\{x\}}}
+
+
+
+The power function therefore is a function which depends only on the kernel and the data sites; it has value zero at the data sites and elsewhere is strictly positive and bounded above by the function~$x\mapsto\sqrt{Φ(x,x)}$.  If the kernel~$Φ$ belongs to~$\Cal C^k(\Omega\times\Omega)$, then also $P_X$ belongs to~$\Cal C^k(\Omega)$ (in particular, $P_X$ is continuous if $Φ$~is continuous); if the kernel is translational invariant (for instance, a radial kernel), then $P_X$ is bounded above by a constant, because  in this case $Φ(x,x)$ does not depend on~$x$.
 
 
 
