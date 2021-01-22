@@ -7,13 +7,14 @@
 \_unitmuskip = 1mu
 \protected\def\.{\mskip\_unitmuskip}
 
+
+
 \def\theorem{\numberedpar A{\semibold\bf THEOREM}}
 \def\proposition{\numberedpar A{\semibold\bf PROPOSITION}}
 \def\lemma{\numberedpar A{\semibold\bf LEMMA}}
 \_def \_theAnum {\_the\_counterA}
 \def\example{\numberedpar B{\semibold\bf Example}}
 \_def \_theBnum {\_the\_counterB}
-%\def\definition{\numberedpar C{\rm DEFINITION\setff{embolden=1}\rm}}
 \def\definition{\numberedpar C{\rm DEFINITION}}
 \_def \_theCnum {\_the\_counterC}
 \def\proof{\smallskip\noindent{\em PROOF}. \,}
@@ -21,8 +22,9 @@
 \def\preskip{\smallskip}
 \def\postskip{\bigskip\medskip}
 
-
 \long\def\comment#1\endcomment{}
+
+
 
 
 \def\range#1_#2/{#1_1, #1_2, \dots, #1_{#2}}
@@ -38,10 +40,9 @@
 \def\Bform#1#2_#3{\biggl(\,#1\,,\,#2\,\biggr)_{#3}}
 
 
+
+
 \def\_printfnotemark {$^\mathbox{\_fnotenum}$}
-%\let\_eqno\_leqno
-
-
 \_def\_thefnum {\_the\_fnum}
 \_def\_thetnum {\_the\_tnum}
 \_def \_secx {\_seccx \_seccnum=0}
@@ -54,6 +55,7 @@
 \_let \_printcaptionf = \_printcaptiont
 
 
+
 \newtoks\tmptoks
 
 \def\tocpage{%
@@ -64,11 +66,3 @@
 	\vfill\eject
 	\footline=\tmptoks}
 
-
-%\def\LaTeXtwelvesettings{%
-%\typosize[12/14.5]
-%\margins/1 a4 (107.5,100,125,171.5)pt
-%\parindent=18pt
-%\_clubpenalty = 150
-%\_widowpenalty = 150
-%}
