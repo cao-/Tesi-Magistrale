@@ -103,11 +103,11 @@ $$
 If instead we take a point~$x\notin X$, then $P_X(x)>0$.  In fact, the expression for the power function can be rewritten as
 $$
 \eqalign{P_X(x)&= \sqrt{Φ(x,x)-\Bm b(x)^T\Bm A^{-1}\Bm b(x)}   \cr
-		           &=\rlap{$\sqrt{\phantom{\displaystyle\pmatrix{\Bm A^{-1}\cr -1}^T 
+		           &=\rlap{$\sqrt{\phantom{\displaystyle\pmatrix{\Bm A^{-1} \Bm b(x)\cr -1}^T 
 		                 \pmatrix{\Bm A & \Bm b(x) \cr
 		                                    \Bm b(x)^T & Φ(x,x)}
 			       \pmatrix{\Bm A^{-1}\Bm b(x) \cr -1}}}$}
-			       \,\,\,\displaystyle\pmatrix{\Bm A^{-1}\cr -1}^T 
+			       \mkern10mu\displaystyle\pmatrix{\Bm A^{-1} \Bm b(x)\cr -1}^T 
 		                 \underbrace{\displaystyle\pmatrix{\Bm A & \Bm b(x) \cr
 		                                    						 \Bm b(x)^T & Φ(x,x)}}_{\displaystyle\Bm A_{Φ,\.\. X\cup\{x\}}}
 			       \pmatrix{\Bm A^{-1}\Bm b(x) \cr -1},
