@@ -1,3 +1,11 @@
+% Less streachability around math atoms than standard
+%\_thinmuskip = 3mu
+\_medmuskip = 4mu plus 1mu minus 2mu % instead of 4 + 2 - 4
+\_thickmuskip = 5mu plus 2mu % instead of 5 + 5
+
+\newmuskip\_unitmuskip
+\_unitmuskip = 1mu
+\protected\def\.{\mskip\_unitmuskip}
 
 \def\theorem{\numberedpar A{\semibold\bf THEOREM}}
 \def\proposition{\numberedpar A{\semibold\bf PROPOSITION}}

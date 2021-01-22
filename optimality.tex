@@ -1,9 +1,9 @@
 
 
 
-Let $X=\{\range x_N/\}$ be a set of locations and~$f(X) =\{f(x_1), f(x_2), \dots, f(x_N)\}$ a corresponding set of data values sampled from a function~$f$ in the native space~$\Cal N_Φ$ of a symmetric positive definite kernel~$Φ$.  We are now going to see some geometric properties satisfied by the interpolant~$s_{X,f}\in\Cal S_{Φ,X}$ of the pair of data~$(X, f(X))$.  
+Let $X=\{\range x_N/\}$ be a set of locations and~$f(X) =\{\.f(x_1), f(x_2), \dots, f(x_N)\}$ a corresponding set of data values sampled from a function~$f$ in the native space~$\Cal N_Φ$ of a symmetric positive definite kernel~$Φ$.  We are now going to see some geometric properties satisfied by the interpolant~$s_{X,f}\in\Cal S_{Φ,\. X}$ of the pair of data~$(X, f(X))$.  
 
-First of all the error~$f-s_{X, f}$ is {\em orthogonal} to~$\Cal S_{Φ, X}$, where the orthogonality is intended in the sense of the scalar product~$\form\cdot\cdot_Φ$ of the native space.  What we mean is that the scalar product between $f-s_{X, f}$ and any function~$h\in\Cal S_{X,f}$ is~zero.  In fact,
+First of all the error~$f-s_{X, f}$ is {\em orthogonal} to~$\Cal S_{Φ,\. X}$, where the orthogonality is intended in the sense of the scalar product~$\form\;\;_Φ$ of the native space.  What we mean is that the scalar product between $f-s_{X, f}$ and any function~$h\in\Cal S_{X,f}$ is~zero.  In fact,
 $$
 \eqalign{ \form{h}{f-s_{X,f}}_Φ &=  \bform{\sum_{k=1}^N\gamma_k Φ(\cdot, x_k)}{f-s_{X,f}}_Φ\cr
 							     &= \sum_{k=1}^N\gamma_k \form{Φ(\cdot, x_k)}{f-s_{X,f}}_Φ \cr
@@ -14,55 +14,55 @@ because of the reproducing property of the kernel and the fact that by definitio
 
 \preskip
 \theorem
-For any~$f\in\Cal N_Φ$ and any set~$X$ of locations, the interpolant~$s_{X,f}\in\Cal S_{Φ, X}$ of the pair of data~$(X, f(X))$ is the {\em orthogonal projection} of $f$ onto~$\Cal S_{Φ, X}$.
+For any~$f\in\Cal N_Φ$ and any set~$X$ of locations, the interpolant~$s_{X,f}\in\Cal S_{Φ,\. X}$ of the pair of data~$(X, f(X))$ is the {\em orthogonal projection} of $f$ onto~$\Cal S_{Φ,\. X}$.
 %\postskip
 \medskip
 \noindent 
-Alternatively, in an equivalent way, we can also say that  $s_{X,f}$ is the function of~$\Cal S_{Φ,X}$ which realises the {\em minimum distance} from~$f$.  Explicitly,
+Alternatively, in an equivalent way, we can also say that  $s_{X,f}$ is the function of~$\Cal S_{Φ,\. X}$ which realises the {\em minimum distance} from~$f$.  Explicitly,
 $$
-\norm{f-s_{X,f}}_Φ \leq \norm{f-h}_Φ\mathbox{,\quad for all $h\in\Cal S_{Φ,X}$.}
+\norm{\.f-s_{X,f}}_Φ \leq \norm{\.f-h}_Φ\mathbox{,\quad for all $h\in\Cal S_{Φ,\. X}$.}
 $$
 
-With respect to the subspace~$\Cal S_{Φ, X}$ of the native space~$\Cal N_Φ$, any function $f\in\Cal N_Φ$ is decomposed into two orthogonal parts: its projection~$s_{X,f}\in\Cal S_{X,f}$ and the interpolation error~$\epsilon_x(f) = f-s_{X, f}\in\Cal S_{X,f}^\perp$.  In fact,
+With respect to the subspace~$\Cal S_{Φ,\. X}$ of the native space~$\Cal N_Φ$, any function $f\in\Cal N_Φ$ is decomposed into two orthogonal parts: its projection~$s_{X,f}\in\Cal S_{X,f}$ and the interpolation error~$\epsilon_x(\.f) = f-s_{X, f}\in\Cal S_{X,f}^\perp$.  In fact,
 $$
-f = s_{X,f} + \epsilon_x(f).
+f = s_{X,f} + \epsilon_x(\.f).
 $$
 The orthogonality of the two components implies the following {\em Pythagorean identity},
 $$
-\norm{f}_Φ^2=\norm{s_{X,f}}_Φ^2+\norm{\epsilon_x(f)}^2. \eqmark[pythag]
+\norm{\.f}_Φ^2=\norm{s_{X,f}}_Φ^2+\norm{\epsilon_x(\.f)}^2. \eqmark[pythag]
 $$ 
 
 
-Up to now we have considered as interpolant of the pair of data~$(X,f(X))$ only the  unique function~$s_{X,f}$ that belongs to~$\Cal S_{Φ,X}=\langle\,Φ(\cdot,x_j)\, :\, x_j\in X\,\rangle$.  Nonetheless, in the rest of~$\Cal N_Φ$ there could be also other functions which agree with the values~$f(X)$ at the data sites~$X$---one trivial example is $f$ itself.  We are about to see a property satisfied by~$s_{X,f}$,  which makes it special among all the interpolants.
+Up to now we have considered as interpolant of the pair of data~$(X,f(X))$ only the  unique function~$s_{X,f}$ that belongs to~$\Cal S_{Φ,\. X}=\langle\,Φ(\cdot,x_j)\, :\, x_j\in X\,\rangle$.  Nonetheless, in the rest of~$\Cal N_Φ$ there could be also other functions which agree with the values~$f(X)$ at the data sites~$X$---one trivial example is $f$ itself.  We are about to see a property satisfied by~$s_{X,f}$,  which makes it special among all the interpolants.
 
 
 We start by giving a name to the subspace of~$\Cal N_Φ$ made of all functions  that interpolates the pair of data~$(X, f(X))$, that is
 $$
 \Cal I_{X, f} \coloneq \bigl\{\,g\in\Cal N_Φ\,:\quad g(x_j) = f(x_j)\mathbox{ for all~$x_j\in X$}\,\bigr\}.
 $$
-With this definition, the function~$s_ {X,f}$ can be seen as the unique function belonging to the intersection between~$\Cal I_{X,f}$ and~$\Cal S_{Φ,X}$. Moreover, the following theorem holds.
+With this definition, the function~$s_ {X,f}$ can be seen as the unique function belonging to the intersection between~$\Cal I_{X,f}$ and~$\Cal S_{Φ,\. X}$. Moreover, the following theorem holds.
 
 \preskip
 \theorem
-The interpolant~$s_{X,f}\in\Cal S_{Φ,X}$ of a function~$f\in\Cal N_Φ$ is the function of~$\Cal I_{X,f}$ with {\em minimum norm}, that is the solution of the {\em optimal recovery problem}
+The interpolant~$s_{X,f}\in\Cal S_{Φ,\. X}$ of a function~$f\in\Cal N_Φ$ is the function of~$\Cal I_{X,f}$ with {\em minimum norm}, that is the solution of the {\em optimal recovery problem}
 $$
-\norm{s_{X,f}}_Φ = \min_{\,g\,\in\, \Cal I_{X,f}}\norm{\,g}_Φ.
+\norm{s_{X,f}}_Φ = \min_{\,g\,\in\, \Cal I_{X,f}}\norm{\.g}_Φ.
 $$
 \proof
 Let $g$ be any function in~$\Cal I_{X, f}$.  The Pythagorean identity~\ref[pythag] applied to~$g$ says that
 $$
-\norm{s_{X, g}}_Φ^2+\norm{g-s_{X,g}}_Φ^2=\norm g_Φ^2
+\norm{s_{X,\.g}}_Φ^2+\norm{g-s_{X,\.g}}_Φ^2=\norm{\.g}_Φ^2
 $$
-But the interpolant~$s_{X,g}\in\Cal S_{Φ,X}$ of~$g$ coincides with the interpolant~$s_{X, f}\in\Cal S_{Φ, X}$ of~$f$, since the functions $f$ and~$g$ assume the same values at the points of~$X$.
+But the interpolant~$s_{X,\.g}\in\Cal S_{Φ,\. X}$ of~$g$ coincides with the interpolant~$s_{X, f}\in\Cal S_{Φ,\. X}$ of~$f$, since the functions $f$ and~$g$ assume the same values at the points of~$X$.
 It follows therefore that 
 $$
-\norm{s_{X, f}}_Φ^2+\norm{g-s_{X,f}}_Φ^2=\norm g_Φ^2
+\norm{s_{X, f}}_Φ^2+\norm{\.g-s_{X,f}}_Φ^2=\norm{\.g}_Φ^2
 $$
 and hence that
 $$
-\norm{s_{X, f}}_Φ^2\leq\norm g_Φ^2.
+\norm{s_{X, f}}_Φ^2\leq\norm{\.g}_Φ^2.
 $$
-Notice that in the last expression equality holds if and only if $\norm{g-s_{X,f}}_Φ^2 = 0$, i.e.,  if and only if~$g = s_{X,f}$.  This means that the minimum of the norm is realised {\em only} by~$s_{X, f}$. \hfill\QED
+Notice that in the last expression equality holds if and only if $\norm{\.g-s_{X,f}}_Φ^2 = 0$, i.e.,  if and only if~$g = s_{X,f}$.  This means that the minimum of the norm is realised {\em only} by~$s_{X, f}$. \hfill\QED
 %\postskip
 
 
