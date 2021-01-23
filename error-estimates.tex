@@ -79,47 +79,38 @@ $$
  $$
  then the expression for the power function can be rewritten as
  $$
- P_X(x) = \sqrt{Φ(x,x) -2\Bm u(x)^T\Bm b(x) + \Bm u(x)^T\!\Bm A\,\Bm u(x)}.
- $$
- From the definition of~$u_h$ in expression~\ref[card] it follows that~$u_h(x) = (\Bm c^{(h)})^T\Bm b(x)$, and so that~$\Bm u(x) = \Bm C^T\Bm b(x) =  (\Bm A^{-1})^T\, \Bm b(x) = \Bm A^{-1} \Bm b(x)$.
+ \eqalignno{P_X(x) &= \sqrt{Φ(x,x) -2\Bm u(x)^T\Bm b(x) + \Bm u(x)^T\!\Bm A\,\Bm u(x)}  \cr
+ 			    &= \sqrt{\pmatrix{\Bm u(x) \cr -1}^{\rlap{$\scriptstyle\!T$}}
+       		     			   \pmatrix{\Bm A\; & \Bm b(x) \cr \Bm b(x)^T & Φ(x,x)}
+         				 	  \pmatrix{\Bm u(x) \cr -1}}\,. & \eqmark[pow1]}
+$$
+ From the definition of~$u_h$ in expression~\ref[card] it follows that~$u_h(x) = (\Bm c^{(h)})^T\Bm b(x)$, and so that~$\Bm u(x) = \Bm C^{\,T}\Bm b(x) =  (\Bm A^{-1})^T\, \Bm b(x) = \Bm A^{-1} \Bm b(x)$.
  This allows us finally to find a computable expression for~$P_X(x)$, that is
  $$
- \eqalign{P_X(x) &=\sqrt{ Φ(x,x) -2\Bm u(x)^T\!\Bm A\,\Bm u(x) + \Bm u(x)^T\!\Bm A\,\Bm u(x)} \cr
- 			    &= \sqrt{ Φ(x,x) -\Bm u(x)^T\!\Bm A\,\Bm u(x)} \cr
+ \eqalignno{P_X(x) &=\sqrt{ Φ(x,x) -2\Bm u(x)^T\!\Bm A\,\Bm u(x) + \Bm u(x)^T\!\Bm A\,\Bm u(x)} \cr
+ 			    &= \sqrt{ Φ(x,x) -\Bm u(x)^T\!\Bm A\,\Bm u(x)}  &\eqmark[pow2]\cr
  			     &= \sqrt{Φ(x,x)-\Bm b(x)^T\Bm A^{-1}\Bm b(x)}.
 }
 $$
 
-From these expressions we can deduce some properties of the power function.  The positive definiteness of~$\Bm A$  implies that
+These expressions let us deduce some properties of the power function.  
+From~\ref[pow2] it follows that
 $$
-0\leq P_X(x)\leq\sqrt{Φ(x,x)}\mathbox{,\quad for all~$x\in\Omega$.}
+0\leq P_X(x) \leq \sqrt{Φ(x,x)},
 $$
-Then, the evaluation of~$P_X$ at the data sites gives
-$$
-\eqalign{P_X(x_j) &= \sqrt{Φ(x_j,x_j) -\Bm u(x_j)^T\!\Bm A\,\Bm u(x_j)} \cr
-			      &= \sqrt{Φ(x_j,x_j) -A_{j,j}} = 0.
-}
-$$
-If instead we take a point~$x\notin X$, then $P_X(x)>0$.  In fact, the expression for the power function can be rewritten as
-$$
-\eqalign{P_X(x)&= \sqrt{Φ(x,x)-\Bm b(x)^T\Bm A^{-1}\Bm b(x)}   \cr
-		           &=\rlap{$\sqrt{\phantom{\displaystyle\pmatrix{\Bm A^{-1} \Bm b(x)\cr -1}^T 
-		                 \pmatrix{\Bm A & \Bm b(x) \cr
-		                                    \Bm b(x)^T & Φ(x,x)}
-			       \pmatrix{\Bm A^{-1}\Bm b(x) \cr -1}}}$}
-			       \mkern10mu\displaystyle\pmatrix{\Bm A^{-1} \Bm b(x)\cr -1}^T 
-		                 \underbrace{\displaystyle\pmatrix{\Bm A & \Bm b(x) \cr
-		                                    						 \Bm b(x)^T & Φ(x,x)}}_{\displaystyle\Bm A_{Φ,\.\. X\cup\{x\}}}
-			       \pmatrix{\Bm A^{-1}\Bm b(x) \cr -1},
-}
-$$
-and this quantity is strictly positive, because the interpolating matrix~$\Bm A_{Φ,\.\.X\cup\{x\}}$ associated to the set of locations~$X\cup\{x\}$ is positive definite.
+ because of the positive definiteness of the matrix~$A$.  Additionally, the evaluation of $P_X$ at the data sites gives
+ $$
+\eqalign{P_X(x_j) &= \sqrt{Φ(\smash{x_j}, \smash{x_j}) - \Bm u(\smash{x_j})^T\!\Bm A\,\Bm u(\smash{x_j})} \cr
+			      &= \sqrt{Φ(\smash{x_j}, \smash{x_j})- \smash{A_{j,j}}} = 0.}
 
-
-
-%\underbrace{\displaystyle\pmatrix{\Bm A & \Bm b(x) \cr
-%		                 								   \Bm b(x)^T & Φ(x,x)}}_{\displaystyle\Bm A_{Φ,\.\. X\cup\{x\}}}
-
+ $$
+ Expression~\ref[pow1] instead implies that  $P_X(x) > 0$ if $x\notin X$. In fact, in this case the matrix
+ $$
+ \pmatrix{\Bm A\; & \Bm b(x) \cr
+ 		 \Bm b(x)^T & \Phi(x,x)}
+ $$
+ is positive definite because it is the interpolation matrix~$\Bm A_{Φ,\.\.X\cup\{x\}}$ that arises from the augmented set of locations~$X\cup\{x\}$.
+ 
 
 
 The power function therefore is a function which depends only on the kernel and the data sites; it has value zero at the data sites and elsewhere is strictly positive and bounded above by the function~$x\mapsto\sqrt{Φ(x,x)}$.  If the kernel~$Φ$ belongs to~$\Cal C^k(\Omega\times\Omega)$, then also $P_X$ belongs to~$\Cal C^k(\Omega)$ (in particular, $P_X$ is continuous if $Φ$~is continuous); if the kernel is translational invariant (for instance, a radial kernel), then $P_X$ is bounded above by a constant, because  in this case $Φ(x,x)$ does not depend on~$x$.
