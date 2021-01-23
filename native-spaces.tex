@@ -157,13 +157,6 @@ $$
 \lim_{n\to\infty}\, f_n(x) = f(x)\mathbox{,\quad for each~$x\in\Omega$.}
 $$
 \proof
-Saying that $f_n(x)\to f(x)$ is equivalent by definition to saying that $|\.f_n(x)-f(x)|\to 0$.  By applying first the reproducing property of the kernel~$Φ$ and then the Cauchy-Schwarz inequality, we get that
-$$
-\eqalign{
-|\.f_n(x)-f(x)|&=|\form{Φ(\cdot, x)}{f_n}_Φ - \form{Φ(\cdot, x)}{f}_Φ|  \cr
-                        &= |\form{Φ(\cdot, x)}{f_n - f}_Φ|                                                       \cr
-                        &≤ \norm{Φ(\cdot,x)}_Φ\, \norm{\.f_n - f}_Φ\mathbox.
-}                        
-$$
-Finally, we conclude by noticing that the convergence of $f_n$ to~$f$ in~$\Cal N_Φ$ is equivalent by definition to the convergence of $\.\norm{\.f_n - f}_Φ$ to zero. \hfill\QED
+This is simply a consequence of the continuity of the point-evaluation functionals. Explicitly, if $f_n$ converges to $f$ in~$\Cal N_Φ$, then $\delta_x(\.f_n)$ converges to~$\delta_x(\.f)$ in~$\R$, because the functional~$\delta_x:\Cal N_Φ\to\R$ is continuous.
+\hfill\QED
 %\postskip
