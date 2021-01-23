@@ -68,7 +68,7 @@ $$
 This norm can be actually computed as in the following steps,
 $$
 \eqalign{P_X(x) &= \norm{Φ(\cdot,x)-\sum_{h=1}^Nu_h(x)\,Φ(\cdot,x_h)}_Φ  \cr
-                                    &= \sqrt{\bform{Φ(\cdot,x)-\sum_{h=1}^Nu_h(x)\,Φ(\cdot,x_h)}{Φ(\cdot,x)-\sum_{h=1}^Nu_h(x)\,Φ(\cdot,x_h)}_Φ} \cr
+                                    &= \sqrt{\norm{Φ(\cdot,x)}_Φ^2 -2\, \bform{Φ(\cdot,x)}{\sum_{h=1}^Nu_h(x)\,Φ(\cdot,x_h)}_Φ + \bnorm{\sum_{h=1}^Nu_h(x)\,Φ(\cdot,x_h)}_Φ^2} \cr
                                     &= \sqrt{Φ(x,x) - 2\sum_{h=1}^Nu_h(x)\,Φ(x,x_h) + \sum_{h=1}^N\sum_{k=1}^N u_h(x) u_k(x)\,Φ(x_h, x_k)}.
 }
 $$ 
