@@ -11,10 +11,10 @@ $$
 $$
 The so constructed linear space~$\Cal S_{Φ,\. X}$ is nondegenerate for~$X$ if and only if the associated interpolation matrix
 $$
-\Bm A_{Φ,\. X}=\pmatrix{Φ(x_1, x_1) & Φ(x_1, x_2) & \dots & Φ(x_1, x_N)\cr
-		              Φ(x_2, x_1)& Φ(x_2, x_2) & \dots & Φ(x_2, x_N)\cr
+\Bm A_{Φ,\. X}=\pmatrix{Φ(x_1, x_1) & Φ(x_1, x_2) & \cdots & Φ(x_1, x_N)\cr
+		              Φ(x_2, x_1)& Φ(x_2, x_2) & \cdots & Φ(x_2, x_N)\cr
 		              \vdots      & \vdots     & \ddots& \vdots    \cr
-		              Φ(x_N, x_1) & Φ(x_N, x_2) & \dots & Φ(x_N, x_N) }\eqmark[intmat]
+		              Φ(x_N, x_1) & Φ(x_N, x_2) & \cdots & Φ(x_N, x_N) }\eqmark[intmat]
 $$
 is invertible.  The invertibility of~$\Bm A_{Φ,\. X}$ of course depends on the function~$Φ$, so not all functions can be successfully used.   Notice that, if the interpolation matrix is invertible, then the set of functions~$\range B_N/$ are actually a {\em basis} for~$\Cal S_{Φ,\. X}$, since they are linearly independent functions.
 
@@ -25,10 +25,10 @@ $$
 for some function~$\phi:[0,\infty)\to\R$. Roughly speaking, the property of invariance under Euclidean transformations means that, for any pair~$(X, F)$ of data sets and any Euclidean transformation~$\Cal T$,  the same result is obtained either if we first transform the set of points~$X$ through~$\Cal T$ and then interpolate them, or if we reverse the order and apply the transformation after the interpolation. A function of the form~\ref[phi] does exactly the job, because it depends on~$x, y$ only through the norm of their difference, which is itself invariant under a Euclidean transformation.
 If $Φ$ has the {\em radial} form~\ref[phi], then the interpolation matrix~\ref[intmat] is simply a function of the distance matrix that appeared in example~\ref[dist].  Explicitly, in this case the interpolation matrix is
 $$
-\Bm A_{Φ,\. X}=\pmatrix{\phi(\norm{x_1 -x_1}) &\phi(\norm{x_1 -x_2}) & \dots & \phi(\norm{x_1 -x_N})\cr
-		              \phi(\norm{x_2 -x_1})& \phi(\norm{x_2 -x_2}) & \dots & \phi(\norm{x_2 -x_N})\cr
+\Bm A_{Φ,\. X}=\pmatrix{\phi(\norm{x_1 -x_1}) &\phi(\norm{x_1 -x_2}) & \cdots & \phi(\norm{x_1 -x_N})\cr
+		              \phi(\norm{x_2 -x_1})& \phi(\norm{x_2 -x_2}) & \cdots & \phi(\norm{x_2 -x_N})\cr
 		              \vdots      & \vdots     & \ddots& \vdots    \cr
-		              \phi(\norm{x_N -x_1}) & \phi(\norm{x_N -x_2}) & \dots & \phi(\norm{x_N -x_N}) }\mathbox.\eqmark[intmatphi]
+		              \phi(\norm{x_N -x_1}) & \phi(\norm{x_N -x_2}) & \cdots & \phi(\norm{x_N -x_N}) }\mathbox.\eqmark[intmatphi]
 $$
 
 If $\phi$ is the identity function, just like in example~\ref[dist], then the matrix~$\Bm A_{Φ,\. X}$ is invertible, so the space~$\Cal S_{Φ,\. X}$ is nondegenerate for~$X$ and can be used to interpolate on the set of locations~$X$.   Are there other functions~$Φ$ whose associated interpolation matrices are invertible?  Luckily, there is a special class of  functions for which the matrix~$\Bm A_{Φ,\. X}$ is guaranteed to be invertible, regardless of the given data sites~$X$, namely the class of positive-definite functions.
