@@ -79,10 +79,10 @@ $$
  $$
  then the expression for the power function can be rewritten as
  $$
- \eqalignno{P_X(x) &= \sqrt{Φ(x,x) -2\Bm u(x)^T\Bm b(x) + \Bm u(x)^T\!\Bm A\,\Bm u(x)}  \cr
+ \eqalign{P_X(x) &= \sqrt{Φ(x,x) -2\Bm u(x)^T\Bm b(x) + \Bm u(x)^T\!\Bm A\,\Bm u(x)}  \cr
  			    &= \sqrt{\pmatrix{\Bm u(x) \cr -1}^{\rlap{$\scriptstyle\!T$}}
        		     			   \pmatrix{\Bm A\; & \Bm b(x) \cr \Bm b(x)^T & Φ(x,x)}
-         				 	  \pmatrix{\Bm u(x) \cr -1}}\,. & \eqmark[pow1]}
+         				 	  \pmatrix{\Bm u(x) \cr -1}}\,.} \eqmark[pow1]
 $$
  From the definition of~$u_h$ in expression~\ref[card] it follows that~$u_h(x) = (\Bm c^{(h)})^T\Bm b(x)$, and so that~$\Bm u(x) = \Bm C^{\,T}\Bm b(x) =  (\Bm A^{-1})^T\, \Bm b(x) = \Bm A^{-1} \Bm b(x)$.
  This allows us finally to find a computable expression for~$P_X(x)$, that is
