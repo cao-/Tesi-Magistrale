@@ -1,0 +1,65 @@
+\useOpTeX  % We are using OpTeX, not LaTeX :)
+
+\load[thesismac]
+
+\hyperlinks \Black \Black
+\outlines 1
+
+\enlang
+\fontfam[EBGaramond]
+%\OpTeX
+
+\def\QED{\Umathchar"0"01"00203B}
+
+\margins/1 a4 (100,95,130,145)pt
+\typosize[12.21/14.5]
+\parindent 1.5em
+\parskip 1.5ex
+\rulewidth 0.12ex
+
+
+%\tocpage
+
+
+\sec The interpolation problem
+\input the-interpolation-problem
+
+\sec Positive definite functions
+\input positive-definite-functions
+
+\sec Native spaces
+\input native-spaces
+%  Sobolev spaces
+
+\sec Error estimates
+\input error-estimates
+
+\sec Optimality
+\input optimality
+
+\sec Adding data
+\input adding-data
+
+
+%\sec stability and trade-off principle (Fasshauer)
+%\sec Increment of the norm
+%\sec Gibbs and Runge phenomena
+%\sec Variably scaled kernels
+%\sec Fake nodes
+%\sec Cross validation
+%\sec Partition of unity
+
+
+
+% manual tuning of parameter
+
+
+
+% BIBLIOGRAPHY
+\let\_mtext\ignoreit
+\nonum\chap Bibliography
+%\def\_opwarning#1{}
+\usebib/s (iso690) biblist
+
+
+\bye
