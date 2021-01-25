@@ -1,10 +1,10 @@
 
 
-Up to now we have always considered the problem of recovering an unknown function from a fixed set of information about it, namely the values that the function assumes on a given set of points.  But never we considered what happens to the interpolant when our knowledge on the sampled function gradually increases, that is when we are given more and more sampled data.  It is reasonable to expect that the reconstructed function becomes increasingly more and more similar to the original function.  In this section we will be concerned about this topic; moreover, we will also see how the interpolating error of a function relates  to the size of the sampling and its distribution among the domain of the function.
+Up to now we have always considered the problem of recovering an unknown function from a fixed set of information about it, namely the values that the function assumes on a given set of points.  But never we considered what happens to the interpolant when our knowledge on the sampled function gradually increases, that is when we have access to more and more sampled data.  It is reasonable to expect that the reconstructed function becomes increasingly more similar to the original function. In this section we are going to discuss this topic; moreover, we will also see how the interpolating error of a function relates  to the size of the sampling and its distribution among the domain of the function.
 
 
 
-Let $X$ and $\.Y$ be two sets of data sites such that~$X\subset Y$.  Given a function~$f$ in the native space~$\Cal N_Φ$ of a symmetric positive definite kernel~$Φ$ we can compute both the interpolant $s_{X,f}\in\Cal S_{Φ,\. X}$ and~$s_{Y\!,f}\in\Cal S_{Φ, Y}$.  It is easy to see that, as expected,  $s_{Y\!,f}$ is not worse than~$s_{X,f}$ at approximating~$f$, i.e., 
+Let $X$ and $\.Y$ be two sets of data sites such that~$X\subset Y$.  Given a function~$f$ in the native space~$\Cal N_Φ$ of a symmetric positive definite kernel~$Φ$, we can compute both interpolants $s_{X,f}\in\Cal S_{Φ,\. X}$ and~$s_{Y\!,f}\in\Cal S_{Φ, Y}$.  It is easy to see that, as expected,  $s_{Y\!,f}$ is not worse than~$s_{X,f}$ at approximating~$f$, meaning that 
 $$
 \norm{\.f - s_{Y\!,f}}_Φ \leq \norm{\.f - s_{X,f}}_Φ.
 $$
@@ -14,13 +14,13 @@ $$
 $$
 %So, when additional information on the sampled function~$f$ is available, not only the interpolant  provides a better approximation, but also its native space norm increases. 
 
-There is actually an explicit expression for the increase in norm of the interpolant, as shown by Shaback and~Werner~\cite[shaback_2006].  Specifically, in the simple case where $Y=X\cup\{x\}$, that is when we add just one point to the data sites, the following result holds.
+There is actually an explicit expression for the increase in norm of the interpolant, as shown by Shaback and~Werner~\cite[shaback_2006].  Specifically, in the simple case where $Y=X\cup\{x\}$, that is when just one point is added to the data sites, the following result holds.
 
 \preskip
 \theorem
-Let~$f$ be a function in the native space~$\Cal N_Φ$ of a symmetric positive definite kernel~$Φ:\Omega\times\Omega\to\R$.  If $X\subset\Omega$ is a set of locations and~$x\in\Omega$ is a point not  belonging to~$X$, then the norm of the interpolant~$s_{X\cup\{x\},f}\in\Cal S_{Φ, X\cup\{x\}}$ of~$f$ on the extended set of locations~$X\cup\{x\}$ is related to the norm of the interpolant~$s_{X, f}\in\Cal S_{Φ, X}$ of~$f$ on~$X$ by the expression
+Let~$f$ be a function in the native space~$\Cal N_Φ$ of a symmetric positive definite kernel~$Φ:\Omega\times\Omega\to\R$.  If $X\subset\Omega$ is a set of locations and~$x\in\Omega$ is a point {\em not}  belonging to~$X$, then the norm of the interpolant~$s_{X\cup\{x\},f}\in\Cal S_{Φ, X\cup\{x\}}$ of~$f$ on the extended set of locations~$X\cup\{x\}$ is related to the norm of the interpolant~$s_{X, f}\in\Cal S_{Φ, X}$ of~$f$ on~$X$ by the expression
 $$
-\norm{s_{X\cup\{x\}, f}}_Φ^2 = \norm{s_{X, f}}_Φ^2 + \left({f(x) - s_{X, f}(x)\over P_X(x)}\right)^2,
+\norm{s_{X\cup\{x\}, f}}_Φ^2 = \norm{s_{X, f}}_Φ^2 + {(\.f(x) - s_{X, f}(x))^2\over P^2_X(x)},
 $$
 where $P_X$ is the power function associated to~$X$.
 
@@ -59,7 +59,7 @@ simply by noticing that~$\Bm b(x_j)^T$ is the $j$-th row of the matrix~$\Bm A$. 
 $$
 \Bm A \Bm \alpha = \Bm A \Bm \beta + \gamma \Bm b(x)
 $$
-must hold.  After having multiplied both sides by the inverse of~$\Bm A$, this equation gives an expression for the vector of coefficients~$\Bm \beta$, that is
+must hold.  After having multiplied both sides by the inverse of~$\Bm A$ and having rearranged its terms, this equation gives an expression for the vector of coefficients~$\Bm \beta$, that is
 $$
 \eqalign{
 \Bm \beta &= \Bm \alpha - \gamma \Bm A^{-1} \Bm b(x) \cr
@@ -75,33 +75,36 @@ while for~$s_{X\cup\{x\}, f}$ analogous computations yield
 $$
 \eqalign{
 \norm{s_{X\cup\{x\}, f}}_Φ^2 &= \bnorm{\sum_{j = 1}^N \beta_j Φ(\cdot, x_j)}_Φ^2 + 2\,\bform{\sum_{j=1}^N \beta_j Φ(\cdot, x_j)}{\gamma\, Φ(\cdot, x)}_Φ + \norm{\gamma\, Φ(\cdot, x)}_Φ^2 \cr
-&= \sum_{j=1}^N\sum_{k=1}^N \beta_j \beta_k Φ(x_j, x_k) + 2\gamma\sum_{j = 1}^N \beta_j Φ(x_j, x) + \gamma\, Φ(x,x) \cr
-&= \Bm \beta^T\! \Bm A \Bm \beta + 2 \gamma\. \Bm b(x)^T \Bm \beta + \gamma^2 Φ(x,x).
+&= \sum_{j=1}^N\sum_{k=1}^N \beta_j \beta_k Φ(x_j, x_k) + 2\gamma\sum_{j = 1}^N \beta_j Φ(x_j, x) + \gamma^2 Φ(x,x) \cr
+&= \Bm \beta^T\! \Bm A \.\Bm \beta + 2 \gamma\. \Bm b(x)^T \Bm \beta + \gamma^2 Φ(x,x).
 }
 $$
-Then, the substitution~(\lower.6ex\hbox{*}) for~$\Bm \beta$, allows us express the square of the norm of~$s_{X\cup\{x\}, f}$ as
+Then, the substitution~(\lower.6ex\hbox{*}) for~$\Bm \beta$ allows us express the square of the norm of~$s_{X\cup\{x\}, f}$ as
 $$
 \eqalign{
 \norm{s_{X\cup\{x\}, f}}_Φ^2 &= (\Bm \alpha - \gamma\Bm u(x))^T\! \Bm A\, (\Bm \alpha - \gamma \Bm u(x)) + 2\gamma\. \Bm b^T(x) (\Bm \alpha - \gamma \Bm u(x)) + \gamma^2 Φ(x,x) \cr
-&=  \Bm \alpha^T\!\Bm A\Bm \alpha +\gamma^2 \bigl[Φ(x,x) - 2\Bm b^T(x)\Bm u(x) + \Bm u(x)^T\!\Bm A \Bm u(x) \bigr] \cr
-&= \norm{s_{X,f}}_Φ^2 + \gamma^2 (P_X(x))^2,
+&=  \Bm \alpha^T\!\Bm A\.\Bm \alpha +\gamma^2 \bigl[Φ(x,x) - 2\Bm b^T(x)\Bm u(x) + \Bm u(x)^T\!\Bm A\. \Bm u(x) \bigr] \cr
+&= \norm{s_{X,f}}_Φ^2 + \gamma^2 P^2_X(x),
 }\eqno(\lower.6ex\hbox{*}\lower.6ex\hbox{*})
 $$
 where in the last step we recognised the power function from expression~\ref[pow1].
 
-It is finally possible to find an expression for~$\gamma$ by computing the difference of the interpolants at the point~$x$.  In fact,
+It is finally possible to find an expression for~$\gamma$ by computing the difference of the interpolants at the adjoined point~$x$.  In fact,
 $$
 \eqalign{
 s_{X\cup\{x\}, f}(x) - s_{X, f}(x) &= \Bm b(x)^T\Bm \beta + \gamma\, Φ(x,x) - \Bm b(x)^T\Bm\alpha \cr
 &= \Bm b(x)^T(\Bm \alpha - \gamma\Bm u(x)) + \gamma\,Φ(x,x) - \Bm b(x)^T\Bm\alpha \cr
-&= \gamma(Φ(x,x) - \Bm b(x)^T\Bm u(x)) \cr
-&= \gamma (P_X(x))^2,
+&= \gamma\bigl[Φ(x,x) - \Bm b(x)^T\Bm u(x)\bigr] \cr
+&= \gamma P^2_X(x),
 }
 $$
 where this time we used expression~\ref[pow2] to recognise~$P_X(x)$, and hence
 $$
-\gamma = {s_{X\cup\{x\}, f}(x) - s_{X, f}(x)\over (P_X(x))^2}.
+\gamma = {s_{X\cup\{x\}, f}(x) - s_{X, f}(x)\over P^2_X(x)}.
 $$
 The substitution of this value of~$\gamma$ into expression~(\lower.6ex\hbox{*}\lower.6ex\hbox{*}) concludes the proof.\hfill\QED
 \postskip
+
+
+% TODO: the norm of the interpolating converges, but not necessarily to the norm of the function.  Example of this.   The location/distribution of the data sites is important.  Results for pointwise convergence.
 
