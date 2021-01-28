@@ -31,7 +31,7 @@ that uses the data values $f(x_1), f(x_2),\dots f(x_N)$  as coefficients.  This 
 
 We now define, for each point~$x\in\Omega$, the {\em error functional}~$\epsilon_x:\cal N_Φ\to\R$  by
 $$
-\epsilon_x(\.f) = f(x)-s_{X,f}(x)\mathbox{, \quad$f\in\Cal N_Φ$.}
+\epsilon_x(f) = f(x)-s_{X,f}(x)\mathbox{, \quad$f\in\Cal N_Φ$.}
 $$
 For each~$f\in\Cal N_Φ$ this functional evaluates at the point~$x$ exactly the quantity that we want to estimate, that is the difference between $f$ and its interpolant~$s_{X, f}$. By using the point-evaluation functionals and the Lagrangian form of the interpolant, the error functional can be expressed as
 $$
@@ -44,7 +44,7 @@ We are now ready to define a function which assumes a very important role in the
 \label[powerdef]
 \definition The {\em power function}~$P_X$ (more properly, $P_{Φ,\. X}$) associated to the native space~$\Cal N_Φ$ of a symmetric positive definite kernel~$Φ:\,\Omega\times\Omega\to\R$ and a set of locations~$X\subset\Omega$ is the function which maps each point $x\in\Omega$ to the operator norm of the error functional~$\epsilon_x$, i.e., the function whose expression is
 $$
-P_X(x) \coloneq \opnorm{\epsilon_x}_{\Phi}\coloneq \sup_{f\neq 0}{|\epsilon_x(\.f)|\over\phantom{{}_Φ}\norm{\.f}_Φ}\mathbox{,\quad $x\in\Omega$.}
+P_X(x) \coloneq \opnorm{\epsilon_x}_{\Phi}\coloneq \sup_{f\neq 0}{|\epsilon_x(f)|\over\phantom{{}_Φ}\norm{\.f}_Φ}\mathbox{,\quad $x\in\Omega$.}
 $$
 \postskip
 
@@ -56,7 +56,7 @@ $$
 $$
 In fact, from expression~\ref[errfun], we obtain that, for each~$f\in\Cal N_Φ$,
 $$
-\eqalign{\epsilon_x(\.f) &= \delta_x(\.f)-\sum_{h=1}^N u_h(x)\,\delta_{x_h}(\.f)  \cr
+\eqalign{\epsilon_x(f) &= \delta_x(f)-\sum_{h=1}^N u_h(x)\,\delta_{x_h}(f)  \cr
 				      &= \form{Φ(\cdot,x)}f_Φ-\sum_{h=1}^Nu_h(x)\form{Φ(\cdot,x_h)}f_Φ \cr
 				      &= \form{Φ(\cdot,x)-\sum_{h=1}^Nu_h(x)\,Φ(\cdot,x_h)}f_Φ.
 }
@@ -109,7 +109,7 @@ $$
  \pmatrix{\Bm A\; & \Bm b(x) \cr
  		 \Bm b(x)^T & \Phi(x,x)}
  $$
- is positive definite because it is the interpolation matrix~$\Bm A_{Φ,\.\.X\cup\{x\}}$ that arises from the augmented set of locations~$X\cup\{x\}$.
+ is positive definite because it is the interpolation matrix~$\Bm A_{Φ,\.X\cup\{x\}}$ that arises from the augmented set of locations~$X\cup\{x\}$.
  
 
 
@@ -135,11 +135,11 @@ $$
 \proof
 If $f=0$, then also $s_{X,f}=0$ and the inequality is trivially satisfied; otherwise, simply because of how the operator norm is defined, we have that
 $$
-\opnorm{\epsilon_x}_Φ\geq {|\epsilon_x(\.f)| \over\phantom{{}_Φ} \norm{\.f}_Φ}
+\opnorm{\epsilon_x}_Φ\geq {|\epsilon_x(f)| \over\phantom{{}_Φ} \norm{\.f}_Φ}
 $$
 and hence that
 $$
-|\epsilon_x(\.f)|\leq\opnorm{\epsilon_x}_Φ\,\norm{\.f}_Φ.
+|\epsilon_x(f)|\leq\opnorm{\epsilon_x}_Φ\,\norm{\.f}_Φ.
 $$
 Finally, the stated result follows from the definitions of~$\epsilon_x$ and~$P_X$. \hfill\QED
 \postskip
