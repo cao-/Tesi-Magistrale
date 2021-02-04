@@ -117,9 +117,19 @@ The power function therefore is a function which depends only on the kernel and 
 
 
 
-
-% Properties
-
+Now define for each~$x\in\Omega$ the {\em quadratic form}~$Q_x:\R^N\to\R$ by
+$$
+Q_x(\Bm v) \coloneq Φ(x,x) - 2\Bm v^T \Bm b(x) + \Bm v^T\! \Bm A \.\Bm v = \norm{Φ(\cdot,x)-\sum_{h=1}^N v_h\,Φ(\cdot,x_h)}^2_Φ.
+$$
+The positive definiteness of~$\Bm A$ implies that~$Q_x$ is strictly convex, and so that $Q_x$ has a unique point of minimum.  The  vector that realises the minimum of~$Q_x$ turns out to be~$\Bm u(x)$. In fact, the gradient of~$Q_x$, which has value
+$$
+\mathop{\rm grad}\nolimits Q_x(\Bm v) = -2\Bm b(x) + 2\Bm A \Bm v,
+$$
+is zero exactly at $\Bm u(x)$.
+The combination of this property of~$Q_x$  with expression~\ref[pow1] produces an improved pointwise bound for the power function, that is
+$$
+P_X(x) = \sqrt{Q_x(\Bm u(x))} < \sqrt{Q_x(\Bm v)},\quad\mathbox{for each~$\Bm v\neq \Bm u(x)$.}\eqmark[pow3]
+$$
 
  
  
@@ -154,5 +164,37 @@ Finally, the stated result follows from the definitions of~$\epsilon_x$ and~$P_X
 
 
 \noindent The importance of this theorem consists in the fact that it decouples the data sites and the data values, since it splits the error into two factors:  the factor~$P_X(x)$ which depends only on the  data sites  (and the kernel); the factor~ $\norm f_Φ$ which depends only on the function~$f$ that produced the data values (and on the kernel).  It is then possible to study the dependence of the interpolating error on the two factors  separately.  If for instance we study the behaviour of the power function for a fixed set of locations, then we easily can produce estimates for the interpolation error on those data sites for any function coming from the native space.
+
+
+
+Starting from inequality~\ref[pow3], it is possible to derive an upper bound for the power function in terms of how well the data sites~$X\subset\Omega$ fill the domain~$\Omega$, which is measured by the {\em fill distance}~$h_X$, defined as
+$$
+h_X = \sup_{x\in\Omega}\min_{x_j\in X}\norm{x-x_j}.
+$$
+If $\Omega$ is {\em bounded} and satisfies an {\em interior cone condition}\fnote{A domain~$\Omega\in\R^d$ satisfies an {\em interior cone condition} if there exists an angle~$\theta\in(0,\pi/2)$ and a radius~$r>0$ such that for every~$x\in\Omega$ there exists a unit vector~$\xi(x)$ such that the cone
+$$
+C = \{x+\lambda y:\, y\in\R^d,\, \norm y = 1,\, y^T\xi(x)\geq\cos\theta,\, \lambda\in[0,r]\}
+$$
+is contained in~$\Omega$.}, then 
+$$
+P_X(x)\leq F(h_X), \quad x\in\Omega,
+$$
+for some function~$F$ which goes to zero as~$h_X\to 0$ (Wendland~\cite[wendland_2004], chapter~11).  The function~$F$ depends on the kernel of the native space, and can be explicitly computed.  In table~\ref[pow-tab] we report the known bounds on the power function for some of the most used radial kernels.
+
+\label[pow-tab]
+\topinsert
+\centerline{
+\table{lcc}{\crl
+                        & $\phi(r)$               & $F(h)$  \crl\tskip2pt
+Gaussians               & $e^{-\epsilon r^2}$,\quad $\epsilon>0$        & $e^{-c\,|\!\log h|/h}$,\quad  $c>0$ \cr\tskip2pt
+Inverse multiquadrics   & $(1+r)^{-\epsilon}$,\quad $\epsilon>0$ & $e^{-c/h}$,\quad  $c>0$ \cr \tskip2pt
+Wendland's functions    & $\phi_{d,k}(r)$           & $h^{2k+1}$ \cr\tskip5pt
+\crl
+}}
+\caption/t Upper bounds on~$P_X^2$ as functions~$F(h)$ of the fill distance~$h$.
+ The decay...
+\endinsert
+
+
 
 
