@@ -18,12 +18,14 @@
 \margins/1 a4 (100,95,130,145)pt
 
 \typosize[12.21/14.5]
-%\typosize[12/14.25]
 \parindent 1.5em
 \parskip 1.5ex
 \rulewidth 0.12ex
 
-
+\bgroup
+\let\_mtext\ignoreit
+\nonum\notoc\chap Contents
+\egroup
 \tocpage
 
 
@@ -62,10 +64,12 @@
 
 
 % BIBLIOGRAPHY
+\bgroup
 \let\_mtext\ignoreit
 \nonum\chap Bibliography
+
 \def\_opwarning#1{}
 \usebib/s (iso690) biblist
-
+\egroup
 
 \bye
