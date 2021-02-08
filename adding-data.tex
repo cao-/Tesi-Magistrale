@@ -108,3 +108,39 @@ The substitution of this value of~$\gamma$ into expression~(\lower.6ex\hbox{*}\l
 
 % TODO: the norm of the interpolating converges, but not necessarily to the norm of the function.  Example of this.   The location/distribution of the data sites is important.  Results for pointwise convergence.
 
+
+
+Starting from inequality~\ref[pow3] it is possible to derive an upper bound for the power function in terms of how well the data sites~$X\subset\Omega$ fill the domain~$\Omega$, which is measured by the {\em fill distance}~$h_X$, defined as
+$$
+h_X = \sup_{x\in\Omega}\min_{x_j\in X}\norm{x-x_j}.
+$$
+If $\Omega$ is bounded and satisfies an interior cone condition,\fnote{A domain~$\Omega\in\R^d$ satisfies an {\em interior cone condition} if there exists an angle~$\theta\in(0,\pi/2)$ and a radius~$r>0$ such that for every~$x\in\Omega$ there exists a unit vector~$\xi(x)$ such that the cone
+\vskip-\parskip
+\vskip-1.5ex
+$$
+C = \{x+\lambda y:\, y\in\R^d,\, \norm y = 1,\, y^T\xi(x)\geq\cos\theta,\, \lambda\in[0,r]\}
+$$
+\vskip-\parskip
+\vskip-1ex \noindent
+is contained in~$\Omega$.} then 
+$$
+P_X^2(x)\leq F(h_X) \quad \mathbox{for all $x\in\Omega$,}
+$$
+for some function~$F$ which goes to zero as~$h_X\to 0$ (Wendland~\cite[wendland_2004], chapter~11).  The function~$F$ depends on the kernel of the native space, and can be explicitly computed.  In table~\ref[pow-tab] we report the known bounds on the power function for some of the most used radial kernels.
+
+\label[pow-tab]
+\topinsert
+\centerline{
+\table{lcc}{\crl
+                        & $\phi(r)$               & $F(h)$  \crl\tskip2pt
+Gaussians               & $e^{-\epsilon r^2}$,\quad $\epsilon>0$        & $e^{-c\,|\!\log h|/h}$,\quad  $c>0$ \cr\tskip2pt
+Inverse multiquadrics   & $(1+r)^{-\epsilon}$,\quad $\epsilon>0$ & $e^{-c/h}$,\quad  $c>0$ \cr \tskip2pt
+Wendland's functions    & $\phi_{d,k}(r)$           & $h^{2k+1}$ \cr\tskip5pt
+\crl
+}}
+\caption/t Upper bounds on~$P_X^2$ as functions~$F(h)$ of the fill distance~$h$. The functions $F$ are given only up to a constant that does not depend on the data sites.  They express the decay rate of the power function as the fill distance approaches zero.
+\endinsert
+
+
+
+
