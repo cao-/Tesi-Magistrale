@@ -1,16 +1,16 @@
 
 
-Up to now we have always considered the problem of recovering an unknown function from a fixed set of information about it, namely the values that the function assumes on a given set of points.  But never we considered what happens to the interpolant when our knowledge on the sampled function gradually increases, that is when we have access to more and more sampled data.  It is reasonable to expect that the reconstructed function becomes increasingly more similar to the original function. In this section we are going to discuss this topic; moreover, we will also see how the interpolating error of a function relates  to the size of the sampling and its distribution among the domain of the function.
+Up to now we have always considered the problem of recovering an unknown function from a fixed set of information about it, namely the values that the function assumes on a given set of points.  But never we considered what happens to the interpolant when our knowledge on the sampled function gradually increases, that is when we have access to more and more sampled data.  It is reasonable to expect that the reconstructed function becomes increasingly more similar to the original function. In this section we are going to discuss this topic; moreover, we will also see how the interpolation error relates  to the size of the sampling and its distribution among the domain of the function.
 
 
 
-Let $X$ and $\.Y$ be two sets of data sites such that~$X\subset Y$.  Given a function~$f$ in the native space~$\Cal N_Φ$ of a symmetric positive definite kernel~$Φ$, we can compute both of the interpolants $s_{X,f}\in\Cal S_{Φ,\. X}$ and~$s_{Y\!,f}\in\Cal S_{Φ, Y}$.  It is easy to see that, as expected,  $s_{Y\!,f}$ is no worse than~$s_{X,f}$ at approximating~$f$, meaning that 
+Let $X$ and $\.Y$ be two sets of data sites such that~$X\subset Y$.  Given a function~$f$ in the native space~$\Cal N_Φ$ of a symmetric positive definite kernel~$Φ$, we can compute both of the interpolants $s_{X,f}\in\Cal S_{Φ, X}$ and~$s_{Y,f}\in\Cal S_{Φ, Y}$.  It is easy to see that, as expected,  $s_{Y,f}$ is no worse than~$s_{X,f}$ at approximating~$f$, meaning that 
 $$
-\norm{\.f - s_{Y\!,f}}_Φ \leq \norm{\.f - s_{X,f}}_Φ.
+\norm{\.f - s_{Y,f}}_Φ \leq \norm{\.f - s_{X,f}}_Φ.
 $$
-This is an immediate consequence of the inclusion~$\Cal S_{Φ,\. X}\subset\Cal S_{Φ, Y}$ and the property~\ref[mindist] of minimum distance satisfied by~$s_{Y\!,f}$.  If we then combine the Pythagorean identities~\ref[pythag] satisfied by $s_{X,f}$ and~$s_{Y\!,f}$ with the above inequality we further obtain that
+This is an immediate consequence of the inclusion~$\Cal S_{Φ, X}\subset\Cal S_{Φ, Y}$ and the property~\ref[mindist] of minimum distance satisfied by~$s_{Y,f}$.  If we then combine the Pythagorean identities~\ref[pythag] satisfied by $s_{X,f}$ and~$s_{Y,f}$ with the above inequality we further obtain that
 $$
-\norm{s_{X, f}}_Φ\leq\norm{s_{Y\!,f}}_Φ\leq\norm{f}_Φ.
+\norm{s_{X, f}}_Φ\leq\norm{s_{Y,f}}_Φ\leq\norm{f}_Φ.
 $$
 %So, when additional information on the sampled function~$f$ is available, not only the interpolant  provides a better approximation, but also its native space norm increases. 
 
@@ -64,7 +64,7 @@ $$
 \eqalign{
 \Bm \beta &= \Bm \alpha - \gamma \Bm A^{-1} \Bm b(x) \cr
 		  &= \Bm \alpha - \gamma\. \Bm u(x). 
-} \eqno(\lower.6ex\hbox{*})
+} \eqno\hbox{($\lower.6ex\hbox{*}$)}
 $$
 
 We now compute the squares of the native space norms of $s_{X, f}$ and~$s_{X\cup\{x\}, f}$ by expanding the scalar product as it is defined in~\ref[form].  For~$s_{X, f}$ we get
@@ -85,7 +85,7 @@ $$
 \norm{s_{X\cup\{x\}, f}}_Φ^2 &= (\Bm \alpha - \gamma\Bm u(x))^T\Bm A\, (\Bm \alpha - \gamma \Bm u(x)) + 2\gamma\. \Bm b(x)^T\! (\Bm \alpha - \gamma \Bm u(x)) + \gamma^2 Φ(x,x) \cr
 &=  \Bm \alpha^T\!\Bm A\.\Bm \alpha +\gamma^2 \bigl[Φ(x,x) - 2\Bm b(x)^T\Bm u(x) + \Bm u(x)^T\!\Bm A\. \Bm u(x) \bigr] \cr
 &= \norm{s_{X,f}}_Φ^2 + \gamma^2 P^2_X(x),
-}\eqno(\lower.6ex\hbox{*}\lower.6ex\hbox{*})
+}\eqno\hbox{($\lower.6ex\hbox{*}\lower.6ex\hbox{*}$)}
 $$
 where in the last step we recognised the power function from expression~\ref[pow1].
 
@@ -110,6 +110,9 @@ The substitution of this value of~$\gamma$ into expression~(\lower.6ex\hbox{*}\l
 
 
 
+
+
+\comment
 Starting from inequality~\ref[pow3] it is possible to derive an upper bound for the power function in terms of how well the data sites~$X\subset\Omega$ fill the domain~$\Omega$, which is measured by the {\em fill distance}~$h_X$, defined as
 $$
 h_X = \sup_{x\in\Omega}\min_{x_j\in X}\norm{x-x_j}.
@@ -137,6 +140,11 @@ Wendland's functions    & $\phi_{d,k}(r)$           & $h^{2k+1}$ \cr\tskip5pt
 \caption/t Upper bounds on~$P_X^2$ as functions~$F(h)$ of the fill distance~$h$. The functions $F$ are given only up to a constant that does not depend on the data sites.  They express the decay rate of the power function as the fill distance approaches zero.
 \endinsert
 
+\endcomment
 
 
-
+Let us now consider a nested infinite sequence of data sites,
+$$
+X=Y_1\subset Y_2 \subset Y_3 \subset \cdots
+$$
+and the associated infinite sequence~$\{s_{Y_n, f}\}_{n\in\N}$ of interpolants on those data sites of a function~$f\in\Cal N_Φ$.

@@ -45,14 +45,17 @@
 
 
 % Change size of footnote
-\def\_fnset{\_everypar={\kern-.66\parindent}\_scalemain \_typoscale[850/850]\applyfontextension \applyfontprotrusions}
+\def\_fnset{\_everypar={\kern-.5\parindent}\_scalemain \_typoscale[900/900]\applyfontextension \applyfontprotrusions}
+
+% Print fnotemarks in text font
+\def\_printfnotemark {$^\mathbox{\_fnotenum}$}
 
 
 \_def\_thefnum {\_the\_fnum}
 \_def\_thetnum {\_the\_tnum}
 \_def \_secx {\_seccx \_seccnum=0}
-\everycaptionf={\typoscale[850/850]}
-\everycaptiont={\typoscale[850/850]}
+\everycaptionf={\typoscale[900/900]}
+\everycaptiont={\typoscale[900/900]}
 \_def \_printcaptiont {%
 	\_noindent \_wlabel\_thecapnum {\semibold\_bf\_thecaptitle~\_thecapnum}\_enspace
 	\_narrowlastlinecentered\_iindent
