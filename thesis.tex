@@ -2,7 +2,7 @@
 
 \load[thesis-mac]
 
-\fnotelinks \Black \Black
+%\fnotelinks \Black \Black
 \hyperlinks \Black \Black
 \outlines 1
 
@@ -12,6 +12,7 @@
 \fontfam[BaskervilleMT]\load[patches]\let\semibold\bf %\let\bf\kf \let\bi\ki
 \load[garamond-math-fix, micro]
 %\OpTeX
+% We must ensure that . , ; etc are from the same font in text and math mode.
 
 \def\QED{\Umathchar"0"01"00203B}
 
@@ -23,8 +24,6 @@
 \parindent 1.5em
 \parskip 1.5ex
 \rulewidth 0.12ex
-
-\vbox{\hbox{461}\hbox{\bf 461}}
 
 \bgroup
 \let\_mtext\ignoreit

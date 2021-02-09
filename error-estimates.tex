@@ -137,7 +137,7 @@ $$
 
 \preskip
 \theorem
-If a function~$f:\Omega\to\R$ belongs to the native space of a symmetric positive definite kernel~$Φ$, and $X\subset\Omega$ is a set of data sites, then for each~$x\in\Omega$ the difference between the values at~$x$ of $f$ and its interpolant~$s_{X,f}\in\Cal S_{Φ,\. X}$ is estimated by
+If a function~$f:\Omega\to\R$ belongs to the native space of a symmetric positive definite kernel~$Φ$, and $X\subset\Omega$ is a set of data sites, then for each~$x\in\Omega$ the difference between the values at~$x$ of $f$ and its interpolant~$s_{X,f}\in\Cal S_{Φ, X}$ is estimated by
 $$
 |\.f(x)-s_{X,f}(x)|\leq P_X(x)\,\norm{\.f}_Φ.
 $$
@@ -158,4 +158,49 @@ Finally, the stated result follows from the definitions of~$\epsilon_x$ and~$P_X
 
  The importance of this theorem consists in the fact that it decouples the data sites and the data values, since it splits the error into two factors:  the factor~$P_X(x)$ which depends only on the  data sites  (and the kernel); the factor~ $\norm f_Φ$ which depends only on the function~$f$ that produced the data values (and on the kernel).  It is then possible to study the dependence of the interpolating error on the two factors  separately.  If for instance we study the behaviour of the power function for a fixed set of locations, then we easily can produce estimates for the interpolation error on those data sites for any function coming from the native space. More about this topic will be discussed in section~\ref[addingsec].
 
+\Red
+Starting from inequality~\ref[pow3] it is possible to derive an upper bound for the power function in terms of how well the data sites~$X\subset\Omega$ fill the domain~$\Omega$, which is measured by the {\em fill distance}~$h_X$, defined as
+$$
+h_X = \sup_{x\in\Omega}\min_{x_j\in X}\norm{x-x_j}.
+$$
+If $\Omega$ is bounded and satisfies an interior cone condition,\fnote{A domain~$\Omega\in\R^d$ satisfies an {\em interior cone condition} if there exists an angle~$\theta\in(0,\pi/2)$ and a radius~$r>0$ such that for every~$x\in\Omega$ there exists a unit vector~$\xi(x)$ such that the cone
+$$
+C = \{x+\lambda y:\, y\in\R^d,\, \norm y = 1,\, y^T\xi(x)\geq\cos\theta,\, \lambda\in[0,r]\}
+$$
+is contained in~$\Omega$.} then 
+$$
+P_X^2(x)\leq F(h_X) \quad \mathbox{for all $x\in\Omega$,}
+$$
+for some monotone function~$F$ such that~$\lim_{h\to 0} F(h) = 0$ (Wendland~\cite[wendland_2004], chapter~11).  The function~$F$ depends on the kernel of the native space, and can be explicitly computed.  In table~\ref[errortab] we report the known bounds of the power function for some of the most used radial kernels.
 
+\label[errortab]
+\topinsert
+\centerline{
+\table{lccc}{\crl
+                        & $\phi(r)$               & $F(h)$   & $G(q)$\crl\tskip2pt
+Gaussians               & $e^{-\epsilon r^2}$,\quad $\epsilon>0$        & $e^{-c\,|\!\log h|/h}$,\quad  $c>0$ & $q^{-d}e^{-M_d^2/(\epsilon q^2)}$ \cr\tskip2pt
+Inverse multiquadrics   &  $(1+r)^{-\beta}$,\quad $\beta>0$ & $e^{-c/h}$,\quad  $c>0$ & $q^{\beta-(d-1)/2}e^{-12.76\, dc/q}$ \cr \tskip2pt
+Wendland's functions    & $\phi_{d,k}(r)$           & $h^{2k+1}$ & $q^{2k+1}$ \cr\tskip5pt
+\crl
+}}
+\caption/t Upper bounds on~$P_X^2$ as functions~$F(h)$ of the fill distance~$h$. The functions $F$ are given only up to a constant that does not depend on the data sites.  They express the decay rate of the power function as the fill distance approaches zero.
+\endinsert
+
+
+These error estimates expressed in terms of the fill distance of the data sites are purely theorical.  In fact, when dealing with an actual numerical interpolation performed on a calculator, one must take into account also the {\em stability}\fnote{An algorithm is {\em stable} if its output results do not change much when the input data is modified slightly.  On a calculator some perturbations of the input data (and also of the intermediate results of the computations) are unavoidable when real numbers are stored slighly modified in the form of floating point numbers.} of the computations.  The interpolation matrix~$\Bm A = \Bm A_{Φ, X}$ of~\ref[intmat] has condition number which is shown (Wendland~\cite[wendland_2004], chapter~12) to be bounded by
+$$
+\mathop{\rm cond}(\Bm A_{Φ,X}) = {N\,Φ(0,0) \over G(q_X)},
+$$
+where $N$ is the number of data sites, $G$ is a positive monotone function dependent on~$Φ$ such that~$\lim_{q\to 0} G(q) = 0$,  and~$q_X$ is the {\em separation distance} of~$X$, defined as
+$$
+q_X = {1\over 2}\min_{i\neq j}\norm{x_i-x_j}.
+$$
+This means that the most straightforward algorithm to find the interpolant of a function~$f$ on a set~$X$ of data sites---the one that requires to compute the interpolation coefficients by solving the system~\ref[system] of the interpolation conditions---could be unstable if~$q_x$ is small.
+We report in table~\ref[errortab], next to the expressions for~$F$, the known expressions for $G$ for the same radial kernels.
+
+Anyhow, even when the interpolation matrix~$A$ associated to the standard basis of kernel translates is badly conditioned, it is possible to stably compute the interpolant.  In fact, while computing the interpolation coefficients of the interpolant with respect to the standard basis is a badly conditioned problem, the computation of the interpolant itself is well conditioned (De~Marchi and Shaback~\cite[demarchi-shaback_2010]).  Some attempts at stably computing the interpolant by changing the basis of the interpolating space are provided by Pazouki and Schaback~\cite[pazouki-schaback_2011]; other two most notable algorithms are the Contour-Padé method (Fornberg and Wright~\cite[fornberg-wright_2004]) and the RBF-QR method (Fornberg, Larsson and Flyer~\cite[fornberg-larsson-flyer_2011]).
+
+% See Shaback 1995
+\Black
+
+% mitigate
