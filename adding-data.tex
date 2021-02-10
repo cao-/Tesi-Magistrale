@@ -1,6 +1,6 @@
 
 
-Up to now we have always considered the problem of recovering an unknown function from a fixed set of information about it, namely the values that the function assumes on a given set of points.  But never we considered what happens to the interpolant when our knowledge on the sampled function gradually increases, that is when we have access to more and more sampled data.  It is reasonable to expect that the reconstructed function becomes increasingly more similar to the original function. This is the topic that we are going to discuss in this section.
+Up to now we have always considered the problem of recovering an unknown function from a fixed set of information about it, namely the values that the function assumes on a given set of points.  But never we considered what happens to the interpolant when our knowledge on the sampled function gradually increases, that is when we have access to more and more sampled data.  It is reasonable to expect that the reconstructed function becomes increasingly more similar to the original function. This is the topic of concern of this section.
 
 
 Let $X$ and $\.Y$ be two sets of data sites such that~$X\subset Y$.  Given a function~$f$ in the native space~$\Cal N_Φ$ of a symmetric positive definite kernel~$Φ$, we can compute both of the interpolants $s_{X,f}\in\Cal S_{Φ, X}$ and~$s_{Y,f}\in\Cal S_{Φ, Y}$.  It is easy to see that, as expected,  $s_{Y,f}$ is no worse than~$s_{X,f}$ at approximating~$f$, meaning that 
@@ -101,8 +101,26 @@ where this time we used expression~\ref[pow2] to recognise~$P_X(x)$, and hence
 $$
 \gamma = {s_{X\cup\{x\}, f}(x) - s_{X, f}(x)\over P^2_X(x)}.
 $$
-The substitution of this value of~$\gamma$ into expression~(\lower.6ex\hbox{*}\lower.6ex\hbox{*}) concludes the proof.\hfill\QED
+The substitution of this value of~$\gamma$ into expression~(\lower.6ex\hbox{*}\lower.6ex\hbox{*}) concludes the proof.~\QED
 \postskip
+
+
+This theorem says that if the interpolant~$s_{X,f}$ already makes a correct prediction for a point~$x\notin X$, in the sense that $s_{X,f}(x)=f(x)$, then the addition of the point~$x$ has no effect on the norm of the interpolant, in fact
+$$
+\norm{s_{X\cup\{x\},f}}_Φ^2=\norm{s_{X,f}}_Φ^2+ {(f(x) - s_{X, f}(x))^2\over P^2_X(x)}=\norm{s_{X,f}}_Φ^2.
+$$
+But this is something that we already knew, since in this case the interpolant itself doesn't change, because $s_{X,f}$, just like $s_{X\cup\{x\},f}$, is a function in~$\Cal S_{Φ, X\cup\{x\}}$ which interpolates~$f$ at the data sites~$X\cup\{x\}$, and the solution of the interpolation problem is unique in~$\Cal S_{Φ, X\cup\{x\}}$.
+
+On the other hand, if $s_{X,f}$ predicts at the point~$x$ a value~$s_{X,f}(x)$ different from $f(x)$, then the difference of the squares of the norms, which by the above theorem can be computed as
+$$
+\norm{s_{X\cup\{x\},f}}_Φ^2 -\norm{s_{X,f}}_Φ^2= {(f(x) - s_{X, f}(x))^2\over P^2_X(x)},
+$$
+can be big not only if the difference~$f(x)-s_{X,f}(x)$ is big in absolute value, but also if the value~$P_X(x)$ is small, which happens when the new point~$x$ is close to one of the points of~$X$.% whereas the difference of the squares of the norms has value approximately equal to~$((x)-s_{X,f}(x))^2$ when $x$ is sufficiently far from the points of~$X$.
+In fact, in section~\ref[errorsec] we saw that the power function~$P_X$ associated to a set~$X$ of data sites is continuous (if the kernel is continuous) and has value zero at each point of~$X$,  
+
+
+
+Therefore, computing the difference of the squares of the norms is a geometrically correct way of saying how much s predicts
 
 
 % TODO: the norm of the interpolating converges, but not necessarily to the norm of the function.  Example of this.   The location/distribution of the data sites is important.  Results for pointwise convergence.
@@ -113,8 +131,13 @@ The substitution of this value of~$\gamma$ into expression~(\lower.6ex\hbox{*}\l
 
 
 
-Let us now consider a nested infinite sequence of data sites,
+\comment
+
+Let us now consider a nested infinite sequence~$\{ Y_n\}_{n\in\N}$ of sets of locations,
 $$
-X=Y_1\subset Y_2 \subset Y_3 \subset \cdots
+X=Y_1\subset Y_2 \subset Y_3 \subset \cdots \subset\R^d
 $$
-and the associated infinite sequence~$\{s_{Y_n, f}\}_{n\in\N}$ of interpolants on those data sites of a function~$f\in\Cal N_Φ$.
+and the associated infinite sequence~$\{s_{Y_n, f}\}_{n\in\N}$ of interpolants of a function~$f\in\Cal N_Φ$.
+
+\endcomment
+
