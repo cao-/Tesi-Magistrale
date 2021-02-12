@@ -3,7 +3,7 @@
 Up to now we have always considered the problem of recovering an unknown function from a fixed set of information about it, namely the values that the function assumes on a given set of points.  But never we considered what happens to the interpolant when our knowledge on the sampled function gradually increases, that is when we have access to more and more sampled data.  It is reasonable to expect that the reconstructed function becomes increasingly more similar to the original function. This is the topic of concern of this section.
 
 
-Let $X$ and $\.Y$ be two sets of data sites such that~$X\subset Y$.  Given a function~$f$ in the native space~$\Cal N_Φ$ of a symmetric positive definite kernel~$Φ$, we can compute both of the interpolants $s_{X,f}\in\Cal S_{Φ, X}$ and~$s_{Y,f}\in\Cal S_{Φ, Y}$.  It is easy to see that, as expected,  $s_{Y,f}$ is no worse than~$s_{X,f}$ in approximating~$f$, meaning that 
+Let $X$ and $Y$ be two sets of data sites such that~$X\subset Y\!$.  Given a function~$f$ in the native space~$\Cal N_Φ$ of a symmetric positive definite kernel~$Φ$, we can compute both of the interpolants $s_{X,f}\in\Cal S_{Φ, X}$ and~$s_{Y,f}\in\Cal S_{Φ, Y}$.  It is easy to see that, as expected,  $s_{Y,f}$ is no worse than~$s_{X,f}$ in approximating~$f$, meaning that 
 $$
 \norm{\.f - s_{Y,f}}_Φ \leq \norm{\.f - s_{X,f}}_Φ.
 $$
@@ -27,17 +27,17 @@ where $P_X$ is the power function associated to~$X$.
 Let $X=\{\range x_N/\}$, and define the  matrix~$\Bm A$ and the vectors~$\Bm u(x), \Bm b(x)$ as in section~\ref[errorsec].
 The interpolants $s_{X, f}$ and~$s_{X\cup\{x\},f}$ can be expressed as linear combinations of the standard basis functions of $\Cal S_{Φ, X}$ and~$\Cal S_{Φ, X\cup\{x\}}$ respectively. Explicitly,
 $$
-s_{X,f} = \sum_{k = 1}^N\alpha_k Φ(\cdot, x_k),  \qquad
-s_{X\cup\{x\}, f} = \sum_{k=1}^N\beta_k Φ(\cdot, x_k) + \gamma\, Φ(\cdot, x),
+s_{X,f} = \sum_{k = 1}^Nα_k Φ(\cdot, x_k),  \qquad
+s_{X\cup\{x\}, f} = \sum_{k=1}^Nβ_k Φ(\cdot, x_k) + γ\, Φ(\cdot, x),
 $$
-for some coefficients~$\{\alpha_k\}_{k\in\{1,2,\dots,N\}}$, $\{\.\beta_k\}_{k\in\{1,2,\dots,N\}}$ and~$\gamma$.
+for some coefficients~$\{α_k\}_{k\in\{1,2,\dots,N\}}$, $\{\.β_k\}_{k\in\{1,2,\dots,N\}}$ and~$γ$.
 If we define the vectors 
 $$
-\Bm \alpha \coloneq (\range\alpha_N/)^T \quad\hbox{and}\quad \Bm \beta \coloneq (\range\beta_N/)^T,
+\Bm α \coloneq (\rangeα_N/)^T \quad\hbox{and}\quad \Bm β \coloneq (\rangeβ_N/)^T,
 $$
  then the evaluations of the two~interpolants at the points $\{x_j\}_{j\in\{1,2,\dots,N\}}$ of~$X$ have the expressions
 $$
-s_{X,f}(x_j) =\Bm b(x_j)^T\!\Bm\alpha\quad\hbox{and}\quad s_{X\cup\{x\},f}(x_j)  = \Bm b(x_j)^T\!\Bm\beta + \gamma\,Φ(x_j,x),
+s_{X,f}(x_j) =\Bm b(x_j)^T\!\Bmα\quad\hbox{and}\quad s_{X\cup\{x\},f}(x_j)  = \Bm b(x_j)^T\!\Bmβ + γ\,Φ(x_j,x),
 $$
 which can be collected in a compact way as
 $$
@@ -46,62 +46,62 @@ s_{X,f}(x_1) \cr
 s_{X,f}(x_2) \cr
 \vdots 	    \cr
 s_{X,f}(x_N)
-} = \Bm A \Bm \alpha\., \quad\hbox{and}\quad
+} = \Bm A \Bm α\., \quad\hbox{and}\quad
 \pmatrix{
 s_{X\cup\{x\},f}(x_1) \cr
 s_{X\cup\{x\},f}(x_2) \cr
 \vdots 	    \cr
 s_{X\cup\{x\},f}(x_N)
-} = \Bm A \Bm \beta + \gamma\Bm b(x),
+} = \Bm A \Bm β + γ\Bm b(x),
 $$
 simply by noticing that~$\Bm b(x_j)^T$ is the $j$-th row of the matrix~$\Bm A$.  Since by definition the interpolants $s_{X, f}$ and~$s_{X\cup\{x\}, f}$ assume the same value at each point of~$X$,  the relation
 $$
-\Bm A \Bm \alpha = \Bm A \Bm \beta + \gamma \Bm b(x)
+\Bm A \Bm α = \Bm A \Bm β + γ \Bm b(x)
 $$
-must hold.  After having multiplied both sides by the inverse of~$\Bm A$ and having rearranged its terms, this equation gives an expression for the vector of coefficients~$\Bm \beta$, that is
+must hold.  After having multiplied both sides by the inverse of~$\Bm A$ and having rearranged its terms, this equation gives an expression for the vector of coefficients~$\Bm β$, that is
 $$
 \eqalign{
-\Bm \beta &= \Bm \alpha - \gamma \Bm A^{-1} \Bm b(x) \cr
-		  &= \Bm \alpha - \gamma\. \Bm u(x). 
+\Bm β &= \Bm α - γ \Bm A^{-1} \Bm b(x) \cr
+		  &= \Bm α - γ\. \Bm u(x). 
 } \eqno\hbox{($\lower.6ex\hbox{*}$)}
 $$
 
 We now compute the squares of the native space norms of $s_{X, f}$ and~$s_{X\cup\{x\}, f}$ by expanding the scalar product as it is defined in~\ref[form].  For~$s_{X, f}$ we get
 $$
-\norm{s_{X,f}}_Φ^2 = \bnorm{\sum_{j=1}^N \alpha_j Φ(\cdot, x_j)}_Φ^2 = \sum_{j=1}^N\sum_{k=1}^N \alpha_j \alpha_k Φ(x_j, x_k) =  \Bm \alpha^T\! \Bm A \.\Bm \alpha,
+\norm{s_{X,f}}_Φ^2 = \bnorm{\sum_{j=1}^N α_j Φ(\cdot, x_j)}_Φ^2 = \sum_{j=1}^N\sum_{k=1}^N α_j α_k Φ(x_j, x_k) =  \Bm α^T\! \Bm A \.\Bm α,
 $$
 while for~$s_{X\cup\{x\}, f}$ analogous computations yield
 $$
 \eqalign{
-\norm{s_{X\cup\{x\}, f}}_Φ^2 &= \bnorm{\sum_{j = 1}^N \beta_j Φ(\cdot, x_j)}_Φ^2 + 2\,\bform{\sum_{j=1}^N \beta_j Φ(\cdot, x_j)}{\gamma\, Φ(\cdot, x)}_Φ + \norm{\gamma\, Φ(\cdot, x)}_Φ^2 \cr
-&= \sum_{j=1}^N\sum_{k=1}^N \beta_j \beta_k Φ(x_j, x_k) + 2\gamma\sum_{j = 1}^N \beta_j Φ(x_j, x) + \gamma^2 Φ(x,x) \cr
-&= \Bm \beta^T\! \Bm A \.\Bm \beta + 2 \gamma\. \Bm b(x)^T \Bm \beta + \gamma^2 Φ(x,x).
+\norm{s_{X\cup\{x\}, f}}_Φ^2 &= \bnorm{\sum_{j = 1}^N β_j Φ(\cdot, x_j)}_Φ^2 + 2\,\bform{\sum_{j=1}^N β_j Φ(\cdot, x_j)}{γ\, Φ(\cdot, x)}_Φ + \norm{γ\, Φ(\cdot, x)}_Φ^2 \cr
+&= \sum_{j=1}^N\sum_{k=1}^N β_j β_k Φ(x_j, x_k) + 2γ\sum_{j = 1}^N β_j Φ(x_j, x) + γ^2 Φ(x,x) \cr
+&= \Bm β^T\! \Bm A \.\Bm β + 2 γ\. \Bm b(x)^T \Bm β + γ^2 Φ(x,x).
 }
 $$
-Then, the substitution~(\lower.6ex\hbox{*}) for~$\Bm \beta$ allows us to express the square of the norm of~$s_{X\cup\{x\}, f}$ as
+Then, the substitution~(\lower.6ex\hbox{*}) for~$\Bm β$ allows us to express the square of the norm of~$s_{X\cup\{x\}, f}$ as
 $$
 \eqalign{
-\norm{s_{X\cup\{x\}, f}}_Φ^2 &= (\Bm \alpha - \gamma\Bm u(x))^T\Bm A\, (\Bm \alpha - \gamma \Bm u(x)) + 2\gamma\. \Bm b(x)^T\! (\Bm \alpha - \gamma \Bm u(x)) + \gamma^2 Φ(x,x) \cr
-&=  \Bm \alpha^T\!\Bm A\.\Bm \alpha +\gamma^2 \bigl[Φ(x,x) - 2\Bm b(x)^T\Bm u(x) + \Bm u(x)^T\!\Bm A\. \Bm u(x) \bigr] \cr
-&= \norm{s_{X,f}}_Φ^2 + \gamma^2 P^2_X(x),
+\norm{s_{X\cup\{x\}, f}}_Φ^2 &= (\Bm α - γ\Bm u(x))^T\Bm A\, (\Bm α - γ \Bm u(x)) + 2γ\. \Bm b(x)^T\! (\Bm α - γ \Bm u(x)) + γ^2 Φ(x,x) \cr
+&=  \Bm α^T\!\Bm A\.\Bm α +γ^2 \bigl[Φ(x,x) - 2\Bm b(x)^T\Bm u(x) + \Bm u(x)^T\!\Bm A\. \Bm u(x) \bigr] \cr
+&= \norm{s_{X,f}}_Φ^2 + γ^2 P^2_X(x),
 }\eqno\hbox{($\lower.6ex\hbox{*}\lower.6ex\hbox{*}$)}
 $$
 where in the last step we recognised the power function from expression~\ref[pow1].
 
-It is finally possible to find an expression for~$\gamma$ by computing the difference of the interpolants at the adjoined point~$x$.  In fact,
+It is finally possible to find an expression for~$γ$ by computing the difference of the interpolants at the adjoined point~$x$.  In fact,
 $$
 \eqalign{
-s_{X\cup\{x\}, f}(x) - s_{X, f}(x) &= \Bm b(x)^T\Bm \beta + \gamma\, Φ(x,x) - \Bm b(x)^T\Bm\alpha \cr
-&= \Bm b(x)^T(\Bm \alpha - \gamma\Bm u(x)) + \gamma\,Φ(x,x) - \Bm b(x)^T\Bm\alpha \cr
-&= \gamma\bigl[Φ(x,x) - \Bm b(x)^T\Bm u(x)\bigr] \cr
-&= \gamma P^2_X(x),
+s_{X\cup\{x\}, f}(x) - s_{X, f}(x) &= \Bm b(x)^T\Bm β + γ\, Φ(x,x) - \Bm b(x)^T\Bmα \cr
+&= \Bm b(x)^T(\Bm α - γ\Bm u(x)) + γ\,Φ(x,x) - \Bm b(x)^T\Bmα \cr
+&= γ\.\bigl[Φ(x,x) - \Bm b(x)^T\Bm u(x)\bigr] \cr
+&= γ P^2_X(x),
 }
 $$
 where this time we used expression~\ref[pow2] to recognise~$P_X(x)$, and hence
 $$
-\gamma = {s_{X\cup\{x\}, f}(x) - s_{X, f}(x)\over P^2_X(x)}.
+γ = {s_{X\cup\{x\}, f}(x) - s_{X, f}(x)\over P^2_X(x)}.
 $$
-The substitution of this value of~$\gamma$ into expression~(\lower.6ex\hbox{*}\lower.6ex\hbox{*}) concludes the proof.~\QED
+The substitution of this value of~$γ$ into expression~(\lower.6ex\hbox{*}\lower.6ex\hbox{*}) concludes the proof.~\QED
 \postskip
 
 
@@ -140,4 +140,5 @@ $$
 and the associated infinite sequence~$\{s_{Y_n, f}\}_{n\in\N}$ of interpolants of a function~$f\in\Cal N_Φ$.
 
 \endcomment
+
 
