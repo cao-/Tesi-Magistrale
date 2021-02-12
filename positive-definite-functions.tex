@@ -93,6 +93,13 @@ $$
 is a family of functions that are positive definite on~$\R^d$ for each~$d$.
 \postskip
 
+The positive definite functions~$\phi$ shown in these two examples have the common property that $\lim_{r\to\infty}\phi(r)$ exists. This is indeed a property that must hold for any function~$\phi$ which is positive definite and radial on each space dimension.  In fact any completely monotone function~$\psi$, and hence it's associated positive definite function~$\phi$, posses a limit at infinity simply  because it is non-increasing and bounded below.  Instead, the fact that the functions~$\phi$ that we have shown are such that
+$$
+\phi(0) = 1\quad\mathbox{and}\quad\lim_{r\to\infty}\phi(r) = 0 \eqmark[convention]
+$$
+is just a matter of coincidence, and by the way it is also the usual convention. In fact, if $\psi$ is completely monotone and not constant, then also $\alpha\psi + \beta$ is completely monotone and not constant for each  pair of positive  constants $\alpha$ and~$\beta$. As a consequence, a function $\phi$ which is positive definite and radial on $\R^d$ for each~$d$ can assume different values at zero and infinity.
+
+
 By now we have seen some examples of univariate functions which are positive definite on~$\R^d$ for each~$d$.  There are also functions which are positive definite only on some but not all space dimensions, as we are going to see.  But first we notice that if a function~$\phi$ is positive definite on~$\R^d$ then of course it is positive definite also on~$\R^k$ for all~$k<d$, since $\R^k$ can be seen as a subspace of~$\,\R^d$.
 
 \preskip
@@ -153,8 +160,8 @@ $3$ & $(1-r)^8_+(32r^3+25r^2+8r+1)$ & $\Cal C^6$      \crl
 \endinsert
 
 
-Finally we notice that all the  positive definite radial functions~$\phi:[0,\infty)\to\R$ can be rescaled by means of a {\em shape parameter}~$\varepsilon$.  In fact, if the $\varepsilon$-scaled version~$\phi_\varepsilon$ of~$\phi$ is defined as
+Finally we notice that every  positive definite radial function~$\phi:[0,\infty)\to\R$ can be rescaled by means of a {\em shape parameter}~$ε$.  In fact, if the $ε$-scaled version~$\phi_ε$ of~$\phi$ is defined as
 $$
-\phi_\varepsilon(r) = \phi(\varepsilon r),
+\phi_ε(r) = \phi(ε r),
 $$
-then $\phi_\varepsilon$ is still positive definite and radial.  When interpolating a sampled function by using a positive definite radial function, the proper choice of the shape parameter has great impact on the accuracy of the result.  There are various techniques that allows for an automatic correct choice of the shape parameter, the most notable being the {\em leave-one-out cross-validation} method (LOOCV) (see Rippa~\cite[rippa_1999] and Fassauer~\cite[fasshauer_2011], section~5).  
+then $\phi_ε$ is still positive definite and radial.  When we attempt to interpolate a set of sampled function values by using a positive definite radial function, the proper choice of the shape parameter has great impact on the accuracy of the result.  There are various techniques that allows for an automatic correct choice of the shape parameter, the most notable being the {\em leave-one-out cross-validation} method (LOOCV) (see Rippa~\cite[rippa_1999] and Fassauer~\cite[fasshauer_2011], section~5).  

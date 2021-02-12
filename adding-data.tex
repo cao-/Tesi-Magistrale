@@ -88,7 +88,7 @@ $$
 $$
 where in the last step we recognised the power function from expression~\ref[pow1].
 
-It is finally possible to find an expression for~$γ$ by computing the difference of the interpolants at the adjoined point~$x$.  In fact,
+It is finally possible to find an expression for~$γ$ by computing the difference of the interpolants at the addded point~$x$.  In fact,
 $$
 \eqalign{
 s_{X\cup\{x\}, f}(x) - s_{X, f}(x) &= \Bm b(x)^T\Bm β + γ\, Φ(x,x) - \Bm b(x)^T\Bmα \cr
@@ -109,18 +109,17 @@ This theorem says that if the interpolant~$s_{X,f}$ already makes a correct pred
 $$
 \norm{s_{X\cup\{x\},f}}_Φ^2=\norm{s_{X,f}}_Φ^2+ {(f(x) - s_{X, f}(x))^2\over P^2_X(x)}=\norm{s_{X,f}}_Φ^2.
 $$
-But this is something that we already knew, since in this case the interpolant itself doesn't change, because $s_{X,f}$, just like $s_{X\cup\{x\},f}$, is a function in~$\Cal S_{Φ, X\cup\{x\}}$ which interpolates~$f$ at the data sites~$X\cup\{x\}$, and the solution of the interpolation problem is unique in~$\Cal S_{Φ, X\cup\{x\}}$.
+But this is something that we already knew, since in this case the interpolant itself doesn't change, because $s_{X,f}$, just like $s_{X\cup\{x\},f}$, is a function of~$\Cal S_{Φ, X\cup\{x\}}$ which interpolates~$f$ at the data sites~$X\cup\{x\}$, and the solution to the interpolation problem is unique in~$\Cal S_{Φ, X\cup\{x\}}$.
 
 On the other hand, if $s_{X,f}$ predicts at the point~$x$ a value~$s_{X,f}(x)$ different from $f(x)$, then the difference of the squares of the norms, which by the above theorem can be computed as
 $$
 \norm{s_{X\cup\{x\},f}}_Φ^2 -\norm{s_{X,f}}_Φ^2= {(f(x) - s_{X, f}(x))^2\over P^2_X(x)},
 $$
-can be big not only if the difference~$f(x)-s_{X,f}(x)$ is big in absolute value, but also if the value~$P_X(x)$ is small, which happens when the new point~$x$ is close to one of the points of~$X$.% whereas the difference of the squares of the norms has value approximately equal to~$((x)-s_{X,f}(x))^2$ when $x$ is sufficiently far from the points of~$X$.
-In fact, in section~\ref[errorsec] we saw that the power function~$P_X$ associated to a set~$X$ of data sites is continuous (if the kernel is continuous) and has value zero at each point of~$X$,  
+may be large not only if the prediction is bad, but also if the value~$P_X(x)$ is small, which happens when the new point~$x$ is close to one of the points of~$X$.  Instead, if $Φ$ is radial and for simplicity taken such that properties~\ref[convention] hold, when $x$ is sufficiently far from all the points of~$X$ the difference between the squares of the norms has value approximately equal to~$(f(x)-s_{X,f}(x))^2$. Refer to figure~\ref[powfig] for the justification of this fact.
 
 
 
-Therefore, computing the difference of the squares of the norms is a geometrically correct way of saying how much s predicts
+Therefore, as pointed out by Lenarduzzi and Shaback~\cite[lenarduzzi-shaback_2017], computing the difference $\norm{s_{X\cup\{x\},f}}_Φ^2 -\norm{s_{X,f}}_Φ^2$ between the squares of the norms of $s_{X\cup\{x\},f}$ and~$s_{X,f}$ is a geometrically correct way of establishing the goodness of the prediction made by $s_{X,f}$ for the value of~$f$ at the point~$x$, since this quantity does not consider only the error~$f(x)-s_{X,f}(x)$, but also takes into account, through the value~$P_X(x)$, the position of~$x$ with respect to the data sites~$X$. We espect in fact that if $x$ is close to~$X$ then the value~$s_{X,f}(x)$ is close to~$f(x)$.
 
 
 % TODO: the norm of the interpolating converges, but not necessarily to the norm of the function.  Example of this.   The location/distribution of the data sites is important.  Results for pointwise convergence.
