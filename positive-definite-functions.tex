@@ -40,13 +40,15 @@ $$
 is positive-definite. Also, a function~$\phi:[0,\infty)\to\R$ is said to be {\em positive definite on~$\R^d$} if its associated function~$Φ:\,\Omega\times\Omega\to\R$,  with~$\Omega\subseteq\R^d$ and defined as in~\ref[phi], is positive definite.
 \postskip
 
-\noindent It is known that a positive-definite matrix has positive determinant, and hence it is invertible.  Therefore, if $Φ$ is a positive definite function, the interpolation matrix $\Bm A_{Φ,\. X}$ is invertible for each set~$X$ of data sites.  It may seem strange at first that there can be a univariate function~$\phi$ which makes all the interpolation matrices~\ref[intmatphi] positive definite no matter which points are chosen and how many, but indeed it is the case. Even more, as we will see in a moment, there are actually functions that work in every space dimension.
+In the rest of this section we will always assume that~$Φ$ is radial as in~\ref[phi].
+It is known that a positive-definite matrix has positive determinant, and hence it is invertible.  Therefore, if $Φ$ is a positive definite function, the interpolation matrix $\Bm A_{Φ,\. X}$ is invertible for each set~$X$ of data sites.  It may seem strange at first that there can be a univariate function~$\phi$ which makes all the interpolation matrices~\ref[intmatphi] positive definite no matter which points are chosen and how many, but indeed it is the case. Even more, as we will see in a moment, there are actually functions that work in every space dimension.
 
 
 
 
 Finding positive definite univariate functions~$\phi$ seems to be a challenging task.  Fortunately, there is a simple characterisation of these functions in terms of monotone functions.
 \preskip
+\label[monotonedef]
 \definition
 A function~$\psi:[0,\infty)\to\R$ is {\em completely monotone} if it is continuous on~$[0,\infty)$, infinitely differentiable on~$(0,\infty)$ and has derivatives with alternating signs, i.e.,
 $$
@@ -68,25 +70,25 @@ $$
 \noindent This theorem allows us to build positive definite functions, that work for any space dimension, simply by finding completely monotone functions and then composing  them with the square function.
 
 \preskip
-\example[(Gaussians)] The functions
+\example[(Gaussian)] The function
 $$
-\psi(r)=e^{-\epsilon r}\mathbox{,\quad $\epsilon\geq0$}
+\psi(r)=e^{-r}
 $$
-are completely monotone.  In fact, $(-1)^h \psi^{(h)}(r)=\epsilon^h e^{-\epsilon r}\geq0$ for each~$h=0,1,2,\dots$ \,As a consequence, the compositions
+is completely monotone.  In fact, $(-1)^h \psi^{(h)}(r)=e^{- r}\geq0$ for each~$h=0,1,2,\dots$ \,As a consequence, the composition
 $$
-\phi(r) = e^{-\epsilon r^2}\mathbox{,\quad $\epsilon\geq0$}
+\phi(r) =\psi(r^2)= e^{-r^2}
 $$
-are positive definite on~$\R^d$ for each space dimension~$d$.
+is positive definite on~$\R^d$ for each space dimension~$d$.
 \medskip
 
 \example[(Inverse Multiquadrics)]
 The functions
 $$
-\psi(r) = {1\over(1+r)^\epsilon}\mathbox{,\quad $\epsilon\geq0$}
+\psi(r) = {1\over(1+r)^\beta}\mathbox{,\quad $\beta\geq0$}
 $$
-are completely monotone since $(-1)^h \psi^{(h)}(r)=(-1)^{2h}\epsilon\,(\epsilon+1)\dots(\epsilon+h-1)(1+r)^{-\epsilon-h}\geq0$ for each~$h = 0,1,2,\dots$  \,This is equivalent to saying that
+are completely monotone since $(-1)^h \psi^{(h)}(r)=(-1)^{2h}\beta\,(\beta+1)\dots(\beta+h-1)(1+r)^{-\beta-h}\geq0$ for each~$h = 0,1,2,\dots$  \,This is equivalent to saying that
 $$
-\phi(r) = {1\over(1+r^2)^\epsilon}\mathbox{,\quad $\epsilon\geq0$}
+\phi(r) = \psi(r^2) =  {1\over(1+r^2)^\beta}\mathbox{,\quad $\beta\geq0$}
 $$
 is a family of functions that are positive definite on~$\R^d$ for each~$d$.
 \postskip
@@ -95,13 +97,13 @@ By now we have seen some examples of univariate functions which are positive def
 
 \preskip
 \definition
-A function~$\psi:[0,\infty)\to\R$ is {\em $k$-times monotone} if it is continuous on~$[0,\infty)$, it is $k$-times differentiable on~$(0,\infty)$ and
-$$
-(-1)^h \psi^{(h)}(r)\geq0\mathbox{,\quad for every~$r>0$ and~$h=0,1,\dots k$.}
-$$
+A function~$\psi:[0,\infty)\to\R$ is {\em $k$-times monotone}, $k≥2$, if it is continuous on~$[0,\infty)$, it is ($k-2$)-times differentiable on~$(0,\infty)$ and
+$(-1)^h \psi^{(h)}$ is non-negative, non-increasing and convex for~$h=0,1,2,\dots,k-2$. If $k=1$ we simply drop the convex requirement for~$\psi$.
+
 \postskip
 
-\noindent In terms of this definition, a completely monotone function turns out to be a function which is $k$-times monotone for each~$k$.  In analogy to the case of completely monotone functions, there is also a relationship between $k$-times monotone functions and positive definite functions (Wendland~\cite[wendland_2004], Fasshauer~\cite[fasshauer_2007]).
+\noindent
+In particular, if $\psi:[0,\infty)\to\R$ is continuous on~$[0,\infty)$, it is $k$-times differentiable on~$(0,\infty)$ and has derivatives with alternating signs like in definition~\ref[monotonedef], then it is $k$-times monotone. So, in terms of this definition, a completely monotone function turns out to be a function which is $k$-times monotone for each~$k$.  In analogy to the case of completely monotone functions, there is also a relationship between $k$-times monotone functions and positive definite radial functions (Wendland~\cite[wendland_2004], Fasshauer~\cite[fasshauer_2007]).
 
 \preskip
 \theorem
@@ -131,8 +133,7 @@ $$
 $$
 Then, starting from the truncated power functions  of the previous example and repeatedly applying the operator~$I$ it is possible to build compactly supported functions~$\phi_{d,k}$ (the subscript~$d$ is the space dimension, while the subscript~$k$ is related to the number of applied iterations of the integral operator) which have polynomial representations and are of the lowest possible degree relative to their smoothness and the space dimension.  Details about this construction are present for instance in Wendland~\cite[wendland_2004], chapter~9. 
 We report in table~\ref[wentab], up to positive constant factors, the functions that can be obtained starting from the truncated power function of degree~$2$, along with their smoothness.  These are the most used Wendland’s compactly supported functions, since they work for dimensions~$d\leq 3$.
-%\postskip
-
+\postskip
 
 \label[wentab]
 \topinsert
@@ -150,3 +151,10 @@ $3$ & $(1-r)^8_+(32r^3+25r^2+8r+1)$ & $\Cal C^6$      \crl
 \caption/t
 \relax List of the Wendland’s functions~$\phi_{3,k}$ for $k=0,1,2,3$.  The smoothness of these functions (more properly, of their even extensions to the real line)  is~$\Cal C^{2k}$.  They are positive definite on~$\R^d$ for all~$d\leq3$.
 \endinsert
+
+
+Finally we notice that all the  positive definite radial functions~$\phi:[0,\infty)\to\R$ can be rescaled by means of a {\em shape parameter}~$\varepsilon$.  In fact, if the $\varepsilon$-scaled version~$\phi_\varepsilon$ of~$\phi$ is defined as
+$$
+\phi_\varepsilon(r) = \phi(\varepsilon r),
+$$
+then $\phi_\varepsilon$ is still positive definite and radial.  When interpolating a sampled function by using a positive definite radial function, the proper choice of the shape parameter has great impact on the accuracy of the result.  There are various techniques that allows for an automatic correct choice of the shape parameter, the most notable being the {\em leave-one-out cross-validation} method (LOOCV) (see Rippa~\cite[rippa_1999] and Fassauer~\cite[fasshauer_2011], section~5).  

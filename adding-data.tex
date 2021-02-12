@@ -3,7 +3,7 @@
 Up to now we have always considered the problem of recovering an unknown function from a fixed set of information about it, namely the values that the function assumes on a given set of points.  But never we considered what happens to the interpolant when our knowledge on the sampled function gradually increases, that is when we have access to more and more sampled data.  It is reasonable to expect that the reconstructed function becomes increasingly more similar to the original function. This is the topic of concern of this section.
 
 
-Let $X$ and $\.Y$ be two sets of data sites such that~$X\subset Y$.  Given a function~$f$ in the native space~$\Cal N_Φ$ of a symmetric positive definite kernel~$Φ$, we can compute both of the interpolants $s_{X,f}\in\Cal S_{Φ, X}$ and~$s_{Y,f}\in\Cal S_{Φ, Y}$.  It is easy to see that, as expected,  $s_{Y,f}$ is no worse than~$s_{X,f}$ at approximating~$f$, meaning that 
+Let $X$ and $\.Y$ be two sets of data sites such that~$X\subset Y$.  Given a function~$f$ in the native space~$\Cal N_Φ$ of a symmetric positive definite kernel~$Φ$, we can compute both of the interpolants $s_{X,f}\in\Cal S_{Φ, X}$ and~$s_{Y,f}\in\Cal S_{Φ, Y}$.  It is easy to see that, as expected,  $s_{Y,f}$ is no worse than~$s_{X,f}$ in approximating~$f$, meaning that 
 $$
 \norm{\.f - s_{Y,f}}_Φ \leq \norm{\.f - s_{X,f}}_Φ.
 $$
@@ -13,7 +13,7 @@ $$
 $$
 %So, when additional information on the sampled function~$f$ is available, not only the interpolant  provides a better approximation, but also its native space norm increases. 
 
-There is actually an explicit expression for the increase in norm of the interpolant, as shown by Shaback and~Werner~\cite[shaback_2006].  Specifically, in the simple case where $Y=X\cup\{x\}$, that is when just one point is added to the data sites, the following result holds.
+There is actually an explicit expression for the increase of the  norm of the interpolant, as shown by Shaback and~Werner~\cite[shaback_2006].  Specifically, in the simple case where $Y=X\cup\{x\}$, that is when just one point is added to the data sites, the following result holds.
 
 \preskip
 \theorem
@@ -27,10 +27,10 @@ where $P_X$ is the power function associated to~$X$.
 Let $X=\{\range x_N/\}$, and define the  matrix~$\Bm A$ and the vectors~$\Bm u(x), \Bm b(x)$ as in section~\ref[errorsec].
 The interpolants $s_{X, f}$ and~$s_{X\cup\{x\},f}$ can be expressed as linear combinations of the standard basis functions of $\Cal S_{Φ, X}$ and~$\Cal S_{Φ, X\cup\{x\}}$ respectively. Explicitly,
 $$
-s_{X,f} = \sum_{j = 1}^N\alpha_j Φ(\cdot, x_j),  \qquad
-s_{X\cup\{x\}, f} = \sum_{j=1}^N\beta_j Φ(\cdot, x_j) + \gamma\, Φ(\cdot, x),
+s_{X,f} = \sum_{k = 1}^N\alpha_k Φ(\cdot, x_k),  \qquad
+s_{X\cup\{x\}, f} = \sum_{k=1}^N\beta_k Φ(\cdot, x_k) + \gamma\, Φ(\cdot, x),
 $$
-for some coefficients~$\{\alpha_j\}_{j\in\{1,2,\dots,N\}}$, $\{\.\beta_j\}_{j\in\{1,2,\dots,N\}}$ and~$\gamma$.
+for some coefficients~$\{\alpha_k\}_{k\in\{1,2,\dots,N\}}$, $\{\.\beta_k\}_{k\in\{1,2,\dots,N\}}$ and~$\gamma$.
 If we define the vectors 
 $$
 \Bm \alpha \coloneq (\range\alpha_N/)^T \quad\hbox{and}\quad \Bm \beta \coloneq (\range\beta_N/)^T,

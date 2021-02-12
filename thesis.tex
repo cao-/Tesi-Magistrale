@@ -7,22 +7,24 @@
 \outlines 1
 
 \enlang
-%\fontfam[garamondgeorgd] \setff{+calt} % +dlig
-\fontfam[BaskervilleMT]\load[patches]\let\semibold\bf %\let\bf\kf \let\bi\ki
+%\fontfam[garamondgeorgd] \setff{+calt} \typosize[12/14.1818]
+\fontfam[GaramondMT]\load[patches]\let\semibold\bf \typosize[12/14.1818]
+%\fontfam[BaskervilleMT]\load[patches]\let\semibold\bf \typosize[11.9/14.1]
 \load[garamond-math-fix, micro]
 %\OpTeX
 % We must ensure that . , ; etc are from the same font in text and math mode.
 
-\def\QED{\hbox{$\Bm{\Umathchar"0"01"00203B}$}}
+\font\symbols=Diamond % MonotypeSorts
+\def\QED{\hbox{\symbols\resizethefont \,❖}}
+
 
 \margins/1 a4 (103,97,130,145)pt
 
 %\typosize[12.21/14.5]
-%\typosize[12/14.1818]
-\typosize[11.9/14.1]
+
 \parindent 1em
 \parskip 1.5ex
-\rulewidth 0.12ex
+\rulewidth 0.15ex
 
 \picdir={pic/}
 

@@ -16,10 +16,10 @@ Let $\Omega$ be a domain in~$\R^d$ and $Φ:\,\Omega\times\Omega\to\R$ be a posit
 $$
 F_{Φ}=\langle\,Φ(\cdot,y)\mathbox{,\quad $y\in\Omega$}\,\rangle\mathbox,
 $$
-which is the set of all finite combinations of the functions~$\{Φ(\cdot,y)\}_{y\in\Omega}$.
+which is the set of all linear combinations of the functions~$\{Φ(\cdot,y)\}_{y\in\Omega}$.
 Notice that this space is {\em infinite dimensional} if $Φ$ is positive definite, because we already know that in this case each of its subspaces~$\Cal S_{Φ,\. X}$ has dimension equal to the number of (distinct) points in~$X$.
 
-The space~$F_Φ$ may be endowed with the form~$\form\;\;_Φ$ defined by
+The space~$F_Φ$ may be endowed with the {\em bilinear form}~$\form\;\;_Φ$ defined by
 $$
 \Bform{\sum_{j=1}^Nα_jΦ(\cdot, x_j)}{\sum_{k=1}^Mβ_kΦ(\cdot,y_k)}_Φ\coloneq \sum_{j=1}^N\sum_{k=1}^Mα_j β_kΦ(x_j,y_k)\mathbox.\eqmark[form]
 $$
@@ -29,9 +29,9 @@ This  form is well defined because the basis functions~$\{Φ(\cdot,y)\}_{y\in\Om
 \proposition
 If \,$Φ:\,\Omega\times\Omega\to\R$ is a symmetric positive definite kernel, then~$\form\;\;_Φ$ defines a {\em scalar product} on~$F_Φ$.
 \proof
-The form $\form\;\;_Φ$ is obviously {\em bilinear} from its definition, and it is {\em symmetric} if $Φ$ is symmetric.   Moreover, if we take an arbitrary~$f=\sum_{j=1}^Nα_j Φ(\cdot,x_j)$ in~$F_Φ$, except the zero function, then  the positive definiteness of~$Φ$ implies that
+The bilinear form $\form\;\;_Φ$ is obviously {\em symmetric} if $Φ$ is symmetric.   Moreover, if we take an arbitrary~$f=\sum_{j=1}^Nα_j Φ(\cdot,x_j)$ in~$F_Φ$, except the zero function, then  the positive definiteness of~$Φ$ implies that
 $$
-\form ff_Φ=\sum_{j=1}^N\sum_{k=1}^Nα_j α_k Φ(x_j,x_k) > 0\mathbox.\quad\QED
+\form ff_Φ=\sum_{j=1}^N\sum_{k=1}^Nα_j α_k Φ(x_j,x_k) > 0\mathbox.~\QED
 $$
 \postskip
 
@@ -53,7 +53,7 @@ For each~$y\in\Omega$ the point-evaluation functional~$\delta_y: F_Φ\to\R$ is r
 $$
 \delta_y(f) = \form {Φ(\cdot,y)}f_Φ\mathbox{,\quad for each~$f\in F_Φ$.}\eqmark[repr]
 $$
-Moreover, these functionals belong the  {\em topological dual\nobreak\,}\fnote{The topological dual of~$F_Φ$ is the set of all the linear functionals~$F_Φ\to\R$ that  continuous with respect to the topology induced by the norm~$\norm\;_Φ$.} $F_Φ^*$ of~$F_Φ$ and they are {\em linearly independent}. 
+Moreover, these functionals belong the  {\em topological dual\nobreak\,}\fnote{The topological dual of~$F_Φ$ is the set of all the linear functionals from $F_Φ$ to $\R$ that are continuous with respect to the topology induced by the norm~$\norm\;_Φ$.} $F_Φ^*$ of~$F_Φ$ and they are {\em linearly independent}. 
 
 
 \proof
@@ -68,13 +68,13 @@ The continuity of~$\,\delta_y$ with respect to the norm~$\norm\;_Φ$ follows imm
 
 The inner product space~$F_Φ$ need not be complete, which means that there can be Cauchy sequences in~$F_Φ$ that do not converge.  It is possible anyhow to build a {\em completion}\fnote{Details about the construction of the completion of a Hilbert space are present, for instance, in Stein~\cite[stein_2009].} for it, i.e., it is possible to construct an inner product  space~$\Cal F_Φ$ and a {\em linear injective} map~$A :F_Φ\rightarrowtail\Cal F_Φ$ such that 
 \begitems
-* $\form{A(x)}{A(y)}_{\Cal F_Φ} = \form xy_{F_Φ}\mathbox{,\quad for all~$x,y\in F_Φ$;}$
+* $\form{A(f)}{A(g)}_{\Cal F_Φ} = \form fg_{F_Φ}\mathbox{,\quad for all~$f,g\in F_Φ$;}$
 * $A(F_Φ)$ is {\em dense} in~$\Cal F_{Φ}$;
 * $\Cal F_{Φ}$ is a {\em Hilbert space}, i.e., it is complete.
 \enditems
   Here we used the notations $\form\;\;_{F_Φ}$ and~$\form\;\;_{\Cal F_Φ}$ to distinguish between the scalar products on $F_Φ$ and~$\Cal F_Φ$ respectively, but we can denote both of them simply by~$\form\;\;_{Φ}$, as it is clear which one we refer to just by looking at the paired functions.
 
-Unfortunately, the completion~$\Cal F_Φ$ of the space~$F_Φ$ is an abstract space, because its elements  are equivalence classes of Cauchy sequences of functions in~$F_Φ$. We must therefore reinterpret those elements as standard functions.    This is actually possible by considering in a certain sense the extensions of the point-evaluation functionals to all of~$\Cal F_Φ$.  Precisely, let us denote by~$\R^\Omega$ the set of all functions from $\Omega$ to~$\R$, and then define the map~$R:\Cal F_Φ\to\R^\Omega$ as
+Unfortunately, the completion~$\Cal F_Φ$ of the space~$F_Φ$ is an abstract space, because its elements  are equivalence classes of Cauchy sequences of functions in~$F_Φ$. We must therefore reinterpret those elements as standard functions.    This is actually possible by considering in a certain sense the extensions of the point-evaluation functionals onto all~$\Cal F_Φ$.  Precisely, let us denote by~$\R^\Omega$ the set of all functions from $\Omega$ to~$\R$, and then define the map~$R:\Cal F_Φ\to\R^\Omega$ as
 $$
 (Rb)(x)\coloneq \form{A(Φ(\cdot,x))}b_Φ\mathbox{,\quad for all~$x\in\Omega$,}
 $$
@@ -97,7 +97,7 @@ R(A(f))(x)&=\form{A(Φ(\cdot,x))}{A(f)}_{Φ}  \cr
  	        &=\form{Φ(\cdot,x)} f_Φ                 \cr
  	        &= f(x)\mathbox.}
 $$
-This means that, for each~$f\in F_Φ$, the corresponding abstract element~$A(f)\in\Cal F_Φ$ gets realised again as the same function~$f$ by the map~$R$.  This map~$R$, being defined on all of~$\Cal F_Φ$, allows us to interpret as standard functions also the other elements of~$\Cal F_Φ$ that do not come through~$A$  from functions of~$F_Φ$. 
+This means that, for each~$f\in F_Φ$, the corresponding abstract element~$A(f)\in\Cal F_Φ$ gets realised again as the same function~$f$ by the map~$R$.  This map~$R$, being defined throughout the whole of~$\Cal F_Φ$, allows us to interpret as standard functions also the other elements of~$\Cal F_Φ$ that do not come through~$A$  from functions of~$F_Φ$. 
 
 \preskip
 \definition We define the {\em native Hilbert space}~$\Cal N_Φ$ deriving from a symmetric positive definite kernel~$Φ:\,\Omega\times\Omega\to\R$ as the space
@@ -114,7 +114,7 @@ $$
 $$
 F_Φ\subseteq \Cal N_Φ \subseteq \R^\Omega
 $$
-and  $F_Φ$ is dense in~$\Cal N_Φ$.  Moreover, the inner product~$\form\;\;_{\Cal N_Φ}$ and hence the corresponding norm~$\norm{\;}_{\Cal N_Φ}$ by definition extend respectively the inner product and the norm of~$F_Φ$---we can again denote them  as $\form\;\;_Φ$ and~$\norm\;_Φ$  for simplicity.  Finally, the point evaluation functionals, previously defined only on~$F_Φ$, can be naturally extended to all of~$\Cal N_Φ$, preserving their continuity.  In fact, if $f\in\Cal N_Φ$, then 
+and  $F_Φ$ is dense in~$\Cal N_Φ$.  Moreover, the inner product~$\form\;\;_{\Cal N_Φ}$ and hence the corresponding norm~$\norm{\;}_{\Cal N_Φ}$ by definition extend respectively the inner product and the norm of~$F_Φ$---we can again denote them  as $\form\;\;_Φ$ and~$\norm\;_Φ$  for simplicity.  Finally, the point evaluation functionals, previously defined only on~$F_Φ$, can be naturally extended onto~$\Cal N_Φ$, preserving their continuity.  In fact, if $f\in\Cal N_Φ$, then 
 $$
 \eqalign{ \delta_x(f)&\coloneq\form{Φ(\cdot, x)} f_Φ \cr
                                        &= \form{R(A(Φ(\cdot, x))}{R(b)}_Φ\rlap{, \quad for some~$b\in\Cal F_Φ$} \cr
@@ -142,13 +142,13 @@ $$
 $$
 by having applied the Cauchy-Schwarz inequality.  The right term of the inequality tends to zero as~$y\to x$, since the continuity of $Φ$ implies that
 $$
-\lim_{y\to x}\norm{Φ(\cdot,x)-Φ(\cdot,y)}_Φ^2=\lim_{y\to x}\bigl(Φ(x,x)-2\.Φ(x,y)+Φ(y,y)\bigr)=0\mathbox.\quad\QED
+\lim_{y\to x}\norm{Φ(\cdot,x)-Φ(\cdot,y)}_Φ^2=\lim_{y\to x}\bigl(Φ(x,x)-2\.Φ(x,y)+Φ(y,y)\bigr)=0\mathbox.~\QED
 $$
 \postskip 
 
 \noindent An analogous result holds also for differentiability---a continuously differentiable kernel has a native space made of continuously differentiable functions (Shaback~\cite[shaback_1999]).
 
-On the native space~$\Cal N_Φ$ of a symmetric positive definite kernel~$Φ$ there are two notions of {\em convergence}.  One is the convergence in the norm of the space, the other is the pointwise convergence, since the elements of~$\Cal N_Φ$ are actual functions that can be evaluated at each point of their domain.  These two notions are related.
+In the native space~$\Cal N_Φ$ of a symmetric positive definite kernel~$Φ$ there are two notions of {\em convergence}.  One is the convergence in the norm of the space, the other is the pointwise convergence, since the elements of~$\Cal N_Φ$ are actual functions that can be evaluated at each point of their domain.  These two notions are related.
 \preskip
 \theorem
 If $\{\.f_n\}_{n\in\N}$ is a sequence of functions in~$\Cal N_Φ$ which converges in the native space norm to a function~$f\in \Cal N_Φ$, then
