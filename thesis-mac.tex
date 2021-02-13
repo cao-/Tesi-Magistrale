@@ -21,7 +21,7 @@
 \def\proof{\smallskip\noindent{\em PROOF}. \,}
 
 \def\preskip{\smallskip}
-\def\postskip{\bigskip\medskip}
+\def\postskip{\medskip\medskip}
 
 \long\def\comment#1\endcomment{}
 
@@ -98,3 +98,10 @@
    \_nobreak \_belowtitle{\_medskip}%
    \_firstnoindent
 }
+
+
+
+
+\def\hbyw#1#2{\vbox to #1{\vfil \hbox to #2{\hfil}}}
+
+\def\figureproof#1#2{\vbox to #1{\vss \hbox to #2{\hss\it Missing picture\hss}\vss}}

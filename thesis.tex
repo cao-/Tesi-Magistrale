@@ -8,7 +8,7 @@
 
 \enlang
 %\fontfam[garamondgeorgd] \setff{+calt} \typosize[12/14.1818]
-\fontfam[GaramondMT]\let\semibold\bf \typosize[12/14.1818]
+\fontfam[GaramondMT]\let\semibold\bf \typosize[12.26/14.5]%\typosize[12/14.1818]
 %\fontfam[BaskervilleMT]\let\semibold\bf \typosize[11.9/14.1]
 \load[patches, garamond-math-fix, garamond-micro]
 %\OpTeX
@@ -26,22 +26,21 @@
 \parindent 1em
 \iindent=\parindent \ttindent=\parindent
 \parskip 1.5ex
-\rulewidth 0.15ex
+\rulewidth 0.13ex
 
 \picdir={pic/}
 
-
-\bgroup
-\let\_mtext\ignoreit
-\nonum\notoc\chap Contents
-\egroup
-\tocpage
+%\bgroup
+%\let\_mtext\ignoreit
+%\nonum\notoc\chap Contents
+%\egroup
+%\tocpage
 
 
 \sec The interpolation problem
 \input the-interpolation-problem
 
-\sec Positive definite functions
+\sec[positivesec] Positive definite functions
 \input positive-definite-functions
 
 \sec Native spaces
@@ -57,6 +56,9 @@
 % Monotonicity results
 \sec[addingsec] Adding data
 \input adding-data
+
+\sec[???sec] ???
+\input ???
 
 %\sec shape parameter
 %\sec stability and trade-off principle (Fasshauer)

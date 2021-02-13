@@ -9,7 +9,7 @@ $$
 $$
 This is an immediate consequence of the inclusion~$\Cal S_{Φ, X}\subset\Cal S_{Φ, Y}$ and the property~\ref[mindist] of minimum distance satisfied by~$s_{Y,f}$.  If we then combine the Pythagorean identities~\ref[pythag] satisfied by $s_{X,f}$ and~$s_{Y,f}$ with the above inequality we further obtain that
 $$
-\norm{s_{X, f}}_Φ\leq\norm{s_{Y,f}}_Φ\leq\norm{f}_Φ.
+\norm{s_{X, f}}_Φ\leq\norm{s_{Y,f}}_Φ\leq\norm{f}_Φ.\eqmark[normbound]
 $$
 %So, when additional information on the sampled function~$f$ is available, not only the interpolant  provides a better approximation, but also its native space norm increases. 
 
@@ -105,22 +105,33 @@ The substitution of this value of~$γ$ into expression~(\lower.6ex\hbox{*}\lower
 \postskip
 
 
-This theorem says that if the interpolant~$s_{X,f}$ already makes a correct prediction for a point~$x\notin X$, in the sense that $s_{X,f}(x)=f(x)$, then the addition of the point~$x$ has no effect on the norm of the interpolant, in fact
+This theorem says that if the interpolant~$s_{X,f}$ already makes a correct prediction at a given point~$x\notin X$, in the sense that $s_{X,f}(x)=f(x)$, then the addition of that point~$x$ to the data sites has no effect on the norm of the interpolant, in fact
 $$
 \norm{s_{X\cup\{x\},f}}_Φ^2=\norm{s_{X,f}}_Φ^2+ {(f(x) - s_{X, f}(x))^2\over P^2_X(x)}=\norm{s_{X,f}}_Φ^2.
 $$
 But this is something that we already knew, since in this case the interpolant itself doesn't change, because $s_{X,f}$, just like $s_{X\cup\{x\},f}$, is a function of~$\Cal S_{Φ, X\cup\{x\}}$ which interpolates~$f$ at the data sites~$X\cup\{x\}$, and the solution to the interpolation problem is unique in~$\Cal S_{Φ, X\cup\{x\}}$.
 
-On the other hand, if $s_{X,f}$ predicts at the point~$x$ a value~$s_{X,f}(x)$ different from $f(x)$, then the difference of the squares of the norms, which by the above theorem can be computed as
+On the other hand, if $s_{X,f}$ predicts at the point~$x$ a value~$s_{X,f}(x)$ different from the correct value~$f(x)$, then the difference between the squares of the norms of $s_{X\cup\{x\},f}$ and~$s_{X,f}$, which by the above theorem can be computed as
 $$
 \norm{s_{X\cup\{x\},f}}_Φ^2 -\norm{s_{X,f}}_Φ^2= {(f(x) - s_{X, f}(x))^2\over P^2_X(x)},
 $$
-may be large not only if the prediction is bad, but also if the value~$P_X(x)$ is small, which happens when the new point~$x$ is close to one of the points of~$X$.  Instead, if $Φ$ is radial and for simplicity taken such that properties~\ref[convention] hold, when $x$ is sufficiently far from all the points of~$X$ the difference between the squares of the norms has value approximately equal to~$(f(x)-s_{X,f}(x))^2$. Refer to figure~\ref[powfig] for the justification of this fact.
+may be large not only if the prediction is bad, but also if the value of~$P_X$ at the new point~$x$ is small, which happens when $x$~is close to one of the points of~$X$.  Instead, in case $Φ$ is radial and for simplicity taken such that properties~\ref[convention] hold, when $x$ is sufficiently far from all the points of~$X$ the power function has no more influence on the difference between the squares of the native space norms, which in fact has value approximately equal simply to~$(f(x)-s_{X,f}(x))^2$. Refer to figure~\ref[powfig] for the justification of this fact.
 
 
 
-Therefore, as pointed out by Lenarduzzi and Shaback~\cite[lenarduzzi-shaback_2017], computing the difference $\norm{s_{X\cup\{x\},f}}_Φ^2 -\norm{s_{X,f}}_Φ^2$ between the squares of the norms of $s_{X\cup\{x\},f}$ and~$s_{X,f}$ is a geometrically correct way of establishing the goodness of the prediction made by $s_{X,f}$ for the value of~$f$ at the point~$x$, since this quantity does not consider only the error~$f(x)-s_{X,f}(x)$, but also takes into account, through the value~$P_X(x)$, the position of~$x$ with respect to the data sites~$X$. We espect in fact that if $x$ is close to~$X$ then the value~$s_{X,f}(x)$ is close to~$f(x)$.
+Therefore, as pointed out by Lenarduzzi and Shaback~\cite[lenarduzzi-shaback_2017], computing the difference $\norm{s_{X\cup\{x\},f}}_Φ^2 -\norm{s_{X,f}}_Φ^2$ between the squares of the norms of $s_{X\cup\{x\},f}$ and~$s_{X,f}$ is a geometrically correct way of establishing the goodness of the prediction made by $s_{X,f}$ for the value of~$f$ at the point~$x$, since this quantity does not consider only the error~$f(x)-s_{X,f}(x)$, but also takes into account, through the value~$P_X(x)$, the closeness of~$x$ to the data sites~$X$. We expect in fact a much better accuracy on the prediction for~$f(x)$ at a point $x$ close to~$X$ compared to a point $x$ far from~$X$.
 
+
+If the set~$X$ of data sites is already big enough so that $s_X$ is close to~$f$ in~$\Cal N_Φ$, and hence $\norm{s_{X,f}}_Φ$ is close to~$\norm f_Φ$, then there is few margin left for a further increase of the norm of the interpolant when a new point~$x$ is added to the data sites, since \ref[normbound]~says that~$\norm{s_{X, f}}_Φ\leq\norm{s_{X\cup\{x\},f}}_Φ\leq\norm{f}_Φ.$  This last statement of course holds under the hypothesis that the sampled function~$f$ belongs to the native space of~$Φ$.  If this is not the case, then we do not have a bound on the possible increase of the norm when passing from $s_{X,f}$ to~$s_{X\cup\{x\}}$.
+
+ A case of special interest is that of a {\em discontinuous} function~$f$, which of course doesn't belong to the native space of a continuous kernel~$Φ$ (see theorem~\ref[cont-theor]). In this case the norm of the interpolant can grow very much if the newly added point $x$ is close to the singularity of~$f$, as shown in figure~\ref[growfig].  The big increment of the norm indicates that a violation of the model~$s_{X,f}$ is occurring, or in other words that the new pair of data~$(x, f(x))$ does not fit well the model~$s_{X,f}$ previously established by the pairs of data~$(X, f(X))$.
+
+\label[growfig]
+\topinsert
+\centerline{\frame{\figureproof{1in}{.9\hsize}}}
+\cskip
+\caption/f
+\endinsert
 
 % TODO: the norm of the interpolating converges, but not necessarily to the norm of the function.  Example of this.   The location/distribution of the data sites is important.  Results for pointwise convergence.
 
