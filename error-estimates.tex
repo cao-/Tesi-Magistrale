@@ -10,13 +10,13 @@ Since the interpolation matrix~$\Bm A\coloneq \Bm A_{Φ,\. X}$ defined in~\ref[i
 $$
 \Bm{AC}=\Bm{CA}=\Bm I,
 $$
-with $\Bm I$ denoting the $N\times N$ identity matrix (for simplicity of notation, like in this case, we will henceforth omit the subscripts $Φ$ or $X$ if there is no need to stress the dependence from the kernel or the data sites respectively). Then, the columns~$\{\Bm C^{\.(h)}\}_{h\in\{1,2,\dots, N\}}$ of the matrix~$\Bm C$ are linearly independent and therefore can be used to generate a new basis
+with $\Bm I$ denoting the $N\times N$ identity matrix (for simplicity of notation, like in this case, we will henceforth omit the subscripts $Φ$ or $X$ if there is no need to stress the dependence from the kernel or the data sites respectively). Then, the columns~$\{\Bm C^{\.[h]}\}_{h\in\{1,2,\dots, N\}}$ of the matrix~$\Bm C$ are linearly independent and therefore can be used to generate a new basis
 $$
 \Cal U=\{\range u_N/\}
 $$
 for the space~$\Cal S_{Φ,\. X}$.  Specifically, we can define the new basis functions~$\{u_h\}_{h\in\{1,2,\dots, N\}}$ by
 $$
-u_h\coloneq \sum_{k = 1}^N C^{(h)}_k\Phi(\cdot, x_k)\mathbox. \eqmark[card]
+u_h\coloneq \sum_{k = 1}^N C^{[h]}_k\Phi(\cdot, x_k)\mathbox. \eqmark[card]
 $$
 These basis functions, called {\em cardinal functions}, have the property that
 $$
@@ -84,7 +84,7 @@ $$
        		     			   \pmatrix{\Bm A\; & \Bm t(x) \cr \Bm t(x)^T & Φ(x,x)}
          				 	  \pmatrix{\Bm u(x) \cr -1}}\,.} \eqmark[pow1]
 $$
- From the definition of~$u_h$ in expression~\ref[card] it follows that~$u_h(x) = (\Bm c^{(h)})^T\Bm t(x)$, and so that~$\Bm u(x) = \Bm C^{\,T}\Bm t(x) =  (\Bm A^{-1})^T\, \Bm t(x) = \Bm A^{-1} \Bm t(x)$.
+ From the definition of~$u_h$ in expression~\ref[card] it follows that~$u_h(x) = (\Bm C^{\.[h]})^T\Bm t(x)$, and so that~$\Bm u(x) = \Bm C^{\,T}\Bm t(x) =  (\Bm A^{-1})^T\, \Bm t(x) = \Bm A^{-1} \Bm t(x)$.
  This allows us finally to find a computable expression for~$P_X(x)$, that is
  $$
  \eqalignno{P_X(x) &=\sqrt{ Φ(x,x) -2\Bm u(x)^T\!\Bm A\,\Bm u(x) + \Bm u(x)^T\!\Bm A\,\Bm u(x)} \cr
@@ -155,7 +155,7 @@ $$
 $$
 
 \proof
-If $f=0$, then also $s_{X,f}=0$ and the inequality is trivially satisfied; otherwise, simply because of how the operator norm is defined, we have that
+If $f=0$, then also $s_{X,f}=0$ and the inequality is trivially satisfied; otherwise, simply because of how the operator norm is defined, it is true that
 $$
 \opnorm{\epsilon_x}_Φ\geq {|\epsilon_x(f)| \over\phantom{{}_Φ} \norm{\.f}_Φ}
 $$
