@@ -24,7 +24,7 @@ $$
 where $P_X$ is the power function associated to~$X$.
 
 \proof
-Let $X=\{\range x_N/\}$, and define the  matrix~$\Bm A$ and the vectors~$\Bm u(x), \Bm b(x)$ as in section~\ref[errorsec].
+Let $X=\{\range x_N/\}$, and define the  matrix~$\Bm A$ and the vectors~$\Bm u(x), \Bm t(x)$ as in section~\ref[errorsec].
 The interpolants $s_{X, f}$ and~$s_{X\cup\{x\},f}$ can be expressed as linear combinations of the standard basis functions of $\Cal S_{Φ, X}$ and~$\Cal S_{Φ, X\cup\{x\}}$ respectively. Explicitly,
 $$
 s_{X,f} = \sum_{k = 1}^Nα_k Φ(\cdot, x_k),  \qquad
@@ -37,7 +37,7 @@ $$
 $$
  then the evaluations of the two~interpolants at the points $\{x_j\}_{j\in\{1,2,\dots,N\}}$ of~$X$ have the expressions
 $$
-s_{X,f}(x_j) =\Bm b(x_j)^T\!\Bmα\quad\hbox{and}\quad s_{X\cup\{x\},f}(x_j)  = \Bm b(x_j)^T\!\Bmβ + γ\,Φ(x_j,x),
+s_{X,f}(x_j) =\Bm t(x_j)^T\!\Bmα\quad\hbox{and}\quad s_{X\cup\{x\},f}(x_j)  = \Bm t(x_j)^T\!\Bmβ + γ\,Φ(x_j,x),
 $$
 which can be collected in a compact way as
 $$
@@ -52,16 +52,16 @@ s_{X\cup\{x\},f}(x_1) \cr
 s_{X\cup\{x\},f}(x_2) \cr
 \vdots 	    \cr
 s_{X\cup\{x\},f}(x_N)
-} = \Bm A \Bm β + γ\Bm b(x),
+} = \Bm A \Bm β + γ\Bm t(x),
 $$
-simply by noticing that~$\Bm b(x_j)^T$ is the $j$-th row of the matrix~$\Bm A$.  Since by definition the interpolants $s_{X, f}$ and~$s_{X\cup\{x\}, f}$ assume the same value at each point of~$X$,  the relation
+simply by noticing that~$\Bm t(x_j)^T$ is the $j$-th row of the matrix~$\Bm A$.  Since by definition the interpolants $s_{X, f}$ and~$s_{X\cup\{x\}, f}$ assume the same value at each point of~$X$,  the relation
 $$
-\Bm A \Bm α = \Bm A \Bm β + γ \Bm b(x)
+\Bm A \Bm α = \Bm A \Bm β + γ \Bm t(x)
 $$
 must hold.  After having multiplied both sides by the inverse of~$\Bm A$ and having rearranged its terms, this equation gives an expression for the vector of coefficients~$\Bm β$, that is
 $$
 \eqalign{
-\Bm β &= \Bm α - γ \Bm A^{-1} \Bm b(x) \cr
+\Bm β &= \Bm α - γ \Bm A^{-1} \Bm t(x) \cr
 		  &= \Bm α - γ\. \Bm u(x). 
 } \eqno\hbox{($\lower.6ex\hbox{*}$)}
 $$
@@ -75,14 +75,14 @@ $$
 \eqalign{
 \norm{s_{X\cup\{x\}, f}}_Φ^2 &= \bnorm{\sum_{j = 1}^N β_j Φ(\cdot, x_j)}_Φ^2 + 2\,\bform{\sum_{j=1}^N β_j Φ(\cdot, x_j)}{γ\, Φ(\cdot, x)}_Φ + \norm{γ\, Φ(\cdot, x)}_Φ^2 \cr
 &= \sum_{j=1}^N\sum_{k=1}^N β_j β_k Φ(x_j, x_k) + 2γ\sum_{j = 1}^N β_j Φ(x_j, x) + γ^2 Φ(x,x) \cr
-&= \Bm β^T\! \Bm A \.\Bm β + 2 γ\. \Bm b(x)^T \Bm β + γ^2 Φ(x,x).
+&= \Bm β^T\! \Bm A \.\Bm β + 2 γ\. \Bm t(x)^T \Bm β + γ^2 Φ(x,x).
 }
 $$
 Then, the substitution~(\lower.6ex\hbox{*}) for~$\Bm β$ allows us to express the square of the norm of~$s_{X\cup\{x\}, f}$ as
 $$
 \eqalign{
-\norm{s_{X\cup\{x\}, f}}_Φ^2 &= (\Bm α - γ\Bm u(x))^T\Bm A\, (\Bm α - γ \Bm u(x)) + 2γ\. \Bm b(x)^T\! (\Bm α - γ \Bm u(x)) + γ^2 Φ(x,x) \cr
-&=  \Bm α^T\!\Bm A\.\Bm α +γ^2 \bigl[Φ(x,x) - 2\Bm b(x)^T\Bm u(x) + \Bm u(x)^T\!\Bm A\. \Bm u(x) \bigr] \cr
+\norm{s_{X\cup\{x\}, f}}_Φ^2 &= (\Bm α - γ\Bm u(x))^T\Bm A\, (\Bm α - γ \Bm u(x)) + 2γ\. \Bm t(x)^T\! (\Bm α - γ \Bm u(x)) + γ^2 Φ(x,x) \cr
+&=  \Bm α^T\!\Bm A\.\Bm α +γ^2 \bigl[Φ(x,x) - 2\Bm t(x)^T\Bm u(x) + \Bm u(x)^T\!\Bm A\. \Bm u(x) \bigr] \cr
 &= \norm{s_{X,f}}_Φ^2 + γ^2 P^2_X(x),
 }\eqno\hbox{($\lower.6ex\hbox{*}\lower.6ex\hbox{*}$)}
 $$
@@ -91,9 +91,9 @@ where in the last step we recognised the power function from expression~\ref[pow
 It is finally possible to find an expression for~$γ$ by computing the difference of the interpolants at the addded point~$x$.  In fact,
 $$
 \eqalign{
-s_{X\cup\{x\}, f}(x) - s_{X, f}(x) &= \Bm b(x)^T\Bm β + γ\, Φ(x,x) - \Bm b(x)^T\Bmα \cr
-&= \Bm b(x)^T(\Bm α - γ\Bm u(x)) + γ\,Φ(x,x) - \Bm b(x)^T\Bmα \cr
-&= γ\.\bigl[Φ(x,x) - \Bm b(x)^T\Bm u(x)\bigr] \cr
+s_{X\cup\{x\}, f}(x) - s_{X, f}(x) &= \Bm t(x)^T\Bm β + γ\, Φ(x,x) - \Bm t(x)^T\Bmα \cr
+&= \Bm t(x)^T(\Bm α - γ\Bm u(x)) + γ\,Φ(x,x) - \Bm t(x)^T\Bmα \cr
+&= γ\.\bigl[Φ(x,x) - \Bm t(x)^T\Bm u(x)\bigr] \cr
 &= γ P^2_X(x),
 }
 $$
