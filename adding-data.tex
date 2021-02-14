@@ -63,7 +63,7 @@ $$
 \eqalign{
 \Bm β &= \Bm α - γ \Bm A^{-1} \Bm t(x) \cr
 		  &= \Bm α - γ\. \Bm u(x). 
-} \eqno\hbox{($\lower.6ex\hbox{*}$)}
+} \eqmark[proof*]
 $$
 
 We now compute the squares of the native space norms of $s_{X, f}$ and~$s_{X\cup\{x\}, f}$ by expanding the scalar product as it is defined in~\ref[form].  For~$s_{X, f}$ we get
@@ -78,13 +78,13 @@ $$
 &= \Bm β^T\! \Bm A \.\Bm β + 2 γ\. \Bm t(x)^T \Bm β + γ^2 Φ(x,x).
 }
 $$
-Then, the substitution~(\lower.6ex\hbox{*}) for~$\Bm β$ allows us to express the square of the norm of~$s_{X\cup\{x\}, f}$ as
+Then, the substitution~\ref[proof*] for~$\Bm β$ allows us to express the square of the norm of~$s_{X\cup\{x\}, f}$ as
 $$
 \eqalign{
 \norm{s_{X\cup\{x\}, f}}_Φ^2 &= (\Bm α - γ\Bm u(x))^T\Bm A\, (\Bm α - γ \Bm u(x)) + 2γ\. \Bm t(x)^T\! (\Bm α - γ \Bm u(x)) + γ^2 Φ(x,x) \cr
 &=  \Bm α^T\!\Bm A\.\Bm α +γ^2 \bigl[Φ(x,x) - 2\Bm t(x)^T\Bm u(x) + \Bm u(x)^T\!\Bm A\. \Bm u(x) \bigr] \cr
 &= \norm{s_{X,f}}_Φ^2 + γ^2 P^2_X(x),
-}\eqno\hbox{($\lower.6ex\hbox{*}\lower.6ex\hbox{*}$)}
+}\eqmark[proof**]
 $$
 where in the last step we recognised the power function from expression~\ref[pow1].
 
@@ -101,7 +101,7 @@ where this time we used expression~\ref[pow2] to recognise~$P_X(x)$, and hence
 $$
 γ = {s_{X\cup\{x\}, f}(x) - s_{X, f}(x)\over P^2_X(x)}.
 $$
-The substitution of this value of~$γ$ into expression~(\lower.6ex\hbox{*}\lower.6ex\hbox{*}) concludes the proof.~\QED
+The substitution of this value of~$γ$ into expression~\ref[proof**] concludes the proof.~\QED
 \postskip
 
 
