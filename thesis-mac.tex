@@ -106,3 +106,23 @@
 \def\hbyw#1#2{\vbox to #1{\vfil \hbox to #2{\hfil}}}
 
 \def\figureproof#1#2{\vbox to #1{\vss \hbox to #2{\hss\it Missing picture\hss}\vss}}
+
+
+
+
+
+\_def \_mathfontsize #1{\_if$#1$\_else
+    \_tmpdim=#1\_ptunit
+    \_edef\_sizemtext{\_ea\_ignorept \_the\_tmpdim \_ptmunit}%
+    \_tmpdim=0.7\_tmpdim
+    \_edef\_sizemscript{\_ea\_ignorept \_the\_tmpdim \_ptmunit}%
+   \_tmpdim=#1\_ptunit \_tmpdim=0.55\_tmpdim
+    \_edef\_sizemsscript{\_ea\_ignorept \_the\_tmpdim \_ptmunit}%
+    \_fi
+}
+
+\_def\_mathbox#1{{\_mathstyles{\_hbox{%
+   \_ifnum\_stylenum<2 \_everymath{\_currstyle}%
+   \_else \_typoscale[\_dobystyle{}{}{700}{550}/]\_fi #1}}}%
+}
+\public\mathbox;
