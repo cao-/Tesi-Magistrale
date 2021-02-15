@@ -1,0 +1,135 @@
+
+The ideas developed in the previous section can be used to try and distinguish samples that come from a regular function from those that come from a discontinuous function.  The {\Red discontinuity estimator/indicator/classifier} that we are going to define will be the main toll necessary to later develop an algorithm for the interpolation of a discontinuous function.
+
+
+In what follows, we will always assume that  the kernel~$Φ$ is radial, i.e., of the form~\ref[phi] for some univariate positive definite function~$\phi$. Let $X=\{\range x_N/\}$ be a set of data sites and $f$ a function that is no more assumed to belong to the native space of~$Φ$.  Suppose that $f$ has been sampled at~$X$ and the sampling is dense enough to catch the relevant features of~$f$ on its considered domain.  Our goal is to recognise whether or not $f$ is discontinuous just by looking at~$X$ and the corresponding sampled function values~$f(X)$.
+
+
+
+Each index~$k\in\{1,2,\dots,N\}$ determines a splitting of the data sites into two parts, which are~$X\setminus\{x_k\}$ and~$\{x_k\}$. To simplify the notation, in this context we let
+$$
+X^{(k)}\coloneq X\setminus\{x_k\},\quad s\coloneq s_{X,f}\quad\mathbox{and}\quad s^{(k)}\coloneq s_{X\setminus\{x_k\},f}.
+$$
+If the function~$f$ that generated the given sampling~$f(X)$ is a well behaved function, then we should expect that, for each~$k$, the interpolant~$s^{(k)}$ predicts quite accurately the value~$f(x_k)$ at the point~$x_k$; instead, if $f$ is a discontinuous function, then there should be some indices~$k$ such that the prediction made by~$s^{(k)}$ for the point~$x_k$ is wrong.  Following the considerations of the previous section, we shall consider the quantity
+$$
+U_k\coloneq\norm s_Φ^2-\norm{s^{(k)}}^2_Φ = {(f_k-s^{(k)}(x_k))^2\over P_{X^{(k)}}^2(x_k)},
+$$
+which is small when the data~$(x_k, f(x_k))$ follows the model~$s$ which has been trained\fnote{Using the language of machine learning, in this case $(X^{(k)}, f(X^{(k)}))$ is the {\em training set}, while $(x_k, f(x_k))$ is the {\em test set}.} with~$(X^{(k)}, f(X^{(k)}))$,  and it is large otherwise.
+
+It is of our interested to compute the vector
+$$
+\Bm U\coloneq (\range U_N/),
+$$
+which collects together all the quantities~$U_k$ that have just been defined.  This vector is closely related to the leave-one-out {\em cross-validation} (LOOCV) vector
+$$
+\Bm E\coloneq (\range E_N/),
+$$
+whose elements are defined as~$E_k\coloneq f(x_k)-s^{(k)}(x_k)$, and which is typically used to find the appropriate shape parameter~$ε$ for the interpolation with  a positive definite radial function~$\phi_ε$. The value of~$ε$ is chosen such that the $p$-norm
+$$
+\norm{\Bm E}_p\coloneq\cases{\bigl(\sum_{j=1}^N |x_j|^p\bigr)^{1/p}, &\quad if $p\geq1$\cr
+  \max_{j\in\{1,2,\dots,N\}}|x_j|, &\quad if $p=\infty$}
+$$
+of the $ε$-dependent vector~$\Bm E$ is minimised, with $p$ usually being either $1$, $2$, or~$\infty$.
+
+
+The cross-validation vector~$\Bm E$ wouldn't be of much practical utility if there weren't an efficient way to compute it.  Even if apparently its computation requires to find the $N$ interpolants~$\{s^{(k)}\}_{k\in\{1,2,\dots, N\}}$, and hence to invert $N$~matrices of size~$(N-1)\times (N-1)$, Rippa~\cite[rippa_1999] recognised that there is actually an efficient way to compute~$\Bm E$ by inverting only one matrix of size~$N\times N$, namely the interpolation matrix~$\Bm A$ associated to the full set~$X$ of data sites.  By following an analogous reasoning, we can show that also the vector~$\Bm U$ can be computed in an efficient way. But first we need to report the computations made by Rippa. 
+
+\preskip
+\theorem[(Rippa)]
+Let $X=\{\range x_N/\}$ be a set of data sites, $Φ:\,\Omega\times\Omega\to\R$ a symmetric positive definite kernel, and
+$$
+\Bm f\coloneq (\range f_N/)^T = (f(x_1), f(x_2),\dots f(x_N))^T
+$$
+a vector of values sampled from any unknown function~$f\in\R^\Omega$.
+Then the elements~$E_k=f_k-s^{(k)}(x_k)$ of the cross-validation vector~$\Bm E$ can be alternatively computed as
+$$
+E_k = {α_k\over C_{k,k}},
+$$
+where $\Bm C$ is the inverse of the interpolation matrix~$\Bm A=\Bm A_{Φ,X}$ associated to the kernel~$Φ$ and the set~$X$ of locations, and $\Bm α$ is the vector of coefficients of the unique function~$s\in\Cal S_{Φ,X}$ that interpolates $f$ on~$X$, that is the solution of the linear sistem~$\Bm{Aα} = \Bm f$. 
+\proof
+For each point~$x\in\Omega$ let $\Bm t(x)$ be the evaluation at~$x$ of the vector of kernel translates centred at the points of~$X$, that we already defined in section~\ref[errorsec], namely,
+$$
+\Bm t(x)\coloneq (Φ(x,x_1), Φ(x,x_2), \dots, Φ(x, x_N))^T.
+$$
+Define then, for each~$k\in\{1,2,\dots, N\}$, the vectors $\Bm t^{(k)}\!(x)$ and~$\Bm f\,^{(k)}$ of length~$N-1$ by removing the $k$-th element from the vectors $\Bm t(x)$ and~$\Bm f$ respectively.  Similarly, define the matrix~$\Bm A^{(k)}$ of size~$(N-1)\times(N-1)$ by removing from~$\Bm A$ both its $k$-th~row and $k$-th~column.  If $\Bm β^{\lbrace k\rbrace}$ is the solution of the linear system~$\Bm A^{(k)}\Bm β^{\lbrace k\rbrace} = \Bm f\,^{(k)}$, then the function~$s^{(k)}\in \Cal S_{Φ,X^{(k)}}$ that interpolates~$f$ on the restricted set~$X^{(k)}$ of data sites can be expressed as
+$$
+s^{(k)}(x) = \Bm t^{(k)}\!(x)^T \Bm β^{\lbrace k\rbrace},\quad x\in\Omega.
+$$
+
+If $\Bm C^{\.[k]}$ and~$\Bm I^{\.[k]}$ denote the $k$-th columns of the matrices $\Bm C$ and~$\Bm I$ respectively, then for each~$k$ the relation
+$$
+\Bm A\Bm C^{\.[k]}=\Bm I^{\.[k]} \eqmark[ACI]
+$$
+must hold, since $\Bm C$ is defined as the inverse of~$A$.  Notice that if $\Bm y$ and~$\Bm z$ are any two vectors  of length~$N-1$ such that~$y_k = 0$, and if $\Bm y^{(k)}$ and~$\Bm z^{(k)}$ are the same vectors without the $k$-th element, then
+$$
+\Bm{Ay} = \Bm z\quad\mathbox{implies that}\quad \Bm A^{(k)}\Bm y^{(k)} = \Bm z^{(k)}.\eqmark[reduction]
+$$
+%This reasoning applied to relation~\ref[ACI] leads to the conclusion that~$C^{[k]}\neq 0$.  If fact, if 
+If the element~$C^{[k]}_k$ were equal to zero, then we could apply the just mentioned reasoning to relation~\ref[ACI] obtaining that
+$$
+\Bm A^{(k)}\,(C^{[k]}_1,\dots,\rlap{\,\typoscale[1900/]\it/} C^{[k]}_k,\dots, C^{[k]}_N)^T =  \hbox{\bf 0},
+$$
+and hence that $C^{[k]}_j$ would be zero also for each~$j\neq k$. Since equation~\ref[ACI]  implies that~$\Bm C^{\.[k]}$  cannot be the zero vector, we must conclude that~$C^{[k]}_k\neq 0$.
+
+It is then possible, for each index~$k\in\{1,2,\dots,N\}$, to define the vector
+$$
+\Bm b^{\lbrace k\rbrace}\coloneq \Bm α - {α_k\over C^{[k]}_k}\,\Bm C^{\.[k]},
+$$
+which, if multiplied by~$\Bm A$, becomes
+$$
+\eqalign{\Bm A \Bm b^{\lbrace k\rbrace} &= \Bm{Aα} - {α_k\over C^{[k]}_k}\,\Bm A \Bm C^{\.[k]} = \Bm f - {α_k\over C^{[k]}_k}\,\Bm I^{\.[k]}.
+                                    \cr &= (f_1,\dots,f_{k-1},f_k-{α_k\over C^{[k]}_k}, f_{k+1},\dots,f_N)^T.}
+$$
+Since the vector~$\Bm b^{\lbrace k\rbrace}$ is such that~$b^{\lbrace k \rbrace}_k=0$, reasoning~\ref[reduction] applied to this last equation says that
+$$
+\Bm A\,(b^{\lbrace k\rbrace}_1,\dots,\rlap{\typoscale[1900/]\it/} b^{\lbrace k\rbrace}_k,\dots, b^{\lbrace k\rbrace}_N)^T= \Bm f\,^{(k)}.
+$$
+So, the vector that we called~$\Bm β^{\lbrace k\rbrace}$ happens to be the vector~$\Bm b^{\lbrace k\rbrace}$ without the $k$-th element, i.e.,
+$$
+\Bm β^{\lbrace k\rbrace} = (b^{\lbrace k\rbrace}_1,\dots,\rlap{\typoscale[1900/]\it/} b^{\lbrace k\rbrace}_k,\dots, b^{\lbrace k\rbrace}_N)^T.
+$$
+
+Finally, for each~$k$, the evaluation of~$s^{(k)}$ at the point~$x_k\in X$ can be computed in the following way,
+$$
+s^{(k)}(x_k) = \Bm t^{(k)}\!(x_k)^T \Bm β^{\lbrace k\rbrace} =  \Bm t(x_k)^T \Bm b^{\lbrace k\rbrace} = (\Bm A \Bm b^{\lbrace k\rbrace\!})_k = f_k-{α_k\over C^{[k]}_k},
+$$
+by reminding that~$\Bm t(x_k)^T$ is the $k$-th row of the interpolation matrix~$\Bm A$.~\QED
+\postskip
+
+We are now ready to derive an alternative formula also for the previously defined vector~$\Bm U$.  The following calculations are just a continuation of the previous ones, so neither the context nor the used notations will be repeated.
+\corollary
+The elements~$U_k = \norm{s}_Φ^2-\norm{s^{(k)}}_Φ^2$ of the vector~$\Bm U$ can be computed also with the formula
+$$
+U_k =  α_k\,E_k = {α_k^2\over C_{k,k}}.
+$$
+\proof
+The functions $s$ and~$s^{(k)}$ are expressed in terms of the kernel translates as
+$$
+\eqalign{ s(x) &= \Bm t(x)^T\Bm α \cr
+     s^{(k)}\!(x) &= \Bm t^{(k)}\!(x)^T\Bm β^{\lbrace k\rbrace}}
+\quad\mathbox{for each $x\in\Omega$.}
+$$
+This means that the squares of their native space norms assume the values
+$$
+\eqalign{\norm{s}_Φ^2 &= \Bm α^T\! \Bm A\, \Bm α = \Bm α^T\Bm f \cr
+    \norm{s^{(k)\!}}_Φ^2 &= (\.\Bm β^{\lbrace k\rbrace\!})^T\! \Bm A^{(k)}\, \Bm β^{\lbrace k\rbrace} = (\.\Bm β^{\lbrace k\rbrace\!})^T \Bm f\,^{(k)} = (\Bm b^{\lbrace k\rbrace\!})^T \Bm f.
+}
+$$
+By remembering how~$\Bm β^{\lbrace k\rbrace}$ was defined, their difference evaluates to
+$$
+\eqalign{\norm{s}_Φ^2 -  \norm{s^{(k)\!}}_Φ^2 &= \Bm α^T\Bm f - (\Bm b^{\lbrace k\rbrace\!})^T \Bm f   = (\Bm α - \Bm b^{\lbrace k\rbrace\!})^T \Bm f \cr
+                      &= \biggl({α_k \over C^{[k]}_k}\,\Bm C^{\.[k]}\biggr)^T\Bm f ={α_k \over C^{[k]}_k}(\Bm C^{\.[k]})^T\Bm f \cr
+                      &= {α_k \over C^{[k]}_k}\,α_k = E_k\,α_k.
+}
+$$
+In the last line we used the fact that the matrix~$\Bm C$ is symmetric (because it is the inverse of the symmetric interpolation matrix~$\Bm A$) and, by definition, $\Bm{Cf} = \Bm α$.~\QED
+
+
+
+
+
+
+%Given the hdfh  return the variables jdjdjd which denotes respectively
+
+It is clear that the vector~$\Bm U$ can be obtained with practically the same computational cost as the vector~$\Bm E$.
+Just to give a concrete implementation example, we present side by side two MATLAB codes that allow to compute.  One uses the standard matlab solver of a linear system (the backslash operator); the other finds a pseudoinverse of A (pinv) with the aim of having maximal stability, as stated by Fasshauer in
