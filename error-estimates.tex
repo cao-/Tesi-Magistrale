@@ -48,9 +48,9 @@ P_X(x) \coloneq \opnorm{\epsilon_x}_{\Phi}\coloneq \sup_{f\neq 0}{|\epsilon_x(f)
 $$
 \postskip
 
-\noindent The power function~$P_X$ is a well defined real-valued function, since the operator norm of a continuous (or, equivalently, bounded) linear functional has finite value.
+\noindent The power function~$P_X$ is a well defined positive real-valued function, since the operator norm of a continuous (or, equivalently, bounded) linear functional has finite value.
 
-The error functional~$\epsilon_x\in\Cal N_Φ^*$ is represented in~$\Cal N_Φ$, in the sense of the Riesz representation theorem (see Stein~\cite[stein_2009]), by the function
+The error functional~$\epsilon_x\in\Cal N_Φ^*$ is represented in~$\Cal N_Φ$, in the sense of the Riesz representation theorem (see Stein and Shakarchi~\cite[stein-shakarchi_2009]), by the function
 $$
 Φ(\cdot,x)-\sum_{h=1}^Nu_h(x)\,Φ(\cdot,x_h).
 $$
@@ -147,6 +147,7 @@ $$
  
  An immediate consequence of the definition of the power function that we gave in terms of the error functional (definition~\ref[powerdef]) is the following result.
 
+\label[errorestimate]
 \preskip
 \theorem
 If a function~$f:\Omega\to\R$ belongs to the native space of a symmetric positive definite kernel~$Φ$, and $X\subset\Omega$ is a set of data sites, then for each~$x\in\Omega$ the difference between the values at~$x$ of $f$ and its interpolant~$s_{X,f}\in\Cal S_{Φ, X}$ is estimated by
@@ -181,7 +182,7 @@ C = \{x+\lambda y:\, y\in\R^d,\, \norm y = 1,\, y^T\xi(x)\geq\cos\theta,\, \lamb
 $$
 is contained in~$\Omega$.} then 
 $$
-P_X^2(x)\leq F(h_X) \quad \mathbox{for all $x\in\Omega$,}
+P_X^2(x)\leq F(h_X) \quad \mathbox{for all $x\in\Omega$,}\eqmark[powbound]
 $$
 for some monotone function~$F$ such that~$\lim_{h\to 0} F(h) = 0$ (Wendland~\cite[wendland_2004], chapter~11).  The function~$F$ depends on the kernel of the native space, and can be explicitly computed.  In table~\ref[errortab] we report the known bounds of the power function for some of the most used radial kernels.
 
@@ -197,11 +198,10 @@ Wendland's functions    & $\phi_{d,k}(r)$           & $h^{2k+1}$ & $q^{2k+1}$ \c
 \crl
 }}
 \caption/t Upper bounds on~$P_X^2$ as functions~$F(h)$ of the fill distance~$h$. The functions $F$ are given only up to a constant that does not depend on the data sites.  They express the decay rate of the power function as the fill distance approaches zero.
-\Black
 \endinsert
 
-
-These error estimates expressed in terms of the fill distance of the data sites are purely theorical.  In fact, when dealing with an actual numerical interpolation performed on a calculator, one must take into account also the {\em stability}\fnote{An algorithm is {\em stable} if its output results do not change much when the input data is modified slightly.  On a calculator some perturbations of the input data (and also of the intermediate results of the computations) are unavoidable when real numbers are stored slighly modified in the form of floating point numbers.} of the computations.  The interpolation matrix~$\Bm A = \Bm A_{Φ, X}$ of~\ref[intmat] has condition number which is shown (Wendland~\cite[wendland_2004], chapter~12) to be bounded by
+\Red
+These error estimates expressed in terms of the fill distance of the data sites are purely theorical.  In fact, when dealing with an actual numerical interpolation performed on a calculator, one must take into account also the numerical {\em stability}\fnote{An algorithm is {\em stable} if its output results do not change much when the input data is modified slightly.  On a calculator some perturbations of the input data (and also of the intermediate results of the computations) are unavoidable when real numbers are stored slighly modified in the form of floating point numbers.} of the computations.  The interpolation matrix~$\Bm A = \Bm A_{Φ, X}$ of~\ref[intmat] has condition number which is shown (Wendland~\cite[wendland_2004], chapter~12) to be bounded by
 $$
 \mathop{\rm cond}(\Bm A_{Φ,X}) ≤ {N\,Φ(0,0) \over G(q_X)},
 $$
@@ -211,6 +211,7 @@ q_X = {1\over 2}\min_{i\neq j}\norm{x_i-x_j}.
 $$
 This means that the most straightforward algorithm to find the interpolant of a function~$f$ on a set~$X$ of data sites---the one that requires to compute the interpolation coefficients by solving the system~\ref[system] of the interpolation conditions---could be unstable if~$q_x$ is small.
 We report in table~\ref[errortab], next to the expressions for~$F$, the known expressions for $G$ for the same radial kernels.
+\Black
 
 Anyhow, even when the interpolation matrix~$A$ associated to the standard basis of kernel translates is badly conditioned, it is possible to stably compute the interpolant.  In fact, while computing the interpolation coefficients of the interpolant with respect to the standard basis is a badly conditioned problem, the computation of the interpolant itself is well conditioned (De~Marchi and Shaback~\cite[demarchi-shaback_2010]).  Some attempts at stably computing the interpolant by changing the basis of the interpolating space are provided by Pazouki and Schaback~\cite[pazouki-schaback_2011]; other two most notable algorithms are the Contour-Padé method (Fornberg and Wright~\cite[fornberg-wright_2004]) and the RBF-QR method (Fornberg, Larsson and Flyer~\cite[fornberg-larsson-flyer_2011]).
 

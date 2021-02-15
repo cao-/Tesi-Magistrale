@@ -67,7 +67,7 @@ $$
 %This reasoning applied to relation~\ref[ACI] leads to the conclusion that~$C^{[k]}\neq 0$.  If fact, if 
 If the element~$C^{[k]}_k$ were equal to zero, then we could apply the just mentioned reasoning to relation~\ref[ACI] obtaining that
 $$
-\Bm A^{(k)}\,(C^{[k]}_1,\dots,\rlap{\,\typoscale[1900/]\it/} C^{[k]}_k,\dots, C^{[k]}_N)^T =  \hbox{\bf 0},
+\Bm A^{(k)}\,(C^{[k]}_1,\dots,\rlap{\typoscale[1700/]$\backslash$} C^{[k]}_k,\dots, C^{[k]}_N)^T =  \hbox{\bf 0},
 $$
 and hence that $C^{[k]}_j$ would be zero also for each~$j\neq k$. Since equation~\ref[ACI]  implies that~$\Bm C^{\.[k]}$  cannot be the zero vector, we must conclude that~$C^{[k]}_k\neq 0$.
 
@@ -82,11 +82,11 @@ $$
 $$
 Since the vector~$\Bm b^{\lbrace k\rbrace\!}$ is such that~$b^{\lbrace k \rbrace\!}_k=0$, reasoning~\ref[reduction] applied to this last equation says that
 $$
-\Bm A\,(b^{\lbrace k\rbrace}_1,\dots,\rlap{\typoscale[1900/]\it/} b^{\lbrace k\rbrace}_k,\dots, b^{\lbrace k\rbrace}_N)^T= \Bm f\,^{(k)}.
+\Bm A\,(b^{\lbrace k\rbrace}_1,\dots,\rlap{$\!$\typoscale[1700/]$\backslash$} b^{\lbrace k\rbrace}_k,\dots, b^{\lbrace k\rbrace}_N)^T= \Bm f\,^{(k)}.
 $$
 So, the vector that we called~$\Bm β^{\lbrace k\rbrace\!}$ happens to be the vector~$\Bm b^{\lbrace k\rbrace\!}$ without the $k$-th element, i.e.,
 $$
-\Bm β^{\lbrace k\rbrace\!} = (b^{\lbrace k\rbrace}_1,\dots,\rlap{\typoscale[1900/]\it/} b^{\lbrace k\rbrace}_k,\dots, b^{\lbrace k\rbrace}_N)^T.
+\Bm β^{\lbrace k\rbrace\!} = (b^{\lbrace k\rbrace}_1,\dots,\rlap{$\!$\typoscale[1700/]$\backslash$} b^{\lbrace k\rbrace}_k,\dots, b^{\lbrace k\rbrace}_N)^T.
 $$
 
 Finally, for each~$k$, the evaluation of~$s^{(k)\!}$ at the point~$x_k\in X$ can be computed in the following way,
@@ -132,7 +132,7 @@ We also used the fact that the matrix~$\Bm C$ is symmetric (in fact, it is the i
 %Given the hdfh  return the variables jdjdjd which denotes respectively
 
 It is clear that the computational complexity of the vector~$\Bm U$ and the vector~$\Bm E$ are similar---both vectors can be computed in time~$O(N^3)$, where $N$~is the number of data sites. 
-Just to give a concrete example how to actually implement these calculations on a calculator, we present in sequence two MATLAB codes that allow to symultaneously compute both $\Bm E$ and~$\Bm U$, starting from the interpolation matrix~$\Bm A$ and the vector~$\Bm f$ of function values. As a side effect, this codes compute also the matrix~$\Bm C$, the vector of coefficients~$\Bm α$ and the square of the native space norm of~$s$.
+Just to give a concrete example how to actually implement these calculations on a calculator, we present in sequence two MATLAB codes that allow to symultaneously compute both $\Bm E$ and~$\Bm U$, starting from the interpolation matrix~$\Bm A$ and the vector~$\Bm f$ of function values. As a side effect, these codes compute also the matrix~$\Bm C$, the vector of coefficients~$\Bm α$ and the square of the native space norm of~$s$.
 The first code uses the standard MATLAB linear system solver (the backslash operator); the second one instead finds the solution of the linear system by first computing the inverse of~$\Bm A$ using the {\tt pinv} algorithm, which provides maximal stability by sacrificing speed---this is what Fassauer~\cite[fasshauer_2007]~does when he computes the cross validation vector~$\Bm E$.
 
 \ttline=-2 % no line numbering
@@ -141,4 +141,3 @@ The first code uses the standard MATLAB linear system solver (the backslash oper
 \medskip
 
 \verbinput (-) MATLAB/loocv_vector_pinv.m
-

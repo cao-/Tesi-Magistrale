@@ -11,9 +11,20 @@ This is an immediate consequence of the inclusion~$\Cal S_{Φ, X}\subset\Cal S_{
 $$
 \norm{s_{X, f}}_Φ\leq\norm{s_{Y,f}}_Φ\leq\norm{f}_Φ.\eqmark[normbound]
 $$
-%So, when additional information on the sampled function~$f$ is available, not only the interpolant  provides a better approximation, but also its native space norm increases. 
 
-There is actually an explicit expression for the increase of the  norm of the interpolant, as shown by Shaback and~Werner~\cite[shaback_2006].  Specifically, in the simple case where $Y=X\cup\{x\}$, that is when just one point is added to the data sites, the following result holds.
+If we have a growing sequence~$\{Y_n\}_{n\in\N}$ of data sites, in the sence that
+$$
+Y_1\subset Y_2\subset Y_3\subset \cdots,
+$$
+then clearly, by monotonicity, the sequence~$\{\norm{s_{Y_n,f}}_Φ\}_{n\in\N}$ of the native space norms of the associated interpolants of~$f$ is a convergent sequence, whose limit is a number less than or equal to~$\norm f_Φ$. Whether or not this limit actually equals~$\norm f_Φ$ depends on the distribution of the data sites on the domain of~$f$.
+
+At least, for the pointwise limit there are some specific results, which we have already implicitly stated in section~\ref[errorsec], talking about error estimates.  If we suppose that the domain of~$f$ satisfies an interior cone condition and the sequence~$\{Y_n\}_{n\in\N}$ of data sites grows in a way such that the fill distances~$\{h_{Y_n}\}_{n\in\N}$ converge to zero, then the sequence of interpolants~$\{s_{Y_n,f}\}_{n\in\N}$ converges uniformly to~$f$, because of theorem~\ref[errorestimate] and the bound on the power distance given in~\ref[powbound]. 
+
+
+
+
+
+For the increase of the  norm of the interpolant when the set of data sites grows there is actually an explicit formula, as shown by Shaback and~Werner~\cite[shaback_2006].  Specifically, in the simple case where $Y=X\cup\{x\}$, that is when just one point is added to the data sites, the following result holds.
 
 \preskip
 \theorem
