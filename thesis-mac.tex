@@ -114,7 +114,7 @@
 \_def \_mathfontsize #1{\_if$#1$\_else
     \_tmpdim=#1\_ptunit
     \_edef\_sizemtext{\_ea\_ignorept \_the\_tmpdim \_ptmunit}%
-    \_tmpdim=0.7\_tmpdim
+    \_tmpdim=0.71\_tmpdim
     \_edef\_sizemscript{\_ea\_ignorept \_the\_tmpdim \_ptmunit}%
    \_tmpdim=#1\_ptunit \_tmpdim=0.55\_tmpdim
     \_edef\_sizemsscript{\_ea\_ignorept \_the\_tmpdim \_ptmunit}%
@@ -123,6 +123,6 @@
 
 \_def\_mathbox#1{{\_mathstyles{\_hbox{%
    \_ifnum\_stylenum<2 \_everymath{\_currstyle}%
-   \_else \_typoscale[\_dobystyle{}{}{700}{550}/]\_fi #1}}}%
+   \_else \_typoscale[\_dobystyle{}{}{710}{550}/]\_fi #1}}}%
 }
 \public\mathbox;
