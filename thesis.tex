@@ -7,9 +7,10 @@
 \outlines 1
 
 \enlang
-%\fontfam[garamondgeorgd] \setff{+calt} \typosize[12/14.1818]
+\fontfam[TypewriterMT]
+%\fontfam[garamondgeorgd] \setff{+calt} \typosize[12.5/14.7]%\typosize[12/14.1818]
 \fontfam[GaramondMT]\let\semibold\relax \typosize[12.5/14.7]%\typosize[12/14.1818]
-%\fontfam[BaskervilleMT]\let\semibold\relax \typosize[11.9/14.1]
+%\fontfam[BaskervilleMT]\let\semibold\relax \typosize[12.4/14.6]%\typosize[11.9/14.1]
 \load[patches, garamond-math-fix, garamond-micro]
 %\OpTeX
 % We must ensure that . , ; etc are from the same font in text and math mode.
@@ -20,11 +21,11 @@
 \font\symbols=Diamond % MonotypeSorts
 \def\QED{\hbox{\symbols\resizethefont \,❖}}
 \font\boldmathfont=EBGaramond-SemiBoldItalic
+\famvardef\tt{\TypewriterMT\setff{-liga; -tlig}\rm}
 
 
 \margins/1 a4 (103,97,130,145)pt
 
-%\typosize[12.21/14.5]
 
 \parindent 1em
 \iindent=\parindent \ttindent=\parindent
@@ -33,12 +34,13 @@
 
 \picdir={pic/}
 
-%\bgroup
-%\let\_mtext\ignoreit
-%\nonum\notoc\chap Contents
-%\egroup
-%\tocpage
+\bgroup
+\let\_mtext\ignoreit
+\nonum\notoc\chap Contents
+\egroup
+\tocpage
 
+\chap Kernel-based interpolation
 
 \sec The interpolation problem
 \input the-interpolation-problem
@@ -60,8 +62,10 @@
 \sec[addingsec] Adding data
 \input adding-data
 
-\sec[???sec] ???
-\input ???
+\chap Dealing with discontinuities
+
+\sec[buildingsec] Building a classifier
+\input building-a-classifier
 
 %\sec shape parameter
 %\sec stability and trade-off principle (Fasshauer)
@@ -75,6 +79,11 @@
 
 
 % manual tuning of parameter
+
+
+% Separate good behaving data set---the ones that comes from a regular function---from bad behaving ones---the ones that come from a discontinuous function.
+
+% Conclusions:  Another approach worth investigating is to use  machine learning on the data set to build the classification function.  Maybe a black box machine learning techniques can perform better than the tool appositely developed.
 
 
 % BIBLIOGRAPHY
