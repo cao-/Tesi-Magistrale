@@ -1,5 +1,5 @@
 
-The ideas developed in the previous section can be used to try and distinguish samples that come from a regular function from those that come from a discontinuous function.  The {\Red discontinuity estimator/indicator/classifier} that we are going to define will be the main toll necessary to later develop an algorithm for the interpolation of a discontinuous function.
+The ideas developed in the previous section can be used to try and distinguish samples that come from a regular function from those that come from a discontinuous function.  The regularity classifier that we are going to define will be the main toll necessary to later develop an algorithm for the interpolation of a discontinuous function.
 
 
 In what follows, even if not always strictly necessary, we will assume that  the kernel~$Φ$ is radial, i.e., of the form~\ref[phi] for some univariate positive definite function~$\phi$.  This applies also to the notations, with the letter~$\phi$ replacing the uppercase letter~$Φ$.  Let $X=\{\range x_N/\}$ be a set of data sites and $f$ a function that is no more assumed to belong to the native space of~$\phi$.  Suppose that $f$ has been sampled at~$X$ and the sampling is dense enough to catch the relevant features of~$f$ on its considered domain.  Our goal is to recognise whether or not $f$ is discontinuous just by looking at~$X$ and the corresponding sampled function values~$f(X)$.
@@ -27,7 +27,7 @@ $$
 whose elements are defined as~$E_k\coloneq f(x_k)-s^{(k)\!}(x_k)$, and which is typically used to find the appropriate shape parameter~$ε$ for the interpolation with  a positive definite radial function~$\phi_ε$ as defined in~\ref[phiepsilon]. The value of~$ε$ is chosen such that the $p$-norm
 $$
 \norm{\Bm E}_p\coloneq\cases{\bigl(\sum_{j=1}^N |x_j|^p\bigr)^{1/p}, &\quad if $p\geq1$\cr
-  \max_{j\in\{1,2,\dots,N\}}|x_j|, &\quad if $p=\infty$}
+  \max_{j\in\{1,2,\dots,N\}}|x_j|, &\quad if $p=\infty$} \eqmark[p-norm]
 $$
 of the $ε$-dependent vector~$\Bm E$ is minimised, with $p$ usually being either $1$, $2$, or~$\infty$.
 
@@ -125,6 +125,14 @@ $$
 We also used the fact that the matrix~$\Bm C$ is symmetric (in fact, it is the inverse of the symmetric interpolation matrix~$\Bm A$) and that, by definition, $\Bm{Cf} = \Bm α$.~\QED
 
 
+Incidentally, just as an additional observation, the combination of the formulas obtained for the elements of $\Bm E$ and~$\Bm U$ with their definitions also gives us alternative expressions for the diagonal elements of the matrix~$\Bm C$ and the interpolation coefficients~$\Bm α$.  In fact,
+$$
+\left\{\eqalign{ &{α_k\over C_{k,k}}=f_k-s^{(k)\!}(x_k) \cr
+                 &{α_k^2\over C_{k,k}} = {(f_k-s^{(k)\!}(x_k))^2\over P_{X^{(k)\!}}^2(x_k)}}\right.
+\quad\hbox{implies that}\!\qquad
+\left\{\hbyw{6ex}{0em}\right.\!\eqalign{&α_k = {f_k-s^{(k)\!}(x_k) \over P_{X^{(k)\!}}^2(x_k)}\cr
+                &C_{k,k} = {1 \over P_{X^{(k)\!}}^2(x_k)}}
+$$
 
 
 
@@ -141,3 +149,49 @@ The first code uses the standard MATLAB linear system solver (the backslash oper
 \medskip
 
 \verbinput (-) MATLAB/loocv_vector_pinv.m
+
+\postskip
+
+
+Going now back to its original definition, the vector~$\Bm U\.$ has elements~$U_k = \norm s_\phi^2 - \norm{s^{(k)\!}}_\phi^2$, which satisfy the relation
+$$
+0 ≤ U_k ≤ \norm s_\phi^2.
+$$
+Instead of considering the absolute increment of the square of the norm between $s^{(k)\!}$ and~$s$, we can compute the relative increment
+$$
+Q_k \coloneq {\norm s_\phi^2 - \norm{s^{(k)\!}}_\phi^2 \over \norm s_\phi^2}.
+$$
+This ratio of course has no meaning if~$\norm s_\phi = 0$.  But in this case it happens that also $\norm{s^{(k)\!}}_\phi = 0$ for all~$k$, therefore it is reasonable to set $Q_k = 0$ as well.
+
+\label[Qdef]
+\preskip
+\definition
+Given a set~$X = \{\range x_N/\}\subset\Omega\subseteq\R^d$ of data sites, with $N ≥ 2$, a set $\Bm F = \{\range f_N/\}$ of function values, and a radial kernel~$\phi$ which is positive definite on~$\R^d$, we define the vector
+$$
+\Bm Q\coloneq (\range Q_N/)
+$$
+of relative increments of squared native space norms by setting
+$$
+\Bm Q\coloneq \cases{\displaystyle{\Bm U \over \norm s_\phi^2} & if $\norm s_\phi\neq 0$ \cr
+\hbyw{2.6ex}{.5em}\hbox{\bf 0} & if $\norm s_\phi = 0$}
+$$
+\postskip
+
+
+The goal stated at the beginning of this section, to be able to tell whether a sample comes from a regular function or not, can now be achieved.  In fact, it seems like there is enough information stored in the vector~$\Bm Q$ about the regularity of the sample from which it is computed. So, we are tempted to define a regularity classifier as a function of it.
+
+\preskip
+\definition
+If $X$, $F$, $\phi$ and~$\Bm Q$ are like in definition~\ref[Qdef], and if~$\tau$ is a positive real number, we define the {\em $\phi$-regularity classifier}~$\Cal R$ with {\em tolerance~$\tau$} as the function that maps the pair of data~$(X, F)$ to either the value $1$ or~$-1$ in the following way:
+$$
+\Cal R(X, F) \coloneq \cases{1 & if $\norm{\Bm Q}_1 ≤ \tau$ \cr
+                            -1 & if $\norm{\Bm Q}_1 > \tau$,}
+$$
+where $\norm{\Bm Q}_1$ is the $1$-norm of~$\Bm Q$ as defined in~\ref[p-norm], which in this case has the simpler expression
+$$
+\norm{\Bm Q}_1 = \sum_{k=1}^N|Q_k| = \sum_{k=1}^N Q_k.
+$$
+\postskip
+
+
+% ought to be  decision value
