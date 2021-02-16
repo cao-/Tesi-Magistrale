@@ -1,5 +1,5 @@
 
-The ideas developed in the previous section can be used to try and distinguish samples that come from a regular function from those that come from a discontinuous function.  The regularity classifier that we are going to define will be the main toll necessary to later develop an algorithm for the interpolation of a discontinuous function.
+The ideas developed in the previous section can be used to try and distinguish samples that come from a regular function from those that come from a discontinuous function.  The regularity classifier that we are going to define will be the main tool necessary to later develop an algorithm for the interpolation of a discontinuous function.
 
 
 In what follows, even if not always strictly necessary, we will assume that  the kernel~$Φ$ is radial, i.e., of the form~\ref[phi] for some univariate positive definite function~$\phi$.  This applies also to the notations, with the letter~$\phi$ replacing the uppercase letter~$Φ$.  Let $X=\{\range x_N/\}$ be a set of data sites and $f$ a function that is no more assumed to belong to the native space of~$\phi$.  Suppose that $f$ has been sampled at~$X$ and the sampling is dense enough to catch the relevant features of~$f$ on its considered domain.  Our goal is to recognise whether or not $f$ is discontinuous just by looking at~$X$ and the corresponding sampled function values~$f(X)$.
@@ -125,7 +125,7 @@ $$
 We also used the fact that the matrix~$\Bm C$ is symmetric (in fact, it is the inverse of the symmetric interpolation matrix~$\Bm A$) and that, by definition, $\Bm{Cf} = \Bm α$.~\QED
 
 
-Incidentally, just as an additional observation, the combination of the formulas obtained for the elements of $\Bm E$ and~$\Bm U$ with their definitions also gives us alternative expressions for the diagonal elements of the matrix~$\Bm C$ and the interpolation coefficients~$\Bm α$.  In fact,
+Incidentally, just as an additional observation, the combination of the formulas obtained for the elements of $\Bm E$ and~$\Bm U$ together with their definitions can produce also alternative expressions for the diagonal elements of the matrix~$\Bm C$ and the interpolation coefficients~$\Bm α$.  In fact,
 $$
 \left\{\eqalign{ &{α_k\over C_{k,k}}=f_k-s^{(k)\!}(x_k) \cr
                  &{α_k^2\over C_{k,k}} = {(f_k-s^{(k)\!}(x_k))^2\over P_{X^{(k)\!}}^2(x_k)}}\right.
@@ -166,7 +166,7 @@ This ratio of course has no meaning if~$\norm s_\phi = 0$.  But in this case it 
 \label[Qdef]
 \preskip
 \definition
-Given a set~$X = \{\range x_N/\}\subset\Omega\subseteq\R^d$ of data sites, with $N ≥ 2$, a set $\Bm F = \{\range f_N/\}$ of function values, and a radial kernel~$\phi$ which is positive definite on~$\R^d$, we define the vector
+Given a set~$X = \{\range x_N/\}\subset\Omega\subseteq\R^d$ of data sites, with $N ≥ 2$, a set $F = \{\range f_N/\}$ of function values, and a radial kernel~$\phi$ which is positive definite on~$\R^d$, we define the vector
 $$
 \Bm Q\coloneq (\range Q_N/)
 $$
@@ -184,14 +184,17 @@ The goal stated at the beginning of this section, to be able to tell whether a s
 \definition
 If $X$, $F$, $\phi$ and~$\Bm Q$ are like in definition~\ref[Qdef], and if~$\tau$ is a positive real number, we define the {\em $\phi$-regularity classifier}~$\Cal R$ with {\em tolerance~$\tau$} as the function that maps the pair of data~$(X, F)$ to either the value $1$ or~$-1$ in the following way:
 $$
-\Cal R(X, F) \coloneq \cases{1 & if $\norm{\Bm Q}_1 ≤ \tau$ \cr
-                            -1 & if $\norm{\Bm Q}_1 > \tau$,}
+\Cal R(X, F) \coloneq \cases{\!\phantom{-}1 & if $\norm{\Bm Q}_1 ≤ \tau$ \cr
+                            \!-1 & if $\norm{\Bm Q}_1 > \tau$,}
 $$
-where $\norm{\Bm Q}_1$ is the $1$-norm of~$\Bm Q$ as defined in~\ref[p-norm], which in this case has the simpler expression
+where $\norm{\Bm Q}_1$ is the $1$-norm of~$\Bm Q$ as defined in~\ref[p-norm], which in this case simplifies to
 $$
 \norm{\Bm Q}_1 = \sum_{k=1}^N|Q_k| = \sum_{k=1}^N Q_k.
 $$
 \postskip
+
+Of course it is impossible to tell with certainty how regular a function~$f$ is, just by looking at a set of values sampled from it and without any other assumption about the function itself.  In fact, $f$~can have an arbitrary behaviour at the other unseen points. The meaning of this classifier is therefore more like saying if the sample is more likely to come from a function which is regular (value~$1$) or a function which isn't (value~$-1$).  The regularity is inspected by the kernel function $\phi$ and the tolerance~$\tau$ is the decision boundary between regular and not regular functions, that must be set according to how much evidence we need for the classification. The rationale behind the above given definition for the classifier~$\Cal R$ should become clear in the following section.
+
 
 
 % ought to be  decision value
