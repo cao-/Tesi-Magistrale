@@ -1,0 +1,41 @@
+First basic properties, like 0<Q<N, Q=1-Ns/Nsk, ...
+
+
+Each quantity will be dependent on $ε$, but we don't explicitly denote the dependence, so $s$ is to be intended as...
+
+\preskip
+\property Invariance under $F\mapsto\gamma F$
+\postskip
+
+\preskip
+\property $\Bm Q$ converges as $ε$ approaches zero. 
+\proof
+Notice that $\norm s_\phi = 0$ either for all~$ε$ or for none. When it is zero, $\Bm Q$~is constantly equal to the zero vector, and its convergence is proved.  If instead $\norm s_\phi\neq 0$, then the elements $Q_k$ of the vector~$\Bm Q$ are defined as~$Q_k = U_k/\smash{\norm s_\phi^2}$. By expanding the scalar product in the denominator and recalling the definition of the cross validation vector~$\Bm E$, we can split~$Q_k$ into two parts, namely
+$$
+Q_k = {U_k\over \norm s_\phi^2} = {U_k \over \Bm α^T \Bm f} = {E_k {α_k \over \Bm α^T \Bm f}} \eqcolon E_k\,W_k,
+$$
+where, as usual, $\Bm α$~is the vector of coefficients of~$s$ with respect to the basis of kernel translates. Both terms $E_k$ and~$W_k$ can be written in terms ratios of pairs of elements of the inverse~$\Bm C$ of the interpolation matrix~$\Bm A=\Bm A_{\phi, X}$.  In fact,
+$$
+\eqalign{
+  E_K &= {α_k \over C_{k,k}} = {(\Bm C\. \Bm f\,)_k \over C_{k,k}} =  {\sum_{j=1}^N C_{k,j}\, f_j \over C_{k,k}} = \sum_{j = 1}^N f_j\,\frame{$\displaystyle \hbyw{1.8ex}{0em} C_{k,j} \over \displaystyle C_{k,k}$}\,,\cr
+  W_k &= {α_k \over \Bm α^T \Bm f}
+}
+$$
+
+then we are done.
+\postskip
+
+\preskip
+\property Invariance under $F\mapsto F+c$ in the flat limit
+\postskip
+Also, invariance under modification of $X$.  So, linear invariance complexively.
+
+Ho to deal numerically with the flat limit.
+
+
+These are the properties of Q that are carried over to R.  Now come the properties for R.
+
+\preskip
+\property
+$\sum Q \to 0$ if $f\in \Cal N_\phi$.  Otherwise...
+\postskip
