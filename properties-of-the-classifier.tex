@@ -26,7 +26,7 @@ $$
 \eqalign{
   &E_k = {α_k \over C_{k,k}} = {(\Bm C\. \Bm f\,)_k \over C_{k,k}} =  {\sum_{j=1}^N C_{k,j}\, f_j \over C_{k,k}} = \sum_{j = 1}^N f_j\,\frame{$\displaystyle \hbyw{1.8ex}{0em} C_{k,j} \over \displaystyle C_{k,k}$}\,,\cr
  &\eqalign{W_k = {α_k \over \Bm α^T \Bm f} = {α_k \over \Bm f^{\,\.T}\! \Bm C\, \Bm f} &= {\sum_{j=1}^N C_{k,j}\,f_j \over \sum_{i=1}^N \sum_{l=1}^N f_i\, f_l\,C_{i,l}} = \sum_{j=1}^N\. f_j\. {C_{k,j} \over \sum_{i=1}^N \sum_{l=1}^N f_i\, f_l\,C_{i,l}}\cr
-    &= \sum_{\rlap{$\matrix{j = 1\,\,\cr C_{k,j}\neq 0}$}}^N\, \Biggl({\sum_{i=1}^N \sum_{l=1}^N f_i\, f_l\,C_{i,l} \over C_{k,j}}\Biggr)^{-1}\!\! = \sum_{\rlap{$\matrix{j = 1\,\,\cr C_{k,j}\neq 0}$}}^N f_j\,\Bigl(\sum_{i=1}^N\sum_{l=1}^N f_i\, f_l\, \frame{$\displaystyle \hbyw{1.8ex}{0em} C_{i,l} \over \displaystyle C_{k,j}$}\,\Bigr)^{-1}
+    &= \sum_{\rlap{$\matrix{j = 1\,\,\cr C_{k,j}\neq 0}$}}^N\, \Biggl({\sum_{i=1}^N \sum_{l=1}^N f_i\, f_l\,C_{i,l} \over C_{k,j}}\Biggr)^{-1}\!\! = \sum_{\rlap{$\matrix{j = 1\,\,\cr C_{k,j}\neq 0}$}}^N f_j\,\Bigl(\sum_{i=1}^N\sum_{l=1}^N f_i\, f_l\, \frame{$\displaystyle \hbyw{1.8ex}{0em} C_{i,l} \over \displaystyle C_{k,j}$}\,\Bigr)^{\rlap{$\scriptstyle-1$}}.
   } 
 }
 $$
@@ -36,7 +36,7 @@ We can fix a radius~$r\geq 0$ and view $\phi_ε(r)$ as a function of~$ε$ rather
 $$
 \phi_ε(r) = a_{0\!}(r) + a_{1}\!(r)\,ε + a_{2\!}(r)\,ε^2 + a_{3\!}(r)\,ε^3 + \cdots,
 $$
-whose coefficients~$a_n(r)$ are explicit functions of~$r$.
+whose coefficients~$a_{n\!}(r)$ are explicit functions of~$r$.
 With $\Bm R$ being the distance matrix associated to~$X$, that is the $N\times N$~matrix of elements~$R_{i,j}\coloneq \norm{x_i - x_j}$, define for each~$n$ the matrix~$\CA_{\Bm n}$ by applying the function $a_n$ to each element of~$\Bm R$, explicitly
 $$
 (\Cal A_{n})_{i,j}\coloneq a_n(R_{i,j}) = a_n(\norm{x_i - x_j}).
@@ -53,7 +53,7 @@ $$
 \Bm C =  \CC_{\!\!\Bm{--p}}\,ε^{-p} + \CC_{\!\!\Bm{--p+}\Bm 1}\,ε^{-p+1} + \CC_{\!\!\Bm{--p+}\Bm 2}\,ε^{-p+2} + \CC_{\!\!\Bm{--p+}\Bm 3}\,ε^{-p+3} + \cdots,
 $$
 where $p$ is the order of singularity at $ε=0$ of the matrix~$\Bm C$ (Refer to Langenhop~\cite[langenhop_1971] for a general treatment of this topic, and also to Gonzales-Rodriguez, Moscoso and Kindelan~\cite[gonzales_rodriguez-moscoso-kindelan_2015] for a specific application in the context of radial basis functions).
-This means that near~$ε=0$ the matrix~$\Bm C$ is just like the first term~$\CC_{\!\!\Bm{--p}}\,ε^{-p}$ of its Laurent series, therefore the ratio of two elements of~$\Bm C$ is equal to the ratio of their corresponding elements in~$\CC_{\!\!\Bm{--p}}$ when $ε\to 0$.  More precisely, for each $i,j,k,l$,
+This means that near~$ε=0$ the matrix~$\Bm C$ is just like the first term~$\CC_{\!\!\Bm{--p}}\,ε^{-p}$ of its Laurent series, therefore the ratio of two elements of~$\Bm C$ converges to the ratio of their corresponding elements in~$\CC_{\!\!\Bm{--p}}$ when $ε\to 0$.  More precisely, for each $i,j,k,l$,
 $$
 \lim_{ε\to 0} {C_{i,j}\over C_{k,l}} = \lim_{ε\to 0} {ε^{-p}\,({\cal C}_{\!-p})_{i,j} + ε^{-p+1}\,({\cal C}_{\!-p+1})_{i,j} + \cdots \over  ε^{-p}\,({\cal C}_{\!-p})_{k,l} + ε^{-p+1}\,({\cal C}_{\!-p+1})_{k,l} + \cdots} = {({\cal C}_{\!-p})_{i,j}\over ({\cal C}_{\!-p})_{k,l}}.~\QED
 $$

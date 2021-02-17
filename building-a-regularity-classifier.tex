@@ -32,10 +32,10 @@ $$
 of the $ε$-dependent vector~$\Bm E$ is minimised, with $p$ usually being either $1$, $2$, or~$\infty$.
 
 
-The cross-validation vector~$\Bm E$ wouldn't be of much practical utility if there weren't an efficient way to compute it.  Even if apparently its computation requires to find the $N$ interpolants~$\{s^{(k)}\}_{k\in\{1,2,\dots, N\}}$, and hence to invert $N$~matrices of size~$(N-1)\times (N-1)$, Rippa~\cite[rippa_1999] recognised that there is actually an efficient way to compute~$\Bm E$ by inverting only one matrix of size~$N\times N$, namely the interpolation matrix~$\Bm A$ associated to the full set~$X$ of data sites.  By following an analogous reasoning, we can show that also the vector~$\Bm U$ can be computed in an efficient way. But first we need to report the computations made by Rippa. 
+The cross-validation vector~$\Bm E$ wouldn't be of much practical utility if there weren't an efficient way to compute it.  Even if apparently its computation requires to find the $N$ interpolants~$\{s^{(k)}\}_{k\in\{1,2,\dots, N\}}$, and hence to invert $N$~matrices of size~$(N-1)\times (N-1)$, Rippa~\cite[rippa_1999] recognised that there is actually an efficient way to compute~$\Bm E$ by inverting only one matrix of size~$N\times N$, namely the interpolation matrix~$\Bm A$ associated to the full set~$X$ of data sites.  By following an analogous reasoning, we can show that also the vector~$\Bm U$ can be computed in an efficient way. But first we need to report the computations made in~\cite[rippa_1999]. 
 
 \preskip
-\theorem[(Rippa)]
+\theorem
 Let $X=\{\range x_N/\}\subset\Omega\subseteq\R^d$ be a set of data sites, $\phi:[0,\infty)\to\R$ a radial kernel which is positive definite on~$\R^d$, and
 $$
 \Bm f\coloneq (\range f_N/)^T = (f(x_1), f(x_2),\dots f(x_N))^T
@@ -146,7 +146,7 @@ The first code uses the standard MATLAB linear system solver (the backslash oper
 \ttline=-2 % no line numbering
 \verbinput (-) MATLAB/loocv_vector.m
 
-\medskip
+\smallskip
 
 \verbinput (-) MATLAB/loocv_vector_pinv.m
 
