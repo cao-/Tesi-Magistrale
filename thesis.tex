@@ -7,8 +7,10 @@
 \outlines 1
 
 \enlang
-\fontfam[TypewriterMT]
 \fontfam[BaskervilleMT]
+\fontfam[EBGaramond]
+\fontfam[TypewriterMT]
+\BaskervilleMT
 \typosize[12.2/14.42]
 \load[patches, garamond-math-fix, micro]
 %\OpTeX
@@ -16,7 +18,8 @@
 
 \font\symbols=Diamond % MonotypeSorts
 \def\QED{\hbox{\symbols\resizethefont \,❖}}
-\font\boldmathfont=EBGaramond-SemiBoldItalic
+\famvardef\bm{\EBGaramond\semibold\bi}
+\famvardef\bmu{\EBGaramond\semibold\bf}
 \famvardef\tt{\TypewriterMT\setff{-liga; -tlig; embolden=1.1}\typoscale[870/]\rm}
 
 

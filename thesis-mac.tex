@@ -33,7 +33,7 @@
 
 \def\range#1_#2/{#1_1, #1_2, \dots, #1_{#2}}
 %\def\Bm#1{\mathbox{$\boldmath #1$}}
-\def\Bm#1{\mathbox{\boldmathfont\resizethefont #1}}
+\def\Bm#1{\mathbox{\isinlist{0123456789}{#1}\iftrue\bmu\else\bm\fi\resizethefont #1}}
 \def\Cal#1{{\cal #1}}
 \def\Bbchar#1{{\bbchar #1}}
 \def\norm#1{\Vert #1\Vert}
