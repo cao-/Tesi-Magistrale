@@ -10,12 +10,12 @@
 %\the\spaceskip
 %\spaceskip=.3em plus.1em minus .05em
 
-\def\theorem{\numberedpar A{\semibold\bf THEOREM}}
-\def\corollary{\numberedpar A{\semibold\bf COROLLARY}}
-\def\proposition{\numberedpar A{\semibold\bf PROPOSITION}}
-\def\lemma{\numberedpar A{\semibold\bf LEMMA}}
+\def\theorem{\numberedpar A{\bf THEOREM}}
+\def\corollary{\numberedpar A{\bf COROLLARY}}
+\def\proposition{\numberedpar A{\bf PROPOSITION}}
+\def\lemma{\numberedpar A{\bf LEMMA}}
 \_def \_theAnum {\_the\_counterA}
-\def\example{\numberedpar B{\semibold\bf Example}}
+\def\example{\numberedpar B{\bf Example}}
 \_def \_theBnum {\_the\_counterB}
 \def\definition{\numberedpar C{\rm DEFINITION}}
 \_def \_theCnum {\_the\_counterC}
@@ -61,7 +61,7 @@
 \everycaptionf={\typoscale[900/900]}
 \everycaptiont={\typoscale[900/900]}
 \_def \_printcaptiont {%
-	\_noindent \_wlabel\_thecapnum {\semibold\_bf\_thecaptitle~\_thecapnum}\_enspace
+	\_noindent \_wlabel\_thecapnum {\_bf\_thecaptitle~\_thecapnum}\_enspace
 	\_narrowlastlinecentered\_iindent
 }
 \_let \_printcaptionf = \_printcaptiont
@@ -131,4 +131,3 @@
 %\_sdef{_mt:chap:en}{Part}
 
 
-%\everytt{\typoscale[850/850]}
