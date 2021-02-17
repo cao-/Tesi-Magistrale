@@ -34,7 +34,7 @@ The dependence on~$ε$ of the quantities $E_k$ and~$W_k$ lies  only in the highl
 
 We can fix a radius~$r\geq 0$ and view $\phi_ε(r)$ as a function of~$ε$ rather than~$r$, and consider its power series expansion at the point~$ε=0$,
 $$
-\phi_ε(r) = a_0(r) + ε\,a_1(r) + ε^2\,a_2(r) + ε^3\,a_3(r) + \cdots,
+\phi_ε(r) = a_{0\!}(r) + a_{1}\!(r)\,ε + a_{2\!}(r)\,ε^2 + a_{3\!}(r)\,ε^3 + \cdots,
 $$
 whose coefficients~$a_n(r)$ are explicit functions of~$r$.
 With $\Bm R$ being the distance matrix associated to~$X$, that is the $N\times N$~matrix of elements~$R_{i,j}\coloneq \norm{x_i - x_j}$, define for each~$n$ the matrix~$\CA_{\Bm n}$ by applying the function $a_n$ to each element of~$\Bm R$, explicitly
@@ -43,17 +43,17 @@ $$
 $$
 Under these definitions, the $ε$-dependent matrix~$\Bm A$ has at the point~$ε=0$ the power series expansion
 $$
- \Bm{A} = \CA_{\Bm 0} + ε\,\CA_{\Bm 1} + ε^2\,\CA_{\Bm 2} + ε^3\,\CA_{\Bm 3} + \cdots.
+ \Bm{A} = \CA_{\Bm 0} + \CA_{\Bm 1}\,ε + \CA_{\Bm 2}\,ε^2 + \CA_{\Bm 3}\,ε^3 + \cdots.
 $$
 
 
 
  The inverse~$\Bm C$ of the matrix~$\Bm A$ exists for all~$ε$ and has elements that are rational functions of the elements of~$\Bm A$.  This means that $\Bm C$ has a Laurent series expansion at~$ε=0$,
 $$
-\Bm C =  ε^{-p}\,\CC_{\!\Bm{--p}} + ε^{-p+1}\,\CC_{\!\Bm{--p+}\Bm 1} + ε^{-p+2}\,\CC_{\!\Bm{--p+}\Bm 2} + ε^{-p+3}\,\CC_{\!\Bm{--p+}\Bm 3} + \cdots,
+\Bm C =  \CC_{\!\!\Bm{--p}}\,ε^{-p} + \CC_{\!\!\Bm{--p+}\Bm 1}\,ε^{-p+1} + \CC_{\!\!\Bm{--p+}\Bm 2}\,ε^{-p+2} + \CC_{\!\!\Bm{--p+}\Bm 3}\,ε^{-p+3} + \cdots,
 $$
 where $p$ is the order of singularity at $ε=0$ of the matrix~$\Bm C$ (Refer to Langenhop~\cite[langenhop_1971] for a general treatment of this topic, and also to Gonzales-Rodriguez, Moscoso and Kindelan~\cite[gonzales_rodriguez-moscoso-kindelan_2015] for a specific application in the context of radial basis functions).
-This means that near~$ε=0$ the matrix~$\Bm C$ is just like the first term~$ε^{-p}\,\CC_{\!\Bm{--p}}$ of its Laurent series, therefore the ratio of two elements of~$\Bm C$ is equal to the ratio of their corresponding elements in~$\CC_{\!\Bm{--p}}$ when $ε\to 0$.  More precisely, for each $i,j,k,l$,
+This means that near~$ε=0$ the matrix~$\Bm C$ is just like the first term~$\CC_{\!\!\Bm{--p}}\,ε^{-p}$ of its Laurent series, therefore the ratio of two elements of~$\Bm C$ is equal to the ratio of their corresponding elements in~$\CC_{\!\!\Bm{--p}}$ when $ε\to 0$.  More precisely, for each $i,j,k,l$,
 $$
 \lim_{ε\to 0} {C_{i,j}\over C_{k,l}} = \lim_{ε\to 0} {ε^{-p}\,({\cal C}_{\!-p})_{i,j} + ε^{-p+1}\,({\cal C}_{\!-p+1})_{i,j} + \cdots \over  ε^{-p}\,({\cal C}_{\!-p})_{k,l} + ε^{-p+1}\,({\cal C}_{\!-p+1})_{k,l} + \cdots} = {({\cal C}_{\!-p})_{i,j}\over ({\cal C}_{\!-p})_{k,l}}.~\QED
 $$
