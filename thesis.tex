@@ -20,7 +20,7 @@
 \famvardef\tt{\TypewriterMT\setff{-liga; -tlig; embolden=1.1}\typoscale[870/]\rm}
 
 
-\margins/1 a4 (103,95,130,145)pt
+\margins/1 a4 (103,95,125,150)pt
 
 
 \parindent 1em
@@ -36,6 +36,13 @@
 \egroup
 \tocpage
 
+
+\bgroup
+\let\_mtext\ignoreit
+\nonum\chap Introduction
+\egroup
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chap Kernel-based interpolation
 
 \sec The interpolation problem
@@ -54,16 +61,26 @@
 \sec Optimality
 \input optimality
 
-% Monotonicity results
 \sec[addingsec] Adding data
 \input adding-data
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chap Dealing with discontinuities
 
-\sec[buildingsec] Building a classifier
-\input building-a-classifier
+\sec[buildingsec] Building a regularity classifier
+\input building-a-regularity-classifier
 
 \sec Properties of the classifier
+\input properties-of-the-classifier
+
+\sec Edge detection
+
+\sec Reconstruction
+
+\sec Some examples
+
+
+
 %\sec Gibbs and Runge phenomena
 %\sec Variably scaled kernels
 %\sec Fake nodes
@@ -77,6 +94,8 @@
 % Separate good behaving data set---the ones that comes from a regular function---from bad behaving ones---the ones that come from a discontinuous function.
 
 % Conclusions:  Another approach worth investigating is to use  machine learning on the data set to build the classification function.  Maybe a black box machine learning techniques can perform better than the tool appositely developed.
+
+% The updated version of the thesis can be retrieved at...
 
 
 % BIBLIOGRAPHY

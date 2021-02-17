@@ -19,6 +19,8 @@
 \_def \_theBnum {\_the\_counterB}
 \def\definition{\numberedpar C{\rm DEFINITION}}
 \_def \_theCnum {\_the\_counterC}
+\def\property{\numberedpar D{\bf Property}}
+\_def \_theDnum {\_the\_counterD}
 \def\proof{\smallskip\noindent{\em PROOF}. \,}
 
 \def\preskip{\smallskip}
@@ -71,6 +73,7 @@
 \newtoks\tmptoks
 
 \def\tocpage{%
+        \bigskip
 	\maketoc
 	\pageno=0
 	\tmptoks=\footline
