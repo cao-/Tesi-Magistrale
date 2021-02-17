@@ -1,3 +1,4 @@
+\Red
 First basic properties, like 0<Q<N, Q=1-Ns/Nsk, ...
 
 
@@ -7,10 +8,12 @@ Each quantity will be dependent on $ε$, but we don't explicitly denote the depe
 \property Invariance under $F\mapsto\gamma F$
 \postskip
 
+\Black
+
 \preskip
 \property $\Bm Q$ converges as $ε\to 0$. 
 \proof
-Notice that $\norm s_\phi = 0$ either for all~$ε$ or for none. When it is zero, $\Bm Q$~is constantly equal to the zero vector, and its convergence is proved.  If instead $\norm s_\phi\neq 0$, then the elements $Q_k$ of the vector~$\Bm Q$ are defined as~$Q_k = U_k/\smash{\norm s_\phi^2}$. By expanding the scalar product in the denominator and recalling the definition of the cross validation vector~$\Bm E$, we can split~$Q_k$ into two parts, namely
+Notice that $\norm s_\phi = 0$ either for all~$ε$ or for none. When it is zero, $\Bm Q$~is constantly equal to the zero vector, and its convergence is proved.  If instead $\norm s_\phi\neq 0$, then the elements $Q_k$ of the vector~$\Bm Q$ are defined as~$Q_k = U_k/\smash{\norm s_\phi^2}$. By expanding the scalar product in the denominator and recalling the definition of the cross-validation vector~$\Bm E$, we can split~$Q_k$ into two parts, namely
 $$
 Q_k = {U_k\over \norm s_\phi^2} = {U_k \over \Bm α^T \Bm f} = {E_k {α_k \over \Bm α^T \Bm f}} \eqcolon E_k\,W_k,
 $$
@@ -34,11 +37,24 @@ With $\Bm R$ being the distance matrix associated to~$X$, that is the $N\times N
 $$
 (\hbox{\setff{swsh}\EBGaramond\it A}_{n})_{i,j}\coloneq a_n(R_{i,j}) = a_n(\norm{x_i - x_j}).
 $$
-Under these definitions, the $ε$-dependent matrix~$\Bm A$ has at the point~$ε=0$ the matrix power series expansion
+Under these definitions, the $ε$-dependent matrix~$\Bm A$ has at the point~$ε=0$ the power series expansion
 $$
  \Bm{A} = \hbox{\setff{swsh}\bm A}_{\Bm 0} + ε\,\hbox{\setff{swsh}\bm A}_{\Bm 1} + ε^2\,\hbox{\setff{swsh}\bm A}_{\Bm 2} + ε^3\,\hbox{\setff{swsh}\bm A}_{\Bm 3} + \cdots. 
+ $$
+
+
+ The inverse~$\Bm C$ of the matrix~$\Bm A$ exists for all~$ε$ and has elements that are rational functions of the elements of~$\Bm A$.  This means that $\Bm C$ has a Laurent series expansion at~$ε=0$,
+$$
+\Bm C =  ε^{-p}\,\smash{\hbox{\setff{swsh}\bm C}}{}_{\Bm{--p}} + ε^{-p+1}\,\smash{\hbox{\setff{swsh}\bm C}}{}_{\Bm{--p+}\Bm 1} + ε^{-p+2}\,\smash{\hbox{\setff{swsh}\bm C}}{}_{\Bm{--p+}\Bm 2} + ε^{-p+3}\,\smash{\hbox{\setff{swsh}\bm C}}{}_{\Bm{--p+}\Bm 3} + \cdots,
+$$
+where $p$ is the order of singularity at $ε=0$ of the matrix~$\Bm C$ (Refer to Langenhop~\cite[langenhop_1971] for a general treatment of this topic, and also to Gonzales-Rodriguez, Moscoso and Kindelan~\cite[gonzales_rodriguez-moscoso-kindelan_2015] for a specific application in the context of radial basis functions).
+This means that near~$ε=0$ the matrix~$\Bm C$ is just like the first term~$ε^{-p}\,\smash{\hbox{\setff{swsh}\bm C}}{}_{\Bm{--p}}$ of its Laurent series, therefore the ratio of two elements of~$\Bm C$ is equal to the ratio of their corresponding elements in~$\smash{\hbox{\setff{swsh}\bm C}}{}_{\Bm{--p}}$ when $ε\to 0$.  More formally, for each $i,j,k,l$,
+$$
+\lim_{ε\to 0} {C_{i,j}\over C_{k,l}} = \lim_{ε\to 0} {ε^{-p}\,(\smash{\mathbox{\setff{swsh}\EBGaramond\it C}}{}_{-p})_{i,j} + ε^{-p+1}\,(\smash{\mathbox{\setff{swsh}\EBGaramond\it C}}{}_{-p+1})_{i,j} + \cdots \over  ε^{-p}\,(\smash{\mathbox{\setff{swsh}\EBGaramond\it C}}{}_{-p})_{k,l} + ε^{-p+1}\,(\smash{\mathbox{\setff{swsh}\EBGaramond\it C}}{}_{-p+1})_{k,l} + \cdots} = {(\smash{\mathbox{\setff{swsh}\EBGaramond\it C}}{}_{-p})_{i,j}\over (\smash{\mathbox{\setff{swsh}\EBGaramond\it C}}{}_{-p})_{k,l}}.~\QED
 $$
 \postskip
+
+\Red
 
 \preskip
 \property Invariance under $F\mapsto F+c$ in the flat limit
@@ -54,3 +70,5 @@ These are the properties of Q that are carried over to R.  Now come the properti
 \property
 $\sum Q \to 0$ if $f\in \Cal N_\phi$.  Otherwise...
 \postskip
+
+\Black

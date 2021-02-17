@@ -141,7 +141,7 @@ $$
 
 It is clear that the computational complexity of the vector~$\Bm U$ and the vector~$\Bm E$ are similar---both vectors can be computed in time~$O(N^3)$, where $N$~is the number of data sites. 
 Just to give a concrete example how to actually implement these calculations on a calculator, we present in sequence two MATLAB codes that allow to simultaneously compute both $\Bm E$ and~$\Bm U$, starting from the interpolation matrix~$\Bm A$ and the vector~$\Bm f$ of function values. As a side effect, these codes compute also the matrix~$\Bm C$, the vector of coefficients~$\Bm α$ and the square of the native space norm of~$s$.
-The first code uses the standard MATLAB linear system solver (the backslash operator); the second one instead finds the solution of the linear system by first computing the inverse of~$\Bm A$ using the {\tt pinv} algorithm, which provides maximal stability by sacrificing speed---this is what Fassauer~\cite[fasshauer_2007]~does when he computes the cross validation vector~$\Bm E$.
+The first code uses the standard MATLAB linear system solver (the backslash operator); the second one instead finds the solution of the linear system by first computing the inverse of~$\Bm A$ using the {\tt pinv} algorithm, which provides maximal stability by sacrificing speed---this is what Fassauer~\cite[fasshauer_2007]~does when he computes the cross-validation vector~$\Bm E$.
 
 \ttline=-2 % no line numbering
 \verbinput (-) MATLAB/loocv_vector.m
