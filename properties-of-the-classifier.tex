@@ -1,42 +1,63 @@
 \def\CA{\mathbox{$\boldmath\cal A$}}
 \def\CC{\mathbox{$\boldmath\cal C$}}
 
+%First basic properties, like 0<Q<N, Q=1-Ns/Nsk, ...
 
-\Red
-First basic properties, like 0<Q<N, Q=1-Ns/Nsk, ...
+We now study the properties satisfied by the $\phi$-regularity vector~$\Bm Q$\,, and hence by the classifier~$\Cal R$ built upon it.  In what follows $\phi$ will denote again one of the positive definite functions introduced in Section~\ref[positivesec], and~$\phi_ε$ its $ε$-scaled version as defined in~\ref[phiepsilon].  Each considered quantity may be dependent on~$ε$, but for simplicity of notation this dependence won't be explicitly indicated.
+
+Let $X = \{\range x_N/\}\subset\Omega\subseteq\R^d$ be a set of data sites, and $F=\{\range f_N/\}$ a set of associated values sampled from an unknown function~$f$.  We are interested in seeing how the vector~$\Bm Q$ computed from~$(X, F)$ changes when a {\em linear transformation} is applied to~$F$ or, equivalently, to the function~$f$.  Assume that $f$ is transformed into~$g = γ f + η$ for some~$γ, η\in\R$, so that $F$ is transformed into
+$$
+G = \{\.\range g_N/\} 
+  = \{\.γ f_1 + η,\, γ f_2 + η,\, \dots,\, γ f_N + η\}
+  \eqcolon γ F + η.
+$$
+If $X$ is fixed, in order to distinguish the interpolant of $(X,F)$ from the interpolant of~$(X, G)$ we'll denote them as $s_{F}$ and~$s_{G\!}$ respectively; the same for the vector~$\Bm Q\,$, which will appear as $\Bm Q_{\.F\!}$ in the first case and~$\Bm Q_{\.G\!}$ in the second case.
 
 
-Each quantity will be dependent on $ε$, but we don't explicitly denote the dependence, so $s$ is to be intended as...
+The easier case~$η=0$ gets analysed first. The following property is the main reason why, in the first place, we didn't consider the vector~$\Bm U$ as is, but rather switched to its ``normalised'' version~$\Bm Q$.
 
 \preskip
-\property Invariance under $F\mapsto\gamma F$
+\property If $G = γF$ for some nonzero~$γ\in\R$, then~$\Bm Q_{\.G\!} = \Bm Q_{\.F}$.
+
+\proof
+If~$f_k = 0$ for all~$k\in\{1,2,\dots,N\}$, then also $g_k= 0$ for all~$k$, and in this case both $\Bm Q_{\.F\!}$ and~$\Bm Q_{\.G\!}$ are the zero vector.
+Otherwise, since the interpolation process is linear, we know that $s_G=s_{γF}= γ s_F$ and, similarly, $s_G^{(k)\!}=s_{γF}^{(k)\!}=γs_F^{(k)\!}$. Thus, for each index~$k\in\{1,2,\dots,N\}$, the $k$-th element of~$\Bm Q_{\.G\!}$ assumes the value
+$$
+(Q_G)_k = {\norm{s_G}_\phi^2 - \norm{s_G^{(k)\!}}_\phi^2 \over\norm{s_G}_\phi^2}
+        = 1-{\norm{s_G^{(k)\!}}_\phi^2\over\norm{s_G}_\phi^2}
+        = 1-{\norm{γs_F^{(k)\!}}_\phi^2\over\norm{γs_F}_\phi^2}
+        = 1-{γ^2\norm{s_F^{(k)\!}}_\phi^2\over γ^2\norm{s_F}_\phi^2}
+        = (Q_F)_k.~\QED
+$$
 \postskip
 
-\Black
 
+Then it remains to analyse the case~$η\neq 0$.  Unfortunately, it can be shown that the vector~$\Bm Q$ is {\em not} invariant under a translation of the function values~$F$.  But we'll talk about it later, only after the next result.
+
+\label[flatlimit]
 \preskip
-\property $\Bm Q$ converges as $ε\to 0$. 
+\property  For a fixed $F$ the vector $\Bm Q\,= \Bm Q_{\.F\!}\,$, which depends on the shape parameter~$ε$, converges to a limit vector as $ε$ approaches~$0$.
 \proof
-Notice that $\norm s_\phi = 0$ either for all~$ε$ or for none. When it is zero, $\Bm Q$~is constantly equal to the zero vector, and its convergence is proved.  If instead $\norm s_\phi\neq 0$, then the elements $Q_k$ of the vector~$\Bm Q$ are defined as~$Q_k = U_k/\smash{\norm s_\phi^2}$. By expanding the scalar product in the denominator and recalling the definition of the cross-validation vector~$\Bm E$, we can split~$Q_k$ into two parts, namely
+Notice that $\norm s_\phi = 0$ either for all~$ε$ or for none. When it is zero, $\Bm Q$~is constantly equal to the zero vector, and its convergence is proved.  If instead $\norm s_\phi\neq 0$, then the elements $Q_k$ of the vector~$\Bm Q$ are defined as~$Q_k = U_k/\smash{\norm s_\phi^2}$. By expanding the scalar product in the denominator and recalling the definition~\ref[vectorE] of the cross-validation vector~$\Bm E$, we can split~$Q_k$ into two parts, namely
 $$
 Q_k = {U_k\over \norm s_\phi^2} = {U_k \over \Bm α^T \Bm f} = {E_k {α_k \over \Bm α^T \Bm f}} \eqcolon E_k\,W_k,
 $$
-where, as usual, $\Bm α$~is the vector of coefficients of~$s$ with respect to the basis of kernel translates. Both terms $E_k$ and~$W_k$ can be written in terms ratios of pairs of elements of the inverse~$\Bm C$ of the interpolation matrix~$\Bm A=\Bm A_{\phi, X}$.  In fact,
+where, as usual, $\Bm α$~is the vector of coefficients of~$s$ with respect to the basis of kernel translates. If~$\Bm C$ is the inverse of the interpolation matrix~$\Bm A=\Bm A_{\phi, X}$, simple algebraic manipulations lead to the following expressions for $E_k$ and~$W_k$:
 $$
-\eqalign{
-  &E_k = {α_k \over C_{k,k}} = {(\Bm C\. \Bm f\,)_k \over C_{k,k}} =  {\sum_{j=1}^N C_{k,j}\, f_j \over C_{k,k}} = \sum_{j = 1}^N f_j\,\frame{$\displaystyle \hbyw{1.8ex}{0em} C_{k,j} \over \displaystyle C_{k,k}$}\,,\cr
+\def\_ineqmark{\_incr\_dnum \_wlabel\_thednum \lower3.5ex\hbox{\_thednum\kern-.080em}}
+\eqalignno{
+  &E_k = {α_k \over C_{k,k}} = {(\Bm C\. \Bm f\,)_k \over C_{k,k}} =  {\sum_{j=1}^N C_{k,j}\, f_j \over C_{k,k}} = \sum_{j = 1}^N f_j\,\frame{$\displaystyle \hbyw{1.8ex}{0em} C_{k,j} \over \displaystyle C_{k,k}$}\,, & \eqmark[EkWk]\cr
  &\eqalign{W_k = {α_k \over \Bm α^T \Bm f} = {α_k \over \Bm f^{\,\.T}\! \Bm C\, \Bm f} &= {\sum_{j=1}^N C_{k,j}\,f_j \over \sum_{i=1}^N \sum_{l=1}^N f_i\, f_l\,C_{i,l}} = \sum_{j=1}^N\. f_j\. {C_{k,j} \over \sum_{i=1}^N \sum_{l=1}^N f_i\, f_l\,C_{i,l}}\cr
     &= \sum_{\rlap{$\matrix{j = 1\,\,\cr C_{k,j}\neq 0}$}}^N\, \Biggl({\sum_{i=1}^N \sum_{l=1}^N f_i\, f_l\,C_{i,l} \over C_{k,j}}\Biggr)^{-1}\!\! = \sum_{\rlap{$\matrix{j = 1\,\,\cr C_{k,j}\neq 0}$}}^N f_j\,\Bigl(\sum_{i=1}^N\sum_{l=1}^N f_i\, f_l\, \frame{$\displaystyle \hbyw{1.8ex}{0em} C_{i,l} \over \displaystyle C_{k,j}$}\,\Bigr)^{\rlap{$\scriptstyle-1$}}.
-  } 
-}
+}}
 $$
-The dependence on~$ε$ of the quantities $E_k$ and~$W_k$ lies  only in the highlighted ratios.  If we show that those terms converge as~$ε\to 0$, then we are done.
+The dependence on~$ε$ of the quantities $E_k$ and~$W_k$ lies  only in the framed ratios,  whose numerator and denominator are elements of the matrix~$\Bm C$.  If we show that those terms converge when~$ε\to 0$, then we are done.
 
-We can fix a radius~$r\geq 0$ and view $\phi_ε(r)$ as a function of~$ε$ rather than~$r$, and consider its power series expansion at the point~$ε=0$,
+We can fix a radius~$r\geq 0$ and view $\phi_ε(r)$ as a function of~$ε$ rather than~$r$, and consider its power series expansion\fnote{All the positive definite functions that we are considering---the ones described in Section~\ref[positivesec]---are {\em analytic} in a (right) neighbour of~$r=0$.} at the point~$ε=0$,
 $$
-\phi_ε(r) = a_{0\!}(r) + a_{1}\!(r)\,ε + a_{2\!}(r)\,ε^2 + a_{3\!}(r)\,ε^3 + \cdots,
+\phi_ε(r) = \phi(εr) = a_{0\!}(r) + a_{1}\!(r)\,ε + a_{2\!}(r)\,ε^2 + a_{3\!}(r)\,ε^3 + \cdots,
 $$
-whose coefficients~$a_{n\!}(r)$ are explicit functions of~$r$.
+whose coefficients~$a_{n\!}(r)$ are explicit\fnote{They can actually be computed from the expression of~$\phi$.} functions of~$r$.
 With $\Bm R$ being the distance matrix associated to~$X$, that is the $N\times N$~matrix of elements~$R_{i,j}\coloneq \norm{x_i - x_j}$, define for each~$n$ the matrix~$\CA_{\Bm n}$ by applying the function $a_n$ to each element of~$\Bm R$, explicitly
 $$
 (\Cal A_{n})_{i,j}\coloneq a_n(R_{i,j}) = a_n(\norm{x_i - x_j}).
@@ -59,17 +80,60 @@ $$
 $$
 \postskip
 
-\Red
+The limiting vector~$\Bm Q$ when $ε\to 0$ clearly depends on both the data sites $X$ and the data values~$F$ from which it has been computed. The dependence on~$F$ is in the coefficients~$f_j$ of the expressions~\ref[EkWk] for $E_k$ and~$W_k$; the dependence on~$X$ is in the ratios of elements of~$\CC_{\!\!\Bm{--p}}$ that appear in the same expressions when~$ε\to 0$.
 
+Instead, in the opposite case, that is when $ε\to\infty$, the vector~$\Bm Q$ loses its dependence on~$X$.  In fact, if we assume without loss of generality that~$\phi(0)=1$, then the interpolation matrix~$\Bm A$ converges to the identity matrix  when $ε\to\infty$, and this implies that $\norm{s}_\phi^2\to \Bm f^{\,\.T\!}\Bm f$ and $\norm{s^{(k)\!}}_\phi^2\to (\,\Bm f^{\,\.(k)\!})^{T\!}\Bm f^{\,\.(k)}\!$, and finally that $\smash{Q_k\to f_k^{\.2}/(\,\Bm f^{\,\.T\!}\Bm f\,)}$ (here the vectors $\Bm f$ and~$\smash{\Bm f^{\,\.(k)}\!}$ are defined as in Theorem~\ref[rippatheo]).
+The case when $ε$~is big, therefore, doesn't seem to be very interesting, because in that case $\Bm Q$ does not store any valuable information about the data sites~$X$.  We also notice that, in the limiting case~$ε\to\infty$, the vector~$\Bm Q$ has the property that $\norm{\Bm Q}_1 = 1$, independently of the data values~$F$, and the classifier of Definition~\ref[classifierdef] becomes useless.
+
+
+Although, as previously stated, for a fixed value of~$ε$ the vector~$\Bm Q$ is not invariant under a translation applied to~$F$, fortunately the translational invariance is achieved in the flat limit.\fnote{The limiting case when~$ε\to 0$ is usually called {\em flat limit}, because the basis functions generated by~$\phi_ε$ become increasingly flat as~$ε\to 0$.}
 \preskip
-\property Invariance under $F\mapsto F+c$ in the flat limit
+\property If $G = F+η$ for some~$η\in\R$, then $\Bm Q_{\.G\!} \to \Bm Q_{\.F}$ when~$ε\to 0$.
+\proof
+Assume by now that $F$ is not constant (meaning that $f_i\neq f_j$ for at least a pair of indices~$i,j$), so that in particular $s_F$ and~$s_G$ are different from the zero function, and the elements $(Q_F)_k$ and~$(Q_G)_k$ are defined as
+$$
+(Q_F)_k = {(U_F)_k\over\norm{s_F}_\phi^2}
+        \buildrel\ref[incrementformula]\over = {(f_k-s_F^{(k)\!}(x_k))^2\over \norm{s_F}_\phi^2\,P_{X^{(k)\!}}^2(x_k)},\qquad
+(Q_G)_k = {(U_G)_k\over\norm{s_G}_\phi^2}
+        \buildrel\ref[incrementformula]\over = {(g_k-s_G^{(k)\!}(x_k))^2\over \norm{s_G}_\phi^2\,P_{X^{(k)\!}}^2(x_k)}.
+$$
+
+The first thing to notice is that both expression share the term~$P_{X^{(k)\!}}^2(x_k)$, because we are keeping the data sites~$X$ fixed and are changing only the data values from $F$ to~$G$.  At the numerator we have the elements of the cross validation vectors~$\Bm E_{F\!}$ and $\Bm E_G$.  Using expression~\ref[EkWk], they can be written as
+$$
+(f_k-s_F^{(k)\!}(x_k))^2 = (E_F)_k = \sum_{j=1}^N f_j\.{C_{k,j}\over C_{k,k}},\qquad
+(g_k-s_G^{(k)\!}(x_k))^2 = (E_G)_k = \sum_{j=1}^N g_j\.{C_{k,j}\over C_{k,k}}.
+$$
+As proved in Theorem~\ref[flatlimit], when $ε\to0$ these two quantities converge,
+$$
+(f_k-s_F^{(k)\!}(x_k))^2\to \sum_{j=1}^N f_j\.{(\Cal C_{-p})_{k,j}\over (\Cal C_{-p})_{k,k}},\qquad
+(g_k-s_G^{(k)\!}(x_k))^2\to \sum_{j=1}^N g_j\.{(\Cal C_{-p})_{k,j}\over (\Cal C_{-p})_{k,k}},
+$$
+where $\CC_{\!\!\Bm{--p}}$ is the first coefficient matrix in the Laurent series expansion of~$\Bm C$ at~$ε=0$.  The limiting value of~$(E_G)_k$ can be written as
+$$
+\eqalign{
+\sum_{j=1}^N g_j\.{(\Cal C_{-p})_{k,j}\over (\Cal C_{-p})_{k,k}}
+&= \sum_{j=1}^N f_j\.{(\Cal C_{-p})_{k,j}\over (\Cal C_{-p})_{k,k}} + \sum_{j=1}^N η\.{(\Cal C_{-p})_{k,j}\over (\Cal C_{-p})_{k,k}} \cr
+&=\sum_{j=1}^N f_j\.{(\Cal C_{-p})_{k,j}\over (\Cal C_{-p})_{k,k}} + η\.{\sum_{j=1}^N (\Cal C_{-p})_{k,j}\over (\Cal C_{-p})_{k,k}}
+}
+$$
+So, the only difference between the limiting values of the numerators of $(Q_F)_k$ and~$(Q_G)_k$ is the term
+$$
+ η\.{\sum_{j=1}^N (\Cal C_{-p})_{k,j}\over (\Cal C_{-p})_{k,k}} \eqmark[differenceterm]
+$$
+We'll come back to it later.
 \postskip
-Also, invariance under modification of $X$.  So, linear invariance complexively.
+
+\Red
+Also, invariance under modification of $X$.  So, linear invariance complexively. Picture.
+\preskip
+\property Invariance under transformation of~$X$.
+\postskip
 
 Ho to deal numerically with the flat limit.
 
 
 These are the properties of Q that are carried over to R.  Now come the properties for R.
+
 
 \preskip
 \property

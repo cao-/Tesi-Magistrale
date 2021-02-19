@@ -134,3 +134,11 @@
 %\_sdef{_mt:chap:en}{Part}
 
 
+% Add protrusion for eqmark
+
+\_def\_ineqmark{\_incr\_dnum
+  \_ifinner\_else\_eqno \_fi
+  \_wlabel\_thednum \_hbox{\_thednum\kern-.080em}%
+}
+\_public \eqmark ;
+
