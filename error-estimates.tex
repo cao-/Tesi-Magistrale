@@ -75,7 +75,7 @@ $$
  If we define the  two vectors $\Bm u(x)$ and~$\Bm t(x)$ as
  $$
 \eqalign{\Bm u(x)&\coloneq (u_1(x),u_2(x),\dots, u_N(x))^T \cr
-\Bm t(x)&\coloneq (Φ(x,x_1), Φ(x,x_2),\dots,Φ(x,x_N))^T,}
+\Bm t(x)&\coloneq (Φ(x,x_1), Φ(x,x_2),\dots,Φ(x,x_N))^T,} \eqmark[uandt]
  $$
  then the expression for the power function can be rewritten as
  $$
@@ -184,7 +184,7 @@ is contained in~$\Omega$.} then
 $$
 P_X^2(x)\leq F(h_X) \quad \mathbox{for all $x\in\Omega$,}\eqmark[powbound]
 $$
-for some monotone function~$F$ such that~$\lim_{h\to 0} F(h) = 0$ (Wendland~\cite[wendland_2004], chapter~11).  The function~$F$ depends on the kernel of the native space, and can be explicitly computed.  In table~\ref[errortab] we report the known bounds of the power function for some of the most used radial kernels.
+for some monotone function~$F$ such that~$\lim_{h\to 0} F(h) = 0$ (Wendland~\cite[wendland_2004], Chapter~11).  The function~$F$ depends on the kernel of the native space, and can be explicitly computed.  In table~\ref[errortab] we report the known bounds of the power function for some of the most used radial kernels.
 
 \label[errortab]
 \topinsert
@@ -201,7 +201,7 @@ Wendland's functions    & $\phi_{d,k}(r)$           & $h^{2k+1}$ & $q^{2k+1}$ \c
 \endinsert
 
 \Red
-These error estimates expressed in terms of the fill distance of the data sites are purely theorical.  In fact, when dealing with an actual numerical interpolation performed on a calculator, one must take into account also the numerical {\em stability}\fnote{An algorithm is {\em stable} if its output results do not change much when the input data is modified slightly.  On a calculator some perturbations of the input data (and also of the intermediate results of the computations) are unavoidable when real numbers are stored slighly modified in the form of floating point numbers.} of the computations.  The interpolation matrix~$\Bm A = \Bm A_{Φ, X}$ of~\ref[intmat] has condition number which is shown (Wendland~\cite[wendland_2004], chapter~12) to be bounded by
+These error estimates expressed in terms of the fill distance of the data sites are purely theorical.  In fact, when dealing with an actual numerical interpolation performed on a calculator, one must take into account also the numerical {\em stability}\fnote{An algorithm is {\em stable} if its output results do not change much when the input data is modified slightly.  On a calculator some perturbations of the input data (and also of the intermediate results of the computations) are unavoidable when real numbers are stored slighly modified in the form of floating point numbers.} of the computations.  The interpolation matrix~$\Bm A = \Bm A_{Φ, X}$ of~\ref[intmat] has condition number which is shown (Wendland~\cite[wendland_2004], Chapter~12) to be bounded by
 $$
 \mathop{\rm cond}(\Bm A_{Φ,X}) ≤ {N\,Φ(0,0) \over G(q_X)},
 $$

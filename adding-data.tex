@@ -12,13 +12,13 @@ $$
 \norm{s_{X, f}}_Φ\leq\norm{s_{Y,f}}_Φ\leq\norm{\.f}_Φ.\eqmark[normbound]
 $$
 
-Assuming that $\{Y_n\}_{n\in\N}$ is a growing sequence of data sites, in the sence that
+Assuming that $\{Y_n\}_{n\in\N}$ is a growing sequence of data sites, in the sense that
 $$
 Y_1\subset Y_2\subset Y_3\subset \cdots,
 $$
 then clearly, by monotonicity, the sequence~$\{\norm{s_{Y_n,f}}_Φ\}_{n\in\N}$ of the native space norms of the associated interpolants of~$f$ is a convergent sequence, whose limit is a number less than or equal to~$\norm{\.f}_Φ$. Whether or not this limit actually equals~$\norm{\. f}_Φ$ may depend not only on the number of data sites but also on their distribution among the domain of~$f$.
 
-At least for the pointwise limit there are some specific results, which we have already implicitly stated in section~\ref[errorsec], talking about error estimates.  If the domain~$Ω$ of~$f$ satisfies an interior cone condition and the sequence~$\{Y_n\}_{n\in\N}$ of data sites grows in a way such that the fill distances~$\{h_{Y_n}\}_{n\in\N}$ converge to zero, then the sequence of interpolants~$\{s_{Y_n,f}\}_{n\in\N}$ converges uniformly to~$f$, i.e.,
+At least for the pointwise limit there are some specific results, which we have already implicitly stated in Section~\ref[errorsec], talking about error estimates.  If the domain~$Ω$ of~$f$ satisfies an interior cone condition and the sequence~$\{Y_n\}_{n\in\N}$ of data sites grows in a way such that the fill distances~$\{h_{Y_n}\}_{n\in\N}$ converge to zero, then the sequence of interpolants~$\{s_{Y_n,f}\}_{n\in\N}$ converges uniformly to~$f$, i.e.,
 $$
 \norm{\.f - s_{Y_n,f}}_\infty \coloneq \sup_{x\in Ω} |f(x)-s_{Y_n,f}(x)\!|\to 0\qquad\hbox{when $\,n\to\infty$},
 $$
@@ -39,7 +39,7 @@ $$
 where $P_X$ is the power function associated to~$X$.
 
 \proof
-Let $X=\{\range x_N/\}$, and define the  matrix~$\Bm A$ and the vectors~$\Bm u(x), \Bm t(x)$ as in section~\ref[errorsec].
+Let $X=\{\range x_N/\}$, and define the  matrix~$\Bm A$ and the vectors~$\Bm u(x), \Bm t(x)$ as in~\ref[uandt].
 The interpolants $s_{X, f}$ and~$s_{X\cup\{x\},f}$ can be expressed as linear combinations of the standard basis functions of $\Cal S_{Φ, X}$ and~$\Cal S_{Φ, X\cup\{x\}}$ respectively. Explicitly,
 $$
 s_{X,f} = \sum_{k = 1}^Nα_k Φ(\cdot, x_k),  \qquad
@@ -137,7 +137,7 @@ may be large not only if the prediction is bad, but also if the value of~$P_X$ a
 Therefore, as pointed out by Lenarduzzi and Shaback~\cite[lenarduzzi-shaback_2017], computing the difference $\norm{s_{X\cup\{x\},f}}_Φ^2 -\norm{s_{X,f}}_Φ^2$ between the squares of the norms of $s_{X\cup\{x\},f}$ and~$s_{X,f}$ is a geometrically correct way of establishing the goodness of the prediction made by $s_{X,f}$ for the value of~$f$ at the point~$x$, since this quantity does not consider only the error~$f(x)-s_{X,f}(x)$, but also takes into account, through the value~$P_X(x)$, the closeness of~$x$ to the data sites~$X$. We expect in fact a much better accuracy on the prediction for~$f(x)$ at a point $x$ close to~$X$ compared to a point $x$ far from~$X$.
 
 
-If the set~$X$ of data sites is already big enough so that $s_X$ is close to~$f$ in~$\Cal N_Φ$, and hence $\norm{s_{X,f}}_Φ$ is close to~$\norm{\.f}_Φ$, then there is few margin left for a further increase of the norm of the interpolant when a new point~$x$ is added to the data sites, since \ref[normbound]~says that~$\norm{s_{X, f}}_Φ\leq\norm{s_{X\cup\{x\},f}}_Φ\leq\norm{\.f}_Φ.$  This last statement of course holds under the hypothesis that the sampled function~$f$ belongs to the native space of~$Φ$.  If this is not the case, then we do not have a bound on the possible increase of the norm when passing from $s_{X,f}$ to~$s_{X\cup\{x\},f}$.
+If the set~$X$ of data sites is already such that $s_X$ is close to~$f$ in~$\Cal N_Φ$, and hence $\norm{s_{X,f}}_Φ$ is close to~$\norm{\.f}_Φ$, then there is few margin left for a further increase of the norm of the interpolant when a new point~$x$ is added to the data sites, since \ref[normbound]~says that~$\norm{s_{X, f}}_Φ\leq\norm{s_{X\cup\{x\},f}}_Φ\leq\norm{\.f}_Φ.$  This last statement of course holds under the hypothesis that the sampled function~$f$ belongs to the native space of~$Φ$.  If this is not the case, then we do not have a bound on the possible increase of the norm when passing from $s_{X,f}$ to~$s_{X\cup\{x\},f}$.
 
  A case of special interest is that of a {\em discontinuous} function~$f$, which of course doesn't belong to the native space of a continuous kernel~$Φ$ (see theorem~\ref[cont-theor]). In this case the norm of the interpolant can grow very much if the newly added point $x$ is close to the singularity of~$f$.  The big increment of the norm indicates that a violation of the model~$s_{X,f}$ is occurring, or in other words that the new pair of data~$(x, f(x))$ does not fit well the model~$s_{X,f}$ previously established by the pairs of data~$(X, f(X))$.
 
