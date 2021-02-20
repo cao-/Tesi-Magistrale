@@ -15,6 +15,10 @@
 \load[patches, garamond-math-fix, micro]
 %\OpTeX
 % We must ensure that . , ; etc are from the same font in text and math mode.
+\fontdef\rmfixex{\rm}
+\fontdef\itfixed{\it}
+\fontdef\bffixed{\bf}
+\fontdef\bifixed{\bi}
 
 \font\symbols=Diamond % MonotypeSorts
 \def\QED{\hbox{\symbols\resizethefont \,❖}}
@@ -23,7 +27,7 @@
 \famvardef\tt{\TypewriterMT\setff{-liga; -tlig; embolden=1.1}\typoscale[870/]\rm}
 
 
-\margins/1 a4 (103,95,125,150)pt
+\margins/1 a4 (103,95,145,130)pt
 
 
 \parindent 1em

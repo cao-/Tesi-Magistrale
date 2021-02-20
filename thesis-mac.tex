@@ -83,7 +83,11 @@
 
 
 \_def\_printchap #1{\_vfill\_supereject
-   \_vglue\_medskipamount % shifted by topkip+\medskipamount
+   %\_vglue\_smallskipamount % shifted by topkip+\medskipamount
+   \xdef\headchap{#1}%
+   \headline={\hfil\global\headline={\printheadline}}%
+   \edef\currfootline{\the\footline}%
+   \footline={\rlap{\line{\currfootline}}\hfil\rm\folio\hfil\ea\global\ea\footline\ea{\currfootline}}%  
    {\_chapfont \_noindent \_mtext{chap} \_printrefnum[@]\_par
     \_nobreak\_smallskip
     \_noindent \_raggedright \uppercase{#1}\_nbpar}\_mark{}%
@@ -102,6 +106,13 @@
    \_nobreak \_belowtitle{\_medskip}%
    \_firstnoindent
 }
+
+
+\def\printheadline{\hfill\scalemain\typoscale[1090/]\it\headchap\hfill\llap{\bf\folio}}
+
+\footline={}
+
+\headlinedist=6ex
 
 
 
@@ -141,4 +152,6 @@
   \_wlabel\_thednum \_hbox{\_thednum\kern-.080em}%
 }
 \_public \eqmark ;
+
+
 
