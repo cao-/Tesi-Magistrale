@@ -37,17 +37,26 @@
 
 \picdir={pic/}
 
-\bgroup
-\let\_mtext\ignoreit
+
+\let\omtext\_mtext
+\def\_mtext#1{CONTENTS}
+\let\uppercase\ignoreit
 \nonum\notoc\chap Contents
-\egroup
-\tocpage
+\let\_mtext\omtext
+\let\uppercase\_uppercase
+\bigskip
+\maketoc
+\pageno=0
+\footline={}
+\vfill\eject
 
 
-\bgroup
-\let\_mtext\ignoreit
+\def\_mtext#1{INTRODUCTION}
+\let\uppercase\ignoreit
 \nonum\chap Introduction
-\egroup
+\let\_mtext\omtext
+\let\uppercase\_uppercase
+
 
 %\comment
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -86,7 +95,8 @@
 \sec Numerical examples
 
 
-\chap Dealing with two-dimensional discontinuities
+\chap Dealing with discontinuities
+% two-dimensional discontinuities
 
 \sec Edge detection ???
 
@@ -114,12 +124,14 @@
 
 
 % BIBLIOGRAPHY
-\bgroup
-\let\_mtext\ignoreit
+%\let\_mtext\ignoreit
+\def\_mtext#1{BIBLIOGRAPHY}
+\let\uppercase\ignoreit
 \nonum\chap Bibliography
-
+\let\_mtext\omtext
+\let\uppercase\_uppercase
 \def\_opwarning#1{}
-\usebib/s (iso690) biblist
-\egroup
+\usebib/s (simple) biblist
+
 
 \bye

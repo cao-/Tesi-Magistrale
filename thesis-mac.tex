@@ -70,22 +70,11 @@
 
 
 
-\newtoks\tmptoks
-
-\def\tocpage{%
-        \bigskip
-	\maketoc
-	\pageno=0
-	\tmptoks=\footline
-	\footline={\hss}
-	\vfill\eject
-	\footline=\tmptoks}
-
 
 \_def\_printchap #1{\_vfill\_supereject
    %\_vglue\_smallskipamount % shifted by topkip+\medskipamount
    \xdef\headchap{#1}%
-   \headline={\hfil\global\headline={\printheadline}}%
+   \global\headline={\hfil\global\headline={\printheadline}}%
    \edef\currfootline{\the\footline}%
    \footline={\rlap{\line{\currfootline}}\hfil\rm\folio\hfil\ea\global\ea\footline\ea{\currfootline}}%  
    {\_chapfont \_noindent \_mtext{chap} \_printrefnum[@]\_par
@@ -113,6 +102,13 @@
 \footline={}
 
 \headlinedist=6ex
+
+
+\_def \_titfont  {\_scalemain\_typoscale[\_magstep4/\_magstep5]\_boldify}
+\_def \_chapfont {\_scalemain\_typoscale[\_magstep3/\_magstep3]\_boldify}
+\_def \_secfont  {\_scalemain\_typoscale[\_magstep2/\_magstep2]\_boldify}
+\_def \_seccfont {\_scalemain\_typoscale[\_magstep1/\_magstep1]\_boldify}
+
 
 
 
@@ -152,6 +148,7 @@
   \_wlabel\_thednum \_hbox{\_thednum\kern-.080em}%
 }
 \_public \eqmark ;
+
 
 
 
