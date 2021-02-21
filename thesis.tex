@@ -15,10 +15,7 @@
 \load[patches, garamond-math-fix, micro]
 %\OpTeX
 % We must ensure that . , ; etc are from the same font in text and math mode.
-\fontdef\rmfixex{\rm}
-\fontdef\itfixed{\it}
-\fontdef\bffixed{\bf}
-\fontdef\bifixed{\bi}
+\fontdef\rmfixex{\rm}\fontdef\itfixed{\it}\fontdef\bffixed{\bf}\fontdef\bifixed{\bi}
 
 \font\symbols=Diamond % MonotypeSorts
 \def\QED{\hbox{\symbols\resizethefont \,❖}}
@@ -36,6 +33,9 @@
 \rulewidth 0.13ex
 
 \picdir={pic/}
+
+
+\input first-page
 
 
 \let\omtext\_mtext
@@ -62,10 +62,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chap Kernel-based interpolation
 
-\def\sectitle{The interpolation problem}
-\ea\sec\sectitle
-
+\sec The interpolation problem
 \input the-interpolation-problem
+
 
 \sec[positivesec] Positive definite functions
 \input positive-definite-functions
@@ -86,7 +85,7 @@
 %\endcomment
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\chap Dealing with discontinuities
-\chap Data classification
+\chap[classificationchap] Data classification
 
 \sec[buildingsec] Building a regularity classifier
 \input building-a-regularity-classifier
@@ -100,7 +99,9 @@
 \chap Dealing with discontinuities
 % two-dimensional discontinuities
 
-\sec Edge detection ???
+\sec Domain segmentation
+%Boundary detection ???
+\input domain-segmentation
 
 \sec Reconstruction
 
@@ -133,7 +134,7 @@
 \let\_mtext\omtext
 \let\uppercase\_uppercase
 \def\_opwarning#1{}
-\usebib/s (simple) biblist
+\usebib/c (iso690) biblist
 
 
 \bye
