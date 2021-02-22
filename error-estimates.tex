@@ -200,18 +200,26 @@ Wendland's functions    & $\phi_{d,k}(r)$           & $h^{2k+1}$ & $q^{2k+1}$ \c
 \caption/t Upper bounds on~$P_X^2$ as functions~$F(h)$ of the fill distance~$h$. The functions $F$ are given only up to a constant that does not depend on the data sites.  They express the decay rate of the power function as the fill distance approaches zero.
 \endinsert
 
-\Red
-These error estimates expressed in terms of the fill distance of the data sites are purely theorical.  In fact, when dealing with an actual numerical interpolation performed on a calculator, one must take into account also the numerical {\em stability}\fnote{An algorithm is {\em stable} if its output results do not change much when the input data is modified slightly.  On a calculator some perturbations of the input data (and also of the intermediate results of the computations) are unavoidable when real numbers are stored slighly modified in the form of floating point numbers.} of the computations.  The interpolation matrix~$\Bm A = \Bm A_{Φ, X}$ of~\ref[intmat] has condition number which is shown (Wendland~\cite[wendland_2004], Chapter~12) to be bounded by
+
+These error estimates expressed in terms of the fill distance of the data sites are purely theorical.  In fact, when dealing with an actual numerical interpolation performed on a calculator, one must take into account also the numerical {\em stability}\fnote{An algorithm is {\em stable} if its output results do not change much when the input data is modified slightly.  On a calculator some perturbations of the input data (and also of the intermediate results of the computations) are unavoidable when real numbers are stored slighly modified in the form of floating point numbers.} of the computations.  The interpolation matrix~$\Bm A = \Bm A_{Φ, X}$ of~\ref[intmat] has condition number that can be expressed as ratio of its maximum and minimum eigenvalues,
 $$
-\mathop{\rm cond}(\Bm A_{Φ,X}) ≤ {N\,Φ(0,0) \over G(q_X)},
+\mathop{\rm cond}(A_{Φ, X})={λ_{\EBGaramond\mathbox{max}}(A_{Φ, X})\over λ_{\EBGaramond\mathbox{min}}(A_{Φ, X})}.
 $$
-where $N$ is the number of data sites, $G$ is a positive monotone function dependent on~$Φ$ such that~$\lim_{q\to 0} G(q) = 0$,  and~$q_X$ is the {\em separation distance} of~$X$, defined as
+It can be shown (Shaback~\cite[schaback_1997b], Wendland~\cite[wendland_2004], Chapter~12) that the numerator is well behaved, because it can grow at most proportionally to the number~$N$ of data sites,
+$$
+λ_{\EBGaramond\mathbox{max}}(A_{Φ, X}) ≤ N\.Φ(0,0),
+$$
+while the denominator can be bounded in the following way:
+$$
+G(q_x) ≤ λ_{\EBGaramond\mathbox{min}}(A) ≤ P_{X\setminus\{x_j\}}^2(x_j) ≤ F(h_{X\setminus\{x_j\}})\qquad\mathbox{for all~$x_j\in X$,}
+$$
+where $G$ is a positive monotone function dependent on~$Φ$ such that~$\lim_{q\to 0} G(q) = 0$,  and~$q_X$ is the {\em separation distance} of~$X$, defined as
 $$
 q_X = {1\over 2}\min_{i\neq j}\norm{x_i-x_j}.
 $$
 This means that the most straightforward algorithm to find the interpolant of a function~$f$ on a set~$X$ of data sites---the one that requires to compute the interpolation coefficients by solving the system~\ref[system] of the interpolation conditions---could be unstable if~$q_x$ is small.
 We report in table~\ref[errortab], next to the expressions for~$F$, the known expressions for $G$ for the same radial kernels.
-\Black
+
 
 Anyhow, even when the interpolation matrix~$A$ associated to the standard basis of kernel translates is badly conditioned, it is possible to stably compute the interpolant.  In fact, while computing the interpolation coefficients of the interpolant with respect to the standard basis is a badly conditioned problem, the computation of the interpolant itself is well conditioned (De~Marchi and Shaback~\cite[demarchi-shaback_2010]).  Some attempts at stably computing the interpolant by changing the basis of the interpolating space are provided by Pazouki and Schaback~\cite[pazouki-schaback_2011]; other two most notable algorithms are the Contour-Padé method (Fornberg and Wright~\cite[fornberg-wright_2004]) and the RBF-QR method (Fornberg, Larsson and Flyer~\cite[fornberg-larsson-flyer_2011]).
 
