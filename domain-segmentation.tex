@@ -2,24 +2,22 @@
 
 In this section we present the first phase of a two-phase algorithm that aims to recover discontinuous functions from scattered data; the second phase will be disclosed in the following section.  This algorithm is mainly intended to demonstrate the applicability of the regularity classifier described in Chapter~\ref[classificationchap], and must not be viewed as a definitive solution to the problem. Anyhow, it seems to produce satisfactory results. The proposed method greatly takes inspiration from the kernel-based adaptive approximation algorithm outlined by Lenarduzzi and Shaback~\cite[lenarduzzi-shaback_2017] (henceforth simply referred to as L-S). We restrict our attention to the bidimensional case---even if the algorithm allows for a generalisation in arbitrary dimension---because in higher dimensions the required computational cost quickly becomes prohibitive.
 
-The setting of the problem here is similar to that of L-S. Assume that a set~$X=\{\range x_N/\}\subset\Omega\subseteq ℝ^2$ of scattered data sites is given together with an associated set~$F=\{\range f_N/\}$ of function values, sampled from an unknown function~$f$.  Assume to know  that $f$ is continuous on certain non-overlapping subdomains~$\Omega_i\subseteq\Omega$, but not globally.  The goal is to recover the function~$f$ on the whole domain~$\Omega=\bigcup_{i}\Omega_i$, starting from its sampled data~$(X, F)$. There will be no a priori assumptions on the form and placement of the singularities.
+The setting of the problem here is similar to that of L-S. Assume that a set~$X=\{\range x_N/\}\subset\Omega\subseteq ℝ^2$ of scattered data sites is given together with an associated set~$F=\{\range f_N/\}$ of function values, sampled from an unknown function~$f$.  Assume to know  that $f$ is continuous on certain non-overlapping subdomains~$\Omega_j\subseteq\Omega$, but not globally.  The goal is to recover the function~$f$ on the whole domain~$\Omega=\bigcup_{j}\Omega_j$, starting from its sampled data~$(X, F)$. There will be no a priori assumptions on the form and placement of the singularities.
 
 
 
 If a rough direct interpolation is attempted, without taking into account the discontinuities at the boundaries of the subdomains, then the reproduction quality  could be suboptimal--- the Gibbs phenomenon may appear along the boundaries (Fornberg and Flyer~\cite[fornberg-flyer_2012], Jae-Hun~\cite[jae_hun_2007]), and the discontinuity curves won't be outlined well.
 One strategy to successfully recover such a discontinuous function is to first identify the different subdomains, or equivalently their boundaries, and then use this acquired knowledge to perform interpolation on each subdomain separately.  The main principle used here is that ``The approximation properties should determine the domains and their boundaries, not the other way round'' (L-S). First we determine the domains by inspecting the local regularity of the function, and then their boundaries as a consequence.
 
-To implement locality, in L-S a $k$-d tree data structure is employed (Bentley~\cite[bentley_1975]). It is used as a cheap computational method to query for each point~$x\in\Omega$ its $n$ nearest neighbours from~$X$. Here, instead, we prefer to construct the Delaunay triangulation of the set~$X$ (see Aurenhammer, Kein and Lee~\cite[aurenhammer-klein-lee_2013]), because it provides information about the proximity of the points in a more structured way.  From the computational point of view, since we are dealing with an application in dimension~$2$, the difference between the two approaches is not substantial---they both have an average {\Red time complexity}\mnote{\Red\typoscale[700/700]\url{https://en.wikipedia.org/wiki/Time_complexity}} of~$O(N\log N)$.  An example of Delaunay triangulation is in Figure~\ref[delaunayfig]. 
+To implement locality, in L-S a $k$-d tree data structure is employed (Bentley~\cite[bentley_1975]). It is used as a cheap computational method to query for each point~$x\in\Omega$ its $n$ nearest neighbours from~$X$. Here, instead, we prefer to construct the Delaunay triangulation of the set~$X$ (see Aurenhammer, Kein and Lee~\cite[aurenhammer-klein-lee_2013]), because it provides information about the proximity of the points in a more structured way.  From the computational point of view, since we are dealing with an application in dimension~$2$, the difference between the two approaches is not substantial---they both require an average {\Red time complexity}\mnote{\Red\typoscale[700/700]\url{https://en.wikipedia.org/wiki/Time_complexity}} of~$O(N\log N)$.  An example of Delaunay triangulation is in Figure~\ref[delaunayfig]. 
 
 
 \label[delaunayfig]
 \topinsert
-\bgroup
-\picw=.75\hsize
-\line{\hss\inspic{delaunay.pdf}\hss}
-\egroup
+\picw=.7\hsize
+\centerline{\inspic{delaunay.pdf}}
 \cskip
-\caption/f Delaunay triangulation for a set of $2^9$ points scattered in the domain~$[0,1]\times[0,1]\subset\R^2$.  The Delaunay triangulation maximises the minimum angle, in the sense that the smallest angle of its triangles is at least as large as the smallest angle of the triangles in any other triangulation of the points; however, the Delaunay triangulation does not necessarily minimise the maximum angle.  The boundary of the triangulation is the convex hull of the set of points.
+\caption/f Delaunay triangulation for a set of $2^7$ points scattered in~$[0,1]\times[0,1]\subset\R^2\!$.  The Delaunay triangulation has the property of  maximising the minimum angle, in the sense that the smallest angle of its triangles is at least as large as the smallest angle of the triangles in any other triangulation of the points; however, the Delaunay triangulation does not necessarily minimise the maximum angle.  The boundary of the triangulation is the convex hull of the set of points.
 \bigskip
 \endinsert
 
@@ -27,24 +25,42 @@ To implement locality, in L-S a $k$-d tree data structure is employed (Bentley~\
 
 
 
-As centres for our local analysis we use the circumcenters~$C$ of the triangles~$T$ in the triangulation, differently from what is done in L-S, where the centres are the points of~$X$.  This is convenient, because in the Delaunay triangulation a circle circumscribing any triangle does not contain points of~$X$ in its interior, and consequently the set of the $n$ nearest points to a given circumcenter is guaranteed to contain all the vertices of its triangle, if $n\geq3$.  In this algorithm the number~$n$ of local points of~$X$ to consider is kept fixed, independently of the  analysed  circumcenter.  The set of the $n$~nearest points from~$X$ to a given circumcenter may be retrieved by taking advantage of the triangulation (like in Connor and Kumar~\cite[connor-kumar_2010]), or simply by resorting to the $k$-d tree structure.
+As centres for our local analysis we use the circumcentres~$C$ of the triangles~$T$ in the triangulation, differently from what is done in L-S, where the centres are the points of~$X$.  This is convenient, because in the Delaunay triangulation a circle circumscribing any triangle does not contain points of~$X$ in its interior, and consequently the set of the $n$ nearest points to a given circumcentre is guaranteed to contain all the vertices of its triangle, if $n\geq3$.  In this algorithm the number~$n$ of local points of~$X$ to consider is kept fixed, independently of the  analysed  circumcentre.  The set of the $n$~nearest points from~$X$ to a given circumcentre may be retrieved by taking advantage of the triangulation (like in Connor and Kumar~\cite[connor-kumar_2010]), or simply by resorting to the $k$-d tree structure.
 
 We also fix a radial basis function~$\phi$ and a global shape parameter~$ε>0$. Since the goal is to detect discontinuities,  $\phi$ will be either the Wendland's or Matérn's $\Cal C^0$ function---anyhow,  basis functions with greater regularity can be used too, if higher order faults are to be detected.  Furthermore, we fix a tolerance~$\tau$, needed to build the regularity classifier~$\Cal R$, as in Definition~\ref[classifierdef].  The most important fact in this algorithm is that~{\em $\tau$ is chosen independently of the particular sampled function values~$F$}.  It must be experimentally tuned, but once tuned it can be used for any given data.
 
 
-\def\lQ{\Bm Q_{\.C}}
-First of all, the algorithm starts by selecting one single circumcenter~$c\in C$.  It can be either the first circumcenter of~$C$ (assuming to have an order on the set~$C$), or one circumcenter chosen at random. Then, the set~$X_C\subset X$ of its $n$ nearest neighbours from~$X$ is taken, together with its associated set~$F_C\subset F$ of function values. To assess the regularity of the local data~$(X_C, F_C)$, its $\phi$-regularity vector~$\lQ$ must be computed.  In order to obtain a good approximation of~$\lQ$ in the flat limit, while at the same time trying to avoid malconditioning in the interpolation system, prior to computation the global  parameter~$ε$ is rescaled so that it better fits the local domain.  Specifically, if $r \coloneq \max_{x\in X_C}\norm{x-c}$~is the radius of the local set~$X_C$, the vector~$\lQ$ gets actually computed by using the scaled basis function~$\phi_δ$, with $δ\coloneq \slfrac εr$.
+\def\lQ{\Bm Q_{\.c}}
+First of all, the algorithm starts by selecting one single circumcentre~$c\in C$.  It can be either the first circumcentre of~$C$ (assuming to have an order on the set~$C$), or one circumcentre chosen at random. Then, the set~$X_c\subset X$ of its $n$ nearest neighbours from~$X$ is taken, together with its associated set~$F_c\subset F$ of function values. To assess the regularity of the local data~$(X_c, F_c)$, its $\phi$-regularity vector~$\lQ$ must be computed.  In order to obtain a good approximation of~$\lQ$ in the flat limit, while at the same time trying to avoid malconditioning in the interpolation system, prior to computation the global  parameter~$ε$ is rescaled so that it better fits the local domain.  Specifically, if $r \coloneq \max_{x\in X_c}\norm{x-c}$~is the radius of the local set~$X_c$, the vector~$\lQ$ gets actually computed by using the scaled basis function~$\phi_δ$, with $δ\coloneq \slfrac εr$.
 
 
-After having obtained~$\lQ$, it's possible to evaluate the $\phi$-regularity classifier~$\cal R$ on the data~$(X_C, F_C)$, by the expression
+After having obtained~$\lQ$, it is possible to evaluate the $\phi$-regularity classifier~$\cal R$ on the data~$(X_c, F_c)$, by the expression
 $$
-\Cal R(X_C, F_C) = \cases{\!\phantom{-}1 & if $\norm{\lQ\!\.}_1 ≤ \tau$ \cr
+\Cal R(X_c, F_c) = \cases{\!\phantom{-}1 & if $\norm{\lQ\!\.}_1 ≤ \tau$ \cr
                             \!-1 & if $\norm{\lQ\!\.}_1 > \tau$.}
 $$
-In order to proceed to the next step, the algorithm requires that~$R(X_C, F_C)=1$, which means that all the points of~$X_C$ presumably (up to the tolerance~$\tau$) belong to one single domain~$\Omega_i\subset\Omega$, where the sampled function~$f$ is continuous.  If this is not the case, then a different circumcenter must be tried.  After possibly a few trials, a good starting circumcenter should be found.  The number of trials should be low, under the ussumption that each~$\Omega_i$ contains a moderate number of points, which of course must be bigger than~$n$.  If no starting point is found, then by exhaustion of all the circumcenters the algorithm prematurely terminates. This eventuality signals that either the parameter~$\tau$ was set too restrictive, or the sample~$(X, F)$ does not contain enough points in each subdomain~$\Omega_i$ where $f$ is continuous.  We now assume to have found a circumcenter~$C$ such that~$\Cal R(X_C, F_C) = 1$, and use it to proceed to the next step.
+In order to proceed to the next step, the algorithm requires that~$R(X_c, F_c)=1$, which means that all the points of~$X_c$ presumably (up to the tolerance~$\tau$) belong to one single domain~$\Omega_j\subset\Omega$, where the sampled function~$f$ is continuous.  If this is not the case, then a different circumcentre must be tried.  After possibly a few trials, a good starting circumcentre should be found.  The number of trials should be low, under the ussumption that each~$\Omega_j$ contains a moderate number of points, which of course must be bigger than~$n$.  If no starting point is found, then by exhaustion of all the circumcentres the algorithm prematurely terminates. This eventuality signals that either the parameter~$\tau$ was set too restrictive, or the sample~$(X, F)$ does not contain enough points in each subdomain~$\Omega_j$ where $f$ is continuous.  We now assume to have found a circumcentre~$c$ such that~$\Cal R(X_c, F_c) = 1$, and use it to proceed to the next step.
 
 
-Assuming that the classification was right, the set~$X_C$ is fully contained in one single subdomain~$\Omega_i$.  The goal now is to try and extend~$X_C$ up to the set~$X\cap\Omega_i$, made of all the data sites contained in~$\Omega_i$. 
+Assuming that the classification was right, the set~$X_c$ is fully contained in one single subdomain~$\Omega_j$.  The goal now is to try and extend~$X_c$ up to the set~$X\cap\Omega_j$, made of all the data sites contained in~$\Omega_j$.  Let us call $T_c^{\,\cal i}$ the set of all the triangles ``inside''~$X_c$, and $T_c^{\,\cal b}$ the set of all the triangles at the ``border'' of~$X_c$, i.e.,
+$$
+T_c^{\,\cal i}\coloneq \{\,t\in T\>:\>\, V(t) \subset X_c\,\},\qquad T_c^{\,\cal b}\coloneq \{\,t\in T\>:\>\, V(t)\cap X_c\neq V(t),\emptyset\,\},
+$$
+where~$V(t)$ denotes the three vertices of the triangle~$t$.  Simply speaking, $T_c^{\,\cal i}$ is the set of triangles of~$T$ whose vertices are all points of~$X_c$; and $T_c^{\,\cal b}$ is the set of triangles of~$T$ that have some but not all vertices in~$X_c$.  The union of the triangles $T_c^{\.\cal i}$ can be viewed as the realisation of the discrete set of points~$X_c$ as a subdomain of~$\Omega$; and the union of the triangles~$T_c^{\,\cal b}$ as a fat version of the border of this local subdomain. Refer to Figure~\ref[patchfig] to visualise a concrete example. % Patch
+Let us also define $\cal I$ as the current set of internal triangles, and $\cal B$ as the current set of triangles at the border.  At first they are initialised as $\Cal I \coloneq T_c^{\,\cal i}$ and~$\Cal B \coloneq T_c^{\,\cal b}$, but they will later be updated when the regular domain gets expanded.
 
+\label[patchfig]
+\topinsert
+\picw = \hsize
+\centerline{\inspic{patch.pdf}}
+\caption/f
+\endinsert
+
+
+Now, we take any of the triangles in~$\Cal B$ 
+
+
+
+% The local discrete domain, namely the set of points~$X_C$, can be turned into an actual subdomain of~$\Omega$ by taking the union of all the triangles of~$T$ that have all the vertices in~$X_C$. 
 
 % To .... clear, the full algorithm is summed up in a pseudocode language.

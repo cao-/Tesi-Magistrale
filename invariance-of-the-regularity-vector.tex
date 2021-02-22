@@ -45,7 +45,7 @@ Q_k = {U_k\over \norm s_\phi^2} = {U_k \over \Bm α^T \Bm f} = {E_k {α_k \over 
 $$
 where, as usual, $\Bm α$~is the vector of coefficients of~$s$ with respect to the basis of kernel translates. If~$\Bm C$ is the inverse of the interpolation matrix~$\Bm A=\Bm A_{\phi, X}$, simple algebraic manipulations lead to the following expressions for $E_k$ and~$W_k$:
 $$
-\def\_ineqmark{\_incr\_dnum \_wlabel\_thednum \lower3.5ex\hbox{\_thednum\kern-.080em}}
+%\def\_ineqmark{\_incr\_dnum \_wlabel\_thednum \lower3.5ex\hbox{\_thednum\kern-.080em}}
 \eqalignno{
   &E_k = {α_k \over C_{k,k}} = {(\Bm C\. \Bm f\,)_k \over C_{k,k}} =  {\sum_{j=1}^N C_{k,j}\, f_j \over C_{k,k}} = \sum_{j = 1}^N f_j\,\frame{$\displaystyle \hbyw{1.8ex}{0em} C_{k,j} \over \displaystyle C_{k,k}$}\,, & \eqmark[EkWk]\cr
  &\eqalign{W_k = {α_k \over \Bm α^T \Bm f} = {α_k \over \Bm f^{\,\.T}\! \Bm C\, \Bm f} &= {\sum_{j=1}^N C_{k,j}\,f_j \over \sum_{i=1}^N \sum_{l=1}^N f_i\, f_l\,C_{i,l}} = \sum_{j=1}^N\. f_j\. {C_{k,j} \over \sum_{i=1}^N \sum_{l=1}^N f_i\, f_l\,C_{i,l}}\cr
