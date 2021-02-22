@@ -5,8 +5,8 @@
 
 \protected\def\.{\mskip 1.5mu\relax}
 
-%\abovedisplayskip=.9\abovedisplayskip
-%\belowdisplayskip=.9\belowdisplayskip
+%\abovedisplayskip=4pt plus 1pt minus 1pt 
+%\belowdisplayskip=\abovedisplayskip
 %\the\spaceskip
 %\spaceskip=.3em plus.1em minus .05em
 
@@ -45,6 +45,7 @@
 \def\Bform#1#2{\biggl(\,#1\,,\,#2\,\biggr)}
 \def\R{\BbbR}
 \def\N{\BbbN}
+\def\slfrac#1#2{\raise.4ex\hbox{$#1$}/\lower.4ex\hbox{$#2$}}
 
 % Compatibility with LaTeX (Inkscape pictures)
 \def\textbf#1{\bf #1}
