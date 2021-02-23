@@ -14,10 +14,11 @@ To implement locality, in L-S a $k$-d tree data structure is employed (Bentley~\
 
 \label[delaunayfig]
 \topinsert
-\picw=.7\hsize
+\picw=\hsize
 \centerline{\inspic{delaunay.pdf}}
 \cskip
-\caption/f Delaunay triangulation for a set of $2^7$ points scattered in~$[0,1]\times[0,1]\subset\R^2\!$.  The Delaunay triangulation has the property of  maximising the minimum angle, in the sense that the smallest angle of its triangles is at least as large as the smallest angle of the triangles in any other triangulation of the points; however, the Delaunay triangulation does not necessarily minimise the maximum angle.  The boundary of the triangulation is the convex hull of the set of points.
+\vskip-0.5em
+\caption/f Delaunay triangulation for a set of $2^7$ points scattered in a rectangular domain.  The Delaunay triangulation has the property of  maximising the minimum angle, in the sense that the smallest angle of its triangles is at least as large as the smallest angle of the triangles in any other triangulation of the points; however, the Delaunay triangulation does not necessarily minimise the maximum angle.  The boundary of the triangulation is the convex hull of the set of points.
 \bigskip
 \endinsert
 
@@ -27,14 +28,16 @@ To implement locality, in L-S a $k$-d tree data structure is employed (Bentley~\
 
 As centres for our local analysis we use the circumcentres~$C$ of the triangles~$T$ in the triangulation, differently from what is done in L-S, where the centres are the points of~$X$.  This is convenient, because in the Delaunay triangulation a circle circumscribing any triangle does not contain points of~$X$ in its interior, and consequently the set of the $n$ nearest points to a given circumcentre is guaranteed to contain all the vertices of its triangle, if $n\geq3$.  In this algorithm the number~$n$ of local points of~$X$ to consider is kept fixed, independently of the  analysed  circumcentre.  The set of the $n$~nearest points from~$X$ to a given circumcentre may be retrieved by taking advantage of the triangulation (like in Connor and Kumar~\cite[connor-kumar_2010]), or simply by resorting to the $k$-d tree structure.
 
-We also fix a radial basis function~$\phi$ and a global shape parameter~$ε>0$. Since the goal is to detect discontinuities,  $\phi$ will be either the Wendland's or Matérn's $\Cal C^0$ function---anyhow,  basis functions with greater regularity can be used too, if higher order faults are to be detected.  Furthermore, we fix a tolerance~$\tau$, needed to build the regularity classifier~$\Cal R$, as in Definition~\ref[classifierdef].  The most important fact in this algorithm is that~{\em $\tau$ is chosen independently of the particular sampled function values~$F$}.  It must be experimentally tuned, but once tuned it can be used for any given data.
+We also fix a radial basis function~$\phi$ and a global shape parameter~$ε>0$. Since the goal is to detect discontinuities,  $\phi$ will be either the Wendland's or Matérn's $\Cal C^0$ function---anyhow,  basis functions with greater regularity can be used too, if higher order faults are to be detected.  Furthermore, we fix a tolerance~$\tau$, needed to build the regularity classifier~$\Cal R$, as in Definition~\ref[classifierdef].  The most important characteristic of this algorithm is that~{\em $\tau$ is chosen independently of the sampled function values~$F$}.  It must be experimentally tuned, but once tuned it can be used for any given data.
 
 
 \def\lQ{\Bm Q_{\.c}}
-First of all, the algorithm starts by selecting one single circumcentre~$c\in C$.  It can be either the first circumcentre of~$C$ (assuming to have an order on the set~$C$), or one circumcentre chosen at random. Then, the set~$X_c\subset X$ of its $n$ nearest neighbours from~$X$ is taken, together with its associated set~$F_c\subset F$ of function values. To assess the regularity of the local data~$(X_c, F_c)$, its $\phi$-regularity vector~$\lQ$ must be computed.  In order to obtain a good approximation of~$\lQ$ in the flat limit, while at the same time trying to avoid malconditioning in the interpolation system, prior to computation the global  parameter~$ε$ is rescaled so that it better fits the local domain.  Specifically, if $r \coloneq \max_{x\in X_c}\norm{x-c}$~is the radius of the local set~$X_c$, the vector~$\lQ$ gets actually computed by using the scaled basis function~$\phi_δ$, with $δ\coloneq \slfrac εr$.
+First of all, the algorithm starts by selecting one single circumcentre~$c\in C$.  It can be either the first circumcentre of~$C$ (assuming to have an order on the set~$C$), or one circumcentre chosen at random. Then, the set~$X_c\subset X$ of its $n$ nearest neighbours from~$X$ is taken, together with its associated set~$F_c\subset F$ of function values. To assess the regularity of the local data~$(X_c, F_c)$, its $\phi$-regularity vector~$\lQ$ must be computed.
+
+In order to obtain a good approximation of~$\lQ$ in the flat limit, while at the same time trying to avoid malconditioning in the interpolation system, prior to computation the global  parameter~$ε$ may be rescaled so that it better fits the local domain.  Specifically, if $d \coloneq \max_{x, y\in X_c}\norm{x-y}$~is the diameter of the local set~$X_c$ (value that can be obtained from the distance matrix of~$X_c$), the vector~$\lQ$ may actually be computed by using the scaled basis function~$\phi_δ$, with $δ\coloneq \slfrac εr$, instead of the globally defined function~$\phi_ε$.  But this additional scaling is not necessary if the data sites~$X$ are not too wildly scattered, in which case the same~$\phi_ε$ could be used for each local computation. Additionally, before computing~$\Bm Q_c$ it may be wise to bring the set of data values close to zero, by applying a translation $F_c\mapsto F_c - t$, as described in Section~\ref[numericalsec]. For instance, $t$ could be the mean of the values of~$F_c$ or simply the mean of the function values at the vertices of the triangle having circumcentre~$c$.  
 
 
-After having obtained~$\lQ$, it is possible to evaluate the $\phi$-regularity classifier~$\cal R$ on the data~$(X_c, F_c)$, by the expression
+After having obtained~$\lQ$, it is possible to evaluate the $\phi$-regularity classifier~$\cal R$ on the data~$(X_c, F_c)$ by the expression
 $$
 \Cal R(X_c, F_c) = \cases{\!\phantom{-}1 & if $\norm{\lQ\!\.}_1 ≤ \tau$ \cr
                             \!-1 & if $\norm{\lQ\!\.}_1 > \tau$.}
@@ -46,18 +49,29 @@ Assuming that the classification was right, the set~$X_c$ is fully contained in 
 $$
 T_c^{\,\cal i}\coloneq \{\,t\in T\>:\>\, V(t) \subset X_c\,\},\qquad T_c^{\,\cal b}\coloneq \{\,t\in T\>:\>\, V(t)\cap X_c\neq V(t),\emptyset\,\},
 $$
-where~$V(t)$ denotes the three vertices of the triangle~$t$.  Simply speaking, $T_c^{\,\cal i}$ is the set of triangles of~$T$ whose vertices are all points of~$X_c$; and $T_c^{\,\cal b}$ is the set of triangles of~$T$ that have some but not all vertices in~$X_c$.  The union of the triangles $T_c^{\.\cal i}$ can be viewed as the realisation of the discrete set of points~$X_c$ as a subdomain of~$\Omega$; and the union of the triangles~$T_c^{\,\cal b}$ as a fat version of the border of this local subdomain. Refer to Figure~\ref[patchfig] to visualise a concrete example. % Patch
-Let us also define $\cal I$ as the current set of internal triangles, and $\cal B$ as the current set of triangles at the border.  At first they are initialised as $\Cal I \coloneq T_c^{\,\cal i}$ and~$\Cal B \coloneq T_c^{\,\cal b}$, but they will later be updated when the regular domain gets expanded.
+where~$V(t)$ denotes the three vertices of the triangle~$t$.  Simply speaking, $T_c^{\,\cal i}$ is the set of triangles of~$T$ whose vertices belong to~$X_c$; and $T_c^{\,\cal b}$ is the set of triangles of~$T$ that have some but not all vertices in~$X_c$.  The union of the triangles $T_c^{\.\cal i}$ can be viewed as the realisation as a subdomain of~$\Omega$ of the discrete set of points~$X_c$; and the union of the triangles~$T_c^{\,\cal b}$ as a fat version of the border of this local subdomain. Refer to Figure~\ref[patchfig] to visualise a concrete example. % Patch
+
+
+Let us also define $\cal I$ as the current set of internal triangles, and $\cal B$ as the current set of triangles at the border.  At first they are initialised as $\Cal I \coloneq T_c^{\,\cal i}$ and~$\Cal B \coloneq T_c^{\,\cal b}$, but later they will be updated when the regular domain gets expanded.  Finally, we store in the computer memory $X_c$ and also the function that associates to each element of~$\Cal B$ the set~$X_c$.  This function serves as a way to remind that the triangles of~$\Cal B$ are at the border of the triangular domain defined by the points~$X_c$.
+
 
 \label[patchfig]
 \topinsert
 \picw = \hsize
 \centerline{\inspic{patch.pdf}}
 \caption/f
+A portion of a set $X\subset\Omega$ of data sites and its Delaunay triangulation.  The red cross and the blue triangle are respectively the selected circumcentre~$c\in C$ and its triangle. It is here represented also the circle of centre~$c$ and radius~$r\coloneq \max_{x\in X_c}\norm{x-c}$, which is the smallest circle centred at~$c$ that contains all the points~$X_c$.  Its radius~$r$ depends on the chosen circumcentre~$c$, so it is not a globally fixed parameter: what is fixed is the number of points of~$X_c$---in  this example $n=|X_c|=100$.  The set~$T_c^{\,\cal i}$ is the set of green triangles, while the set~$T_c^{\,\cal b}$ is that of yellow triangles. 
 \endinsert
 
+Now the main loop begins, where we iteratively consider a new centre~$c\in C$ from the circumcentres of the triangles in~$\cal B$, and try to extend the domain from that position.  Pretend to be at a general point of the loop, where
+\begitems
+* $\cal I$ is a set of triangles that are inside the so far extended domain, and $\Cal B$ is the set of triangles at the border of this domain (initially $\cal I$ and~$\cal B$ are just the sets defined above);
+* Each set~$X_c$ that previously passed the classification step has been stored (initially there is only one set~$X_c$);
+* There is a map that associates each triangle~$t\in\cal B$ to the collection of the stored sets of points~$X_c$ which satisfy~$t\in T_c^{\,\cal b}$ (one single triangle $t$ may be at the border of more than one set of points~$X_c$).
+\enditems
 
-Now, we take any of the triangles in~$\Cal B$ 
+If $\cal B=\emptyset$, then the so far constructed domain has no more extension points, so (if everything worked as it should) all the points of the subdomain~$\Omega_j$ have been collected within the set of triangles~$\cal I$ (as the vertices of those triangles). Reached this point, the whole algorithm is repeated again starting from one of the remaining triangles, which are the triangles not belonging to~$\cal I$. This process is repeated again and again until we have exhausted all the triangles of~$T$ and have found a collection of sets~$\cal I$ that define the different subdomains~$\Omega_j$ that were to be found.
+
 
 
 
