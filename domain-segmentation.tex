@@ -37,22 +37,22 @@ First of all, the algorithm starts by selecting one single circumcentre~$c\in C$
 In order to obtain a good approximation of~$\lQ$ in the flat limit, while at the same time trying to avoid malconditioning in the interpolation system, prior to computation the global  parameter~$ε$ may be rescaled so that it better fits the local domain.  Specifically, if $d \coloneq \max_{x, y\in X_c}\norm{x-y}$~is the diameter of the local set~$X_c$ (value that can be obtained from the distance matrix of~$X_c$), the vector~$\lQ$ may actually be computed by using the scaled basis function~$\phi_δ$, with $δ\coloneq \slfrac εr$, instead of the globally defined function~$\phi_ε$.  But this additional scaling is not necessary if the data sites~$X$ are not too wildly scattered, in which case the same~$\phi_ε$ could be used for each local computation. Additionally, before computing~$\Bm Q_c$ it may be wise to bring the set of data values close to zero, by applying a translation $F_c\mapsto F_c - t$, as described in Section~\ref[numericalsec]. For instance, $t$ could be the mean of the values of~$F_c$ or simply the mean of the function values at the vertices of the triangle having circumcentre~$c$.  
 
 
-After having obtained~$\lQ$, it is possible to evaluate the $\phi$-regularity classifier~$\cal R$ on the data~$(X_c, F_c)$ by the expression
+After having obtained~$\lQ$, it is possible to evaluate the $\phi$-regularity classifier~$\Cal R$ on the data~$(X_c, F_c)$ by the expression
 $$
 \Cal R(X_c, F_c) = \cases{\!\phantom{-}1 & if $\norm{\lQ\!\.}_1 ≤ \tau$ \cr
                             \!-1 & if $\norm{\lQ\!\.}_1 > \tau$.}
 $$
-In order to proceed to the next step, the algorithm requires that~$R(X_c, F_c)=1$, which means that all the points of~$X_c$ presumably (up to the tolerance~$\tau$) belong to one single domain~$\Omega_j\subset\Omega$, where the sampled function~$f$ is continuous.  If this is not the case, then a different circumcentre must be tried.  After possibly a few trials, a good starting circumcentre should be found.  The number of trials should be low, under the ussumption that each~$\Omega_j$ contains a moderate number of points, which of course must be bigger than~$n$.  If no starting point is found, then by exhaustion of all the circumcentres the algorithm prematurely terminates. This eventuality signals that either the parameter~$\tau$ was set too restrictive, or the sample~$(X, F)$ does not contain enough points in each subdomain~$\Omega_j$ where $f$ is continuous.  We now assume to have found a circumcentre~$c$ such that~$\Cal R(X_c, F_c) = 1$, and use it to proceed to the next step.
+In order to proceed to the next step, the algorithm requires that~$R(X_c, F_c)=1$, which means that all the points of~$X_c$ presumably (up to the tolerance~$\tau$) belong to one single subdomain~$\Omega_j\subset\Omega$, where the sampled function~$f$ is continuous.  If this is not the case, then a different circumcentre must be tried.  After possibly a few trials, a good starting circumcentre should be found.  The number of trials should be low, under the ussumption that each~$\Omega_j$ contains a moderate number of points, which of course must be bigger than~$n$.  If no starting point is found, then by exhaustion of all the circumcentres the algorithm prematurely terminates. This eventuality signals that either the parameter~$\tau$ was set too restrictive, or the sample~$(X, F)$ does not contain enough points in each subdomain~$\Omega_j$ where $f$ is continuous.  We now assume to have found a circumcentre~$c$ such that~$\Cal R(X_c, F_c) = 1$, and use it to proceed to the next step.
 
 
-Assuming that the classification was right, the set~$X_c$ is fully contained in one single subdomain~$\Omega_j$.  The goal now is to try and extend~$X_c$ up to the set~$X\cap\Omega_j$, made of all the data sites contained in~$\Omega_j$.  Let us call $T_c^{\,\cal i}$ the set of all the triangles ``inside''~$X_c$, and $T_c^{\,\cal b}$ the set of all the triangles at the ``border'' of~$X_c$, i.e.,
+Assuming that the classification was right, the set~$X_c$ is fully contained in one single subdomain~$\Omega_j$.  The goal now is to try and extend~$X_c$ up to the set~$X\cap\Omega_j$, made of all the data sites contained in~$\Omega_j$.  Let us call $\smash{T_c^{\,\Cal i}}$ the set of all the triangles ``inside''~$X_c$, and $\smash{T_c^{\,\Cal b}}$ the set of all the triangles at the ``border'' of~$X_c$, i.e.,
 $$
-T_c^{\,\cal i}\coloneq \{\,t\in T\>:\>\, V(t) \subset X_c\,\},\qquad T_c^{\,\cal b}\coloneq \{\,t\in T\>:\>\, V(t)\cap X_c\neq V(t),\emptyset\,\},
+T_c^{\,\Cal i}\coloneq \{\,t\in T\>:\>\, V(t) \subset X_c\,\},\qquad T_c^{\,\Cal b}\coloneq \{\,t\in T\>:\>\, V(t)\cap X_c\neq V(t),\emptyset\,\},
 $$
-where~$V(t)$ denotes the three vertices of the triangle~$t$.  Simply speaking, $T_c^{\,\cal i}$ is the set of triangles of~$T$ whose vertices belong to~$X_c$; and $T_c^{\,\cal b}$ is the set of triangles of~$T$ that have some but not all vertices in~$X_c$.  The union of the triangles $T_c^{\.\cal i}$ can be viewed as the realisation as a subdomain of~$\Omega$ of the discrete set of points~$X_c$; and the union of the triangles~$T_c^{\,\cal b}$ as a fat version of the border of this local subdomain. Refer to Figure~\ref[patchfig] to visualise a concrete example. % Patch
+where~$V(t)$ denotes the three vertices of the triangle~$t$.  Simply speaking, $T_c^{\,\Cal i}$ is the set of triangles of~$T$ whose vertices belong to~$X_c$; and $T_c^{\,\Cal b}$ is the set of triangles of~$T$ that have some but not all vertices in~$X_c$.  The union of the triangles $T_c^{\.\Cal i}$ can be viewed as the realisation as a subdomain of~$\Omega$ of the discrete set of points~$X_c$; and the union of the triangles~$T_c^{\,\Cal b}$ as a fat version of the border of this local subdomain. Refer to Figure~\ref[patchfig] to visualise a concrete example. % Patch
 
 
-Let us also define $\cal I$ as the current set of internal triangles, and $\cal B$ as the current set of triangles at the border.  At first they are initialised as $\Cal I \coloneq T_c^{\,\cal i}$ and~$\Cal B \coloneq T_c^{\,\cal b}$, but later they will be updated when the regular domain gets expanded.  Finally, we store in the computer memory $X_c$ and also the function that associates to each element of~$\Cal B$ the set~$X_c$.  This function serves as a way to remind that the triangles of~$\Cal B$ are at the border of the triangular domain defined by the points~$X_c$.
+Let us also define $\Cal I_j$ as the current set of internal triangles, and $\Cal B_j$ as the current set of triangles at the border.  They are initialised as $\smash{\Cal I_j \coloneq T_c^{\,\Cal i}}$ and~$\smash{\Cal B_j \coloneq T_c^{\,\Cal b}}$, but later they will be updated when the regular domain gets expanded.  Finally, we store in the computer memory $X_c$ and also the function that associates to each element of~$\Cal B_j$ the set~$X_c$.  This function serves as a way to remind that the triangles currently in~$\Cal B_j$ are located at the border of the domain of triangles with vertices in~$X_c$.
 
 
 \label[patchfig]
@@ -60,19 +60,58 @@ Let us also define $\cal I$ as the current set of internal triangles, and $\cal 
 \picw = \hsize
 \centerline{\inspic{patch.pdf}}
 \caption/f
-A portion of a set $X\subset\Omega$ of data sites and its Delaunay triangulation.  The red cross and the blue triangle are respectively the selected circumcentre~$c\in C$ and its triangle. It is here represented also the circle of centre~$c$ and radius~$r\coloneq \max_{x\in X_c}\norm{x-c}$, which is the smallest circle centred at~$c$ that contains all the points~$X_c$.  Its radius~$r$ depends on the chosen circumcentre~$c$, so it is not a globally fixed parameter: what is fixed is the number of points of~$X_c$---in  this example $n=|X_c|=100$.  The set~$T_c^{\,\cal i}$ is the set of green triangles, while the set~$T_c^{\,\cal b}$ is that of yellow triangles. 
+A portion of a set $X\subset\Omega$ of data sites and its Delaunay triangulation.  The red cross and the blue triangle are respectively the selected circumcentre~$c\in C$ and its triangle. It is here represented also the circle of centre~$c$ and radius~$r\coloneq \max_{x\in X_c}\norm{x-c}$, which is the smallest circle centred at~$c$ that contains all the points~$X_c$.  Its radius~$r$ depends on the chosen circumcentre~$c$, so it is not a globally fixed parameter: what is fixed is the number of points of~$X_c$---in  this example $n=|X_c|=100$.  The set~$T_c^{\,\Cal i}$ is the set of green triangles, while the set~$T_c^{\,\Cal b}$ is that of yellow triangles. 
 \endinsert
 
-Now the main loop begins, where we iteratively consider a new centre~$c\in C$ from the circumcentres of the triangles in~$\cal B$, and try to extend the domain from that position.  Pretend to be at a general point of the loop, where
+Now the main loop begins, where we iteratively consider a new centre~$c\in C$ from the circumcentres of the triangles in~$\Cal B_j$, and try from that position to extend the domain~$\Cal I_j$.  Let us pretend to be at a general point of the loop, where
 \begitems
-* $\cal I$ is a set of triangles that are inside the so far extended domain, and $\Cal B$ is the set of triangles at the border of this domain (initially $\cal I$ and~$\cal B$ are just the sets defined above);
-* Each set~$X_c$ that previously passed the classification step has been stored (initially there is only one set~$X_c$);
-* There is a map that associates each triangle~$t\in\cal B$ to the collection of the stored sets of points~$X_c$ which satisfy~$t\in T_c^{\,\cal b}$ (one single triangle $t$ may be at the border of more than one set of points~$X_c$).
+* $\Cal I_j$ is a set of triangles that represent the triangulation of the so far constructed piece of the subdomain~$\Omega_j\subset\Omega$, and $\Cal B_j$ is the set of triangles at the border of~$\Cal I_j$ (initially $\Cal I_j$ and~$\Cal B_j$ are just the sets defined above);
+* Each set~$X_c$ that previously passed the classification step has been stored (in the first part of the algorithm we stored just one such set~$X_c$);
+* There is a map that associates each triangle~$t\in\Cal B_j$ to the collection of the stored sets of points~$X_c$ which satisfy~$\smash{t\in T_c^{\,\Cal b}}$ (one single triangle $t$ may be at the border of more than one set of points~$X_c$).
 \enditems
 
-If $\cal B=\emptyset$, then the so far constructed domain has no more extension points, so (if everything worked as it should) all the points of the subdomain~$\Omega_j$ have been collected within the set of triangles~$\cal I$ (as the vertices of those triangles). Reached this point, the whole algorithm is repeated again starting from one of the remaining triangles, which are the triangles not belonging to~$\cal I$. This process is repeated again and again until we have exhausted all the triangles of~$T$ and have found a collection of sets~$\cal I$ that define the different subdomains~$\Omega_j$ that were to be found.
+If $\Cal B_j=\emptyset$, then the so far constructed domain~$\Cal I_j$ has no more possible extension points, so (if every classification was correct) all the points of the subdomain~$\Omega_j$ have already been collected within the set of triangles~$\Cal I_j$ (as the vertices of those triangles). After having found the first subdomain~$\Omega_j\subset\Omega$,  the whole algorithm is repeated again, by starting from one of the remaining triangles, which are the triangles not belonging to~$\Cal I_j$. This process is repeated again and again until we have exhausted all the triangles of~$T$ and have found a collection of sets~$\{\Cal I_j\}$ that define the different subdomains~$\{\Omega_j\}$ that were to be found.  At this point the algorithm terminates.
 
 
+If instead $\Cal B_j\neq \emptyset$, then we can select one new triangle~$t\in \Cal B_j$ (which one we choose doesn't matter) and its circumcentre~$c$, and try to extend~$\Cal I_j$ from this position. To do so, we consider again the set~$X_c$ of the $n$ nearest neighbours to~$c$ taken from~$X$, with the corresponding set~$F_c$ of function values, and compute the regularity vector~$\Bm Q_c$ as before. We can then classify the data~$(X_c, F_c)$ by evaluating $\Cal R(X_c, F_c)$. If the classifier evaluates to~$1$, it means that (according to the tolerance~$\tau$) each point of~$X_c$ must belong to~$\Omega_j$, and so we can extend~$\Cal I_j$ by adding to it the set~$\smash{T_c^{\.\cal i}}$ of triangles with vertices in~$X_c$ (most probably, some of these triangles already belong to~$\Cal I_j$); if the classifier evaluates to~$0$, it means that there are points in~$X_c$ belonging to a subdomain of~$\Omega$ different from~$\Omega_j$.  We have to remove those points and keep only the ones that belong to~$\Omega_j$.
+
+
+We need a way to efficiently remove all the points of~$X_c$ located outside of~$\Omega_j$ and at the same time try to keep the most possible points of~$X_c$ that are contained in~$\Omega_j$.  A possible strategy is described here.  First we retrieve from the computer memory all the stored sets~$X_{c'}$  such that~$\smash{t\in T_{c'}^{\.\cal b}}$, and let~$Y$ be their union.  Certainly, we don't want to remove from~$X_c$ the points of~$Y$ (because $Y$ is in the domain~$\Cal I_j$ that we are trying to extend), nor the vertices of the triangle~$t$ (because we are trying to extend $\Cal I_j$ by adding at least~$t$).  Let~$Z\coloneq Y\cup V(t)\cup X_c$ be the set of points of~$X_c$ that must not be removed. To actually have an idea about which points of~$X_c\setminus Z$ should be removed from~$X_c$, we can look at the entries of the previously computed vector~$\Bm Q_c$.  The points of~$X_c$ close to the boundary of~$\Omega_j$ are the ones that have the largest associated value in the vector~$\Bm Q_c$. We thus take the point $p\in X_c\setminus Z$ that have the maximum value in~$\Bm Q_c$, and  consider the open half plane
+$$
+\Pi\coloneq \{\,x\in \Omega\,:\>\langle\. p - c,\, x- p\rangle > 0\}
+$$
+determined by the line passing from~$p$ and perpendicular to the vector~$x-p$, and not containing the point~$c$. Finally we update~$X_c$ by removing from it the set of points~$(X_c\cap\Pi)\setminus Z$.  Figure~\ref[removefig] should help understanding this part.
+
+
+In case $(X_c\cap\Pi)\setminus Z=\emptyset$ (that is, in case we didn't remove any point from~$X_c$), then we remove from~$X_c$ the point~$p$.  We then compute again~$\Bm Q_c$ and use it to evaluate~$\Cal R(X_c, F_c)$, until it finally happens that~$\Cal R(X_c, F_c)=1$ and so that the reduced set~$X_c$  can be used to extend~$\cal I$.  If  $\Cal R(X_c, F_c)$ is always~$0$ and there are no more points that can be removed from~$X_c$, then we simply remove~$t$ from the set~$\cal B_j$ of boundary triangles.
+
+Finally, when we manage to find a set~$X_c$ that can extend~$Cal I_j$, we actually extend~$\Cal I_j$ by adding to it the set~$T_c^{\.\cal i}$.  Moreover, we update the set~$\Cal B$ by removing from it the triangles of~$T_c^{\.\cal i}$ and adding to it the triangles~$T_c^{\.\cal b}$.
+
+
+
+
+
+\label[removefig]
+\topinsert
+\centerline{\frame{\figureproof{3in}{\hsize}}}
+\cskip
+\caption/f
+\bigskip
+\endinsert
+
+
+\dots
+
+\dots
+
+We try to summarise the whole described algorithm by using a pseudo-code language.
+
+\dots
+
+\dots
+
+\bigskip\bigskip
+An implementation of the described algorithm, written in the MATLAB language, is available at GitHub~\cite[github-algorithm].  
 
 
 % The local discrete domain, namely the set of points~$X_C$, can be turned into an actual subdomain of~$\Omega$ by taking the union of all the triangles of~$T$ that have all the vertices in~$X_C$. 
