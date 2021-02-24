@@ -1,0 +1,17 @@
+
+
+Assume  that the domain segmentation phase was successful, so that  we have got a collection~$\Cal I_j$ of triangles that correctly define the various subdomains $\Omega_j$ of~$\Omega$, where the sampled function~$f$ is continuous. The next phase consists in actually recovering~$f$.   In order to produce an accurate result, the recovery process should be aware of the discontinuities of~$f$.
+
+
+To reconstruct~$f$ from the data~$(X, F)$ means to find an interpolant~$s$ that can predict with good accuracy the values of~$f$ at any given set~$E\subset\Omega$ of {\em evaluation points}.   If there is some way to separate any set $E$ into a collection of sets~$\{E_j\}_{j=1}^M$ such that $E_j\subset\Omega_j$ for each~$j$, then the reconstruction can easily be performed, by considering each subdomain separately.
+
+Let $X_j\subset X$ be the set of vertices of the triangles~$\Cal I_j$, i.e., the set of all the data sites that belong to~$\Omega_j$, and $F_j$ its corresponding set of data values.  Assume to have produced for each $j=1,2,\dots, M$ a regular interpolant $s_j$ of the data~$(X_j, F_j)$, either by direct interpolation with some appropriate kernel function~$\Phi$, or by using other techniques like the {\em partition of unity} method~(Wendland~\cite[wendland_2002]).  Then the reconstructed version~$s$ of the function~$f$ can be piecewise defined as
+$$
+s(e)\coloneq\cases{s_1(e) & if $e\in E_1$ \cr
+             s_2(e) & if $e\in E_2$ \cr
+             \quad\hbyw{3ex}{0em}\smash{\vdots}&\quad\smash{\vdots}  \cr
+             s_M(e) & if $e\in E_M$.}
+$$
+
+
+We therefore only need some way to assign to each evaluation point~$e\in E$ its domains~$\{\Omega_j\}_{j=1}^N$.  The only information available is that, for each~$j$ the data sites~$X_j$ belong to~$\Omega_j$.  This information must be used to predict where to locate each given point of~$E$.  Of course we can't expect to perfectly separate~$E$ into subsets~$E_j$ such that $E_j$ is  fully contained inside~$\Omega_j$ for each~$j$, based on the available knowledge. One technique that seems to give accurate results is the {\em support vector machine} (SVM), an algorithm from the field of machine learning belonging to the class of the supervised learning algorithms.  Like any other supervised learning algorithm, the SVM can produce a model base on ...
