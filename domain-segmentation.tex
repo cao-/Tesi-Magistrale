@@ -2,7 +2,7 @@
 
 In this section we present the first phase of a two-phase algorithm that aims to recover discontinuous functions from scattered data; the second phase will be disclosed in the following section.  This algorithm is mainly intended to demonstrate the applicability of the regularity classifier described in Chapter~\ref[classificationchap], and must not be viewed as a definitive solution to the problem. Anyhow, it seems to produce satisfactory results. The proposed method greatly takes inspiration from the kernel-based adaptive approximation algorithm outlined by Lenarduzzi and Shaback~\cite[lenarduzzi-shaback_2017] (henceforth simply referred to as L-S). We restrict our attention to the bidimensional case---even if the algorithm allows for a generalisation in arbitrary dimension---because in higher dimensions the required computational cost quickly becomes prohibitive.
 
-The setting of the problem here is similar to that of L-S. Assume that a set~$X=\{\range x_N/\}\subset\Omega\subseteq ℝ^2$ of scattered data sites is given together with an associated set~$F=\{\range f_N/\}$ of function values, sampled from an unknown function~$f$.  Assume to know  that $f$ is continuous on certain non-overlapping subdomains~$\Omega_j\subseteq\Omega$, but not globally.  The goal is to recover the function~$f$ on the whole domain~$\Omega=\bigcup_{j}\Omega_j$, starting from its sampled data~$(X, F)$. There will be no a priori assumptions on the form and placement of the singularities.
+The setting of the problem here is similar to that of L-S. Assume that a set~$X=\{\range x_N/\}\subset\Omega\subseteq ℝ^2$ of scattered data sites is given together with an associated set~$F=\{\range f_N/\}$ of function values, sampled from an unknown function~$f$.  Assume to know  that $f$ is continuous on certain non-overlapping subdomains~$\Omega_j\subseteq\Omega$, but not globally.  The goal is to recover the function~$f$ on the whole domain~$\smash{\Omega=\bigcup_{j=1}^M\Omega_j}$, starting from its sampled data~$(X, F)$. There will be no a priori assumptions on the form and placement of the singularities.
 
 
 
@@ -52,7 +52,7 @@ $$
 where~$V(t)$ denotes the three vertices of the triangle~$t$.  Simply speaking, $T_c^{\,\Cal i}$ is the set of triangles of~$T$ whose vertices belong to~$X_c$; and $T_c^{\,\Cal b}$ is the set of triangles of~$T$ that have some but not all vertices in~$X_c$.  The union of the triangles $T_c^{\.\Cal i}$ can be viewed as the realisation  of the discrete set of points~$X_c$ as a subdomain of~$\Omega$; and the union of the triangles~$T_c^{\,\Cal b}$ as a fat version of the border of this local subdomain. Refer to Figure~\ref[patchfig] to visualise a concrete example. % Patch
 
 
-Let us also define $\Cal I_j$ as the current set of internal triangles, and $\Cal B_j$ as the current set of triangles at the border.  They are initialised as $\smash{\Cal I_j \coloneq T_c^{\,\Cal i}}$ and~$\smash{\Cal B_j \coloneq T_c^{\,\Cal b}}$, but later they will be updated when the regular domain gets expanded.  Finally, we store in the computer memory $X_c$ (actually, just the indices of $X_c$ in the ordered set~$X$) and also the function that associates to each element of~$\Cal B_j$ the set~$X_c$.  This function serves as a way to remind that the triangles currently in~$\Cal B_j$ are located at the border of the domain of triangles with vertices in~$X_c$.  
+Let us also define $\Cal I_j$ as the current set of internal triangles, and $\Cal B_j$ as the current set of triangles at the border.  They are initialised as $\smash{\Cal I_j \coloneq T_c^{\,\Cal i}}$ and~$\smash{\Cal B_j \coloneq T_c^{\,\Cal b}}$, but later they will be updated when the regular domain gets expanded. Moreover, we progressively keep track in the set~$\smash{\Cal D_j}$ of triangles that can't become part of~$\Cal B_j$---initially we simply assign~$\Cal D_j\coloneq\emptyset$.  Finally, we store in the computer memory $X_c$ (actually, just the indices of $X_c$ in the ordered set~$X$) and also the function that associates to each element of~$\Cal B_j$ the set~$X_c$.  This function serves as a way to remind that the triangles currently in~$\Cal B_j$ are located at the border of the domain of triangles with vertices in~$X_c$.  
 
 
 \label[patchfig]
@@ -72,48 +72,43 @@ Now the main loop begins, where we iteratively consider a new centre~$c\in C$ fr
 The decision to either enter the loop or terminate it depends on the content of~$\Cal B_j$, whether it is empty or not.
 
 
-If $\Cal B_j=\emptyset$, then the so far constructed domain~$\Cal I_j$ has no more possible extension points, so (if every classification was correct) all the points of the subdomain~$\Omega_j$ have already been collected within the set of triangles~$\Cal I_j$ (as the vertices of those triangles), and the first subdomain~$\Omega_j$ has been determined. Then, in order to determine the other subdomains of~$\Omega$, the whole algorithm is repeated again, by starting from one of the remaining triangles, which are the triangles not belonging to~$\Cal I_j$. This process is repeated again and again until all the triangles of~$T$ have been exhausted, and a collection of sets~$\{\Cal I_j\}$ which define the different subdomains~$\{\Omega_j\}$ has been found.  At this point we terminate the algorithm by returning the triangulations~$\{\Cal I_j\}$.
+\label[removefig]
+\topinsert
+\picw=\hsize
+\centerline{\inspic{general.pdf}}
+\cskip
+\vskip-0.9em
+\caption/f
+This picture visualises a portion of a set~$X\subset\Omega$ of data sites with its triangulation, where~$\Omega=[0,1]\times[0,1]\subset\R^2$. The sampled function~$f$ is discontinuous, and the black dashed line represents its discontinuity curve that separates~$\Omega$ into two subdomains.  Here we are at a general point of the algorithm, where the green, yellow, and red triangles are respectively the set $\Cal I_j$, $\Cal B_j$, and~$\Cal D_j$.  The blue triangle is the triangle~$\smash{t'\in\Cal B_j}$ that is currently being analysed.  The red circle, centred at the circumcentre~$\smash{c'}$ (the red cross) of~$t'$, encloses the set of the~$n$ nearest points to~$\smash{c'}$ taken from~$X$ (in this example $n = 100$).
+The small black circles are the points of~$X_{c'}$ that must not be removed from it---this is the set that we called~$Z$.  Notice that $Z$ need not be equal to the intersection of~$X_{c'}$ with the vertices of the green triangles.
+  The small red circle is the point~$p\in X_{c'}\setminus Z$ that has the maximum value in the associated entry of the vector~$\Bm Q_{c'}$;  the blue dashed line delimits the open half plane~$\Pi$ that does not contain~$\smash{c'}$.
+  In this case, after when the points of~$(X_{c'}\cap \Pi)\setminus Z$ are removed from~$X_{c'}$, the new set~$X_{c'}$ is fully contained in~$\Omega_j$, so the classifier~$\Cal R(X_{c'}, F_{c'})$ hopefully evaluates to~$1$,  and the set of triangles~$\smash{T_{c'}^{\,\cal i}}$ is added to the set~$\Cal I_j$ of green triangles.  Moreover, also the set~$\Cal B_j$ of yellow triangles is updated to reflect the new border of~$\Cal I_j$.
+\bigskip
+\endinsert
+
+If $\Cal B_j=\emptyset$, then the so far constructed domain~$\Cal I_j$ has no more possible extension points, so (if every classification was correct) all the points of the subdomain~$\Omega_j$ have already been collected within the set of triangles~$\Cal I_j$ (as the vertices of those triangles), and the first subdomain~$\Omega_j$ has been determined. Then, in order to determine the other subdomains of~$\Omega$, the whole algorithm is repeated again, by starting from one of the remaining triangles, which are the triangles not belonging to~$\Cal I_j$. This process is repeated again and again until all the triangles of~$T$ have been exhausted, and a collection of sets~$\smash{\{\Cal I_j\}_{j=1}^M}$ which define the different subdomains~$\smash{\{\Omega_j\}_{j=1}^M}$ has been found.  At this point we terminate the algorithm by returning the triangulations~$\smash{\{\Cal I_j\}_{j=1}^M}$.
 
 
-If instead $\Cal B_j\neq \emptyset$, then we can select one new triangle~$t'\in \Cal B_j$ (which one we choose doesn't matter) and its circumcentre~$\smash{c'}$, and try to extend~$\Cal I_j$ from this position. To do so, we consider again the set~$X_{c'}$ of the $n$ nearest neighbours to~$\smash{c'}$ taken from~$X$, with the corresponding set~$F_{c'}$ of function values, and compute the regularity vector~$\Bm Q_{c'}$ as before. We can then classify the data~$(X_{c'}, F_{c'})$ by evaluating $\Cal R(X_{c'}, F_{c'})$. If the classifier evaluates to~$1$, it means that (according to the tolerance~$\tau$) each point of~$X_{c'}$ must belong to~$\Omega_j$, and so we can extend~$\Cal I_j$ by adding to it the set~$\smash{T_{c'}^{\.\cal i}}$ of triangles with vertices in~$X_{c'}$ (most probably, some of these triangles already belong to~$\Cal I_j$); if the classifier evaluates to~$0$, it means that there are points in~$X_{c'}$ belonging to a subdomain of~$\Omega$ different from~$\Omega_j$.  We have to remove those points and keep only the ones that belong to~$\Omega_j$.
+If instead $\Cal B_j\neq \emptyset$, then we can select one new triangle~$t'\in \Cal B_j$ (which one we choose doesn't matter) and its circumcentre~$\smash{c'}$, and try to extend~$\Cal I_j$ from this position. To do so, we consider again the set~$X_{c'}$ of the $n$ nearest neighbours to~$\smash{c'}$ taken from~$X$, with the corresponding set~$F_{c'}$ of function values, and compute the regularity vector~$\Bm Q_{c'}$ as before. We can then classify the data~$(X_{c'}, F_{c'})$ by evaluating $\Cal R(X_{c'}, F_{c'})$. If the classifier evaluates to~$1$, it means that (according to the tolerance~$\tau$) each point of~$X_{c'}$ must belong to~$\Omega_j$, and so we extend~$\Cal I_j$ by adding to it the set~$\smash{T_{c'}^{\.\cal i}}$ of triangles with vertices in~$X_{c'}$ (most probably, some of these triangles already belong to~$\Cal I_j$), and then also we change~$\Cal B_j$ by removing from it the triangle~$t'$ and adding to it the triangles $\smash{T_{c'}^{\.\cal b}}\setminus(\Cal D_j\cup \Cal I_j)$; if the classifier evaluates to~$0$, it means that there are points in~$X_{c'}$ belonging to a subdomain of~$\Omega$ different from~$\Omega_j$.  We have to remove those points and keep only the ones that belong to~$\Omega_j$.
 
 
-We need a way to efficiently remove all the points of~$X_{c'}$ located outside of~$\Omega_j$ and at the same time try to keep the most possible points of~$X_{c'}$ that are contained in~$\Omega_j$.  A possible strategy is described here.  First we retrieve from the computer memory all the stored sets~$X_c$  such that~$\smash{t'\in T_{c}^{\.\cal b}}$, and let~$Y$ be their union.  Certainly, we don't want to remove from~$X_{c'}$ any of the points of~$Y$ (because $Y$ is in the domain~$\Cal I_j$ that we are trying to extend), nor the vertices of the triangle~$\smash{t'}$ (because we are trying to extend $\Cal I_j$ by adding at least~$t'$).  Let~$Z\coloneq Y\cup V(t')\cup X_{c'}$ be the set of points of~$X_{c'}$ that must not be removed. To actually have an idea about which points of~$X_{c'}\setminus Z$ should be removed from~$X_{c'}$, we can look at the entries of the previously computed vector~$\Bm Q_{c'}$.  The points of~$X_{c'}$ close to the boundary of~$\Omega_j$ are the ones that have the largest associated value in the vector~$\Bm Q_{c'}$. We thus take the point $p\in X_{c'}\setminus Z$ that have the maximum value in~$\Bm Q_{c'}$, and  consider the open half plane
+We need a way to efficiently remove all the points of~$X_{c'}$ located outside of~$\Omega_j$ and at the same time try to keep the most possible points of~$X_{c'}$ that are contained in~$\Omega_j$.  A possible strategy is described here.  First we retrieve from the computer memory all the stored sets~$X_c$  such that~$\smash{t'\in T_{c}^{\.\cal b}}$, and let~$Y$ be their union.  Certainly, we don't want to remove from~$X_{c'}$ any of the points of~$Y$ (because $Y$ is in the domain~$\Cal I_j$ that we are trying to extend), nor the vertices of the triangle~$\smash{t'}$ (because we are trying to extend $\Cal I_j$ by adding at least~$t'$).  Let~$Z\coloneq (Y\cup V(t'))\cap X_{c'}$ be the set of points of~$X_{c'}$ that must not be removed. To actually have a clue about which points of~$X_{c'}\setminus Z$ should be removed from~$X_{c'}$, we can look at the entries of the previously computed vector~$\Bm Q_{c'}$.  The points of~$X_{c'}$ close to the boundary of~$\Omega_j$ are the ones that have the largest associated value in the vector~$\Bm Q_{c'}$. We thus take the point $p\in X_{c'}\setminus Z$ that have the maximum value in~$\Bm Q_{c'}$, and  consider the open half plane
 $$
 \Pi\coloneq \{\,x\in \Omega\,:\>\langle\. p - c',\, x- p\rangle > 0\}
 $$
 determined by the line passing from~$p$ and perpendicular to the vector~$x-p$, and not containing the point~$c'$. Finally we update~$X_{c'}$ by removing from it the set of points~$(X_{c'}\cap\Pi)\setminus Z$.  Figure~\ref[removefig] should help understanding this part.
 
 
-In case $(X_{c'}\cap\Pi)\setminus Z=\emptyset$ (that is, in case we didn't remove any point from~$X_{c'}$), we remove from~$X_{c'}$ the point~$p$.  We then compute again~$\Bm Q_{c'}$ and use it to evaluate~$\Cal R(X_{c'}, F_{c'})$, until it finally happens that~$\Cal R(X_{c'}, F_{c'})=1$ and so that the reduced set~$X_{c'}$  can be used to extend~$\cal I$. Then  $\Cal I_j$ gets actually extended by adding to it the set~$\smash{T_{c'}^{\.\cal i}}$, and the set~$\Cal B$ is updated by removing from it the triangles of~$\smash{T_{c'}^{\.\cal i}}$ and adding to it the triangles~$\smash{T_{c'}^{\.\cal b}}$.
-If instead $\Cal R(X_{c'}, F_{c'})$ is always~$0$ no matter how many points we remove from~$X_{c'}$ (and all the possible points have been already removed), then we simply remove~$\smash{t'}$ from the set~$\Cal B_j$ of boundary triangles.  This means that from the triangle~$\smash{t'}$ we won't attempt anymore to extend~$\Cal I_j$.
-After having updated both $\Cal I_j$ and~$\Cal B_j$, the entering condition of the loop is tested again and eventually another cycle of it is performed. 
+In case $(X_{c'}\cap\Pi)\setminus Z=\emptyset$ (that is, in case we didn't remove any point from~$X_{c'}$), we remove from~$X_{c'}$ the point~$p$.  We then compute again~$\Bm Q_{c'}$ and use it to evaluate~$\Cal R(X_{c'}, F_{c'})$, until it finally happens that~$\Cal R(X_{c'}, F_{c'})=1$ and so that the reduced set~$X_{c'}$  can be used to extend~$\cal I$. Then  $\Cal I_j$ gets actually extended by adding to it the set~$\smash{T_{c'}^{\.\cal i}}$, and after that also the set~$\Cal B$ is updated by removing from it the triangles of~$\smash{T_{c'}^{\.\cal i}}$ and adding to it the triangles~$\smash{T_{c'}^{\.\cal b}}\setminus(\Cal D_j\cup \Cal I_j)$.
+If instead $\Cal R(X_{c'}, F_{c'})$ is always~$0$ no matter how many points we remove from~$X_{c'}$ (and all the possible points have been already removed), then we simply remove~$\smash{t'}$ from the set~$\Cal B_j$ of boundary triangles, and add it to the set~$\Cal D_j$.  This means that from the triangle~$\smash{t'}$ we won't attempt anymore to extend~$\Cal I_j$.
+After having updated both $\Cal I_j$ and~$\Cal B_j$, the entering condition of the loop is tested again and eventually another cycle is performed. 
 
 
 
 
 
-\label[removefig]
-\topinsert
-\centerline{\frame{\figureproof{3in}{\hsize}}}
-\cskip
-\caption/f
-\bigskip
-\endinsert
 
-
-\dots
-
-\dots
-
-We try to summarise the whole described algorithm by using a pseudo-code language.
-
-\dots
-
-\dots
-
-\bigskip\bigskip
-An implementation of the described algorithm, written in the MATLAB language, is available at GitHub~\cite[github-algorithm].  
+A full implementation of the described algorithm, written in the MATLAB language, is available at GitHub~\cite[github-algorithm].  
 
 
 % The local discrete domain, namely the set of points~$X_C$, can be turned into an actual subdomain of~$\Omega$ by taking the union of all the triangles of~$T$ that have all the vertices in~$X_C$. 
