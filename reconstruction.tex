@@ -1,4 +1,4 @@
-
+nimi
 
 Assume  that the domain segmentation phase was successful, so that  we have got a collection~$\Cal I_j$ of triangles that correctly define the various subdomains $\Omega_j$ of~$\Omega$, where the sampled function~$f$ is continuous. The next phase consists in actually recovering~$f$.   In order to produce an accurate result, the recovery process should be aware of the discontinuities of~$f$.
 
@@ -51,14 +51,20 @@ $$
 $$
 where each~$\Theta_i$ is an eigenfunction of the integral operator~$f\mapsto\int_\Omega f(x)\Phi(x,y)\,dx$.  Therefore, if the feature map~$\Theta$ is taken from the decomposition of some kernel~$\Phi$, then the scalar products of pairs of points in the higher dimensional (possibly infinite dimensional) vector space~$V$ can be efficiently computed by simply evaluating the kernel function on the corresponding pairs of points of~$X$,  regardless of the dimension of~$V\!$.\,  Notice moreover that the whole computations can be performed without even knowing who the feature map~$\Theta$ is, but simply by evaluating some known kernel~$\Phi$.
 
-The most used kernel function in the context of SVMs is the Gaussian kernel
+One example of kernel used in the context of SVMs is the {\em polynomial} kernel of degree~$d$, whose expression is
+$$
+\Phi(x,y)= (\langle x, y\rangle + c)^d,
+$$
+where $c\geq0$ is a free parameter trading off the influence of higher-order terms versus lower-order terms in the polynomial. In the case $c=0$ and~$d=1$ this kernel  is just the scalar product, and the corresponding feature map~$\Theta$ is the identity map---using this kernel is equivalent to performing a linear separation of the data in the original domain~$\Omega$.
+
+Anyhow, the most used kernel for SVM classification is the {\em Gaussian} kernel
 $$
 \Phi(x,y) = \phi(ε\norm{x-y}) = e^{-ε^2\norm{x-y}^2},
 $$
-previously defined in Example~\ref[gaussianex].  It is known that the integral operator associated to the Gaussian kernel has an infinite set of eigenvalues (Ha Quang, Niyogi and Yao~\cite[ha_quang-niyogi-yao_1970]), therefore the feature map~$\Theta$ into which $\Phi$ decomposes maps the data~$X$ into a vector space~$V\!$ of infinite dimension.
+previously defined in Example~\ref[gaussianex].  It is known that, differently from the polynomial kernel, the integral operator associated to the Gaussian kernel has an infinite set of eigenvalues (Ha Quang, Niyogi and Yao~\cite[ha_quang-niyogi-yao_1970]), therefore the feature map~$\Theta$ into which $\Phi$ decomposes maps the data~$X$ into a vector space~$V\!$ of infinite dimension.
 
 
-In the whole described process, the SVM has learnt a possibly nonlinear decision boundary in the space~$\Omega$ by learning a linear decision boundary in the space~$V\!$.\,
+At the end of the training process, the SVM has learnt a possibly nonlinear decision boundary in the space~$\Omega$ by learning a linear decision boundary in the space~$V\!$.\,
 The decision function~$h$ defined in~\ref[hyperplane] can now be used to classify the evaluation points~$E$ into the two classes $E_1$ and~$E_2$, by defining these two classes in the following way:
 $$
 E_1\coloneq \{\,e\in E\,:\>h(e)\geq 0\,\},\qquad
@@ -78,7 +84,7 @@ $$
 $$
 
 
-Actually, not all the points of each set~$X_j$ are  necessary to train the SVM.  The points that really count are those located at the boundary of each set~$X_j$.  Since we have at our disposal the triangulation~$\Cal I_j$ of each set~$X_j$, the boundary points can be easily located by taking the boundary of those triangulations.  If the sets~$\smash{\{X_j\}_{j=1}^M}$ get replaced by the corresponding sets of boundary points, then the optimisation problem~\ref[optimisation] reaches the solution much faster.
+Actually, not all the points of each set~$X_j$ seem to be  necessary to train the SVM.  The points that really count are those located at the boundary of each set~$X_j$.  Since we have at our disposal the triangulation~$\Cal I_j$ of each set~$X_j$, the boundary points can be easily located by taking the boundary of those triangulations.  If the training sets~$\smash{\{X_j\}_{j=1}^M}$ get replaced by the corresponding sets of boundary points, then the optimisation problem~\ref[optimisation] should require less computations to reach the solution, and the training process may be faster.
 
 
 
