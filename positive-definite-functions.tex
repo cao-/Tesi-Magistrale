@@ -1,6 +1,6 @@
 
 
-The Mairhuber-Curtis theorem forces us to let the space~$\Cal S$ {\em depend on the data sites}~$X$, unless we are in dimension~$d=1$, since it says that it is not possible in higher dimensions to build an interpolating space which can work for every data sites.  As before, we start by considering only one fixed set of points~$X\subset\Omega\subseteq\R^d$, where the dimension~$d$ can be arbitrary.  If the space~$\Cal S$ has to depend on the data sites~$X=\{\range x_N/\}$, then it should have basis elements whose expressions depend on~$X$. 
+The Mairhuber-Curtis theorem forces us to let the space~$\Cal S$ {\em depend on the data sites}~$X$, unless we are in dimension~$d=1$, since it says that it is not possible in higher dimensions to build an interpolating space which can work for every data sites.  As before, we start by considering only one fixed set of points~$X\subset\Omega\subseteq\R^d\!\!$,\, where the dimension~$d$ can be arbitrary.  If the space~$\Cal S$ has to depend on the data sites~$X=\{\range x_N/\}$, then it should have basis elements whose expressions depend on~$X$. 
 The most straightforward way to achieve this is to take a {\em single} function
 $$
 Φ:\,\Omega\times\Omega\to\R
@@ -18,7 +18,7 @@ $$
 $$
 is invertible.  The invertibility of~$\Bm A_{Φ,\. X}$ of course depends on the function~$Φ$, so not all functions can be successfully used.   Notice that, if the interpolation matrix is invertible, then the set of functions~$\range B_N/$ are actually a {\em basis} for~$\Cal S_{Φ,\. X}$, since they are linearly independent functions.
 
-Now we let~$X$ vary. If we wish to have a recovery process that works on all of~$\R^d$ and is {\em invariant} under Euclidean transformations, which is a very reasonable request\fnote{In other applications it may be useful to require different kinds of transformational invariances, for instance the rotational invariance if we are working on a sphere in~$\R^d$.  See Shaback~\cite[shaback_1997], Chapter~3.} in most of the applications, then the space generating function~$Φ$ can be taken of the simpler form
+Now we let~$X$ vary. If we wish to have a recovery process that works on all of~$\R^d\!$ and is {\em invariant} under Euclidean transformations, which is a very reasonable request\fnote{In other applications it may be useful to require different kinds of transformational invariances, for instance the rotational invariance if we are working on a sphere in~$\R^d\!\!$.\,  See Shaback~\cite[shaback_1997], Chapter~3.} in most of the applications, then the space generating function~$Φ$ can be taken of the simpler form
 $$
 Φ(x,y) = \phi(\norm{x-y})\mathbox{,\quad $x,y\in\Omega$,}\eqmark[phi]
 $$
@@ -33,11 +33,11 @@ $$
 
 If $\phi$ is the identity function, just like in example~\ref[dist], then the matrix~$\Bm A_{Φ,\. X}$ is invertible, so the space~$\Cal S_{Φ,\. X}$ is nondegenerate for~$X$ and can be used to interpolate on the set of locations~$X$.   Are there other functions~$Φ$ whose associated interpolation matrices are invertible?  Luckily, there is a special class of  functions for which the matrix~$\Bm A_{Φ,\. X}$ is guaranteed to be invertible, regardless of the given data sites~$X$, namely the class of positive-definite functions.
 \preskip
-\definition A function~$Φ:\,\Omega\times\Omega\to\R$ is {\em positive definite}\fnote{Often in the literature one can instead read~{\em strictly positive definite} function, to denote a function that leads to positive definite matrices.  Here we prefer to use the more coherent term {\em positive definite}, like some authors do (e.g., Wendland~\cite[wendland_2004], Shaback~\cite[shaback_1997]).} if for any choice of a finite subset~$X=\{\range x_N/\}\subset\R^d$ of $N$~different points the matrix
+\definition A function~$Φ:\,\Omega\times\Omega\to\R$ is {\em positive definite}\fnote{Often in the literature one can instead read~{\em strictly positive definite} function, to denote a function that leads to positive definite matrices.  Here we prefer to use the more coherent term {\em positive definite}, like some authors do (e.g., Wendland~\cite[wendland_2004], Shaback~\cite[shaback_1997]).} if for any choice of a finite subset~$X=\{\range x_N/\}\subset\R^d\!$ of $N$~different points the matrix
 $$
 \Bm A_{Φ,\. X}=\bigl(Φ(x_k, x_j)\bigr)_{1\leq j,k\leq N}
 $$
-is positive-definite. Also, a function~$\phi:[0,\infty)\to\R$ is said to be {\em positive definite on~$\R^d$} if its associated function~$Φ:\,\Omega\times\Omega\to\R$,  with~$\Omega\subseteq\R^d$ and defined as in~\ref[phi], is positive definite.
+is positive-definite. Also, a function~$\phi:[0,\infty)\to\R$ is said to be {\em positive definite on~$\R^d\!\.$} if its associated function~$Φ:\,\Omega\times\Omega\to\R$,  with~$\Omega\subseteq\R^d\!$ and defined as in~\ref[phi], is positive definite.
 \postskip
 
 In the rest of this section we will always assume that~$Φ$ is radial as in~\ref[phi].
@@ -64,7 +64,7 @@ A function~$\psi:[0,\infty)\to\R$ is completely monotone and not constant if and
 $$
 \phi(r)\coloneq \psi(r^2)\mathbox{,\quad $r\geq0$}
 $$
- is positive definite on~$\R^d$ for any~$d$.
+ is positive definite on~$\R^d\!\.$ for any~$d$.
 \postskip
 
 \noindent This theorem allows us to build positive definite functions, that work for any space dimension, simply by finding completely monotone functions and then composing  them with the square function.
@@ -79,7 +79,7 @@ is completely monotone.  In fact, $(-1)^h \psi^{(h)}(r)=e^{- r}\geq0$ for each~$
 $$
 \phi(r) =\psi(r^2)= e^{-r^2}
 $$
-is positive definite on~$\R^d$ for each space dimension~$d$.
+is positive definite on~$\R^d\!\.$ for each space dimension~$d$.
 \medskip
 
 \example[(Inverse Multiquadrics)]
@@ -91,17 +91,17 @@ are completely monotone since $(-1)^h \psi^{(h)}(r)=(-1)^{2h}\beta\,(\beta+1)\do
 $$
 \phi(r) = \psi(r^2) =  {1\over(1+r^2)^\beta}\mathbox{,\quad $\beta\geq0$}
 $$
-is a family of functions that are positive definite on~$\R^d$ for each~$d$.
+is a family of functions that are positive definite on~$\R^d\!\.$ for each~$d$.
 \postskip
 
 The positive definite functions~$\phi$ shown in these two examples have the common property that $\lim_{r\to\infty}\phi(r)$ exists. This is indeed a property that must hold for any function~$\phi$ which is positive definite and radial on each space dimension.  In fact any completely monotone function~$\psi$, and hence its associated positive definite function~$\phi$, possess a limit at infinity simply  because it is non-increasing and bounded below.  Instead, the fact that the  shown functions~$\phi$  are such that
 $$
 \phi(0) = 1\quad\mathbox{and}\quad\lim_{r\to\infty}\phi(r) = 0 \eqmark[convention]
 $$
-is just a matter of coincidence, and by the way it is also the usual convention. In fact, if $\psi$ is completely monotone and not constant, then also $\alpha\psi + \beta$ is completely monotone and not constant for each  pair of positive  constants $\alpha$ and~$\beta$. As a consequence, a function $\phi$ which is positive definite and radial on $\R^d$ for each~$d$ can assume various values at zero and infinity.
+is just a matter of coincidence, and by the way it is also the usual convention. In fact, if $\psi$ is completely monotone and not constant, then also $\alpha\psi + \beta$ is completely monotone and not constant for each  pair of positive  constants $\alpha$ and~$\beta$. As a consequence, a function $\phi$ which is positive definite and radial on $\R^d\!\.$ for each~$d$ can assume various values at zero and infinity.
 
 
-By now we have seen some examples of univariate functions which are positive definite on~$\R^d$ for each~$d$.  There are also functions which are positive definite only on some but not all space dimensions, as we are going to see.  But first we notice that if a function~$\phi$ is positive definite on~$\R^d$ then of course it is positive definite also on~$\R^k$ for all~$k<d$, since $\R^k$ can be seen as a subspace of~$\,\R^d$.
+By now we have seen some examples of univariate functions which are positive definite on~$\R^d\!\.$ for each~$d$.  There are also functions which are positive definite only on some but not all space dimensions, as we are going to see.  But first we notice that if a function~$\phi$ is positive definite on~$\R^d\!\.$ then of course it is positive definite also on~$\R^k\!\.$ for all~$k<d$, since $\R^k\!\.$ can be seen as a subspace of~$\,\R^d\!\!$.
 
 \preskip
 \definition
@@ -115,7 +115,7 @@ In particular, if $\psi:[0,\infty)\to\R$ is continuous on~$[0,\infty)$, it is $k
 
 \preskip
 \theorem
-Let $k$ be a positive integer.  If~$\phi:[0,\infty)\to\R$ is $k$-times monotone and not constant, then $\phi$ is also positive definite on~$\R^d$ for any~$d$ such that~$\lfloor d/2\rfloor\leq k-2$.
+Let $k$ be a positive integer.  If~$\phi:[0,\infty)\to\R$ is $k$-times monotone and not constant, then $\phi$ is also positive definite on~$\R^d\!\.$ for any~$d$ such that~$\lfloor d/2\rfloor\leq k-2$.
 \medskip
 
 
@@ -126,10 +126,10 @@ The {\em truncated power function}
 $$
 \psi_k(r) = (1-r)^k_+\mathbox{,\quad $k\in\BbbN$}
 $$
-is $k$-times monotone since $(-1)^h\psi_k^{(h)}=k(k-1)\dots(k-h+1)(1-r)^{k-h}_+\geq0$ for each~$h=0,1,\dots,k$, hence it is positive definite on $\R^d$ for any dimension~$d$ such that~$\lfloor d/2\rfloor\leq k-2$.
+is $k$-times monotone since $(-1)^h\psi_k^{(h)}=k(k-1)\dots(k-h+1)(1-r)^{k-h}_+\geq0$ for each~$h=0,1,\dots,k$, hence it is positive definite on $\R^d\!\.$ for any dimension~$d$ such that~$\lfloor d/2\rfloor\leq k-2$.
 \postskip
 
-\noindent The truncated power functions are {\em compactly supported}.  This is an advantage, since a compactly supported function can lead to an interpolation system whose matrix is sparse, so a system which is good from the computational point of view.  However, a single function from this family cannot be used for interpolation on~$\R^d$ for all~$d$.   Indeed, it is known (Wendland \cite[wendland_2004], Chapter~9), that a non-trivial continuous function~$\phi$ which is positive definite on~$\R^d$ for all~$d$ cannot have zeros, thus we can’t expect to find a compactly supported function~$\phi$ which is positive definite on~$\R^d$ for all~$d$. 
+\noindent The truncated power functions are {\em compactly supported}.  This is an advantage, since a compactly supported function can lead to an interpolation system whose matrix is sparse, so a system which is good from the computational point of view.  However, a single function from this family cannot be used for interpolation on~$\R^d\!\.$ for all~$d$.   Indeed, it is known (Wendland \cite[wendland_2004], Chapter~9), that a non-trivial continuous function~$\phi$ which is positive definite on~$\R^d\!\.$ for all~$d$ cannot have zeros, thus we can’t expect to find a compactly supported function~$\phi$ which is positive definite on~$\R^d\!\.$ for all~$d$. 
 
 A truncated power function~$\phi$  leads to a function~$Φ$, defined by~\ref[phi], which is not very regular, as it is no more than continuous.  Since the basis functions will determine the smoothness of the approximant, it is necessary to have also smoother functions with local support. One example of such functions is given by the Wendland’s family of functions.
 
@@ -157,7 +157,7 @@ $3$ & $(1-r)^8_+(32r^3+25r^2+8r+1)$ & $\Cal C^6$      \crl
 }}
 \cskip
 \caption/t
-\relax List of the Wendland’s functions~$\phi_{3,k}$ for $k=0,1,2,3$.  The smoothness of these functions (more properly, of their even extensions to the real line)  is~$\Cal C^{2k}$.  They are positive definite on~$\R^d$ for all~$d\leq3$.
+\relax List of the Wendland’s functions~$\phi_{3,k}$ for $k=0,1,2,3$.  The smoothness of these functions (more properly, of their even extensions to the real line)  is~$\Cal C^{2k}\!\!\!\!$.\,\,\,  They are positive definite on~$\R^d\!\.$ for all~$d\leq3$.
 \endinsert
 
 

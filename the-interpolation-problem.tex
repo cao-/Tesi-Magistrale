@@ -5,7 +5,7 @@ Let $X = \{\range x_N/\}$ be a finite set of scattered points in some domain~$\O
 \medskip
 
 \frame{\line{\hfil\hsize=.97\hsize\vbox{\kern0.5ex
-\noindent{\bf Problem.} Given a set $X = \{\range x_N/\}$ of $N$ {\em distinct} points in a domain~$\Omega\subseteq \R^d$, a set  $F=\{\range f_N/\}$ of $N$ real numbers, and a class~$\cal S$ of real-valued functions defined on~$\Omega$, find a function~$s\in\cal S$ which interpolates the pair of data~$(X, F)$, i.e., a function~$s$ such that 
+\noindent{\bf Problem.} Given a set $X = \{\range x_N/\}$ of $N$ {\em distinct} points in a domain~$\Omega\subseteq \R^d\!\!$,\, a set  $F=\{\range f_N/\}$ of $N$ real numbers, and a class~$\cal S$ of real-valued functions defined on~$\Omega$, find a function~$s\in\cal S$ which interpolates the pair of data~$(X, F)$, i.e., a function~$s$ such that 
 $$
 s(x_j) = f_j\mathbox{,\quad for all $j\in\{1,2,\dots, N\}$.}\eqmark[intcond]
 $$
@@ -29,7 +29,7 @@ $$
 \Bm{Aα} =  \Bm f,  \eqmark[system]
 $$
 after having defined the {\em interpolation matrix} $\Bm A$ as the $N\times M$~matrix with elements~$A_{j,k} = B_k(x_j)$, and the two vectors $\Bmα \coloneq (\rangeα_M/)^T$ and~$\Bm f \coloneq (\range f_N/)^T$.
-If~the dimension~$M$ of the space~$\Cal S$ were less than the number~$N$ of data sites, then the $M$~columns of~$\Bm A$ couldn’t span the whole of~$\,\R^N$, so there would be some sets of data values~$F$ for which  there is no interpolant in the space of functions~$\Cal S$; if instead~$M$ were greater than~$N$, then we would lose the uniqueness property of the solution, because for each set of data values~$F$ we could find more than one vector of coefficients~$\Bmα$, and hence more than one interpolating function (and of course the same would happen if $\Cal S$ were infinite-dimensional).  In conclusion, a good space $\Cal S$ for the interpolation problem on a fixed set~$X$ of $N$~data sites is a nondegenerate linear space of  {\em dimension~$N$}.  The required property for~$\Cal S$ of being nondegenerate for~$X$ translates in requiring that the $N\times N$ interpolation matrix~$A$ is {\em invertible}. 
+If~the dimension~$M$ of the space~$\Cal S$ were less than the number~$N$ of data sites, then the $M$~columns of~$\Bm A$ couldn’t span the whole of~$\,\R^N\!\!\!$,\,\, so there would be some sets of data values~$F$ for which  there is no interpolant in the space of functions~$\Cal S$; if instead~$M$ were greater than~$N$, then we would lose the uniqueness property of the solution, because for each set of data values~$F$ we could find more than one vector of coefficients~$\Bmα$, and hence more than one interpolating function (and of course the same would happen if $\Cal S$ were infinite-dimensional).  In conclusion, a good space $\Cal S$ for the interpolation problem on a fixed set~$X$ of $N$~data sites is a nondegenerate linear space of  {\em dimension~$N$}.  The required property for~$\Cal S$ of being nondegenerate for~$X$ translates in requiring that the $N\times N$ interpolation matrix~$A$ is {\em invertible}. 
 
 \preskip
 \label[poly]
@@ -50,7 +50,7 @@ Differently from the previous example, here the space~$\Cal S$ (where lie the in
 
 \label[dist]
 \example
-Given $X=\{\range x_N/\}\subset\Omega\subseteq\R^d$, define for each~$k\in\{1, 2, \dots, N\}$ the function~$B_k(x)\coloneq\norm{x-x_k}$, denoting by~$\norm{\;}$  the Euclidean norm.  Then the linear space
+Given $X=\{\range x_N/\}\subset\Omega\subseteq\R^d\!\!$,\, define for each~$k\in\{1, 2, \dots, N\}$ the function~$B_k(x)\coloneq\norm{x-x_k}$, denoting by~$\norm{\;}$  the Euclidean norm.  Then the linear space
 $$
 \Cal S = \langle\range B_N/\rangle = \bigl\{\,\sum_{k=1}^N α_k B_k\,:\; α_k\in\R\mathbox{ for all~$k$}\,\bigr\}
 $$
@@ -61,7 +61,7 @@ $$
 		              \vdots      & \vdots     & \ddots& \vdots    \cr
 		              \norm{x_N-x_1} & \norm{x_N-x_2} & \cdots & \norm{x_N-x_N} }\mathbox.
 $$
-It has zeros on the diagonal entries, and is strictly positive on all the other entries.  As in the previous example---the space of natural splines---this space~$\Cal S$ depends on the data sites~$X$.  Anyway, it is quite general, in the sense that it can be defined for any arbitrary dimension~$d$ of the underlying Euclidean space~$\R^d\supseteq\Omega$.  In dimension~\hbox{$d=1$} it coincides with the space of piecewise linear functions on the knots~$X$.
+It has zeros on the diagonal entries, and is strictly positive on all the other entries.  As in the previous example---the space of natural splines---this space~$\Cal S$ depends on the data sites~$X$.  Anyway, it is quite general, in the sense that it can be defined for any arbitrary dimension~$d$ of the underlying Euclidean space~$\R^d\!\supseteq\Omega$.  In dimension~\hbox{$d=1$} it coincides with the space of piecewise linear functions on the knots~$X$.
 \postskip
 
 
@@ -75,7 +75,7 @@ At this point, after having characterized the spaces~$\Cal S$ suitable for the i
 
 \preskip
 \label[mcth]
-\theorem[(Mairhuber-Curtis)]  There exists no Haar space~$\Cal S$ of dimension~$N\geq2$ on a domain~$\Omega\subseteq\R^d$ containing at least an interior point,  if $d\geq 2$.
+\theorem[(Mairhuber-Curtis)]  There exists no Haar space~$\Cal S$ of dimension~$N\geq2$ on a domain~$\Omega\subseteq\R^d\!$ containing at least an interior point,  if $d\geq 2$.
 
 \proof Suppose that a Haar space~$\Cal S$ of dimension~$N\geq2$ on such a domain~$\Omega$ indeed exists, and let $\Cal B=\{\range B_N/\}$ be a basis for it.   The assumption on~$\Omega$ says that there exists a point~$p\in X$ and a number~$\delta>0$ such that the ball~$B(p, \delta)$ of centre~$p$ and radius~$\delta$ is entirely contained inside of~$\Omega$.  Let now~$X=\{\range x_N/\}$ be a set of $N$ points contained in the ball~$B(p, \delta)$. Being the dimension~$d$ of the space  at least~$2$, there is enough room for two paths~$c_1$ and~$c_2$ that swap the points~$x_1$ and~$x_2$ without having additional intersections, besides the starting and ending points, nor touching any of the other points of~$X$.  Formally, there exist two continuous curves~$c_1, c_2:[0,1]\to B(p, \delta)$ such that
 $$

@@ -5,7 +5,7 @@
 
 We now study the properties satisfied by the $\phi$-regularity vector~$\Bm Q$\,, and hence by the classifier~$\Cal R$ built upon it.  In what follows $\phi$ will denote again one of the positive definite functions introduced in Section~\ref[positivesec], and~$\phi_ε$ its $ε$-scaled version as defined in~\ref[phiepsilon].  Each considered quantity may be dependent on~$ε$, but for simplicity of notation this dependence won't be explicitly indicated.
 
-Let $X = \{\range x_N/\}\subset\Omega\subseteq\R^d$ be a set of data sites, and $F=\{\range f_N/\}$ a set of associated values sampled from an unknown function~$f$.  We are interested in seeing how the vector~$\Bm Q$ computed from~$(X, F)$ changes when a {\em linear transformation} is applied to~$F$ or, equivalently, to the function~$f$.  Assume that $f$ is transformed into~$g = γ f + η$ for some~$γ, η\in\R$, so that $F$ is transformed into
+Let $X = \{\range x_N/\}\subset\Omega\subseteq\R^d\!\.$ be a set of data sites, and $F=\{\range f_N/\}$ a set of associated values sampled from an unknown function~$f$.  We are interested in seeing how the vector~$\Bm Q$ computed from~$(X, F)$ changes when a {\em linear transformation} is applied to~$F$ or, equivalently, to the function~$f$.  Assume that $f$ is transformed into~$g = γ f + η$ for some~$γ, η\in\R$, so that $F$ is transformed into
 $$
 G = \{\.\range g_N/\} 
   = \{\.γ f_1 + η,\, γ f_2 + η,\, \dots,\, γ f_N + η\}
@@ -74,8 +74,8 @@ $$
 $$
 \Bm C =  \CC_{\!\!\Bm{--p}}\,ε^{-p} + \CC_{\!\!\Bm{--p+}\Bm 1}\,ε^{-p+1} + \CC_{\!\!\Bm{--p+}\Bm 2}\,ε^{-p+2} + \CC_{\!\!\Bm{--p+}\Bm 3}\,ε^{-p+3} + \cdots, \eqmark[laurentC]
 $$
-where $p$ is the order of singularity at $ε=0$ of the matrix~$\Bm C$ (Refer to Langenhop~\cite[langenhop_1971] for a general treatment of this topic, and also to Gonzales-Rodriguez, Moscoso and Kindelan~\cite[gonzales_rodriguez-moscoso-kindelan_2015] for a specific application in the context of radial basis functions).
-This means that near~$ε=0$ the matrix~$\Bm C$ is just like the first term~$\CC_{\!\!\Bm{--p}}\,ε^{-p}$ of its Laurent series, therefore the ratio of two elements of~$\Bm C$ converges to the ratio of their corresponding elements in~$\CC_{\!\!\Bm{--p}}$ when $ε→0$.  More precisely, for each $i,j,k,l$,
+where $p$ is the order of singularity at $ε=0$ of the matrix~$\Bm C\.$ (Refer to Langenhop~\cite[langenhop_1971] for a general treatment of this topic, and also to Gonzales-Rodriguez, Moscoso and Kindelan~\cite[gonzales_rodriguez-moscoso-kindelan_2015] for a specific application in the context of radial basis functions).
+This means that near~$ε=0$ the matrix~$\Bm C$ is just like the first term~$\CC_{\!\!\Bm{--p}}\,ε^{-p\!}$ of its Laurent series, therefore the ratio of two elements of~$\Bm C$ converges to the ratio of their corresponding elements in~$\CC_{\!\!\Bm{--p}}$ when $ε→0$.  More precisely, for each $i,j,k,l$,
 $$
 \lim_{ε→0} {C_{i,j}\over C_{k,l}} = \lim_{ε→0} {ε^{-p}\,({\cal C}_{\!-p})_{i,j} + ε^{-p+1}\,({\cal C}_{\!-p+1})_{i,j} + \cdots \over  ε^{-p}\,({\cal C}_{\!-p})_{k,l} + ε^{-p+1}\,({\cal C}_{\!-p+1})_{k,l} + \cdots} = {({\cal C}_{\!-p})_{i,j}\over ({\cal C}_{\!-p})_{k,l}}.~\QED
 $$
@@ -83,7 +83,7 @@ $$
 
 The limiting vector~$\Bm Q$ when $ε→0$ clearly depends on both the data sites $X$ and the data values~$F$ from which it has been computed. The dependence on~$F$ is in the coefficients~$f_j$ of the expressions~\ref[EkWk] for $E_k$ and~$W_k$; the dependence on~$X$ is in the ratios of elements of~$\CC_{\!\!\Bm{--p}}$ that appear in the same expressions when~$ε→0$.
 
-Instead, in the opposite case, that is when $ε→∞$, the vector~$\Bm Q$ loses its dependence on~$X$.  In fact, if we assume without loss of generality that~$\phi(0)=1$, then the interpolation matrix~$\Bm A$ converges to the identity matrix  when $ε→∞$, and this implies that $\norm{s}_\phi^2→ \Bm f^{\,\.T\!}\Bm f$ and $\norm{s^{(k)\!}}_\phi^2→ (\,\Bm f^{\,\.(k)\!})^{T\!}\Bm f^{\,\.(k)}\!$, and finally that $\smash{Q_k→ f_k^{\.2}/(\,\Bm f^{\,\.T\!}\Bm f\,)}$ (here the vectors $\Bm f$ and~$\smash{\Bm f^{\,\.(k)}\!}$ are defined as in Theorem~\ref[rippatheo]).
+Instead, in the opposite case, that is when $ε→∞$, the vector~$\Bm Q\.$ loses its dependence on~$X$.  In fact, if we assume without loss of generality that~$\phi(0)=1$, then the interpolation matrix~$\Bm A$ converges to the identity matrix  when $ε→∞$, and this implies that $\norm{s}_\phi^2→ \Bm f^{\,\.T\!}\Bm f$ and $\norm{s^{(k)\!}}_\phi^2→ (\,\Bm f^{\,\.(k)\!})^{T\!}\Bm f^{\,\.(k)}\!$, and finally that $\smash{Q_k→ f_k^{\.2}/(\,\Bm f^{\,\.T\!}\Bm f\,)}$ (here the vectors $\.\Bm f$ and~$\.\smash{\Bm f^{\,\.(k)\!}\!}$ are defined as in Theorem~\ref[rippatheo]).
 The case when $ε$~is big, therefore, doesn't seem to be very interesting, because in that case $\Bm Q$ does not store any valuable information about the data sites~$X$.  We also notice that, in the limiting case~$ε→∞$, the vector~$\Bm Q$ has the property that $\norm{\Bm Q}_1 = 1$, independently of the data values~$F$, and the classifier of Definition~\ref[classifierdef] becomes useless.
 
 
@@ -162,16 +162,16 @@ $$
 $$
 Clearly, since $\phi(0)\neq 0$, this relation can hold only if~$\Bm 1^{\!T}\CC_{\!\!\Bm{--p}}$ is the zero vector. The fact that also $\CC_{\!\!\Bm{--p}}\,\Bm 1$ has to be the zero vector is due to the symmetry of the matrix~$\Bm C$ and hence of the coefficient matrix~$\CC_{\!\!\Bm{--p}}$ of its Laurent series.
 
-The proof has not been completed yet, because it remains to see what happens when $F$ is constant (meaning that $f_i=f_j$ for each pair of indices~$i,j$), in which case also $G$ is constant. If $F$ (or~$G$) is constantly equal to~$0$, then $\Bm Q_{\.F\!}$ (or~$\Bm Q_{\.G}$) is the zero vector by its definition (Definition~\ref[Qdef]). Otherwise, when the constant is different from~$0$, the vector $\Bm Q_{\.F\!}$ (or~$\Bm Q_{\.G}$)  is again the zero vector because, for each~$k$, the numerator~$(E_F)_k$ of the element~$(Q_F)_k$ (or the numerator~$(E_G)_k$ of the element~$(Q_G)_k$) when~$ε→0$ becomes just like expression~\ref[differenceterm], which evaluates to~$0$.~\QED
+The proof has not been completed yet, because it remains to see what happens when $F$ is constant (meaning that $f_i=f_j$ for each pair of indices~$i,j$), in which case also $G$ is constant. If $F$ (or~$G$) is constantly equal to~$0$, then $\Bm Q_{\.F}$ (or~$\Bm Q_{\.G}$) is the zero vector by its definition (Definition~\ref[Qdef]). Otherwise, when the constant is different from~$0$, the vector $\Bm Q_{\.F}$ (or~$\Bm Q_{\.G}$)  is again the zero vector because, for each~$k$, the numerator~$(E_F)_k$ of the element~$(Q_F)_k$ (or the numerator~$(E_G)_k$ of the element~$(Q_G)_k$) when~$ε→0$ becomes just like expression~\ref[differenceterm], which evaluates to~$0$.~\QED
 \postskip
 
 
-Property~\ref[scaleprop] and~Property~\ref[translprop] together say that the vector~$\Bm Q$ in the flat limit is invariant under a bijective linear transformation of the set~$F$ of function values.
-This kind of transformation is nothing more than the $1$-dimensional case of a {\em similarity}.  In general, in dimension~$N$, a similarity is defined as a transformation~${\cal T}:\R^N→\R^N$ that can be written as
+Property~\ref[scaleprop] and~Property~\ref[translprop] together say that the vector~$\Bm Q\.$ in the flat limit is invariant under a bijective linear transformation of the set~$F$ of function values.
+This kind of transformation is nothing more than the $1$-dimensional case of a {\em similarity}.  In general, in dimension~$N$, a similarity is defined as a transformation~${\cal T}:\R^{N\!}→\R^{N\!}$ that can be written as
 $$
-\Cal T(x) = r\, \Cal O(x) + t,\quad x\in\R^N,
+\Cal T(x) = r\, \Cal O(x) + t,\quad x\in\R^N\!\!\!,
 $$
-with $r$ being a positive real number, $\cal O$ an orthogonal\fnote{A transformation is {\em orthogonal} if it can be represented by an orthogonal matrix, that is a matrix whose inverse equals its transpose.  An orthogonal transformation is a rotation, a reflection, or a combination of them.} transformation, and~$t$ a point of~$\R^N$.   A similarity can be viewed simply as a transformation that preserves the {\em shape} of the object (in our case, of the set of points) to which it is applied.  
+with $r$ being a positive real number, $\cal O$ an orthogonal\fnote{A transformation is {\em orthogonal} if it can be represented by an orthogonal matrix, that is a matrix whose inverse equals its transpose.  An orthogonal transformation is a rotation, a reflection, or a combination of them.} transformation, and~$t$ a point of~$\R^N\!\!\!$.\,\,   A similarity can be viewed simply as a transformation that preserves the {\em shape} of the object (in our case, of the set of points) to which it is applied.  
 
 % It represent a transformation that doesn't change the shape...
 
@@ -205,13 +205,11 @@ The constant~$r$ uniformly multiplies every occurrence of the parameter~$ε$ in 
 Actually, as it is clear from the proof, the scaling parameter~$r$ could also have been taken negative.  But the change of sign (the symmetry) is already included in the next result.
 
 \preskip
-\property If $Y=\Cal O(X) + t$ for some orthogonal transformation~$\Cal O$ and some point~$t\in\R^N$, then $\Bm Q_{Y\!} = \Bm Q_{X}$.
+\property If $Y=\Cal O(X) + t$ for some orthogonal transformation~$\Cal O$ and some point~$t\in\R^N\!\!\!$,\,\, then $\Bm Q_{Y\!} = \Bm Q_{X}$.
 \proof
 This simply follows from the fact that the interpolation process made with a radial positive definite function is invariant under a Euclidean transformation applied to the data sites.~\QED
 \postskip
 
-
-Summing up, we saw that when $ε→0$ the regularity vector~$\Bm Q$ converges to a limit vector which is invariant under a shape preserving transformation applied to~$X$ or to~$F$.  This fact is very important if we wish to employ~$\Bm Q$ to determine the regularity of some data~$(X, F)$---the regularity of two sets of data that have the same shape should be the same.  Figure~\ref[shapefig] may make this claim apparent.
 
 \label[shapefig]
 \topinsert
@@ -223,8 +221,12 @@ Summing up, we saw that when $ε→0$ the regularity vector~$\Bm Q$ converges to
 \egroup
 \kern-6ex
 \caption/f
-Three similar sets of data~$(X, F)$, with $X\subset\R$.  Intuitively they all have the same regularity, whatever this means.  Indeed, we showed that in the flat limit the regularity vector~$\Bm Q$ is the same for all of them.
+Three similar sets of data~$(X, F)$, with $X\subset\R$, meaning that they can be transformed one into another by applying a similarity map both on the data sites and the data values.  Intuitively they all have the same regularity, whatever this means.  Indeed, we showed that in the flat limit the regularity vector~$\Bm Q$ is the same for all of them.
 \bigskip
 \endinsert
 
+
+
+
+Summing up, we saw that when $ε→0$ the regularity vector~$\Bm Q$ converges to a limit vector which is invariant under a shape preserving transformation applied to~$X$ or to~$F$.  This fact is very important if we wish to employ~$\Bm Q$ to determine the regularity of some data~$(X, F)$---the regularity of two sets of data that have the same shape should be the same.  Figure~\ref[shapefig] may make this claim apparent.
 
