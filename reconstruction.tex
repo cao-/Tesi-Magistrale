@@ -14,47 +14,52 @@ s(e)\coloneq\cases{s_{1\!\.}(e) & if $e\in E_1$ \cr
 $$
 
 
-We therefore only need some way to assign to each evaluation point~$e\in E$ its domain~$\{\Omega_j\}_{j=1}^N$.  The only information available is that for each~$j$ the data sites~$X_j$ belong to~$\Omega_j$.  This information must be used to predict where to locate each  point of the given set~$E$.  Of course we can't expect to perfectly separate~$E$ into subsets~$E_j$ such that $E_j$ is  fully contained inside~$\Omega_j$ for each~$j$, based on the available knowledge.
+We therefore only need some way to assign to each evaluation point~$e\in E$ its domain~$\{\Omega_j\}_{j=1}^N$.  The only information available is that for each~$j$ the data sites~$X_j$ belong to~$\Omega_j$.  This information must be used to predict where to locate each  point of the given set~$E$.  Of course we can't expect to perfectly separate~$E$ into subsets~$E_j$ such that $E_j$ is  fully contained inside~$\Omega_j$ for each~$j$, with the available knowledge.
 
 
 For the classification of the evaluation points we use an algorithm from the field of machine learning, called {\em support vector machine} (SVM), which belongs to the class of the supervised learning algorithms (Christmann and Steinwart~\cite[christmann-steinwart_2008]).  The basic version of the algorithm works with only two classes. So, in order to describe it, we now suppose that our set~$X$ of data sites has been divided into two sets only, namely~$X_1, X_2$.  The  general case of an arbitrary number~$M$ of classes will be discussed later. 
 
-A SVM works in the following way.  First the points are sent through a map~$\Theta$, called $\.${\em feature map}\fnote{It is called {\em feature map} because it transforms the components of a vector~$x$ into another set of components. ...}$\!\!$,$\.$ into some higher dimensional vector space~$V\!$, and then a hyperplane that best separates $\Theta(X_1)$ from~$\Theta(X_2)$ is found there.  The hyperplane is described implicitly as the zero set of the function
+A SVM works in the following way.  First the points are sent through a map~$\Theta$, called $\.${\em feature map}\fnote{In machine learning a {\em feature} is an individual measurable property or characteristic of a phenomenon being observed.  Here the features are the coordinates of the points, that get transformed by~$\Theta$ into a different set of coordinates.}$\!\!$,$\.$ into some higher dimensional vector space~$V\!$, and then a hyperplane that best separates $\Theta(X_1)$ from~$\Theta(X_2)$ is found there.  The hyperplane is described implicitly as the zero set of the function
 $$
-h(x) \coloneq \langle \Theta(x), w\rangle + b,\quad x\in\Omega, \eqmark[hyperplane]
+h(x) \coloneq \langle w, \Theta(x)\rangle_V + b,\quad x\in\Omega, \eqmark[hyperplane]
 $$
 where $w$ and~$b$ are two vectors of~$V\!$.\,  The orthogonal vector~$w$ and the offset vector~$b$ are determined such that the geometric margin from the hyperplane to both $\Theta(X_1)$ and~$\Theta(X_2)$ is maximised, either in a strict way if $\Theta(X_1)$ and~$\Theta(X_2)$ are linearly separable, or in a weaker form.
  In any case, the problem of determining $w$ and~$b$ can be converted into an optimisation problem whose formulation has the peculiarity of depending on the original data~$X$ only through the scalar products between pairs of the associated transformed points~$\Theta(X)\subset V\!$.\,
 
 Specifically, one has to find the coefficients~$\range \lambda_N/$ that maximise the quantity
 $$
-\sum_{i=1}^N\lambda_i - {1\over2}\sum_{i=1}^N\sum_{j=1}^N\lambda_i z_i\langle \Phi(x_i), \Phi(x_j)\rangle \lambda_j z_j,\quad\hbox{where } z_k\coloneq \cases{\phantom-1 & if $x_k \in X_1$\cr -1 & if $x_k\in X_2$},\eqmark[optimisation]
-$$
-subject to the constraints
-$$
+\displaylines to \hsize{
+\sum_{i=1}^N\lambda_i - {1\over2}\sum_{i=1}^N\sum_{j=1}^N\lambda_i z_i\,\langle \Theta(x_i), \Theta(x_j)\rangle_V\, \lambda_j z_j,\quad\hbox{where } z_k\coloneq \cases{\phantom-1 & if $x_k \in X_1$\cr -1 & if $x_k\in X_2$},\cr
+\hbox{subject to the constraints}\hfill\eqmark[optimisation]
+\cr
 \left\{\eqalign{&\textstyle\sum_{i=1}^N\lambda_i z_i = 0\cr
                 & 0\leq\lambda_i\leq C\quad\mathbox{for all~$i$}.}\right.
+}
 $$
 Here the box constraint~$C$ is a cost factor which indicates how much weight should be assigned to misclassified points.  A value~$C=\infty$, for instance, tells the algorithm to attempt to find a strict separation of the data, if possible.
 After having obtained the coefficients~$\{\lambda_i\}_{i=1}^N$, the solution vectors $w$ and~$v$ are computed as
 $$
-w = \sum_{i=1}^N \lambda_i z_i x_i, \qquad b =\sum_{j=1}^N\lambda_j z_j\langle \Phi(x_i), \Phi(x_j)\rangle - z_i, 
+w = \sum_{j=1}^N \lambda_j z_j x_j, \qquad b =\sum_{j=1}^N\lambda_j z_j\langle \Theta(x_i), \Theta(x_j)\rangle_V\, - \.z_i, 
 $$
-where $i$ is an index such that~$0<c_i<C$.
-The above optimisation problem can be efficiently solved by some quadratic programming algorithm provided that the scalar products~$\langle \Phi(x_i), \Phi(x_j)\rangle$ can be efficiently computed.
+where $i$ is an index such that~$0<\lambda_i<C$.
+The above optimisation problem can be efficiently solved by some quadratic programming algorithm provided that the scalar products~$\langle \Theta(x_i), \Theta(x_j)\rangle_V$ can be efficiently computed.
 
 
-Here the {\em kernel trick} comes into play.  By virtue of Mercér theorem any symmetric positive definite kernel~$\Phi:\Omega\times\Omega\to\R$ can be decomposed as
+Here the {\em kernel trick} comes into play.  By virtue of Mercer theorem any symmetric positive definite kernel~$\Phi:\Omega\times\Omega\to\R$ can be decomposed as
 $$
-\Phi(x, y) = \langle \Theta(x), \Theta(y)\rangle = \sum_{i=1}^\infty\Theta_i(x)\Theta_i(y),\quad x,y\in\Omega, 
+\Phi(x, y) = \langle \Theta(x), \Theta(y)\rangle_V\. = \sum_{i=1}^\infty\Theta_i(x)\Theta_i(y),\quad x,y\in\Omega, 
 $$
 where each~$\Theta_i$ is an eigenfunction of the integral operator~$f\mapsto\int_\Omega f(x)\Phi(x,y)\,dx$.  Therefore, if the feature map~$\Theta$ is taken from the decomposition of some kernel~$\Phi$, then the scalar products of pairs of points in the higher dimensional (possibly infinite dimensional) vector space~$V$ can be efficiently computed by simply evaluating the kernel function on the corresponding pairs of points of~$X$,  regardless of the dimension of~$V\!$.\,  Notice moreover that the whole computations can be performed without even knowing who the feature map~$\Theta$ is, but simply by evaluating some known kernel~$\Phi$.
 
-The most used kernel function in the context of SVMs is the Gaussian kernel, defined in Example~\ref[gaussianex].  It is known that the integral operator associated to the Gaussian kernel~$\Phi$ has an infinite set of eigenvalues (Ha Quang, Niyogi and Yao~\cite[ha_quang-niyogi-yao_1970]), therefore the feature map~$\Theta$ into which $\Phi$ decomposes maps the data~$X$ into a vector space~$V\!$ of infinite dimension.
+The most used kernel function in the context of SVMs is the Gaussian kernel
+$$
+\Phi(x,y) = \phi(ε\norm{x-y}) = e^{-ε^2\norm{x-y}^2},
+$$
+previously defined in Example~\ref[gaussianex].  It is known that the integral operator associated to the Gaussian kernel has an infinite set of eigenvalues (Ha Quang, Niyogi and Yao~\cite[ha_quang-niyogi-yao_1970]), therefore the feature map~$\Theta$ into which $\Phi$ decomposes maps the data~$X$ into a vector space~$V\!$ of infinite dimension.
 
 
-In this process the SVM has learnt a possibly nonlinear decision boundary in the space~$\Omega$ by learning a linear decision boundary in the space~$V\!$.\,
-The decision function~$h$ defined in~\ref[hyperplane] can now be used to classify the evaluation points~$E$ into the two classes~$E_1$, $E_2$.  These two classes get defined in the following way:
+In the whole described process, the SVM has learnt a possibly nonlinear decision boundary in the space~$\Omega$ by learning a linear decision boundary in the space~$V\!$.\,
+The decision function~$h$ defined in~\ref[hyperplane] can now be used to classify the evaluation points~$E$ into the two classes $E_1$ and~$E_2$, by defining these two classes in the following way:
 $$
 E_1\coloneq \{\,e\in E\,:\>h(e)\geq 0\,\},\qquad
 E_2\coloneq \{\,e\in E\,:\>h(e)<0\,\} = E\setminus E_1.
@@ -74,9 +79,6 @@ $$
 
 
 Actually, not all the points of each set~$X_j$ are  necessary to train the SVM.  The points that really count are those located at the boundary of each set~$X_j$.  Since we have at our disposal the triangulation~$\Cal I_j$ of each set~$X_j$, the boundary points can be easily located by taking the boundary of those triangulations.  If the sets~$\smash{\{X_j\}_{j=1}^M}$ get replaced by the corresponding sets of boundary points, then the optimisation problem~\ref[optimisation] reaches the solution much faster.
-
-
-The role of~\Theta
 
 
 
