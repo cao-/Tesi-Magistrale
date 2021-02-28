@@ -1,0 +1,55 @@
+
+
+%In the previous section we showed that the interesting behaviour of the regularity vector~$\Bm Q$ is achieved in the flat limit, that is when the  parameter~$ε$ determining the shape of the basis functions approaches the value~$0$.
+
+%Therefore, it  is of our interest to compute the limit value of this vector in order to analyse a given sample of data~$(X, F)$.
+From the numerical point of view, it  may be problematic to  actually  compute a good approximation of~$\Bm Q\.$ when $ε\to0$.  In fact, as $ε$ becomes smaller and smaller, the rows (and the columns) of the interpolation matrix~$\Bm A$ become increasingly similar one to another, and the procedure  devised in Proposition~\ref[Ucomputation] to efficiently compute the values of the vector~$\Bm U$, and hence the values of~$\Bm Q\.$, may be unstable\fnote{Refer to the end of Section~\ref[errorsec] for other considerations about the stability of the standard interpolation algorithm.}$\!\.\!\!$,\,\, because it involves the inverse of the matrix~$\Bm A$. 
+
+
+Fortunately, if the employed radial function~$\phi$ is not too much regular, it can be numerically observed that there is a wide range of values for~$ε$ that allow to obtain a very good approximation of the limit value of~$\Bm Q\.$, before incurring in malconditioning problems. 
+Figure~\ref[limitQfig] shows what happens when $\phi$ is one of the Wendland's functions of Table~\ref[wentab] or the Gaussian function of Example~\ref[gaussianex].
+%For simplicity we plotted the value~$\norm \Bm Q_1$, but 
+
+%In each of the shown graphs, a part from the case of the Gaussian function, there is an interval of values for~$ε$
+
+
+
+
+
+\Red
+
+\noindent TODO
+\begitems
+* How to numerically compute Q, $\varepsilon$ doesn't have to be too small.
+* Properties of the quantity~$\norm{\Bm Q}_1$, used to build the classifier.
+* Different $\phi$ detect different regularities.
+* Comparison with $\Bm E$ and~$\Bm\alpha$ (and simply the native space norm).
+%* ``Problems'' at the boundary and possible solutions.
+%* Effect of noise in the data
+\enditems
+
+
+
+\label[limitQfig]
+\topinsert
+\kern-0.78cm
+\bgroup
+\typoscale[900/900]
+\picw=1.2\hsize
+\line{\hss\inkinspic{limitQ2.pdf}\hbox{\kern1.5em}\hss}
+\egroup
+\kern-7ex
+\caption/f
+From a set~$(X, F)$ of data (shown at the top), where $X\subset[0,1]\subset\R$ we computed for some radial functions~$\phi$ the vector~$\Bm Q$, using various values of~$\varepsilon$.
+The graphs show the value~$\norm Q_1$ when~$\varepsilon$ changes--in each graph the abscissae represent the values of~$\varepsilon$ in a logarithmic scale. If $\phi$ is the Wendland's~$\Cal C^0$ function, we can see that there is a very wide range of values, from about $10^{-1}$ up to~$10^{-12}$ where the graph is flat, meaning that the limiting value for~$\Bm Q$ is reached.  For values of~$\varepsilon$ still smaller, the effect of malconditioning becomes visible and the computed value is not reliable.  
+
+\bigskip
+\endinsert
+
+
+
+
+\Black
+
+
+

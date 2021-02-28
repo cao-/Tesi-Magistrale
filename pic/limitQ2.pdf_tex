@@ -1,0 +1,121 @@
+%% Creator: Inkscape inkscape 0.92.3, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'limitQ2.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+\EBGaramond\rm
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{432bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.19097222)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{limitQ2.pdf}}%
+    \put(0.14236562,0.95983802){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-1\end{tabular}}}}%
+    \put(0.88374583,0.95983802){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{limitQ2.pdf}}%
+    \put(0.10740747,0.97731753){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}-1\end{tabular}}}}%
+    \put(0.11435191,1.06200278){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}1\end{tabular}}}}%
+    \put(0.43750052,1.09756944){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\BaskervilleMT\rm Sampled data\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{limitQ2.pdf}}%
+    \put(0.27256944,0.78472222){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}10\end{tabular}}}}%
+    \put(0.296875,0.79340278){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\scriptstyle -10$\end{tabular}}}}%
+    \put(0.55208333,0.78472222){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}10\end{tabular}}}}%
+    \put(0.57638889,0.79340278){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\scriptstyle -5$\end{tabular}}}}%
+    \put(0.83159722,0.78472222){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}10\end{tabular}}}}%
+    \put(0.85590278,0.79340278){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\scriptstyle 0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{limitQ2.pdf}}%
+    \put(0.11435191,0.8046875){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}0\end{tabular}}}}%
+    \put(0.11435191,0.9140625){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}2\end{tabular}}}}%
+    \put(0.44097274,0.92916667){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\BaskervilleMT\rm Wendland's $\Cal C^0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{limitQ2.pdf}}%
+    \put(0.14236111,0.61458333){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}10\end{tabular}}}}%
+    \put(0.16666667,0.62326389){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\scriptstyle -3$\end{tabular}}}}%
+    \put(0.32638889,0.61458333){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}10\end{tabular}}}}%
+    \put(0.35069444,0.62326389){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\scriptstyle -2$\end{tabular}}}}%
+    \put(0.51215278,0.61458333){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}10\end{tabular}}}}%
+    \put(0.53645833,0.62326389){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\scriptstyle -1$\end{tabular}}}}%
+    \put(0.70138889,0.61458333){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}10\end{tabular}}}}%
+    \put(0.72569444,0.62326389){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\scriptstyle 0$\end{tabular}}}}%
+    \put(0.88715278,0.61458333){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}10\end{tabular}}}}%
+    \put(0.91145833,0.62326389){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\scriptstyle 1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{limitQ2.pdf}}%
+    \put(0.11435191,0.63454861){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}0\end{tabular}}}}%
+    \put(0.11435191,0.74392361){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}3\end{tabular}}}}%
+    \put(0.44097274,0.75902778){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\BaskervilleMT\rm Wendland's $\Cal C^2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{limitQ2.pdf}}%
+    \put(0.28819444,0.44444444){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}10\end{tabular}}}}%
+    \put(0.3125,0.453125){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\scriptstyle -1$\end{tabular}}}}%
+    \put(0.59027778,0.44444444){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}10\end{tabular}}}}%
+    \put(0.61458333,0.453125){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\scriptstyle 0$\end{tabular}}}}%
+    \put(0.88715278,0.44444444){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}10\end{tabular}}}}%
+    \put(0.91145833,0.453125){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\scriptstyle 1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{limitQ2.pdf}}%
+    \put(0.11435191,0.46440972){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}0\end{tabular}}}}%
+    \put(0.11435191,0.57378472){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}5\end{tabular}}}}%
+    \put(0.44097274,0.58888889){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\BaskervilleMT\rm Wendland's $\Cal C^4$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{limitQ2.pdf}}%
+    \put(0.40451389,0.27604167){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}10\end{tabular}}}}%
+    \put(0.42881944,0.28472222){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\scriptstyle 0$\end{tabular}}}}%
+    \put(0.88715278,0.27604167){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}10\end{tabular}}}}%
+    \put(0.91145833,0.28472222){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\scriptstyle 1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{limitQ2.pdf}}%
+    \put(0.11435191,0.29600694){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}0\end{tabular}}}}%
+    \put(0.11435191,0.40364583){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}6\end{tabular}}}}%
+    \put(0.44097274,0.41875){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\BaskervilleMT\rm Wendland's $\Cal C^6$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{limitQ2.pdf}}%
+    \put(0.14756944,0.10590278){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}10\end{tabular}}}}%
+    \put(0.171875,0.11458333){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\scriptstyle 0$\end{tabular}}}}%
+    \put(0.88715278,0.10590278){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}10\end{tabular}}}}%
+    \put(0.91145833,0.11458333){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\scriptstyle 1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{limitQ2.pdf}}%
+    \put(0.11435191,0.12586806){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}0\end{tabular}}}}%
+    \put(0.09004635,0.23524306){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}300\end{tabular}}}}%
+    \put(0.46441024,0.25034722){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\BaskervilleMT\rm Gaussian\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{limitQ2.pdf}}%
+  \end{picture}%
+\endgroup%
