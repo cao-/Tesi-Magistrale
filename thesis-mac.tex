@@ -5,6 +5,9 @@
 
 \protected\def\.{\mskip 1.5mu\relax}
 
+\protected\def\!{\_relax\_ifmmode \_thinneg \_else \_negthinspace \_fi}
+
+
 %\abovedisplayskip=4pt plus 1pt minus 1pt 
 %\belowdisplayskip=\abovedisplayskip
 %\the\spaceskip
@@ -52,7 +55,9 @@
 
 
 % Change size of footnote
-\def\_fnset{\_everypar={\kern-.5\parindent}\_scalemain \_typoscale[900/900]\applyfontextension \applyfontprotrusions}
+\def\_fnset{\vskip-1.3ex\_everypar={\kern-.5\parindent}\_scalemain \_typoscale[900/900]\applyfontextension \applyfontprotrusions}
+
+\def \_footnoterule {\_kern-2pt \_hrule width 2.1truein \_kern 0pt}
 
 % Print fnotemarks in text font
 \def\_printfnotemark {$^\mathbox{\_fnotenum}$}

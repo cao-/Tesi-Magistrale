@@ -202,13 +202,6 @@ $$
 The constant~$r$ uniformly multiplies every occurrence of the parameter~$ε$ in the transformed matrix~$\Bm A_Y$, therefore the change made by~$r$ is irrelevant when the limit~$ε→0$ is considered.~\QED
 \postskip
 
-Actually, as it is clear from the proof, the scaling parameter~$r$ could also have been taken negative.  But the change of sign (the symmetry) is already included in the next result.
-
-\preskip
-\property If $Y=\Cal O(X) + t$ for some orthogonal transformation~$\Cal O$ and some point~$t\in\R^N\!\!\!$,\,\, then $\Bm Q_{Y\!} = \Bm Q_{X}$.
-\proof
-This simply follows from the fact that the interpolation process made with a radial positive definite function is invariant under a Euclidean transformation applied to the data sites.~\QED
-\postskip
 
 
 \label[shapefig]
@@ -226,7 +219,14 @@ Three similar sets of data~$(X, F)$, with $X\subset\R$, meaning that they can be
 \endinsert
 
 
+Actually, as it is clear from the proof, the scaling parameter~$r$ could also have been taken negative.  But the change of sign (the symmetry) is already included in the next result.
+
+\preskip
+\property If $Y=\Cal O(X) + t$ for some orthogonal transformation~$\Cal O$ and some point~$t\in\R^N\!\!\!$,\,\, then $\Bm Q_{Y\!} = \Bm Q_{X}$.
+\proof
+This simply follows from the fact that the interpolation process made with a radial positive definite function is invariant under a Euclidean transformation applied to the data sites.~\QED
+\postskip
 
 
-Summing up, we saw that when $ε→0$ the regularity vector~$\Bm Q$ converges to a limit vector which is invariant under a shape preserving transformation applied to~$X$ or to~$F$.  This fact is very important if we wish to employ~$\Bm Q$ to determine the regularity of some data~$(X, F)$---the regularity of two sets of data that have the same shape should be the same.  Figure~\ref[shapefig] may make this claim apparent.
 
+Summing up, we saw that when $ε→0$ the regularity vector~$\Bm Q$ converges to a limit vector which is invariant under a shape preserving transformation applied to~$X$ or to~$F$.  This fact is very important if we wish to employ~$\Bm Q$ to determine the regularity of some data~$(X, F)$---the regularity of two sets of data that have the same shape should be the same.  Figure~\ref[shapefig] may make this claim apparent.  Since the interesting behaviour of~$\Bm Q$ is achieved in the flat limit, we must find a way to numerically compute a good approximation of $\lim_{ε\to0}\Bm Q$.

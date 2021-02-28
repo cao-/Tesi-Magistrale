@@ -98,6 +98,7 @@ by reminding that~$\Bm t(x_k)^T\!$ is the $k$-th row of the interpolation matrix
 \postskip
 
 Using the arguments of the previous theorem and the same notations, we are now ready to derive an alternative formula also for the previously defined vector~$\Bm U$.
+\label[Ucomputation]
 \proposition
 The elements~$U_k = \norm{s}_\phi^2-\norm{s^{(k)\!}}_\phi^2$ of the vector~$\Bm U$ can be computed also with the formula
 $$
@@ -154,12 +155,12 @@ The first code uses the standard MATLAB linear system solver (the backslash oper
 \postskip
 
 
-Going now back to its original definition, the vector~$\Bm U\.$ has elements~$U_k = \norm s_\phi^2 - \norm{s^{(k)\!}}_\phi^2$, which satisfy the relation~$0 ≤ U_k ≤ \norm s_\phi^2$.
-Instead of considering the absolute increment of the square of the norm between $s^{(k)\!}$ and~$s$, we can compute the relative increment
+Going now back to its original definition, the vector~$\Bm U\.$ has elements~$U_k = \smash{\norm s_\phi^2} - \smash{\norm{s^{(k)\!}}}_\phi^2$, which satisfy the relation~$0 ≤ U_k ≤ \smash{\norm s_\phi^2}$.
+Instead of simply considering the absolute increment of the square of the norm between $\smash{s^{(k)\!}}$ and~$s$, we can also compute the relative increment
 $$
 Q_k \coloneq {\norm s_\phi^2 - \norm{s^{(k)\!}}_\phi^2 \over \norm s_\phi^2}.
 $$
-This ratio of course has no meaning when~$\norm s_\phi = 0$.  But in this case it happens that also $\norm{s^{(k)\!}}_\phi = 0$ for all~$k$, therefore it is reasonable to set $Q_k = 0$ as well.
+This ratio of course has no meaning when~$\norm s_\phi = 0$.  But in this case it happens that also $\smash{\norm{s^{(k)\!}}_\phi} = 0$ for all~$k$, therefore it is reasonable to set $Q_k = 0$ as well.
 
 \label[Qdef]
 \preskip
@@ -194,4 +195,4 @@ $$
 
 Of course it is impossible to tell with certainty how regular a function~$f$ is, just by looking at a set of values sampled from it and without any other assumption about the function itself.
 In fact, $f$~can have an arbitrary behaviour at the other unseen points. This classifier anyhow tries to make a decision based on how well each single data point follows the model prescribed by the other data points alone.
-The regularity is inspected by the function $\phi$, and the tolerance~$\tau$ is the decision boundary between regular (value~$1$) and not regular (value~$-1$) functions, which must be set according to how much evidence is required for the classification. The rationale behind the above given definition for the classifier~$\Cal R$ should become apparent in the following section.
+The regularity is inspected by the function $\phi$, and the tolerance~$\tau$ is the decision boundary between regular (value~$1$) and not regular (value~$-1$) functions, which must be set according to how much evidence is required for the classification. The rationale behind the above given definition for the classifier~$\Cal R$ should become apparent in the following sections.

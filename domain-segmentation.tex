@@ -32,6 +32,7 @@ We also fix a radial basis function~$\phi$ and a global shape parameter~$ε>0$. 
 
 
 \def\lQ{\Bm Q_{\.c}}
+\Red
 First of all, the algorithm starts by selecting one single circumcentre~$c\in C$.  It can be either the first circumcentre of~$C$ (assuming to have an order on the set~$C$), or one circumcentre chosen at random. Then, the set~$X_c\subset X$ of its $n$ nearest neighbours from~$X$ is taken, together with its associated set~$F_c\subset F$ of function values. To assess the regularity of the local data~$(X_c, F_c)$, its $\phi$-regularity vector~$\lQ$ must be computed.
 
 In order to obtain a good approximation of~$\lQ$ in the flat limit, while at the same time trying to avoid malconditioning in the interpolation system, prior to computation the global  parameter~$ε$ may be rescaled so that it better fits the local domain.  Specifically, if $d \coloneq \max_{x, y\in X_c}\norm{x-y}$~is the diameter of the local set~$X_c$ (value that can be obtained from the distance matrix of~$X_c$), the vector~$\lQ$ may actually be computed by using the scaled basis function~$\phi_δ$, with $δ\coloneq \slfrac εd$, instead of the globally defined function~$\phi_ε$.  But this additional scaling is not necessary if the data sites~$X$ are not too wildly scattered, in which case the same~$\phi_ε$ could be used for each local computation. Additionally, before computing~$\Bm Q_c$ it may be wise to bring the set of data values close to zero, by applying a translation $F_c\mapsto F_c - t$, as described in Section~\ref[numericalsec]. For instance, $t$ could be the mean of the values of~$F_c$ or simply the mean of the function values at the vertices of the triangle having circumcentre~$c$.  
@@ -103,7 +104,7 @@ In case $(X_{c'}\cap\Pi)\setminus Z=\emptyset$ (that is, in case we didn't remov
 If instead $\Cal R(X_{c'}, F_{c'})$ is always~$0$ no matter how many points we remove from~$X_{c'}$ (and all the possible points have been already removed), then we simply remove~$\smash{t'}$ from the set~$\Cal B_j$ of boundary triangles, and add it to the set~$\Cal D_j$.  This means that from the triangle~$\smash{t'}$ we won't attempt anymore to extend~$\Cal I_j$.
 After having updated both $\Cal I_j$ and~$\Cal B_j$, the entering condition of the loop is tested again and eventually another cycle is performed. 
 
-
+\Black
 
 
 
