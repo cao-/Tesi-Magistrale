@@ -7,24 +7,29 @@ From the numerical point of view, it  may be problematic to  actually  compute a
 
 
 Fortunately, if the employed radial function~$\phi$ is not too much regular, numerical tests show that there is a wide interval~$I$ of values for~$ε$ that allow to obtain a very good approximation of the limit value of~$\Bm Q\.$, before incurring in malconditioning problems. 
-Figure~\ref[limitQfig] shows what happens when $\phi$ is one of the Wendland's functions of Table~\ref[wentab] or the Gaussian function of Example~\ref[gaussianex]. From that picture it seems apparent that the range~$I$ of values in which~$ε$ can be chosen decreses as the regularity of~$\phi$ increases.  When its regularity is high, either it may be hard to pick a value of~$ε$ such that~$ε\in I$, or it may even be impossible, because $I=\emptyset$, which means that the limit value of~$\Bm Q$ is numerically never reached.  For the applications that we have in mind---either detecting function discontinuities or gradient faults---this fact doesn't constitute a big problem.  In fact, we'll be interested in using mainly the $\Cal C^0$ or~$\Cal C^2$ functions.
+Figure~\ref[limitQfig] shows what happens when $\phi$ is one of the Wendland's functions of Table~\ref[wentab] or the Gaussian function of Example~\ref[gaussianex]. From that picture it seems apparent that the range~$I$ of values in which~$ε\.$ can be chosen decreses as the regularity of~$\phi$ increases.  When the regularity is high, either it may be hard to pick a value of~$ε$ such that~$ε\in I$, or it may even be impossible, because $I=\emptyset$, which means that the limit value of~$\Bm Q$ is numerically never reached.  For the applications that we have in mind---either detecting function discontinuities or gradient faults---this fact doesn't constitute a big problem.  In fact, we'll be interested in using mainly the $\Cal C^0$ or~$\Cal C^2$ functions.
 
 
 
-One way to improve stability when computing~$\Bm Q\.$ for a given set~$(X, F)$ of sampled data is to bring~$F$ closer to the origin before actually performing the computations, by taking adavantage of Property~\ref[translprop] and replacing~$F$ with  $G = F-\mathop{\rm mean}(F)$, for instance. In fact, it can be observed either from considerations made in the proofs of Property~\ref[flatlimit] and Property~\ref[translprop], or also from  numerical tests, that this shift allows to obtain the same approximation of~$\lim_{ε\to 0} \Bm Q$ using bigger values of~$ε$, that are less likely to produce a malconditioned interpolation matrix.
 
 
-\Red
+One way to improve stability when computing~$\Bm Q\.$ for a given set~$(X, F)$ of sampled data is to bring~$F$ closer to the origin before actually performing the computations, by taking adavantage of Property~\ref[translprop] and replacing~$F$ with  $G = F-\mathop{\rm mean}(F)$, for instance. In fact, it can be observed either using the considerations made in the proofs of Property~\ref[flatlimit] and Property~\ref[translprop], or also from  numerical tests, that this shift allows to obtain the same level of approximation for~$\lim_{ε\to 0} \Bm Q\.$ by using bigger values of~$ε$, that are less likely to produce a malconditioned interpolation matrix.
 
-\noindent TODO
-\begitems
-%* How to numerically compute Q, $\varepsilon$ doesn't have to be too small.
-* Properties of the quantity~$\norm{\Bm Q}_1$, used to build the classifier.
-* Different $\phi$ detect different regularities.
-* Comparison with $\Bm E$ and~$\Bm\alpha$ (and simply the native space norm).
-%* ``Problems'' at the boundary and possible solutions.
-%* Effect of noise in the data
-\enditems
+
+An interesting fact to notice is that the vector~$\Bm Q$ detects different kinds of function irregularities, depending on the used radial function~$\phi$.  We considered four functions~$f_1$, $f_2$, $f_3$, $f_4$, defined on the interval~$[-1,1]\subset\R$, such that: $f_1$ is discontinuous; $f_2$ is of class~$\Cal C^0$ but not~$\Cal C^1$; $f_3$ is of class~$\Cal C^2$ but not~$\Cal C^1$; and $f_4$ is~$\Cal C^\infty$.  Precisely, they are defined as
+$$
+f_1(x) =\cases{x, & if $x<0$\cr
+               x^2+1 & if $x\geq 0$,}
+$$
+\vskip0ex
+$$
+f_2(x) =\mathop{\rm abs}(x),\qquad
+f_3(x)=\mathop{\rm abs}(x)^{3/2},\qquad
+f_4(x) = \sin(x).
+$$
+After having sampled each of these functions at a set~$X$ of $25$ uniformly spaced points in~$[-1,1]$, we computed the $\phi$-regularity vector~$\Bm Q$ using three different radial functions~$\phi$, namely the Wendland's $\Cal C^0$, $\Cal C^2$ and~$\Cal C^4$ functions.  The vector~$\Bm Q$ was computed using a value of~$\varepsilon$ in the range that produces a good approximation for the limit value~$\lim_{\varepsilon\to 0}\Bm Q$.  The sampled functions and the computed components of~$\Bm Q$ are shown in Figure~\ref[diffregular].
+
+We see that the Wendland's $\Cal C^0$ function detects the discontinuity of~$f_1$, it almost doesn't see the gradient discontinuity of~$f_2$ (the small signal detected at the point~$x=0$ vanishes as the number  of sampled points is increased), and it doesn't detect the discontinuity of the second derivative in the case of~$f_3$.  Instead, both the Wendland's $\Cal C^2$ and~$\Cal C^4$ functions can detect, with signals of different amplitude, the irregularities of $f_2$ and~$f_3$.  Finally, neither of the considered radial functions  detect any irregularity in the smooth function~$f_4$, except some small signals at the boundary of the domain.
 
 
 
@@ -43,6 +48,45 @@ From a set~$(X, F)$ of data (shown at the top), where $X\subset[0,1]\subset\R$ w
 \endinsert
 
 
+
+
+\label[diffregular]
+\pageinsert
+\kern-0.78cm
+\bgroup
+\picw=.53\hsize
+\line{\hss\inspic{reg_disc1.pdf}\inspic{reg_abs.pdf}\hss}
+\kern-5ex
+\line{\hss\inspic{reg_c1notc2.pdf}\inspic{reg_sin.pdf}\hss}
+\egroup
+\kern-5ex
+\caption/f
+Plots of the functions $f_1$ (top left), $f_2$ (top right), $f_3$ (bottom left) and $f_4$ (bottom right), with their sampled data.  Under each of them there is a visualisation of the components of the limit vector~$\Bm Q$ computed with the Wendland's $\Cal C^0$ (blue), $\Cal C^2$ (red) and $\Cal C^4$ (black) functions.
+\bigskip
+\endinsert
+
+
+
+
+
+
+
+
+
+
+
+
+\Red
+
+\noindent TODO
+\begitems
+%* How to numerically compute Q, $\varepsilon$ doesn't have to be too small.
+* Properties of the quantity~$\norm{\Bm Q}_1$, used to build the classifier.
+%* Different $\phi$ detect different regularities.
+* Comparison with $\Bm E$ and~$\Bm\alpha$ (and simply the native space norm).
+%* ``Problems'' at the boundary and possible solutions.
+%* Effect of noise in the data
+\enditems
 
 
 \Black
