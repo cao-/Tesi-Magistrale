@@ -6,21 +6,19 @@
 From the numerical point of view, it  may be problematic to  actually  compute a good approximation of~$\Bm Q\.$ when $ε\to0$.  In fact, as $ε$ becomes smaller and smaller, the rows (and the columns) of the interpolation matrix~$\Bm A$ become increasingly similar one to another, and the procedure  devised in Proposition~\ref[Ucomputation] to efficiently compute the values of the vector~$\Bm U$, and hence the values of~$\Bm Q\.$, may be unstable\fnote{Refer to the end of Section~\ref[errorsec] for other considerations about the stability of the standard interpolation algorithm.}$\!\.\!\!$,\,\, because it involves the inverse of the matrix~$\Bm A$. 
 
 
-Fortunately, if the employed radial function~$\phi$ is not too much regular, it can be numerically observed that there is a wide range of values for~$ε$ that allow to obtain a very good approximation of the limit value of~$\Bm Q\.$, before incurring in malconditioning problems. 
-Figure~\ref[limitQfig] shows what happens when $\phi$ is one of the Wendland's functions of Table~\ref[wentab] or the Gaussian function of Example~\ref[gaussianex].
-%For simplicity we plotted the value~$\norm \Bm Q_1$, but 
-
-%In each of the shown graphs, a part from the case of the Gaussian function, there is an interval of values for~$ε$
+Fortunately, if the employed radial function~$\phi$ is not too much regular, numerical tests show that there is a wide interval~$I$ of values for~$ε$ that allow to obtain a very good approximation of the limit value of~$\Bm Q\.$, before incurring in malconditioning problems. 
+Figure~\ref[limitQfig] shows what happens when $\phi$ is one of the Wendland's functions of Table~\ref[wentab] or the Gaussian function of Example~\ref[gaussianex]. From that picture it seems apparent that the range~$I$ of values in which~$ε$ can be chosen decreses as the regularity of~$\phi$ increases.  When its regularity is high, either it may be hard to pick a value of~$ε$ such that~$ε\in I$, or it may even be impossible, because $I=\emptyset$, which means that the limit value of~$\Bm Q$ is numerically never reached.  For the applications that we have in mind---either detecting function discontinuities or gradient faults---this fact doesn't constitute a big problem.  In fact, we'll be interested in using mainly the $\Cal C^0$ or~$\Cal C^2$ functions.
 
 
 
+One way to improve stability when computing~$\Bm Q\.$ for a given set~$(X, F)$ of sampled data is to bring~$F$ closer to the origin before actually performing the computations, by taking adavantage of Property~\ref[translprop] and replacing~$F$ with  $G = F-\mathop{\rm mean}(F)$, for instance. In fact, it can be observed either from considerations made in the proofs of Property~\ref[flatlimit] and Property~\ref[translprop], or also from  numerical tests, that this shift allows to obtain the same approximation of~$\lim_{ε\to 0} \Bm Q$ using bigger values of~$ε$, that are less likely to produce a malconditioned interpolation matrix.
 
 
 \Red
 
 \noindent TODO
 \begitems
-* How to numerically compute Q, $\varepsilon$ doesn't have to be too small.
+%* How to numerically compute Q, $\varepsilon$ doesn't have to be too small.
 * Properties of the quantity~$\norm{\Bm Q}_1$, used to build the classifier.
 * Different $\phi$ detect different regularities.
 * Comparison with $\Bm E$ and~$\Bm\alpha$ (and simply the native space norm).
@@ -31,18 +29,16 @@ Figure~\ref[limitQfig] shows what happens when $\phi$ is one of the Wendland's f
 
 
 \label[limitQfig]
-\topinsert
+\pageinsert
 \kern-0.78cm
 \bgroup
 \typoscale[900/900]
 \picw=1.2\hsize
 \line{\hss\inkinspic{limitQ2.pdf}\hbox{\kern1.5em}\hss}
 \egroup
-\kern-7ex
+\kern-11.3ex
 \caption/f
-From a set~$(X, F)$ of data (shown at the top), where $X\subset[0,1]\subset\R$ we computed for some radial functions~$\phi$ the vector~$\Bm Q$, using various values of~$\varepsilon$.
-The graphs show the value~$\norm Q_1$ when~$\varepsilon$ changes--in each graph the abscissae represent the values of~$\varepsilon$ in a logarithmic scale. If $\phi$ is the Wendland's~$\Cal C^0$ function, we can see that there is a very wide range of values, from about $10^{-1}$ up to~$10^{-12}$ where the graph is flat, meaning that the limiting value for~$\Bm Q$ is reached.  For values of~$\varepsilon$ still smaller, the effect of malconditioning becomes visible and the computed value is not reliable.  
-
+From a set~$(X, F)$ of data (shown at the top), where $X\subset[0,1]\subset\R$ we computed the vector~$\Bm Q\.$ for some radial functions~$\phi$, letting~$\varepsilon$ vary.  For simplicity, we didn't plot the value of each single component of~$\Bm Q\.$, but only the value~$\norm{\Bm Q}_1$. In each graph the abscissae represent the values of~$\varepsilon$ in a logarithmic scale, and the shown range of values differs from one graph to another.  %For each graph, except the last one, there is an interval~$I$ where~$\norm{\Bm Q}_1$ doesn't change much (the graph is flat), meaning that a good approximation of~$\lim_{ε\to0}\Bm Q$ is reached; for value of~$ε$ still smaller there is an abrupt deviation due to numerical instability, and the obtained values are unreliable.   In the case of the Gaussian function we don't see any flat area in the graph: this means that malconditioning problems step in before the limit value of~$\Bm Q$ is reached.
 \bigskip
 \endinsert
 
