@@ -7,29 +7,78 @@ From the numerical point of view, it  may be problematic to  actually  compute a
 
 
 Fortunately, if the employed radial function~$\phi$ is not too much regular, numerical tests show that there is a wide interval~$I$ of values for~$ε$ that allow to obtain a very good approximation of the limit value of~$\Bm Q\.$, before incurring in malconditioning problems. 
-Figure~\ref[limitQfig] shows what happens when $\phi$ is one of the Wendland's functions of Table~\ref[wentab] or the Gaussian function of Example~\ref[gaussianex]. From that picture it seems apparent that the range~$I$ of values in which~$ε\.$ can be chosen decreses as the regularity of~$\phi$ increases.  When the regularity is high, either it may be hard to pick a value of~$ε$ such that~$ε\in I$, or it may even be impossible, because $I=\emptyset$, which means that the limit value of~$\Bm Q$ is numerically never reached.  For the applications that we have in mind---either detecting function discontinuities or gradient faults---this fact doesn't constitute a big problem.  In fact, we'll be interested in using mainly the $\Cal C^0$ or~$\Cal C^2$ functions.
+Figure~\ref[limitQfig] shows what happens when $\phi$ is one of the Wendland's functions of Table~\ref[wentab] or the Gaussian function of Example~\ref[gaussianex]. From that picture it seems apparent that the range~$I$ of values in which~$ε\.$ can be chosen decreases as the regularity of~$\phi$ increases.  If the regularity of~$\phi$ is high, either it may be hard to pick a value of~$ε$ such that~$ε\in I$, or it may even be impossible when it happens that $I=\emptyset$, i.e.,  when the limit value of~$\Bm Q$ is numerically never reached.  For the applications that we have in mind---either detecting function discontinuities or gradient faults---this fact doesn't constitute a big problem.  In fact, we'll be interested in using mainly the $\Cal C^0$ or~$\Cal C^2$ functions, for reasons that we'll explain later.
 
 
 
 
 
-One way to improve stability when computing~$\Bm Q\.$ for a given set~$(X, F)$ of sampled data is to bring~$F$ closer to the origin before actually performing the computations, by taking adavantage of Property~\ref[translprop] and replacing~$F$ with  $G = F-\mathop{\rm mean}(F)$, for instance. In fact, it can be observed either using the considerations made in the proofs of Property~\ref[flatlimit] and Property~\ref[translprop], or also from  numerical tests, that this shift allows to obtain the same level of approximation for~$\lim_{ε\to 0} \Bm Q\.$ by using bigger values of~$ε$, that are less likely to produce a malconditioned interpolation matrix.
+One way to improve numerical stability when computing~$\Bm Q\.$ on a given set~$(X, F)$ of sampled data consists in bringing~$F$ closer to the origin before actually performing the computations, by taking adavantage of Property~\ref[translprop] and replacing~$F$ with  $G = F-\mathop{\rm mean}(F)$, for instance. In fact, it can be observed either using the considerations made in the proofs of Property~\ref[flatlimit] and Property~\ref[translprop], or also from  numerical tests, that this shift allows to obtain the same level of approximation for~$\lim_{ε\to 0} \Bm Q\.$ by using a bigger value of~$ε$, that is less likely to produce a malconditioned interpolation matrix.
 
 
-An interesting fact to notice is that the vector~$\Bm Q$ detects different kinds of function irregularities, depending on the used radial function~$\phi$.  We considered four functions~$f_1$, $f_2$, $f_3$, $f_4$, defined on the interval~$[-1,1]\subset\R$, such that: $f_1$ is discontinuous; $f_2$ is of class~$\Cal C^0$ but not~$\Cal C^1$; $f_3$ is of class~$\Cal C^2$ but not~$\Cal C^1$; and $f_4$ is~$\Cal C^\infty$.  Precisely, they are defined as
+An interesting fact to notice is that the vector~$\Bm Q$ detects different kinds of function irregularities, depending on the used radial function~$\phi$.  Consider the four functions~$f_1$, $f_2$, $f_3$, $f_4$, defined on the interval~$[-1,1]\subset\R$ as
 $$
+\eqlines{\baselineskip=1.5\baselineskip}
+\displaylines{
 f_1(x) =\cases{x, & if $x<0$\cr
-               x^2+1 & if $x\geq 0$,}
-$$
-\vskip0ex
-$$
-f_2(x) =\mathop{\rm abs}(x),\qquad
-f_3(x)=\mathop{\rm abs}(x)^{3/2},\qquad
-f_4(x) = \sin(x).
-$$
-After having sampled each of these functions at a set~$X$ of $25$ uniformly spaced points in~$[-1,1]$, we computed the $\phi$-regularity vector~$\Bm Q$ using three different radial functions~$\phi$, namely the Wendland's $\Cal C^0$, $\Cal C^2$ and~$\Cal C^4$ functions.  The vector~$\Bm Q$ was computed using a value of~$\varepsilon$ in the range that produces a good approximation for the limit value~$\lim_{\varepsilon\to 0}\Bm Q$.  The sampled functions and the computed components of~$\Bm Q$ are shown in Figure~\ref[diffregular].
+               x^2+1 & if $x\geq 0$,}\cr
 
-We see that the Wendland's $\Cal C^0$ function detects the discontinuity of~$f_1$, it almost doesn't see the gradient discontinuity of~$f_2$ (the small signal detected at the point~$x=0$ vanishes as the number  of sampled points is increased), and it doesn't detect the discontinuity of the second derivative in the case of~$f_3$.  Instead, both the Wendland's $\Cal C^2$ and~$\Cal C^4$ functions can detect, with signals of different amplitude, the irregularities of $f_2$ and~$f_3$.  Finally, neither of the considered radial functions  detect any irregularity in the smooth function~$f_4$, except some small signals at the boundary of the domain.
+f_2(x) =\mathop{\rm abs}(x),\qquad
+f_3(x)=\mathop{\rm abs}(x)^{3/2},\hbyw{3ex}{0em}\qquad
+f_4(x) = \sin(x).
+}
+$$
+which satisfy the following properties: $f_1$ is discontinuous; $f_2$ is of class~$\Cal C^0$ but not~$\Cal C^1$; $f_3$ is of class~$\Cal C^2$ but not~$\Cal C^1$; and $f_4$ is~$\Cal C^\infty\!\!$.\,\,
+After having sampled each of these functions at a set~$X$ of $25$ uniformly spaced points in~$[-1,1]$ (other sets of points could have been used as well), the $\phi$-regularity vector~$\Bm Q$ was computed (for a small enough value of~$\varepsilon$) using three different radial functions~$\phi$, namely the Wendland's $\Cal C^0$, $\Cal C^2$ and~$\Cal C^4$ functions.   The sampled functions and the computed components of~$\Bm Q$ are shown in Figure~\ref[diffregular].
+
+We see that the Wendland's $\Cal C^0$ function detects the discontinuity of~$f_1$, it almost doesn't see the gradient discontinuity of~$f_2$ (the small signal detected at the point~$x=0$ vanishes as the number  of sampled points is increased), and it doesn't detect the discontinuity of the second derivative in the case of~$f_3$.  Instead, both the Wendland's $\Cal C^2$ and~$\Cal C^4$ functions can detect, with signals of different amplitude, the irregularities of $f_2$ and~$f_3$.  Finally, neither of the considered radial functions  detect any irregularity in the smooth function~$f_4$, except some small signals at the boundary of the domain, that however appear also with the other functions.
+
+
+Up to now we have always talked about the regularity vector~$\Bm Q\.$, but never we mentioned the regularity classifier~$\Cal R$ of Definition~\ref[classifierdef], that is built upon it.  We show now some properties satisfied by the $1$-norm of the vector~$\Bm Q$ that should justify the given definition for~$\Cal R$.  For this purpose, we consider on the interval~$[-1,1]\subset\R$ the following four functions,
+$$
+\eqalign{
+g_1(x) &= \cos(x),&&
+g_2(x) &= \cases{-x^2, & if $x<0$\cr
+                x^4+{1\over3} & if $x\geq 0$,}
+\cr
+g_3(x) &= \cases{x & if $x<0$\cr
+                 x^2+1 & if $0\leq x<{1\over2}$\cr
+                 1-x & if $x\geq{1\over2}$,}&&
+ \hbyw{8ex}{0em}g_4(x) &=\cases{\cos(x) & if $x\leq -{1\over2}$\cr
+                 x & if $-{1\over 2}\leq x<0$\cr
+                 x^2+1 & if $0\leq x<{1\over2}$\cr
+                 1-x & if $x\geq{1\over2}$,}                 
+}
+$$
+that have an increasing number of singularities: $g_1$ has no singularities, $g_2$ has one single point of discontinuity, $g_3$ has two points of discontinuity, and $g_4$ has three discontinuities.  Then we sample these functions on a set~$X$ of $30$ points uniformly distributed in the interval~$[0,1]$ and compute for each case (an approximation of\,) the limit vector~$\Bm Q$ associated to the Wendland's $C^2$ function (the other functions could have been used as well). The results are shown in Figure~\ref[giust].
+
+Finally we calculate also~$\norm{\Bm Q}_1$ and obtain respectively for $g_1$, $g_2$, $g_3$ and $g_4$ the approximate values $0.04$, $2.04$, $2.07$ and~$2.07$.  Of course the value of~$\norm{\Bm Q}_1$ for~$g_1$ is small because $g_1$ has no singularities, while the value for the other functions is higher because each of them as at least one singularity.   But the most noticeable fact is that the values obtained for~$g_2$, $g_3$ and~$g_4$ are approximately the same.  The spikes in the values of the vector $\Bm Q$ near the singular points are lower when the global number of singularities is higher, but the sum of all of them remains always approximately the same.  It can also be experimentally observed that, when the number of sampled points is increased,  the value~$\norm{\Bm Q}_1$ in the case of~$g_1$ decreases approaching~$0$, while in all the other cases it remains pretty stable around the value~$2.06$. Therefore it seems that $\norm{\Bm Q}_1$ is a good indicator for establishing whether or not a function has singularities.
+
+
+ When analysing the regularity of a function, other vectors worth looking at, besides the vector~$\Bm Q = \Bm U/\norm{s}_\phi^2\.$, are the vector~$\Bm E$ defined in~\ref[vectorE] or the vector of coefficients~$\Bm\alpha$, solution to the interpolation system~\ref[system].  In fact they store very similar information:
+$$
+E_k \buildrel\ref[vectorE]\over= f_k-s^{(k)\!}(x_k)\qquad U_k \buildrel\ref[Ukdef]\over= {(f_k-s^{(k)\!}(x_k))^2\over P_{X^{(k)\!}}^2(x_k)}\qquad \alpha_k \buildrel\ref[akformula]\over= {f_k-s^{(k)\!}(x_k)\over P_{X^{(k)\!}}^2(x_k)}.
+$$
+From the computational point of view, there is almost no difference in computing one or the other, as we showed in Section~\ref[buildingsec].
+However $\Bm E$ apparently seems to be less precise at locating the exact position of the singularities, because it doesn't directly take into account the relative position of the data sites through the value of the power function.  A recent successful attempt at using the interpolation coefficients~$\Bm\alpha$ in the context of edge detection is provided by Romani, Rossini and Schenone~\cite[romani-rossini-schenone].      
+
+
+
+%\Red
+
+%\noindent TODO
+%\begitems
+%* How to numerically compute Q, $\varepsilon$ doesn't have to be too small.
+%* Properties of the quantity~$\norm{\Bm Q}_1$, used to build the classifier.
+%* Different $\phi$ detect different regularities.
+%* Comparison with $\Bm E$ and~$\Bm\alpha$ (and simply the native space norm).
+%* ``Problems'' at the boundary and possible solutions.
+%* Effect of noise in the data
+%\enditems
+
+
+
+
 
 
 
@@ -69,24 +118,22 @@ Plots of the functions $f_1$ (top left), $f_2$ (top right), $f_3$ (bottom left) 
 
 
 
+\label[giust]
+\pageinsert
+\kern-0.78cm
+\bgroup
+\picw=.53\hsize
+\line{\hss\inspic{giust_cos.pdf}\inspic{giust_disc1.pdf}\hss}
+\kern0ex
+\line{\hss\inspic{giust_disc2.pdf}\inspic{giust_disc3.pdf}\hss}
+\egroup
+\kern-5ex
+\caption/f
+Plots of the functions $g_1$ (top left), $g_2$ (top right), $g_3$ (bottom left) and $g_4$ (bottom right), with their sampled data.  Under each of them there is a visualisation of the components of the limit vector~$\Bm Q$ computed with the  Wendland's $\Cal C^2$ function.
+\bigskip
+\endinsert
 
 
-
-
-
-
-
-\Red
-
-\noindent TODO
-\begitems
-%* How to numerically compute Q, $\varepsilon$ doesn't have to be too small.
-* Properties of the quantity~$\norm{\Bm Q}_1$, used to build the classifier.
-%* Different $\phi$ detect different regularities.
-* Comparison with $\Bm E$ and~$\Bm\alpha$ (and simply the native space norm).
-%* ``Problems'' at the boundary and possible solutions.
-%* Effect of noise in the data
-\enditems
 
 
 \Black

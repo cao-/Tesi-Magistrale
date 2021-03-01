@@ -48,7 +48,7 @@ Here the {\em kernel trick} comes into play.  By virtue of Mercer theorem any sy
 $$
 \Phi(x, y) = \langle \Theta(x), \Theta(y)\rangle_V\. = \sum_{i=1}^\infty\Theta_i(x)\Theta_i(y),\quad x,y\in\Omega, 
 $$
-where each~$\Theta_i$ is an eigenfunction of the integral operator~$f\mapsto\int_\Omega f(x)\Phi(x,y)\,dx$.  Therefore, if the feature map~$\Theta$ is taken from the decomposition of some kernel~$\Phi$, then the scalar products of pairs of points in the higher dimensional (possibly infinite dimensional) vector space~$V$ can be efficiently computed by simply evaluating the kernel function on the corresponding pairs of points of~$X$,  regardless of the dimension of~$V\!$.\,  Notice moreover that the whole computations can be performed without even knowing who the feature map~$\Theta$ is, but simply by evaluating some known kernel~$\Phi$.
+where each~$\Theta_i$ is an eigenfunction of the integral operator~$f\mapsto\int_\Omega f(x)\Phi(x,y)\,dx$.  Therefore, if the feature map~$\Theta$ is taken from the decomposition of some kernel~$\Phi$, then the scalar products of pairs of points in the higher dimensional (possibly infinite dimensional) vector space~$V$ can be efficiently computed,  regardless of the dimension of~$V\!$,\, by simply evaluating the kernel function on the corresponding pairs of points of~$X$.  Notice moreover that the whole computations can be performed without even knowing who the feature map~$\Theta$ is, but simply by evaluating some known kernel~$\Phi$.
 
 One example of kernel used in the context of SVMs is the {\em polynomial} kernel of degree~$d$, whose expression is
 $$

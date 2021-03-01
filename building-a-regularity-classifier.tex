@@ -12,7 +12,7 @@ X^{(k)\!}\coloneq X\setminus\{x_k\},\quad s\coloneq s_{X,f}\quad\mathbox{and}\qu
 $$
 If the function~$f$ that generated the given sampling~$f(X)$ is a well behaved function, then we should expect that, for each~$k$, the interpolant~$s^{(k)}\!$ predicts quite accurately the value~$f(x_k)$ at the point~$x_k$; instead, if $f$ is a discontinuous function, then there should be some indices~$k$ such that the prediction made by~$s^{(k)}\!$ for the point~$x_k$ is wrong.  Following the considerations of Section~\ref[addingsec], we shall consider, for each~$k$, the quantity
 $$
-U_k\coloneq\norm s_\phi^2-\norm{s^{(k)\!}}^2_\phi = {(f_k-s^{(k)\!}(x_k))^2\over P_{X^{(k)\!}}^2(x_k)},
+U_k\coloneq\norm s_\phi^2-\norm{s^{(k)\!}}^2_\phi = {(f_k-s^{(k)\!}(x_k))^2\over P_{X^{(k)\!}}^2(x_k)},\eqmark[Ukdef]
 $$
 which is small when the data~$(x_k, f(x_k))$ follows the model~$s$ that has been trained\fnote{Using the language of machine learning, in this case $(X^{(k)\!}, f(X^{(k)\!\.}))$ is the {\em training set}, while $(x_k, f(x_k))$ is the {\em test set}.} with~$(X^{(k)}, f(X^{(k)}))$,  and it is large otherwise.
 
@@ -24,7 +24,7 @@ which collects together all the quantities~$U_k$ that have just been defined.  T
 $$
 \Bm E\coloneq (\range E_N/), \eqmark[vectorE]
 $$
-whose elements are defined as~$E_k\coloneq f(x_k)-s^{(k)\!}(x_k)$, and which is typically used to find the appropriate shape parameter~$ε$ for the interpolation with  a positive definite radial function~$\phi_ε$, defined as in~\ref[phiepsilon]. The value of~$ε$ is chosen such that the $p$-norm
+whose elements are defined as~$E_k\coloneq f_k-s^{(k)\!}(x_k)$, and which is typically used to find the appropriate shape parameter~$ε$ for the interpolation with  a positive definite radial function~$\phi_ε$, defined as in~\ref[phiepsilon]. The value of~$ε$ is chosen such that the $p$-norm
 $$
 \norm{\Bm E}_p\coloneq\cases{\bigl(\sum_{j=1}^N |x_j|^p\bigr)^{1/p}, &\quad if $p\geq1$\cr
   \max_{j\in\{1,2,\dots,N\}}|x_j|, &\quad if $p=\infty$} \eqmark[p-norm]
@@ -133,7 +133,7 @@ $$
                  &{α_k^2\over C_{k,k}} = {(f_k-s^{(k)\!}(x_k))^2\over P_{X^{(k)\!}}^2(x_k)}}\right.
 \quad\hbox{implies that}\!\qquad
 \left\{\hbyw{6.5ex}{0em}\right.\!\eqalign{&α_k = {f_k-s^{(k)\!}(x_k) \over P_{X^{(k)\!}}^2(x_k)}\cr
-                &C_{k,k} = {1 \over P_{X^{(k)\!}}^2(x_k)}}
+                &C_{k,k} = {1 \over P_{X^{(k)\!}}^2(x_k)}} \eqmark[akformula]
 $$
 
 
