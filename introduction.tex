@@ -1,39 +1,39 @@
 \load[lettrine]
 
 \vskip\baselineskip
-\Capinsert I{\caps\rm n many} scientific disciplines one faces the problem of recovering an unkwown function from a given set of sampled data, consisting of some locations, called {\em data sites}, and values associated to those locations, called {\em data values}.   Sometimes the data sites have a structured distribution among the function domain, like for instance in the case of a digital image, where they are located on a grid, but most often they are scattered over the function domain in an unstructured way, like in the case of physical measurements. {\em Scattered data approximation} is a relatively recent and fast growing area, that deals with the problem of reconstructing a function from scattered data.  Its main tools are {\em positive definite kernels}, that allow to define function spaces where interpolation of function values can always take place.
+\Capinsert I{\caps\rm n many} scientific disciplines one faces the problem of recovering an unkwown function from a given set of sampled data, consisting of some locations, called {\em data sites}, and values associated to those locations, called {\em data values}.   Sometimes the data sites have a structured distribution among the function's domain, for instance in the case of a digital image, where they are located on a grid, but most often they are scattered over the function's domain in an unstructured way, like in the case of physical measurements. {\em Scattered data approximation} is a relatively recent and fast growing area that deals with the problem of reconstructing a function from scattered data.  Its main tools are {\em positive definite kernels}, which allow to define function spaces where interpolation of  function values can always take place.
 
 
-When performing interpolation, the choice of the kernel determines the regularity of the reconstructed function, since the reconstructed function is simply obtained as a sum of kernel translates, centred at the data sites.
-If the given sample comes from a function whose regularity changes among its domain, in particular from a function that possesses discontinuities, then in order to faithfully reconstruct the function some special techniques must be employed.  Otherwise, if a straight direct interpolation is attempted, the Gibbs phenomenon is likely to arise, producing an unwanted behavior in regions close to where the singularities are located.
+When performing interpolation, the choice of kernel determines the regularity of the reconstructed function, since the reconstructed function is simply obtained as a sum of kernel translates centred at the data sites.
+If the given sample comes from a function whose regularity changes along its domain, in particular from a function that possesses discontinuities, then in order to faithfully reconstruct the function some special techniques must be employed.  Otherwise, if a straight direct interpolation is attempted, the Gibbs phenomenon is likely to arise, producing an unwanted behavior in regions close to where the singularities are located.
 
 
 
 
 
-In this thesis work we propose a method to recover discontinuous functions from  scattered data, focusing the attention almost exclusively on functions of two variables, i.e., functions defined on some domain~$Ω ⊂ ℝ^2\!\!$.\,\, The assumption of the problem is that the sampled function is regular (at least continuous) on certain non-overlapping subdomains~$Ω_j ⊂ Ω$, but not globally, meaning that  it is discontinuous at the boundaries of each subdomain.
+In this thesis work we propose a method to recover discontinuous functions from  scattered data, focusing our attention almost exclusively on functions of two variables, i.e., functions defined on some domain~$Ω ⊂ ℝ^2\!\!$.\,\, The assumption of the problem is that the sampled function is regular (at least continuous) on certain non-overlapping subdomains~$Ω_j ⊂ Ω$, but not globally, meaning that  it is discontinuous at the boundaries of each subdomain.  No information is known a priori about the subdomains.
 
 
 The proposed algorithm consists of two phases:
 \begitems
 * A {\em domain segmentation} phase in which the data sites are collected into groups~$X_j$ such that all the points of each group belong to exactly one single subdomain $Ω_j$ of~$Ω$.  
-* A {\em reconstruction} phase in which at first the shapes of all the subdomains~$Ω_j$ is recovered, and then interpolation of the function values is performed on each subdomain separately.
+* A {\em reconstruction} phase in which at first the shapes of all the subdomains~$Ω_j$ are recovered, and then interpolation of the values of the function is performed on each subdomain separately.
 \enditems
 
 
 
-We approach the first phase, namely the domain segmentation, by building a binary classifier which is capable of predicting whether a given set of sampled data comes from a regular function or not, and then using it to perform an adaptive local analysis of the domain.  The regularity is inspected by some chosen kernel function, and the prediction is made based upon the evidence that the given data has a regular behaviour.  The required evidence for the classification is a free parameter that can be set by the user;  but, once set, the classifier can be used on any given set of sampled data, regardless for instance the specific magnitude of the sampled function values.
+We approach the first phase, namely the domain segmentation, by building a binary classifier which is capable of predicting whether a given set of sampled data comes from a regular function or not, and then using it to perform an adaptive local analysis of the domain.  The regularity is inspected by some chosen kernel function, and the prediction is made based on the evidence that the given data has a regular behaviour.  The required evidence for the classification is a free parameter that can be set by the user;  but, once set, the classifier can be used on any given set of sampled data regardless, for instance, the specific magnitude of the sampled function values.
 
 
 
 For the reconstruction phase we use a model from the field of machine learning, called {\em support vector machine}.
-This model is trained with the  previously determined subsets~$X_j$ of data sites to produce a prediction for the shape of each subdomain~$Ω_j$, and consequently for the discontinuity curves of the sampled function.  Each subset~$X_j$ then is used to produce an interpolant~$s_j$ by means of some chosen kernel interpolation method, and this interpolant is evaluated on its corresponding subdomain~$Ω_j$, predicted by the support vector machine.  This method allows  to both avoid the Gibbs phenomenon and faithfully reproduce the sampled function near its discontinuity curves.
+This model is trained with the  previously determined subsets~$X_j$ of data sites to produce a prediction for the shape of each subdomain~$Ω_j$, and consequently for the discontinuity curves of the sampled function.  Each subset~$X_j$ is then used to produce an interpolant~$s_j$ by means of some chosen kernel interpolation method, and this interpolant is evaluated on its corresponding subdomain~$Ω_j$, predicted by the support vector machine.  This method allows  both to avoid the Gibbs phenomenon and to faithfully reproduce the sampled function near its discontinuity curves.
 
 
 
-The thesis is structured as follows
+The thesis is structured as follows:
 \begitems
-* Chapter 1---Kernel-based interpolation.  This first chapter serves to introduce the interpolation problem and how it can be solved using kernel techniques. In particular we talk about positive definite functions, their associated native spaces, and error estimates.
+* Chapter 1---Kernel-based interpolation.  This first chapter serves to introduce the interpolation problem and to show how it can be solved by using kernel techniques. In particular we talk about positive definite functions, their associated native spaces, and error estimates.
 * Chapter 2---Data classification.  Here is where we build our regularity classifier and study its properties.
 * Chapter 3---Discontinuities detection and reconstruction. In this last chapter we describe both phases of our algorithm to recover a discontinuous function from scattered data, and show some examples.
 \enditems
