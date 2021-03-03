@@ -1,0 +1,127 @@
+\def\franke{\mathop{\rm franke}}
+
+In order to test our domain segmentation algorithm, we take the Franke's function, defined as
+$$
+\eqalign{\franke(x, y) = {3\over4}\exp\biggl(-{(9x-2)^2\over4}-{(9y-2)^2\over4}\biggr) &+  {3\over4}\exp\biggl(-{(9x+1)^2\over49}-{(9y+1)^2\over10}\biggr)\cr
+                                              +  {1\over2}\exp\biggl(-{(9x-7)^2\over4}-{(9y-3)^2\over4}\biggr) &-  {1\over5}\exp\bigl(-(9x-4)^2-(9y-7)^2\bigr),}
+
+$$
+and consider on the domain~$\Omega = [0,1]\times[0,1]\subset\R^2$ the following test functions:
+$$
+\eqalign{
+h_1(x,y) &= \cases{\franke(x,y), & if $y\geq {1\over2}-{1\over5}\sin(5x)$ \cr
+                  \franke(x,y) - {1\over2}, & if $y\leq {1\over2}-{1\over5}\sin(5x)$, \cr} \cr
+h_2(x,y) &= \cases{x^2, & if $(x-{1\over2})^2+(y-{1\over2})^2<({1\over5})^2$ \cr
+                   y^2-{1\over2}, & if $(x-{1\over2})^2+(y-{1\over2})^2\geq({1\over5})^2$,} \cr
+h_3(x,y) &= h_1(x,y) + 2h_1(x, y-{\textstyle{1\over3}}),\cr
+h_4(x,y) &= h_1(x,y) + h_1(y,x).
+}
+$$
+These functions are all discontinuous along some curves, and regular otherwise.  The domain~$\Omega$ is thus partitioned into subdomains~$\Omega_j$ by the discontinuity curves.
+
+
+We sample these functions at a set of $2^{10}$ Halton points (see Fasshauer~\cite[fasshauer_2007], Appendix~A), and then run the domain segmentation algorithm by using the following parameters:
+\begitems
+* Radial basis function: $\phi(r) = (1-r)_+^2$, namely the Wendland's~$\Cal C^0$ function;
+* Number of considered local points around each circumcentre: $n = 8^2$;
+* Global shape parameter: $\varepsilon = 5\cdot10^{-2}$, locally rescaled as~$\delta = \slfrac\varepsilon d$, where $d$ is the diameter of the local set of data sites.
+* Tolerance of the regularity classifier: $\tau = 0.2$.
+\enditems
+The results for $h_1$, $h_2$, $h_3$ and~$h_4$ are visualised respectively in Figure~\ref[segmh1], \ref[segmh2], \ref[segmh3] and~\ref[segmh4].
+
+
+Those pictures show the Delaunay triangulation of the considered set of Halton data sites, by colouring each triangle either red or green.  The connected regions of green triangles represent the sets~$\Cal I_j$ that have been determined by the algorithm; while the red triangles are either the triangles of the sets~$D_j$, or the triangles from where the algorithm couldn't start and that have not been included in any of the sets~$\Cal I_j$.
+
+
+Moreover, in the pictures are also visualised the discontinuity curves of the functions. In each of the picture, the obtained set of red triangles is correct and almost minimal, in the sense that all the triangles that intersect the curves are red, and there are possibly only few other red triangles that should have indeed been coloured green. We remark that we got these results without changing any parameter from one function to another, in particular the tolerance~$\tau$.
+
+
+We then consider another test function, which is defined on the same domain~$\Omega=[0,1]\times[0,1]$ as follows:
+$$
+h_5(x, y) = \biggl|{1\over2} - xy\biggr|.
+$$
+This function is continuous but possess a discontinuity in the gradient, along the curve implicitly described by the equation~$xy =\slfrac12$.  If we ran the domain segmentation algorithm with the previous parameters, then we get a picture where all the triangles are green.  Indeed all the data sites belong to the same regular domain according to the Wendland's~$\Cal C^0$ function.  But if ran again the algorithm by changing $\phi$ into the Wendland's~$\Cal C^2$ function
+$$
+\phi(r) = (1-r)_+^4(4r+1)
+$$
+and keeping the other parameters fixed,
+then the discontinuity of the gradient is detected.  The result is shown in Figure~\ref[segmh5].
+\vfill
+
+
+%Visualisation of the output
+
+\label[segmh1]
+\pageinsert
+\kern-.85cm
+\bgroup
+\picw=.9\hsize
+\line{\hss\inspic{f1_ori.pdf}\hss}
+\picw=.6\hsize
+\line{\hss\inspic{f1.pdf}\hss}
+\egroup
+\cskip
+\caption/f
+\bigskip
+\endinsert
+
+\label[segmh2]
+\pageinsert
+\kern-.85cm
+\bgroup
+\picw=.9\hsize
+\line{\hss\inspic{f4_ori.pdf}\hss}
+\picw=.6\hsize
+\line{\hss\inspic{f4.pdf}\hss}
+\egroup
+\cskip
+\caption/f
+\bigskip
+\endinsert
+
+\label[segmh3]
+\pageinsert
+\kern-.85cm
+\bgroup
+\picw=.9\hsize
+\line{\hss\inspic{f9_ori.pdf}\hss}
+\picw=.6\hsize
+\line{\hss\inspic{f9.pdf}\hss}
+\egroup
+\cskip
+\caption/f
+\bigskip
+\endinsert
+
+
+\label[segmh4]
+\pageinsert
+\kern-.85cm
+\bgroup
+\picw=.9\hsize
+\line{\hss\inspic{f10_ori.pdf}\hss}
+\picw=.6\hsize
+\line{\hss\inspic{f10.pdf}\hss}
+\egroup
+\cskip
+\caption/f
+\bigskip
+\endinsert
+
+
+
+
+\label[segmh5]
+\pageinsert
+\kern-.85cm
+\bgroup
+\picw=.9\hsize
+\line{\hss\inspic{f6_oriB.pdf}\hss}
+\picw=.6\hsize
+\line{\hss\inspic{f6.pdf}\hss}
+\egroup
+\cskip
+\caption/f
+\bigskip
+\endinsert
+
