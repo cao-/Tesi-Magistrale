@@ -1,13 +1,39 @@
 
 
-As test functions we consider again the functions $h_1$, $h_2$, $h_3$ and~$h_4$ that were previously defined in~\ref[testfunctions].
-As before, we sample them at the set of $2^{10}$ halton points on the domain~$\Omega=[0,1]\times[0,1]$.  For this particular set of data sites we already obtained a domain segmentation, by running our domain segmentation algorithm---refer to Figure~\ref[segmh1], \ref[segmh2], \ref[segmh3] and~\ref[segmh4].  Therefore for each of the considered functions we have a collection of subsets~$X_j$ of~$X$, each of them  contained in its corresponding subset~$\Omega_j$ of~$\Omega$.
+As test functions we consider again the functions $h_1$, $h_2$, $h_3$ and~$h_4$ defined in~\ref[testfunctions].
+Our goal is to reconstruct these functions on the domain~$\Omega=[0,1]\times[0,1]$ starting from the results that we obtained in Section~\ref[domseg] by running our domain segmentation algorithm on the set of data sampled at $2^{10}$~Halton points.
+Refer to Figures~\ref[segmh1], \ref[segmh2], \ref[segmh3] and~\ref[segmh4] for a visualisation of the segmentations of the domain.
 
 
-In some of the test cases, it happens that not all the points have been included in one of the groups~$X_j$.  For instance in Figure~\ref[segmh4] there is one point, near where the discontinuity curves cross one another, that isn't included in any of the four subdomains.  This will not be a problem in the reconstruction phase---the reconstructed function will simply be slightly less accurate because that point won't contribute in in the construction of the interpolant~$s_j$ on its domain~$\Omega_j$.
+For each of the considered test functions we have a collection of subsets~$X_j$ of~$X$, each of them  contained in its corresponding subset~$\Omega_j$ of~$\Omega$.
+Notice that in the domain segmentation of Figure~\ref[segmh4] it happens that not all the points have been included in one of the groups~$X_j$: there is one point, near the intersection of the two discontinuity curves of~$h_4$, that is not included in any of the four subdomains, since it is surrounded by red triangles only.  This will not be a problem in the reconstruction phase---the reconstructed function will simply be slightly less accurate because that point won't contribute in the construction of the interpolant~$s_j$ on its domain~$\Omega_j$.
+
+To reconstruct the function, we take a set of~$250^2$ evaluation points~$E$, uniformly distributed in~$\Omega$. 
+Then we set up a SVM with Gaussian kernel having shape parameter~$\varepsilon=0.5$, and with box constraint~$C =\infty$.  By training this SVM on the sets~$X_j$ we get a prediction for the subdomains~$\Omega_j$ and hence for the splitting of~$E$ into sets~$E_j$.
+
+
+
+Finally, by using the Wendland's~$\Cal C^2$ function, the function values at the subsets~$X_j$ are interpolated to obtain a function~$s_j$ that is then evaluated at the points~$E_j$.  The interpolant~$s_j$ here for simplicity is computed in the standard way by considering all the points~$X_j$ at once and solving one single linear system.  This process however is slow, and a preferable method would be the partition of unity.
+
+
+
+The results are visualised in Figures~\ref[rech1], \ref[rech2], \ref[rech3] and~\ref[rech4].  Each picture at the top shows the sets of points~$X_j$ (using different colours), the original discontinuity curves (blue), and the reconstructed curves (green), which are the  zero sets of the decision functions~$h_j$.  At the bottom there are side by side the graphs of the original function (left) and the graph of the recovered function (right), both evaluated at~$E$.
+
+
+In each of the cases, since we used the box constraint~$C=\infty$, we obtained curves that strictly separate the subsets~$X_j$ of data sites, without any outlier.  But, even if we used a different box constraint and the separation were not perfect, then we wouldn't get any major visual artifact in the reconstructed function, because  the interpolant~$s_j$ would remain the same.
+
+Figure~\ref[rech4] is more complicated than the others and needs some additional explanation.  Here the four groups $X_1$, $X_2$, $X_3$ and~$X_4$ are respectively the red points (top left), the green points (bottom right), the dark violet points (bottom left) and the light violet points (top right).  The SVM is initially trained with $X_1$ and~$X_2\cup X_3\cup X_4$ to produce a first separation of the domain; then a second separation is obtained by training the SVM with $X_2$ and~$X_3\cup X_4$; and finally we get the last separation by using $X_3$ and~$X_4$ as training sets.  As a side effect, any evaluation point inside the small triangular shaped region, determined by the pairwise intersection of the three green curves, gets evaluated by using the interpolant~$s_3$ defined by the points~$X_3$, whereas it would be more appropriate to evaluate them with~$s_4$.  In this case the wrong evaluation passes almost unnoticed in the reconstructed function, but in general it could produce noticeable unwanted effects.  When the discontinuity curves possess intersections therefore a different multiclass extension of the binary SVM algorithm is necessary.
+
+
+By using the same method, we attempted also a reconstruction of the function~$h_5$ defined in~\ref[functionh5], which is continuous an has a discontinuity in its gradient.  
+We started from the domain segmentation of Figure~\ref[segmh5] and obtained the result shown in Figure~\ref[rech5].  The quality of the reconstruction seems good also in this case.  Anyhow, there is no guarantee with this method that the  two reconstructed pieces of function agree along the recovered curve.  A better approach to deal with this situation is the use of {\em variably scaled kernels} (Rossini~\cite[rossini_2018]).
+
+
+
+
 
 \vfill
-
+\label[rech1]
 \pageinsert
 \kern.7cm
 \bgroup
@@ -18,12 +44,12 @@ In some of the test cases, it happens that not all the points have been included
 \line{\hss\inspic{f1_ori.pdf}\kern-.8cm\inspic{f1_rec.pdf}\hss}
 \egroup
 \cskip
-\caption/f
+\caption/f Function $h_1$.
 \vss
 \endinsert
 
 
-
+\label[rech2]
 \pageinsert
 \kern.7cm
 \bgroup
@@ -34,11 +60,12 @@ In some of the test cases, it happens that not all the points have been included
 \line{\hss\inspic{f4_ori.pdf}\kern-.8cm\inspic{f4_rec.pdf}\hss}
 \egroup
 \cskip
-\caption/f
+\caption/f  Function $h_2$.
 \vss
 \endinsert
 
 
+\label[rech3]
 \pageinsert
 \kern.7cm
 \bgroup
@@ -49,12 +76,12 @@ In some of the test cases, it happens that not all the points have been included
 \line{\hss\inspic{f9_ori.pdf}\kern-.8cm\inspic{f9_rec.pdf}\hss}
 \egroup
 \cskip
-\caption/f
+\caption/f  Function $h_3$.
 \vss
 \endinsert
 
 
-
+\label[rech4]
 \pageinsert
 \kern.7cm
 \bgroup
@@ -65,12 +92,13 @@ In some of the test cases, it happens that not all the points have been included
 \line{\hss\inspic{f10_ori.pdf}\kern-.8cm\inspic{f10_rec.pdf}\hss}
 \egroup
 \cskip
-\caption/f
+\caption/f  Function $h_4$.
 \vss
 \endinsert
 
 
 
+\label[rech5]
 \pageinsert
 \kern.7cm
 \bgroup
@@ -81,7 +109,7 @@ In some of the test cases, it happens that not all the points have been included
 \line{\hss\inspic{f6_ori.pdf}\kern-.8cm\inspic{f6_rec.pdf}\hss}
 \egroup
 \cskip
-\caption/f
+\caption/f  Function $h_5$.
 \vss
 \endinsert
 

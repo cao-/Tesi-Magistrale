@@ -58,7 +58,7 @@ where $c\geq0$ is a free parameter trading off the influence of higher-order ter
 
 Anyhow, the most used kernel for SVM classification is the {\em Gaussian} kernel
 $$
-\Phi(x,y) = \phi(ε\norm{x-y}) = e^{-ε^2\norm{x-y}^2},
+\Phi(x,y) = \phi(ε\norm{x-y}) = e^{-ε^2\norm{x-y}^2},\eqmark[gaussiankern]
 $$
 previously defined in Example~\ref[gaussianex].  It is known that, differently from the polynomial kernel, the integral operator associated to the Gaussian kernel has an infinite set of eigenvalues (Ha Quang, Niyogi and Yao~\cite[ha_quang-niyogi-yao_1970]), therefore the feature map~$\Theta$ into which $\Phi$ decomposes maps the data~$X$ into a vector space~$V\!$ of infinite dimension.
 

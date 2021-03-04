@@ -28,17 +28,77 @@
 \margins/1 a4 (103,95,145,130)pt
 
 
-\parindent 1em
-\iindent=\parindent \ttindent=\parindent
-\parskip 1.7ex plus .05ex minus .3ex
-\rulewidth 0.13ex
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip\baselineskip
+\Capinsert I{\caps\rm n many} scientific disciplines one faces the problem of recovering an unkwown function from a given set of sampled data, consisting of some locations, called {\em data sites}, and values associated to those locations, called {\em data values}.   Sometimes the data sites have a structured distribution among the function's domain, for instance in the case of a digital image, where they are located on a grid.  Often the data sites are scattered over the function's domain and there is no special assumption about their geometric positions. This is frequent when the sample comes from physical measurements.
+
+{\em Scattered data approximation} is a relatively recent and fast growing area and kernel based methods are one of the main and powerful tools in this context (see e.g.~\cite[wendland_2004] and~\cite[fasshauer_2007]). In particular, positive definite kernels allow to define function spaces where interpolation of  function values can always take place.
 
 
-\let\Capinsert\noindent
-\let\caps\relax
-\def\load[#1]{}
-\input introduction.tex
+This thesis deals  with the problem of approximating non-regular functions from a set of scattered data focusing the attention almost exclusively on functions of two
+variables defined on  some domain $\Omega\subset ℝ^2\!\!.\,\,$  By non-regular function we mean that
+the function or its partial derivatives are discontinuous along some  planar curves of~$\Omega$.
+
+
+In the case of function discontinuities (jumps), these
+curves are known as faults or edges, while when dealing with gradient discontinuities (sometimes called creases) they are called gradient faults. 
+
+
+When performing interpolation, the choice of  kernel determines the regularity
+of the reconstructed function, since the reconstructed function is simply obtained
+as a sum of kernel translates centred at the data sites. Then, 
+if the given sample comes
+from a function whose regularity changes along its domain, the basis of the interpolation space does not reflect the properties of the underlying function and artifacts will usually
+appear in the final reconstruction. For instance if the function has edges, and a straight direct
+interpolation is attempted, the Gibbs phenomenon is likely to arise  producing  highly oscillatory behaviours  in regions close to the discontinuities. In the case of gradient faults, over-smoothing of creases will occur. 
+
+
+
+We then assume  that the sampled function is smooth (at least continuous) on certain non-overlapping subdomains~$\Omega_j\subset\Omega,$ but not globally, meaning that it or its gradient is discontinuous
+at the boundaries of each subdomain.
+It is clear that  a faithful recovery of the function cannot disregard the detection of its edges and/or gradient faults.
+For this reason we propose a technique that consists of two phases:
+\begitems\vskip\parskip
+* A {\em domain segmentation} phase in which the data sites are collected into groups~$X_j$ such that all the points of each group belong to exactly one single subdomain $Ω_j$ of~$Ω$.  
+* A {\em reconstruction} phase in which at first the subdomains~$Ω_j$ are recovered, and then interpolation of the values of the function is performed on each subdomain separately.
+\enditems
+\vskip\parskip
+
+
+We approach the first phase, namely the domain segmentation, by building a binary classifier which is capable of predicting whether a given set of sampled data comes from a regular function or not, and then using it to perform an adaptive local analysis of the domain.  The regularity is inspected by some chosen kernel function, and the prediction is made based on the evidence that the given data has a regular behaviour.  The required evidence for the classification is a free parameter~$\tau$ that can be set by the user;  but, once set, the classifier can be used on any given set of sampled data regardless, for instance, the specific magnitude of the sampled function values.
+
+
+
+When a new data point is added to an already interpolated set of data and then interpolation is performed again, the growth of the native space norm between the old and the new interpolant indicates how well the newly added point fits the model previously established by the other data points alone (see~\cite[lenarduzzi-shaback_2017, shaback_2006]).
+In order to see if a given set of data comes from one single model (i.e., one single regular function), we can see how the native space norm of its interpolant changes when data points are left out one at a time.
+All the information obtained by applying this leave-one-out cross-validation process on the model (that is, the interpolant of the data) can then be collected into one single vector~$\Bm U$.
+
+% on the line of
+%We build the classifier on a newly defined vector~$\Bm U$ which resembles the well known cross-validation vector~$\Bm E$ (see e.g.~\cite[rippa_1999]), that is usually used to determine the optimal shape parameter for the radial basis functions of the interpolating space.  The cross-validation vector contains information about the difference at each data site between the sampled function value  and the value predicted for that data site by the interpolant of all the other data sites alone. Our defined vector~$\Bm U$ instead contains information about the change of the native space norm of the interpolant when each point is individually removed.  We show that this vector~$\Bm U$ can be computed as efficiently as~$\Bm E$.
+
+Each component of the vector~$\Bm U\.$ is then divided by the native space norm of the interpolant of all the data sites to obtain its ``normalised'' version~$\Bm Q$.  This vector~$\Bm Q$ is finally used to build the previously mentioned regularity classifier.  Indeed, the classification of the sampled data happens by comparing the sum of the components of~$\Bm Q\.$ with some user given threshold~$\tau$.
+
+
+
+
+For the reconstruction phase we use a model from the field of machine learning, called {\em support vector machine}.
+This model is trained with the  previously determined subsets~$X_j$ of data sites to produce a prediction for the shape of each subdomain~$Ω_j$, and consequently for the discontinuity curves of the sampled function.  Each subset~$X_j$ is then used to produce an interpolant~$s_j$ by means of some chosen kernel interpolation method, and this interpolant is evaluated on its corresponding subdomain~$Ω_j$, predicted by the support vector machine.  This method allows  both to avoid the Gibbs phenomenon and to faithfully reproduce the sampled function near its discontinuity curves.
+
+
+
+The thesis is structured as follows:
+\begitems\vskip\parskip
+* Chapter 1---Kernel-based interpolation.  This first chapter serves to introduce the scattered interpolation problem and to show how it can be solved by using kernel techniques. In particular we talk about positive definite functions, their associated native spaces, and error estimates.
+* Chapter 2---Data classification.  Here is where we build the vectors $\Bm U$ and~$\Bm Q$ and the regularity classifier.  We first show that there is a way to efficiently compute~$\Bm U$, then prove certain properties of invariance satisfied by~$\Bm Q\.$, and finally provide some examples.
+* Chapter 3---Discontinuities detection and reconstruction. In this last chapter we describe both phases of our technique to recover a non-regular function from scattered data, and show some examples.
+\enditems
+
+
+
+
+
+
+
+
 
 
 \bye
