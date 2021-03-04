@@ -22,7 +22,7 @@ At least for the pointwise limit there are some specific results, which we have 
 $$
 \norm{\.f - s_{Y_n,f}}_\infty \coloneq \sup_{x\in Ω} |f(x)-s_{Y_n,f}(x)\!|\to 0\qquad\hbox{when $\,n\to\infty$},
 $$
-because of theorem~\ref[errorestimate] and the uniform bound on the power function given in~\ref[powbound]. 
+because of Theorem~\ref[errorestimate] and the uniform bound on the power function given in~\ref[powbound]. 
 
 
 
@@ -139,7 +139,7 @@ Therefore, as pointed out by Lenarduzzi and Shaback~\cite[lenarduzzi-shaback_201
 
 If the set~$X$ of data sites is already such that $s_X$ is close to~$f$ in~$\Cal N_Φ$, and hence $\norm{s_{X,f}}_Φ$ is close to~$\norm{\.f}_Φ$, then there is few margin left for a further increase of the norm of the interpolant when a new point~$x$ is added to the data sites, since \ref[normbound]~says that~$\norm{s_{X, f}}_Φ\leq\norm{s_{X\cup\{x\},f}}_Φ\leq\norm{\.f}_Φ.$  This last statement of course holds under the hypothesis that the sampled function~$f$ belongs to the native space of~$Φ$.  If this is not the case, then we do not have a bound on the possible increase of the norm when passing from $s_{X,f}$ to~$s_{X\cup\{x\},f}$.
 
- A case of special interest is that of a {\em discontinuous} function~$f$, which of course doesn't belong to the native space of a continuous kernel~$Φ$ (see theorem~\ref[cont-theor]). In this case the norm of the interpolant can grow very much if the newly added point $x$ is close to the singularity of~$f$.  The big increment of the norm indicates that a violation of the model~$s_{X,f}$ is occurring, or in other words that the new pair of data~$(x, f(x))$ does not fit well the model~$s_{X,f}$ previously established by the pairs of data~$(X, f(X))$.
+ A case of special interest is that of a {\em discontinuous} function~$f$, which of course doesn't belong to the native space of a continuous kernel~$Φ$ (see Theorem~\ref[cont-theor]). In this case the norm of the interpolant can grow very much if the newly added point $x$ is close to the singularity of~$f$.  The big increment of the norm indicates that a violation of the model~$s_{X,f}$ is occurring, or in other words that the new pair of data~$(x, f(x))$ does not fit well the model~$s_{X,f}$ previously established by the pairs of data~$(X, f(X))$.
 
 
 % TODO: the norm of the interpolating converges, but not necessarily to the norm of the function.  Example of this.   The location/distribution of the data sites is important.  Results for pointwise convergence.
