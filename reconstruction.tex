@@ -4,7 +4,7 @@ Assume  that the domain segmentation phase was successful, so that  we have got 
 
 To reconstruct~$f$ from the data~$(X, F)$ means to find an interpolant~$s$ that can predict with good accuracy the values of~$f$ at any given set~$E\subset\Omega$ of {\em evaluation points}.   If there is some way to separate any set $E$ into a collection of sets~$\{E_j\}_{j=1}^M$ such that $E_j\subset\Omega_j$ for each~$j$, then the reconstruction can easily be performed, by considering each subdomain separately.
 
-Let $X_j\subset X$ be the set of vertices of the triangles~$\Cal I_j$, i.e., the set of all the data sites that belong to~$\Omega_j$, and $F_j$ its corresponding set of data values.  Assume to have produced for each $j=1,2,\dots, M$ a regular interpolant $s_j$ of the data~$(X_j, F_j)$, either by direct interpolation with some appropriate kernel function~$\Phi$, or by using other techniques like the {\em partition of unity} method~(Wendland~\cite[wendland_2002]).  Then the reconstructed version~$s$ of the function~$f$ can be piecewise defined as
+Let $X_j\subset X$ be the set of vertices of the triangles~$\Cal I_j$, i.e., the set of all the data sites that belong to~$\Omega_j$, and $F_j$ its corresponding set of data values.  Assume to have produced for each $j=1,2,\dots, M$ a regular interpolant $s_j$ of the data~$(X_j, F_j)$, either by direct interpolation with some appropriate kernel function~$\Phi$, or by using other techniques like the {\em partition of unity} method~(Wendland~\cite[wendland_2002]) possibly coupled with {\em discontinuous kernels}~(De~Marchi, Erb, Marchetti, Perracchione and Rossini~\cite[de_marchi-erb-marchetti-perracchione-rossini_2020]).  Then the reconstructed version~$s$ of the function~$f$ can be piecewise defined as
 $$
 s(e)\coloneq\cases{s_{1\!\.}(e) & if $e\in E_1$ \cr
              s_{2\!\.}(e) & if $e\in E_2$ \cr
@@ -84,9 +84,5 @@ $$
 
 
 Actually, not all the points of each set~$X_j$ seem to be  necessary to train the SVM.  The points that really count are those located at the boundary of each set~$X_j$.  Since we have at our disposal the triangulation~$\Cal I_j$ of each set~$X_j$, the boundary points can be easily located by taking the boundary of those triangulations.  If the training sets~$\smash{\{X_j\}_{j=1}^M}$ get replaced by the corresponding sets of boundary points, then the optimisation problem~\ref[optimisation] should require less computations to reach the solution, and the training process may be faster.
-
-
-
-\nonum\secc Examples
 
 
