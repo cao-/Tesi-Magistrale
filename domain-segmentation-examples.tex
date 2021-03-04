@@ -8,11 +8,11 @@ $$
 $$
 and consider on the domain~$\Omega = [0,1]\times[0,1]\subset\R^2$ the following test functions:
 $$
-\eqalign{
+\eqalignno{
 h_1(x,y) &= \cases{\franke(x,y), & if $y\geq {1\over2}-{1\over5}\sin(5x)$ \cr
                   \franke(x,y) - {1\over2}, & if $y\leq {1\over2}-{1\over5}\sin(5x)$, \cr} \cr
 h_2(x,y) &= \cases{x^2, & if $(x-{1\over2})^2+(y-{1\over2})^2<({1\over5})^2$ \cr
-                   y^2-{1\over2}, & if $(x-{1\over2})^2+(y-{1\over2})^2\geq({1\over5})^2$,} \cr
+                   y^2-{1\over2}, & if $(x-{1\over2})^2+(y-{1\over2})^2\geq({1\over5})^2$,} & \eqmark[testfunctions]  \cr
 h_3(x,y) &= h_1(x,y) + 2h_1(x, y-{\textstyle{1\over3}}),\cr
 h_4(x,y) &= h_1(x,y) + h_1(y,x).
 }
@@ -30,7 +30,7 @@ We sample these functions at the set of $2^{10}$ Halton points (see Fasshauer~\c
 The results for $h_1$, $h_2$, $h_3$ and~$h_4$ are visualised respectively in Figure~\ref[segmh1], \ref[segmh2], \ref[segmh3] and~\ref[segmh4].
 
 
-Those pictures show the Delaunay triangulation of the considered set of Halton data sites, by colouring each triangle either red or green.  The connected regions of green triangles represent the sets~$\Cal I_j$ that have been determined by the algorithm; while the red triangles are either the triangles of the sets~$D_j$, or the triangles from where the algorithm couldn't start and that have not been later included in any of the sets~$\Cal I_j$.
+Those pictures show  (at the top) the sampled function and (at the bottom) the Delaunay triangulation  of the considered set of Halton data sites, by colouring each triangle either red or green.  The connected regions of green triangles represent the sets~$\Cal I_j$ that have been determined by the algorithm; while the red triangles are either the triangles of the sets~$D_j$, or the triangles from where the algorithm couldn't start and that have not been later included in any of the sets~$\Cal I_j$.
 
 
 Moreover, in the pictures are also visualised the discontinuity curves of the functions. In each of the picture, the obtained set of red triangles is correct and almost minimal, in the sense that all the triangles that intersect the curves are red, and there are possibly only few other red triangles that should have indeed been coloured green. We remark that we got these results without changing any parameter from one function to another, in particular the tolerance~$\tau$.
@@ -68,7 +68,7 @@ Without changing any parameter, the algorithm works also for a different number~
 \egroup
 \cskip
 \caption/f
-\bigskip
+\vss
 \endinsert
 
 \label[segmh2]
@@ -82,7 +82,7 @@ Without changing any parameter, the algorithm works also for a different number~
 \egroup
 \cskip
 \caption/f
-\bigskip
+\vss
 \endinsert
 
 \label[segmh3]
@@ -96,7 +96,7 @@ Without changing any parameter, the algorithm works also for a different number~
 \egroup
 \cskip
 \caption/f
-\bigskip
+\vss
 \endinsert
 
 
@@ -111,7 +111,7 @@ Without changing any parameter, the algorithm works also for a different number~
 \egroup
 \cskip
 \caption/f
-\bigskip
+\vss
 \endinsert
 
 
@@ -128,7 +128,7 @@ Without changing any parameter, the algorithm works also for a different number~
 \egroup
 \cskip
 \caption/f
-\bigskip
+\vss
 \endinsert
 
 
@@ -144,5 +144,6 @@ Without changing any parameter, the algorithm works also for a different number~
 \egroup
 \cskip
 \caption/f
-\bigskip
+\vss
 \endinsert
+
