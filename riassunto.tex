@@ -1,0 +1,44 @@
+
+\useOpTeX  % We are using OpTeX, not LaTeX :)
+
+\load[thesis-mac]
+
+%\fnotelinks \Black \Black
+\hyperlinks \Black \Black
+\outlines 1
+
+\enlang
+\fontfam[BaskervilleMT]
+\fontfam[EBGaramond]
+\fontfam[TypewriterMT]
+\BaskervilleMT
+\typosize[11/13]
+\load[patches, garamond-math-fix, micro]
+%\OpTeX
+% We must ensure that . , ; etc are from the same font in text and math mode.
+\fontdef\rmfixex{\rm}\fontdef\itfixed{\it}\fontdef\bffixed{\bf}\fontdef\bifixed{\bi}
+
+\font\symbols=Diamond % MonotypeSorts
+\def\QED{\hbox{\symbols\resizethefont \,❖}}
+\famvardef\bm{\EBGaramond\setff{-liga; -kern}\semibold\bi}
+\famvardef\bmu{\EBGaramond\setff{-liga; -kern}\semibold\bf}
+\famvardef\tt{\TypewriterMT\setff{-liga; -tlig; embolden=1.1}\typoscale[870/]\rm}
+
+
+\margins/1 a4 (103,95,145,130)pt
+
+
+\parindent 1em
+\iindent=\parindent \ttindent=\parindent
+\parskip 1.7ex plus .05ex minus .3ex
+\rulewidth 0.13ex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\let\Capinsert\noindent
+\let\caps\relax
+\def\load[#1]{}
+\input introduction.tex
+
+
+\bye
