@@ -46,6 +46,12 @@ $$
 $$
 and keeping the other parameters fixed,
 then the discontinuity of the gradient is detected.  The result is shown in Figure~\ref[segmh5].
+
+
+
+Without changing any parameter, the algorithm works also for a different number~$N$ of data sites.  Generally, when more sampled data is available the detection even improves, because there is more evidence of the discontinuities.  In Figure~\ref[segm-11] we show the output of the algorithm  for the test functions $h_2$ and~$h_4$ sampled at~$2^{11}$ Halton points, when the Wendland's~$\Cal C^0$ function is used.  On the other side, when the available data points are too few, there may not be enough evidence of the discontinuities and the algorithms may reasonably fail to correctly identify the subdomains. 
+
+
 \vfill
 
 
@@ -57,7 +63,7 @@ then the discontinuity of the gradient is detected.  The result is shown in Figu
 \bgroup
 \picw=.9\hsize
 \line{\hss\inspic{f1_ori.pdf}\hss}
-\picw=.6\hsize
+\picw=.65\hsize
 \line{\hss\inspic{f1.pdf}\hss}
 \egroup
 \cskip
@@ -71,7 +77,7 @@ then the discontinuity of the gradient is detected.  The result is shown in Figu
 \bgroup
 \picw=.9\hsize
 \line{\hss\inspic{f4_ori.pdf}\hss}
-\picw=.6\hsize
+\picw=.65\hsize
 \line{\hss\inspic{f4.pdf}\hss}
 \egroup
 \cskip
@@ -85,7 +91,7 @@ then the discontinuity of the gradient is detected.  The result is shown in Figu
 \bgroup
 \picw=.9\hsize
 \line{\hss\inspic{f9_ori.pdf}\hss}
-\picw=.6\hsize
+\picw=.65\hsize
 \line{\hss\inspic{f9.pdf}\hss}
 \egroup
 \cskip
@@ -100,7 +106,7 @@ then the discontinuity of the gradient is detected.  The result is shown in Figu
 \bgroup
 \picw=.9\hsize
 \line{\hss\inspic{f10_ori.pdf}\hss}
-\picw=.6\hsize
+\picw=.65\hsize
 \line{\hss\inspic{f10.pdf}\hss}
 \egroup
 \cskip
@@ -117,7 +123,7 @@ then the discontinuity of the gradient is detected.  The result is shown in Figu
 \bgroup
 \picw=.9\hsize
 \line{\hss\inspic{f6_oriB.pdf}\hss}
-\picw=.6\hsize
+\picw=.65\hsize
 \line{\hss\inspic{f6.pdf}\hss}
 \egroup
 \cskip
@@ -125,3 +131,18 @@ then the discontinuity of the gradient is detected.  The result is shown in Figu
 \bigskip
 \endinsert
 
+
+
+\label[segm-11]
+\pageinsert
+\bgroup
+\picw=.65\hsize
+\line{\hss\inspic{f4-11.pdf}\hss}
+\kern.8cm
+\picw=.65\hsize
+\line{\hss\inspic{f10-11.pdf}\hss}
+\egroup
+\cskip
+\caption/f
+\bigskip
+\endinsert
