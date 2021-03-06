@@ -1,7 +1,6 @@
-
 \useOpTeX  % We are using OpTeX, not LaTeX :)
 
-\load[thesis-mac]
+\load[thesis-mac2]
 
 %\fnotelinks \Black \Black
 \hyperlinks \Black \Black
@@ -24,14 +23,26 @@
 \famvardef\bmu{\EBGaramond\setff{-liga; -kern}\semibold\bf}
 \famvardef\tt{\TypewriterMT\setff{-liga; -tlig; embolden=1.1}\typoscale[870/]\rm}
 
+\footline{\hfil\folio\hfil}
 
-\margins/1 a4 (103,95,145,130)pt
+
+\margins/1 a4 (95,95,145,130)pt
 
 
-\vskip\baselineskip
-\Capinsert I{\caps\rm n many} scientific disciplines one faces the problem of recovering an unkwown function from a given set of sampled data, consisting of some locations, called {\em data sites}, and values associated to those locations, called {\em data values}.   Sometimes the data sites have a structured distribution among the function's domain, for instance in the case of a digital image, where they are located on a grid.  Often the data sites are scattered over the function's domain and there is no special assumption about their geometric positions. This is frequent when the sample comes from physical measurements.
+\bgroup
+\typoscale[1100/1100]
+\centerline{Tesi di Laurea Magistrale in Matematica, 18 marzo 2021}
+\smallskip
+\centerline{Caoduro, Matteo---766881}
+\smallskip
+\centerline{Relatore: Rossini, Milvia Francesca}
+\medskip
+\centerline{\caps\rm On the Problem of Recovering Discontinuous Functions from Scattered Data}
+\medskip
+\egroup
+\noindent In many scientific disciplines one faces the problem of recovering an unkwown function from a given set of sampled data, consisting of some locations, called data sites, and values associated to those locations, called data values.   Sometimes the data sites have a structured distribution among the function's domain, for instance in the case of a digital image, where they are located on a grid.  Often the data sites are scattered over the function's domain and there is no special assumption about their geometric positions. This is frequent when the sample comes from physical measurements.
 
-{\em Scattered data approximation} is a relatively recent and fast growing area and kernel based methods are one of the main and powerful tools in this context (see e.g.~\cite[wendland_2004] and~\cite[fasshauer_2007]). In particular, positive definite kernels allow to define function spaces where interpolation of  function values can always take place.
+Scattered data approximation is a relatively recent and fast growing area and kernel based methods are one of the main and powerful tools in this context. In particular, positive definite kernels allow to define function spaces where interpolation of  function values can always take place.
 
 
 This thesis deals  with the problem of approximating non-regular functions from a set of scattered data focusing the attention almost exclusively on functions of two
@@ -58,8 +69,8 @@ at the boundaries of each subdomain.
 It is clear that  a faithful recovery of the function cannot disregard the detection of its edges and/or gradient faults.
 For this reason we propose a technique that consists of two phases:
 \begitems\vskip\parskip
-* A {\em domain segmentation} phase in which the data sites are collected into groups~$X_j$ such that all the points of each group belong to exactly one single subdomain $Ω_j$ of~$Ω$.  
-* A {\em reconstruction} phase in which at first the subdomains~$Ω_j$ are recovered, and then interpolation of the values of the function is performed on each subdomain separately.
+* A domain segmentation phase in which the data sites are collected into groups~$X_j$ such that all the points of each group belong to exactly one single subdomain $Ω_j$ of~$Ω$.  
+* A reconstruction phase in which at first the subdomains~$Ω_j$ are recovered, and then interpolation of the values of the function is performed on each subdomain separately.
 \enditems
 \vskip\parskip
 
@@ -68,7 +79,7 @@ We approach the first phase, namely the domain segmentation, by building a binar
 
 
 
-When a new data point is added to an already interpolated set of data and then interpolation is performed again, the growth of the native space norm between the old and the new interpolant indicates how well the newly added point fits the model previously established by the other data points alone (see~\cite[lenarduzzi-shaback_2017, shaback_2006]).
+When a new data point is added to an already interpolated set of data and then interpolation is performed again, the growth of the native space norm between the old and the new interpolant indicates how well the newly added point fits the model previously established by the other data points alone.
 In order to see if a given set of data comes from one single model (i.e., one single regular function), we can see how the native space norm of its interpolant changes when data points are left out one at a time.
 All the information obtained by applying this leave-one-out cross-validation process on the model (that is, the interpolant of the data) can then be collected into one single vector~$\Bm U$.
 
@@ -80,17 +91,57 @@ Each component of the vector~$\Bm U\.$ is then divided by the native space norm 
 
 
 
-For the reconstruction phase we use a model from the field of machine learning, called {\em support vector machine}.
+For the reconstruction phase we use a model from the field of machine learning, called support vector machine.
 This model is trained with the  previously determined subsets~$X_j$ of data sites to produce a prediction for the shape of each subdomain~$Ω_j$, and consequently for the discontinuity curves of the sampled function.  Each subset~$X_j$ is then used to produce an interpolant~$s_j$ by means of some chosen kernel interpolation method, and this interpolant is evaluated on its corresponding subdomain~$Ω_j$, predicted by the support vector machine.  This method allows  both to avoid the Gibbs phenomenon and to faithfully reproduce the sampled function near its discontinuity curves.
 
 
 
-The thesis is structured as follows:
-\begitems\vskip\parskip
-* Chapter 1---Kernel-based interpolation.  This first chapter serves to introduce the scattered interpolation problem and to show how it can be solved by using kernel techniques. In particular we talk about positive definite functions, their associated native spaces, and error estimates.
-* Chapter 2---Data classification.  Here is where we build the vectors $\Bm U$ and~$\Bm Q$ and the regularity classifier.  We first show that there is a way to efficiently compute~$\Bm U$, then prove certain properties of invariance satisfied by~$\Bm Q\.$, and finally provide some examples.
-* Chapter 3---Discontinuities detection and reconstruction. In this last chapter we describe both phases of our technique to recover a non-regular function from scattered data, and show some examples.
-\enditems
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vfill\eject
+
+\itlang
+
+\noindent In molte discipline scientifiche ci si imbatte nel problema di ricostruire una funzione a partire da un assegnato insieme di dati, che consiste sia di punti, chiamati anche locazioni, sia di valori associati  a tali punti.
+
+A volte le locazioni hanno una distribuzione strutturata all'interno del dominio della funzione, ad esempio nel caso di immagini digitali, in cui sono disposti su griglia. Spesso le locazioni sono sparse nel dominio della funzione e non si hanno particolari informazioni riguardo alla loro disposizione. Ciò è frequente quando il campione di dati proviene da rilevazioni fisiche.
+
+L'approssimazione di dati sparsi è un settore di ricerca abbastanza recente e in rapida crescita, e i metodi basati su kernel sono uno degli strumenti principali e più efficaci utilizzati in questo ambito. In particolare i kernel definiti-positivi permettono di generare spazi di funzioni in cui l'interpolazione di valori qualsiasi ammette sempre soluzione.
+
+Questa tesi si occupa del problema dell'approssimazione di funzioni non regolari a partire da un insieme di dati sparsi, concentrando l'attenzione quasi esclusivamente su funzioni di due variabili definite in un dominio~$\Omega\subset\R^2$. Con ``funzione non regolare'' si intende che la funzione stessa oppure le sue derivate parziali sono discontinue lungo certe curve contenute in~$\Omega$.
+
+Nell'interpolazione la scelta del kernel determina la regolarità della funzione ricostruita, dal momento che tale funzione viene ottenuta per semplice somma di traslate del kernel, centrate nelle locazioni.
+Perciò, se il campionamento proviene da una funzione la cui regolarità cambia lungo il dominio, le funzioni base dello spazio di interpolazione non riflettono le proprietà della funzione campionata e quindi  tipicamente appaiono degli artefatti nella ricostruzione finale.  Per esempio se la funzione è discontinua e si prova  ad interpolarla normalmente, allora molto probabilmente si manifesta il fenomeno di Gibbs, producendo ampie oscillazioni indesiderate nelle regioni prossime alle discontinuità.  
+
+Assumiamo dunque che la funzione campionata sia liscia (perlomeno continua) su certi sottodomini~$\Omega_j\subset \Omega$ disgiunti, ma non globalmente, nel senso che la funzione stessa o il suo gradiente è discontinuo lungo il bordo di ciascun sottodominio.
+È chiaro che per ricostruire fedelmente una tale funzione è necessario innanzitutto rilevare le sue discontinuità.  Per questo motivo si propone una tecnica che consiste di due fasi:
+\begitems
+* Una fase di suddivisione del dominio in cui tutte le locazioni appartenenti allo stesso sottodominio~$\Omega_j$ vengono raggruppate in un unico insieme~$X_j$.
+* Una fase di ricostruzione in cui inizialmente si recuperano i sottodomini~$\Omega_j$ e poi si interpolano i valori della funzione  su ogni sottodominio separatamente. 
+\enditems 
+
+La prima fase viene affrontata costruendo un classificatore binario in grado di predire se un assegnato insieme di dati proviene da una funzione regolare oppure no, e utilizzandolo successivamente per analizzare localmente il dominio in maniera adattiva.  La regolarità viene ispezionata tramite un kernel, e la previsione viene fatta in base a quanta evidenza si ha che l'insieme di dati mostra un comportamento regolare.  L'evidenza richiesta per la classificazione è un parametro libero~$\tau$ che può essere impostato dall'utente; ma, una volta scelto, il classificatore può essere utilizzato con un qualsiasi insieme di dati, indipendentemente, per esempio, dalla specifica grandezza dei valori campionati dalla funzione.
+
+Quando si aggiunge un nuovo punto ad un insieme di dati precedentemente interpolato e poi si procede con una nuova interpolazione, l'aumento della norma dello spazio nativo tra la vecchia e la nuova interpolante indica quanto accuratamente il nuovo punto viene previsto dal modello precedentemente individuato dagli altri punti.  Per vedere se un insieme di dati proviene da un singolo modello (cioè, da un'unica funzione regolare), si può vedere come la norma dell'interpolante nello spazio nativo cambia quando si rimuove un punto per volta dall'insieme di dati.  Le informazioni che si ottengono in questo modo relative a ciascun punto possono essere raggruppate in un singolo vettore~$\Bm U$.
+
+Se si divide ogni componente di questo vettore~$\Bm U$ per la norma della funzione che interpola tutte le locazioni, si ottiene un vettore~$\Bm Q$ che può essere utilizzato per costruire il classificatore di regolarità di cui si è precedentemente parlato.  Difatti, la classificazione dell'insieme di dati campionato avviene comparando la somma delle componenti di~$\Bm Q$ con una fissata soglia~$\tau$.
+
+Per la fase di ricostruzione si è utilizzato un modello di machine learning chiamato ``support vector machine''.  È possibile esercitare questo modello utilizzando gli insiemi~$X_j$ precedentemente determinati, per poter poi prevedere i sottodomini~$\Omega_j$, e di conseguenza le curve di discontinuità della funzione campionata.  Ogni insieme~$X_j$ viene poi utilizzato per produrre un'interpolante~$s_j$ tramite un qualunque metodo di intepolazione, e questa interpolante viene infine valutata sul suo corrispondente sottodominio~$\Omega_j$.  Questo metodo permette di evitare il verificarsi del fenomeno di Gibbs e allo stesso tempo di ricostruire fedelmente la funzione campionata in prossimità delle sue curve di discontinuità.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

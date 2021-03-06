@@ -184,21 +184,21 @@ is contained in~$\Omega$.} then
 $$
 P_X^2(x)\leq \Cal F(h_X) \quad \mathbox{for all $x\in\Omega$,}\eqmark[powbound]
 $$
-for some monotone function~$\Cal F$ such that~$\lim_{h\to 0} \Cal F(h) = 0$ (Wendland~\cite[wendland_2004], Chapter~11).  The function~$\Cal F$ depends on the kernel of the native space, and can be explicitly computed.  In Table~\ref[errortab] we report~$\Cal F$ for some of the most used radial kernels.
+for some monotone function~$\Cal F$ such that~$\lim_{h\to 0} \Cal F(h) = 0$ (Wendland~\cite[wendland_2004], Chapter~11).  The function~$\Cal F$ depends on the kernel of the native space, and can be explicitly computed.  %In Table~\ref[errortab] we report~$\Cal F$ for some of the most used radial kernels.
 
-\label[errortab]
-\topinsert
-\Red
-\centerline{
-\table{lccc}{\crl
-                        & $\phi(r)$               & $\Cal F(h)$   & $\Cal G(q)$\crl\tskip2pt
-Gaussians               & $e^{-\epsilon r^2}$,\quad $\epsilon>0$        & $e^{-c\,|\!\log h|/h}$,\quad  $c>0$ & $q^{-d}e^{-M_d^2/(\epsilon q^2)}$ \cr\tskip2pt
-Inverse multiquadrics   &  $(1+r)^{-\beta}$,\quad $\beta>0$ & $e^{-c/h}$,\quad  $c>0$ & $q^{\beta-(d-1)/2}e^{-12.76\, dc/q}$ \cr \tskip2pt
-Wendland's functions    & $\phi_{d,k}(r)$           & $h^{2k+1}$ & $q^{2k+1}$ \cr\tskip5pt
-\crl
-}}
-\caption/t Upper bounds on~$P_X^2$ as functions~$\Cal F(h)$ of the fill distance~$h$. The functions $\Cal F$ are given only up to a constant that does not depend on the data sites.  They express the decay rate of the power function as the fill distance approaches zero.
-\endinsert
+%\label[errortab]
+%\topinsert
+%\Red
+%\centerline{
+%\table{lccc}{\crl
+%                        & $\phi(r)$               & $\Cal F(h)$   %& $\Cal G(q)$\crl\tskip2pt
+%Gaussians               & $e^{-\epsilon r^2}$,\quad $\epsilon>0$        & $e^{-c\,|\!\log h|/h}$,\quad  $c>0$ & $q^{-d}e^{-M_d^2/(\epsilon q^2)}$ \cr\tskip2pt
+%Inverse multiquadrics   &  $(1+r)^{-\beta}$,\quad $\beta>0$ & $e^{-c/h}$,\quad  $c>0$ & $q^{\beta-(d-1)/2}e^{-12.76\, dc/q}$ \cr \tskip2pt
+%Wendland's functions    & $\phi_{d,k}(r)$           & $h^{2k+1}$ & $q^{2k+1}$ \cr\tskip5pt
+%\crl
+%}}
+%\caption/t Upper bounds on~$P_X^2$ as functions~$\Cal F(h)$ of the fill distance~$h$. The functions $\Cal F$ are given only up to a constant that does not depend on the data sites.  They express the decay rate of the power function as the fill distance approaches zero.
+%\endinsert
 
 
 These error estimates expressed in terms of the fill distance of the data sites are purely theoretical.  In fact, when dealing with an actual numerical interpolation performed on a calculator, one must take into account also the numerical {\em stability}\fnote{An algorithm is {\em stable} if its output results do not change much when the input data is modified slightly.  On a calculator some perturbations of the input data (and also of the intermediate results of the computations) are unavoidable when real numbers are stored slightly modified in the form of floating point numbers.} of the computations.  The interpolation matrix~$\Bm A = \Bm A_{Φ, X}$ of~\ref[intmat] has condition number that can be expressed as ratio of its maximum and minimum eigenvalues,
@@ -218,7 +218,7 @@ $$
 q_X = {1\over 2}\min_{i\neq j}\norm{x_i-x_j}.
 $$
 This means that the most straightforward algorithm to find the interpolant of a function~$f$ on a set~$X$ of data sites---the one that requires to compute the interpolation coefficients by solving the system~\ref[system] of the interpolation conditions---could be unstable if~$q_x$ is small.
-We report in Table~\ref[errortab], next to the expressions for~$\Cal F$, the known expressions for $\Cal G$ for the same radial kernels.
+%We report in Table~\ref[errortab], next to the expressions for~$\Cal F$, the known expressions for $\Cal G$ for the same radial kernels.
 
 
 Anyhow, even when the interpolation matrix~$A$ associated to the standard basis of kernel translates is badly conditioned, it is possible to stably compute the interpolant.  In fact, while computing the interpolation coefficients of the interpolant with respect to the standard basis is a badly conditioned problem, the computation of the interpolant itself is well conditioned (De~Marchi and Shaback~\cite[demarchi-shaback_2010]).  Some attempts at stably computing the interpolant by changing the basis of the interpolating space are provided by Pazouki and Schaback~\cite[pazouki-schaback_2011]; other two most notable algorithms are the Contour-Padé method (Fornberg and Wright~\cite[fornberg-wright_2004]) and the RBF-QR method (Fornberg, Larsson and Flyer~\cite[fornberg-larsson-flyer_2011]).
