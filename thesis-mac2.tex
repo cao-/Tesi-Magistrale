@@ -1,0 +1,162 @@
+% Less streachability around math atoms than standard
+%\_thinmuskip = 3mu
+\_medmuskip = 4mu plus 1mu minus 2mu % instead of 4 + 2 - 4
+\_thickmuskip = 5mu plus 2mu % instead of 5 + 5
+
+\protected\def\.{\mskip 1.5mu\relax}
+
+\protected\def\!{\_relax\_ifmmode \_thinneg \_else \_negthinspace \_fi}
+
+
+%\abovedisplayskip=4pt plus 1pt minus 1pt 
+%\belowdisplayskip=\abovedisplayskip
+%\the\spaceskip
+%\spaceskip=.3em plus.1em minus .05em
+
+\def\theorem{\numberedpar A{\bf THEOREM}}
+\def\corollary{\numberedpar A{\bf COROLLARY}}
+\def\proposition{\numberedpar A{\bf PROPOSITION}}
+\def\lemma{\numberedpar A{\bf LEMMA}}
+\_def \_theAnum {\_the\_counterA}
+\def\example{\numberedpar B{\bf Example}}
+\_def \_theBnum {\_the\_counterB}
+\def\definition{\numberedpar C{\rm DEFINITION}}
+\_def \_theCnum {\_the\_counterC}
+\def\property{\numberedpar D{\bf Property}}
+\_def \_theDnum {\_the\_counterD}
+\def\proof{\smallskip\noindent{\em PROOF}. \,}
+
+\def\preskip{\smallskip}
+\def\postskip{\medskip\smallskip}
+
+\long\def\comment#1\endcomment{}
+
+
+
+
+\def\range#1_#2/{#1_1, #1_2, \dots, #1_{#2}}
+%\def\Bm#1{\mathbox{$\boldmath #1$}}
+\def\Bm#1{\mathbox{\isinlist{0123456789}{#1}\iftrue\bmu\else\bm\fi\resizethefont #1}}
+\def\Cal#1{{\cal #1}}
+\def\Bbchar#1{{\bbchar #1}}
+\def\norm#1{\Vert #1\Vert}
+\def\bnorm#1{\bigl\Vert #1\bigr\Vert}
+\def\Bnorm#1{\biggl\Vert #1\biggr\Vert}
+\def\opnorm#1{|\mskip-3.5mu|\mskip-3.5mu|#1|\mskip-3.5mu|\mskip-3.5mu|}
+\def\form#1#2{(\,#1\,,\,#2\,)}
+\def\bform#1#2{\bigl(\,#1\,,\,#2\,\bigr)}
+\def\Bform#1#2{\biggl(\,#1\,,\,#2\,\biggr)}
+\def\R{\BbbR}
+\def\N{\BbbN}
+\def\slfrac#1#2{\raise.4ex\hbox{$#1$}/\lower.4ex\hbox{$#2$}}
+
+% Compatibility with LaTeX (Inkscape pictures)
+\def\textbf#1{\bf #1}
+
+
+% Change size of footnote
+\def\_fnset{\vskip-1.3ex\_everypar={\kern-.5\parindent}\_scalemain \_typoscale[900/900]\applyfontextension \applyfontprotrusions}
+
+\def \_footnoterule {\_kern-2pt \_hrule width 2.1truein \_kern 0pt}
+
+% Print fnotemarks in text font
+\def\_printfnotemark {$^\mathbox{\_fnotenum}$}
+
+
+\_def\_thefnum {\_the\_fnum}
+\_def\_thetnum {\_the\_tnum}
+\_def \_secx {\_seccx \_seccnum=0}
+\everycaptionf={\typoscale[900/900]}
+\everycaptiont={\typoscale[900/900]}
+\_def \_printcaptiont {%
+	\_noindent \_wlabel\_thecapnum {\_bf\_thecaptitle~\_thecapnum}\_enspace
+	\_narrowlastlinecentered\_iindent
+}
+\_let \_printcaptionf = \_printcaptiont
+
+
+
+
+\_def\_printchap #1{\_vfill\_supereject
+   %\_vglue\_smallskipamount % shifted by topkip+\medskipamount
+   \xdef\headchap{#1}%
+   \global\headline={\hfil\global\headline={\printheadline}}%
+   \edef\currfootline{\the\footline}%
+   \footline={\rlap{\line{\currfootline}}\hfil\rm\folio\hfil\ea\global\ea\footline\ea{\currfootline}}%  
+   {\_chapfont \_noindent \_mtext{chap} \_printrefnum[@]\_par
+    \_nobreak\_smallskip\let\NL\nl
+    \_noindent \_raggedright \uppercase{#1}\_nbpar}\_mark{}%
+   \_nobreak \_belowtitle{\_bigskip}%
+   \_firstnoindent
+}
+\_def\_printsec#1{\_par
+   \_abovetitle{\_penalty-400}\_bigskip
+   {\_secfont \_noindent \_raggedright \_printrefnum[@\_quad]#1\_nbpar}\_insertmark{#1}%
+   \_nobreak \_belowtitle{\_medskip}%
+   \_firstnoindent
+}
+\_def\_printsecc#1{\_par
+   \_abovetitle{\_penalty-200}{\_medskip\_smallskip}
+   {\_seccfont \_noindent \_raggedright \_printrefnum[@\_quad]#1\_nbpar}%
+   \_nobreak \_belowtitle{\_medskip}%
+   \_firstnoindent
+}
+
+
+\def\printheadline{\hfill\scalemain\typoscale[1090/]\it\headchap\hfill\llap{\bf\folio}}
+
+\footline={}
+
+\headlinedist=6ex
+
+
+\_def \_titfont  {\_scalemain\_typoscale[\_magstep4/\_magstep5]\_boldify}
+\_def \_chapfont {\_scalemain\_typoscale[\_magstep3/\_magstep3]\_boldify}
+\_def \_secfont  {\_scalemain\_typoscale[\_magstep2/\_magstep2]\_boldify}
+\_def \_seccfont {\_scalemain\_typoscale[\_magstep1/\_magstep1]\_boldify}
+
+
+
+
+
+\def\hbyw#1#2{\vbox to #1{\vfil \hbox to #2{\hfil}}}
+
+\def\figureproof#1#2{\vbox to #1{\vss \hbox to #2{\hss\it Missing picture\hss}\vss}}
+
+
+
+
+
+\_def \_mathfontsize #1{\_if$#1$\_else
+    \_tmpdim=#1\_ptunit
+    \_edef\_sizemtext{\_ea\_ignorept \_the\_tmpdim \_ptmunit}%
+    \_tmpdim=0.71\_tmpdim
+    \_edef\_sizemscript{\_ea\_ignorept \_the\_tmpdim \_ptmunit}%
+   \_tmpdim=#1\_ptunit \_tmpdim=0.55\_tmpdim
+    \_edef\_sizemsscript{\_ea\_ignorept \_the\_tmpdim \_ptmunit}%
+    \_fi
+}
+
+\_def\_mathbox#1{{\_mathstyles{\_hbox{%
+   \_ifnum\_stylenum<2 \_everymath{\_currstyle}%
+   \_else \_typoscale[\_dobystyle{}{}{710}{550}/]\_fi #1}}}%
+}
+\public\mathbox;
+
+
+%\_sdef{_mt:chap:en}{Part}
+
+
+% Add protrusion for eqmark
+
+\_def\_ineqmark{\_incr\_dnum
+  \_ifinner\_else\_eqno \_fi
+  \_wlabel\_thednum \_hbox{\_thednum\kern-.080em}%
+}
+\_public \eqmark ;
+
+
+
+
+
+
