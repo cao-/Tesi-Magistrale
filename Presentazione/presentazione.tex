@@ -1,0 +1,313 @@
+
+\documentclass[10pt]{beamer}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bm}
+
+
+
+\theoremstyle{definition}
+\newtheorem{definizione}{Definizione}
+\theoremstyle{plain}
+\newtheorem{teorema}{Teorema}
+%\newtheorem{lemma}{Lemma}
+
+\setbeamertemplate{navigation symbols}{}
+%\mode<presentation>
+
+\title{ON THE PROBLEM OF RECOVERING\\
+	  DISCONTINUOUS FUNCTIONS\\
+	  FROM SCATTERED DATA}
+\author{Matteo Caoduro}
+\date{18 marzo 2021}
+\institute{\normalsize \emph{Relatore:} Prof.ssa\, Milvia Francesca Rossini}
+
+\usetheme{Singapore}
+\usecolortheme[rgb={1,.1,.1}]{structure}
+%carini NavyBlue RoyalBlue JungleGreen
+%\usecolortheme{sidebartab}
+\usefonttheme[]{structurebold}
+\useinnertheme[shadow]{rounded}
+%\useoutertheme[left]{sidebar}
+
+
+
+\def\R{\mathbb R}
+\def\Cal#1{{\cal #1}}
+\def\form#1#2{(\,#1\,,\,#2\,)}
+\def\bform#1#2{\bigl(\,#1\,,\,#2\,\bigr)}
+\def\Bform#1#2{\biggl(\,#1\,,\,#2\,\biggr)}
+\def\norm#1{\Vert #1\Vert}
+\def\bnorm#1{\bigl\Vert #1\bigr\Vert}
+\def\Bnorm#1{\biggl\Vert #1\biggr\Vert}
+\def\opnorm#1{|\mskip-1.5mu|\mskip-1.5mu|#1|\mskip-1.5mu|\mskip-1.5mu|}
+\def\hbyw#1#2{\vbox to #1{\vfil \hbox to #2{\hfil}}}
+\def\lK{{\lower.5ex\hbox{$\scriptstyle K$}}}
+\def\lX{{\!\!\lower.5ex\hbox{$\scriptstyle X$}}}
+\def\lXf{{\lower.5ex\hbox{$\scriptstyle X, f$}}}
+\def\lXyf{{\lower.5ex\hbox{$\scriptstyle X\cup\{y\}, f$}}}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+
+\part<presentation>{Main Talk}
+
+\section{Introduzione}
+
+
+\begin{frame}
+...introduzione al problema...
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Obiettivo}
+Ricostruire  una \alert{funzione discontinua}~$f:\Omega\to\R$, con $\Omega\subset\R^2$, conoscendo i valori $f(X) = \{f_1,f_2,\dots f_N\}$ che essa assume su un insieme di \alert{dati sparsi} $X=\{x_1,x_2,\dots,x_N\}\subset\Omega$
+
+\begin{itemize}
+\item evitando il fenomeno di Gibbs,
+\item riproducendo fedelmente $f$ in prossimità delle curve di discontinuità.
+\end{itemize}
+
+\bigskip
+\alert{Ipotesi}: $f$ regolare (almeno continua) su sottoinsiemi~$\Omega_j$ disgiunti tali che $\Omega = \cup_j \Omega_j$, ed è discontinua lungo $\partial \Omega_j$.
+
+\medskip
+Non si hanno informazioni sui sottoinsiemi $\Omega_j$ né sulle curve di discontinuità.
+
+
+
+\end{frame}
+
+\begin{frame}
+Per ricostruire correttamente la funzione è necessario determinare i sottoinsiemi~$\Omega_j$.
+La funzione poi viene ricostruita su ciascun sottoinsieme separatamente.
+
+\medskip
+Due fasi:
+\begin{itemize}
+\item Raggruppare  $X$ in sottoinsiemi $X_j$ tali che $X_j\subset \Omega_j$
+	\begin{itemize}
+	\item Costruzione di un \alert{classificatore} di dati, usando tecniche basate su kernel,
+	\item Analisi locale in $\Omega$ dei dati $(X,f(X))$;
+	\end{itemize}
+\item Ricostruire i sottoinsiemi $\Omega_j$ e interpolare $(X_j, f(X_j))$ su $\Omega_j$
+	\begin{itemize}
+	\item {\em Support Vector Machines},
+	\item Interpolazione basata su kernel.
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Kernel e spazi nativi}
+\begin{itemize}
+\item
+Ogni \alert{kernel}~$K:\Omega\times\Omega\to\R$ simmetrico e definito positivo, con $\Omega\subseteq\R^d$, genera uno spazio di Hilbert~$\Cal N_K$, il suo \alert{spazio nativo}:
+$$
+\Cal N_K = \overline{\operatorname{span}\{K(\cdot, y):\> y\in\Omega\}\hbyw{2ex}{0em}},
+$$
+con prodotto scalare
+$$
+\Bform{\sum_{j=1}^N\alpha_jK(\cdot, x_j)}{\sum_{k=1}^M\beta_k K(\cdot,y_k)}_{\!\!K} =  \sum_{j=1}^N\sum_{k=1}^M \alpha_j \beta_k K(x_j,y_k).
+$$
+
+
+\item
+$K$ è \emph{riproducente} in $\Cal N_K$:
+\begin{itemize}
+\item $K(\cdot, y) \in\Cal N_K$, \quad per ogni $y\in\Omega$,
+\item  $\form{K(\cdot, y)}f_{\lK} = f(y)$.
+\end{itemize}
+
+\medskip\item
+In particolare consideriamo kernel \alert{radiali}, ottenuti tramite una funzione  $\phi:[0,\infty)\to\R$ nel seguente modo:
+$$
+K(x, y) = \phi(\norm{x - y}), \quad x,y\in\Omega.
+$$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Interpolazione in $\Cal N_K$}
+\begin{itemize}
+\item 
+In $\Cal N_K$ il problema dell’interpolazione ha sempre soluzione.  Infatti la matrice $\bm A$ con elementi
+$$
+A_{i,j} = K(x_i, x_j) = \phi( \norm{x_i-x_j}), \quad  X=\{x_1,x_2,\dots,x_N\}
+$$
+è definita positiva.
+
+\item
+La funzione $s_\lXf = \sum_{j=1}^N \alpha_j K(\cdot, x_j)$, ottenuta risolvendo il sistema lineare
+ $$
+ \bm A\,\bm\alpha = \bm f, \qquad  \lower1ex\hbox{$\begin{aligned} 
+ 								\bm\alpha &= (\alpha_1,\alpha_2,\dots,\alpha_N)^T, \\
+								\bm f &= (f_1,f_2,\dots,f_N)^T,
+								\end{aligned}$}
+$$
+è una funzione di $\Cal N_K$ che interpola $(X, f(X))$.
+\item
+La norma di~$s_\lXf$ in $\Cal N_K$ ha la seguente espressione:
+$$
+\norm{s_\lXf}^2_\lK= \bm\alpha^{\!T\!}\bm A\,\bm\alpha = \bm\alpha^{\!T\!}\bm f.
+$$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\begin{itemize}
+\item
+Funzione \alert{errore puntuale} in $y\in\Omega$:\quad $\epsilon_y:\Cal N_K\to\R$, tale che 
+$$
+\epsilon_y(f) = f(y)-s_\lXf(y),\quad f\in\Cal N_K.
+$$
+
+\item
+\alert{Funzione potenza} associata a~$X$: \quad $P_{\lX}:\Omega\to\R$, definita da
+$$
+P_\lX(y) = \opnorm{\epsilon_y}_\lK = \sup_{f\neq 0} \frac{|\epsilon_y(f)|}{\,\,\norm f_\lK}, \quad y\in\Omega.
+$$
+
+\item 
+$P_\lX$ è esprimibile esplicitamente in funzione di $K$ (quindi di $\phi$) e di~$X$,
+$$
+P_X(y) = \sqrt{\phi(0)-\bm t(y)^{\!T\!}\bm A^{-1} \bm t(y)},\qquad \bm t(y)_{\lower.4ex\hbox{$\scriptstyle j$}} = \phi(\norm{y-x_j}),
+$$
+ed è tale che
+$$
+0\leq P_\lX(y)\leq\sqrt{\phi(0)}.
+$$
+
+
+\item
+$P_\lX$ fornisce una maggiorazione per  l’errore puntuale di interpolazione:
+$$
+|f(y)-s_\lXf(y)| \leq P_\lX(y)\, \norm f_\lK
+$$
+
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}
+\begin{itemize}
+\item
+ Quando si aggiunge un nuovo punto~$y$ a un insieme di locazioni~$X$, la norma dell’interpolante varia nel seguente modo:
+$$
+\norm{s_\lXyf}^2_\lK = \norm{s_\lXf}^2_\lK + \frac{(f(y) - s_\lXf(y))^2}{P^2_\lX(y)}.
+$$
+\item
+La quantità $\norm{s_\lXyf}^2_\lK - \norm{s_\lXf}^2_\lK$ indica quanto accuratamente il valore di $f$ nel nuovo punto~$y$ viene previsto dal modello~$s_\lXf$.
+
+\item
+Il modello $s_\lXf$ dipende dalla funzione~$\phi$ scelta e quindi dalla sua regolarità.  Tra le funzioni più usate abbiamo:
+\begin{itemize}
+\item $\phi(r) =  (1- \varepsilon r)_+^2$\hfill Wendland $\Cal C^0$,\hbyw{0ex}{10em}
+\item $\phi(r) = (4\varepsilon r+1)(1-\varepsilon r)^4_+$\hfill Wendland $\Cal C^2$,\hbyw{0ex}{10em}
+\item $\phi(r) = \exp(-\varepsilon^2 r^2)$\hfill Gaussiana.\hbyw{0ex}{11.3em}
+\end{itemize}
+Dipendono da un parametro di forma $\varepsilon>0$.
+\end{itemize}
+\end{frame}
+
+
+
+\section{Classificazione di dati}
+\begin{frame}
+\frametitle{Classificazione di dati}
+\alert{Obiettivo}: cercare di determinare la regolarità di una funzione~$f$ a partire da un campione di $N$ dati $(X, f(X))$.
+\bigskip
+
+\alert{Idea}: Per ogni~$k\in\{1,2,\dots, N\}$ consideriamo~$X^{(k)} = X\setminus \{x_k\}$, l’interpolante $s^{(k)} = s_{X^{(k)}\!,\, f}$ e la quantità
+$$
+U_k = \norm{s_\lXf}^2_\lK - \norm{s^{(k)}}^2_\lK = \frac{(f(x_k) - s^{(k)}(x_k))^2}{P^2_{X^{(k)}}(x_k)}
+$$
+\begin{itemize}
+\item
+Poiché $X=X^{(k)}\cup\{x_k\}$, il termine $U_k$
+indica quanto accuratamente il modello $s^{(k)}$ prevede $f$ nel punto $x_k$.
+\item
+Con questo processo di \alert{cross-validation} si ottiene  un vettore $\bm U = (U_1,U_2,\dots, U_N)$.
+%\item
+%$\bm U$ dipende dalla funzione di base radiale $\phi$ scelta e dal suo parametro di forma $\varepsilon$.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+%\frametitle{Calcolare $\bm U$ efficientemente}
+\begin{itemize}
+\item In base alla definizione della norma dello spazio nativo $\Cal N_K$,
+$$
+U_k = \norm{s_\lXf}^2_\lK - \norm{s^{(k)}}^2_\lK = \bm \alpha^{\!T\!}\bm A\,\bm\alpha - (\bm\alpha^{(k)})^{\!T\!}\bm A^{(k)}\,\bm\alpha^{(k)},
+$$
+con $\bm A$,  $\bm A^{(k)}$ matrici quadrate di dimensione $N$ e $N-1$ rispettivamente, e $\bm\alpha$, $\bm\alpha^{(k)}$ soluzioni dei sistemi lineari
+$$
+\bm A\,\bm\alpha =\bm f,\quad \bm A^{(k)} \bm\alpha^{(k)} = \bm f^{(k)}.
+$$ 
+
+%\item
+%Quindi, apparentemente, per calcolare $\bm U$ bisogna risolvere un sistema lineare costituito da $N$ equazioni, e $N$ sistemi lineari costituiti da $N-1$ equazioni ciascuno.
+
+\item
+È possibile calcolare $\bm U$ risolvendo un solo sistema lineare di dimensione $N$.  Infatti si dimostra che:
+$$
+U_k = \frac{\alpha_k^2}{C_{k,k}}, \qquad \bm C = \bm A^{-1}.
+$$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+Possiamo considerare gli incrementi relativi delle norme, definendo il vettore
+$$
+\bm Q = \begin{cases}\displaystyle
+			\frac{\bm U}{\norm{s_\lXf}^2_K} & \text{se $s_\lXf \neq 0$}\\
+			\hbyw{4ex}{1em}\bm 0 & \text{se $s_\lXf = 0$}
+	       \end{cases}
+$$
+
+\alert{Proprietà}:
+\begin{itemize}
+\item Esiste $\lim_{\varepsilon\to 0} \bm Q = \widetilde{\bm Q}$
+\item $\widetilde{\bm Q}$ non varia se $f$ viene sostituita da $g = \gamma f + \eta$, con $\gamma\neq 0$
+\item $\widetilde{\bm Q}$ non varia se $X$ viene sostituito da $Y = \rho\, \Cal O(X) + t$, con $\Cal O$ trasformazione ortogonale, e $t\in\R^d$.
+\end{itemize}
+
+Lo strumento principale utilizzato per dimostrare queste proprietà è lo sviluppo in serie di Laurent della matrice $\bm C = \bm A^{-1}$, 
+$$
+\bm C = \bm{\Cal C}_{\bm{-p}}\,\varepsilon^{-p} + \bm{\Cal C}_{\bm{-p+1}}\,\varepsilon^{-p+1} +  \bm{\Cal C}_{\bm{-p+2}}\,\varepsilon^{-p+2}+\cdots\qquad \text{per $\varepsilon\to0$,}
+$$
+derivante dallo sviluppo in serie di potenze di $\phi$ centrato in $\varepsilon = 0$.
+
+
+
+\end{frame}
+
+
+
+\section{Suddivisione del dominio}
+\begin{frame}
+\end{frame}
+
+\section{Ricostruzione}
+\begin{frame}
+\end{frame}
+
+
+
+
+
+\end{document}

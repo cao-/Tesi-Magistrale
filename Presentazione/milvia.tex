@@ -1,0 +1,1124 @@
+\documentclass[xcolor=dvipsnames,9pt,mathserif]{beamer}
+\mode<article> {
+\usepackage{subfigure}
+\usepackage[indention=5pt]{caption}
+\captionsetup[subfigure]{margin=5pt, singlelinecheck=false}
+% \captionsetup{font=footnotesize}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{listings,amsmath,multimedia}
+\usepackage{pgflibraryarrows}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{empheq}
+\usepackage{latexsym}
+\usepackage{subfigure}
+\usepackage{graphics}
+\usepackage{amssymb}
+\usepackage{pifont}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{listings,amsmath,multimedia}
+\usepackage{pgflibraryarrows}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{empheq}
+\usepackage{latexsym}
+\usepackage{subfloat}
+\usepackage{enumerate}
+\usepackage{relsize}
+\usepackage{bigints}
+\usepackage[utf 8]{inputenc}
+\usepackage{english}
+\usepackage[english]{babel}
+\usepackage{ragged2e}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{color}
+\usepackage{mathabx}
+\usepackage{bm}
+\usepackage{cancel}
+}
+\everymath{\displaystyle}
+\setcounter{MaxMatrixCols}{20}
+%dvips -Ppdf -G0 milviaMATAA_2017.dvi -o milviaMATAA_2017.ps
+%ps2pdf milviaMATAA_2017.ps milviaMATAA_2017.pdf
+\parindent=0pt
+\newcommand{\pit}{\pause\item}
+\newcommand{\vs}{\vskip 0.3truecm}
+
+\newlength{\sepwid}
+\newlength{\onecolwid}
+\newlength{\twocolwid}
+\newlength{\threecolwid}
+%\setlength{\paperwidth}{48in} % A0 width: 46.8in
+%\setlength{\paperheight}{36in} % A0 height: 33.1in
+\setlength{\sepwid}{0.0175\paperwidth} % Separation width (white space) between columns
+%\setlength{\onecolwid}{0.31\paperwidth} % Width of one column
+%\setlength{\twocolwid}{0.6375\paperwidth} % Width of two columns
+%\setlength{\threecolwid}{0.965\paperwidth} % Width of three columns
+\setlength{\twocolwid}{0.99\paperwidth}
+\setlength{\onecolwid}{0.5\paperwidth}
+%\newcommand{\red}[1]{{\color{red} #1 }}     % RS
+%\newcommand{\blue}[1]{{\color{blue} #1 }}   %
+%\newcommand{\green}[1]{{\color{green} #1 }} %
+%\usepackage{mathptmx}      % use Times fonts if available on your TeX system
+%\usepackage{amsmath,amsthm}
+%\usepackage{amsfonts}
+\definecolor{red-}{rgb}{1.0,0.0,0.0}
+\definecolor{grey}{rgb}{0.6, 0.6, 0.6}
+\definecolor{brown}{rgb}{0.5,0.2,0.0}
+\definecolor{brown-}{rgb}{0.0,0.1,1.0}
+\definecolor{green-}{rgb}{0.0, 0.6, 0.0}
+\definecolor{gold}{rgb}{0.8,0.7,0.0}
+\definecolor{black}{rgb}{0.0,0.0,0.0}
+\definecolor{DarkGreen}{rgb}{0.0,0.3,0.2}
+\definecolor{LightGreen}{rgb}{0.8,1.0, 0.8}
+\definecolor{yellow}{rgb}{0.9,0.9,0.0}
+\definecolor{blue-}{rgb}{0.0,0.1,1.0}
+\definecolor{magenta-}{rgb}{1.0,0.0,1.0}
+
+\def\red#1{{\textcolor{red-}{#1}}}
+\def\grey#1{{\textcolor{grey}{#1}}}
+\def\green#1{{\textcolor{green-}{#1}}}
+\def\dgreen#1{{\textcolor{DarkGreen}{#1}}}
+\def\brown#1{{\textcolor{brown-}{#1}}}
+\def\gold#1{{\textcolor{gold}{\bf #1}}}
+\def\black#1{{\textcolor{black}{\bf #1}}}
+\def\brown#1{{\textcolor{brown}{\bf #1}}}
+\def\yellow#1{{\textcolor{yellow}{#1}}}
+\def\blue#1{{\textcolor{blue-}{#1}}}
+\def\magenta#1{{\textcolor{magenta-}{#1}}}
+
+
+%\def\para{\vspace{2 mm}}
+
+
+
+
+\newcommand\bA{{\bf A}}
+\newcommand\bu{{\bf u}}
+\newcommand\blambda{{\boldsymbol\lambda}}
+\newcommand\RR{\mathbb{{R}}}
+
+
+
+
+
+\newcommand\ep{\varepsilon^2}
+\newcommand\Runo{\sqrt{1+\ep h^2}}
+\newcommand\Rdue{\sqrt{1+2\ep h^2}}
+\newcommand\Runodue{\sqrt{1+\ep \frac{h^2}{2}}}
+
+
+\newcommand\xunmezzo{x_{i+\frac12}}
+\newcommand\uunmezzo{u_{i+\frac12}}
+\newcommand\Stot{{\cal S}_{2k-2}^{i}}
+\newcommand\St{{\cal S}_k^{i,b}}
+\newcommand\Stb{{\cal S}^{i,b}}
+\newcommand\Std{{\cal S}_k^{i,b^*}}
+\newcommand\Sts{{\cal S}_k^{i,\bar{b}}}
+\newcommand\Ps{P_k^{i,\bar{b}}}
+\newcommand\Po{P_k^{i,{b}}}
+\newcommand\Pd{P_k^{i,{b^*}}}
+\newcommand\Rmq{R^{i,b}_k}
+\newcommand\Rmqb{R^{i,b}}
+\newcommand\Rmquno{R^{i,1}}
+\newcommand\Rmqunob{\bar{R}^{i,1}}
+\newcommand\Rmqbb{\bar{R}^{i,b}}
+\newcommand\Rmqdue{R^{i,2}}
+\newcommand\Rmqdueb{\bar{R}^{i,2}}
+\newcommand\Emquno{E^{i,1}}
+\newcommand\Emqdue{E^{i,2}}
+\newcommand\Emqb{E^{i,b}}
+\newcommand\eoptdue{\frac{u''_{i+\frac12}}{u_{i+\frac12}}}
+\newcommand\eopttre{-\frac{u_{i+\frac12}'''}{3 u_{i+\frac12}'}}
+\usepackage[all]{xy}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bee}{\begin{equation*}}
+\newcommand{\eee}{\end{equation*}}
+\newcommand\eps{{\varepsilon}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\coll}[1]{\emph{\color{red} #1}}
+\newcommand{\col}[1]{{\bf\color{PineGreen} #1}}
+\newcommand{\gn}{\color{JungleGreen}}
+\newcommand{\rd}{\color{red}}
+%\newcommand{\bl}{\color{blue}}
+\newcommand{\mg}{\color{Magenta}}
+\newcommand{\gnn}{\color{PineGreen}}
+\newcommand{\bl}[1]{{\bf\color{NavyBlue}#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newcommand{\nbl}{\color{blue}}
+%\newcommand{\nbl}{\color{RedOrange}}
+
+\mode<presentation>{
+%\usetheme[left]{Marburg}
+%\usetheme{Berkeley}
+%\usetheme{PaloAlto}
+%\usetheme{Warsaw}
+\usetheme{Singaporemio}
+%\usecolortheme[rgb={0.3,0.2,0.5}]{structure}
+%carini NavyBlue RoyalBlue JungleGreen
+\usecolortheme[named=Red]{structure}
+%\usecolortheme{sidebartab}
+%\usecolortheme[named=ForestGreen]{structure}
+%\usecolortheme[named=Emerald]{structure}
+%\usecolortheme[named=RedOrange]{structure}
+\usefonttheme[]{structurebold}
+\useinnertheme[shadow]{rounded}
+% GreenYellow, Yellow, Goldenrod, Dandelion, Apricot, Peach, Melon,
+%YellowOrange, Orange, BurntOrange, Bittersweet, RedOrange, Mahogany, Maroon, BrickRed, Red,
+%OrangeRed, RubineRed, WildStrawberry, Salmon, CarnationPink, Magenta, VioletRed,
+%Rhodamine, Mulberry, RedViolet, Fuchsia, Lavender, Thistle, Orchid, DarkOrchid, Purple, Plum, Violet,
+%RoyalPurple, BlueViolet, Periwinkle, CadetBlue, CornflowerBlue, MidnightBlue, NavyBlue, RoyalBlue, Blue, %Cerulean, Cyan, ProcessBlue, ,
+% SkyBlue, Turquoise, TealBlue, Aquamarine, BlueGreen, Emerald, JungleGreen,
+%SeaGreen, ForestGreen, PineGreen, LimeGreen, YellowGreen, SpringGreen, OliveGreen, RawSienna, Sepia,
+%Brown, Tan, Gray, Black, White
+
+%colore scritte
+%    \setbeamercolor{slidetitle}{white}
+%   \setbeamercolor{frametitle}{fg=white,bg=newcolor}
+
+\setbeamertemplate{items}[ball unnumbered]
+%\setbeamertemplate{items}[triangle]
+% \setbeamercovered{transparent}
+% \setbeamertemplate{tableofcontents shaded}[default][50]
+
+\setbeamersize{text margin left=0.15cm,text margin right=0.25cm} }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\title[]
+{{{Recovering discontinuous functions via  local multiquadric
+interpolation with adaptive nonlinear estimate
+of the shape parameter}}}
+
+\author[]{{\bf{Milvia Rossini}}, Francesc Ar\`andiga, Rosa Donat, Lucia Romani }
+
+\vskip 0.2truecm
+%\institute[Universit\`{a}  di Milano - Bicocca]{\includegraphics[width=10mm]{logo_unimib.eps} \\ Universit\`{a}di %Milano - Bicocca}
+\institute{
+%%\large University of Bologna, Italy\\
+\includegraphics[width=15mm]{logo_unimib.png} \\
+\vskip+1mm
+{University of Milano - Bicocca}\\
+\vskip 0.1truecm
+\vskip 0.1truecm
+{University of Valencia -- University of Bologna}}
+
+
+\date[]{NUMTA 2019}
+%\logo{\includegraphics[width=10mm]{logos_unimib.eps}}
+\begin{document}
+\begin{frame}{}
+  \titlepage
+\end{frame}
+
+\part<presentation>{Main Talk}
+
+\section[Introduction]{Introduction}
+\subsection[]{}
+
+\begin{frame}
+\frametitle{Introduction}
+\begin{itemize}
+%It is a well-known fact that any global or high-order
+%approximation method suffers from the Gibbs phenomenon if the function
+%to be approximated has a jump discontinuity in the given domain. Thus,
+\item The faithful recovery of a discontinuous function is a \coll{challenging} problem
+%\pause
+\vskip 0.3truecm
+\item Wide literature on the topic also by \textcolor{red}{RITA} people [RITA $\&$ co]
+%\pause
+\vskip 0.3truecm
+\item More efforts are still needed to construct robust Radial Basis Function (RBF) approximants for functions with jump discontinuities
+%\pause
+\vskip 0.3truecm
+\item Effective strategy: \coll{ variably scaled kernels} that
+incorporates discontinuous scaling functions at or near the jump
+points.
+%\pause
+\vskip 0.3truecm
+\item Advantage: it produces a true discontinuous interpolant and
+then a faithful recovery of the unknown function.
+%\pause
+\vskip 0.3truecm
+\item This approach requires to know or to estimate in
+advance the positions of the discontinuity points  and an edge
+detection strategy is needed as preliminary step \cite{erb}.
+\end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{Introduction}
+
+\begin{itemize}
+\item   \coll{E}ssentially \coll{N}on-\coll{O}scillatory (\coll{ENO}) and \coll{W}eighted ENO
+(\coll{WENO}) polynomial techniques do
+not require a preliminary edge detection step
+\item  They allow to reduce oscillations near discontinuities by the use of
+suitable data dependent \coll{smoothness indicators}
+%\pause
+\item in \cite{GJ17a} and \cite{GJ17b}, polynomials have been replaced by \coll{multiquadrics}  in adaptive finite difference  ENO/WENO schemes for hyperbolic
+conservation laws
+%\pause
+\item it is \coll{numerically} observed
+that, by locally optimizing the \coll{shape parameter} of the multiquadric
+interpolant, the accuracy of the RBF-WENO scheme is enhanced
+in \coll{smooth} regions, with respect to the polynomial WENO method
+%\pause
+\vskip 0.3truecm
+\item their
+RBF-WENO reconstruction \coll{is not appropriate} in the vicinity of a jump
+discontinuity
+%\pause
+\vskip 0.3truecm
+\item hence they need to
+ revert to classical polynomial-based WENO reconstructions when close to
+ shocks or contact discontinuities.
+\end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{Motivations }
+
+\begin{enumerate}
+\item The desire   to fully understand from a theoretical point of view the
+computational results shown in \cite{GJ17a}, \cite{GJ17b} and to understand the need of reverting to polynomial WENO near jumps;
+%\pause
+\vskip 0.6truecm
+
+\item to propose \coll{new true} WENO multiquadric techiques;
+
+\vskip 0.6truecm
+%\pause
+\item to study
+how  \coll{WENO adaptivity} may be incorporated in a
+MQ-framework to estimate the  optimal shape parameter that allows to improve/preserve  accuracy
+both in smooth regions and in the vicinity of jump discontinuities.
+
+\end{enumerate}
+\end{frame}
+\section{ENO/WENO local polynomial interpolation}
+\subsection{}
+\begin{frame}
+\frametitle{Notations}
+We consider
+\begin{itemize}
+\item $b,k\in \mathbb{{N}},$  $k\ge 2$, $b\ge 1,$ and $k$  values $u_j$, $j=i-k+b+1, \ldots, i+b $ of
+$$u: \Omega{\,\subset\RR} \rightarrow \RR$$
+ at equally spaced
+points $x_j \in \Omega$ with step-size $h$.
+\item the midpoint of the interval $[x_i,x_{i+1}],$ $\xunmezzo:=\frac{x_i+x_{i+1}}{2}$
+\item  the
+  stencils of $k$ points containing $x_i$ and $x_{i+1}$
+$$\St= \{ x_{i-k+b+1}, \ldots,x_{i+ b}\},\quad1 \leq b \leq k-1$$
+\end{itemize}
+%\pause
+Our aim is to provide
+\coll{accurate predictions} to $\uunmezzo:=u(\xunmezzo).$
+
+\vskip 0.2truecm
+%\pause
+\small{\begin{itemize}\item The term \coll{smooth} will  refer to the function $u$ being as smooth as required by the theoretical facts that we are going to consider.
+\item
+The term \coll{discontinuity} will refer to an isolated discontinuity in an interval adjacent to $[x_i,x_{i+1}].$\end{itemize}}
+  \end{frame}
+  \begin{frame}
+  \frametitle{ENO local polynomial
+  interpolation}
+
+
+\begin{enumerate}
+\item  For each
+stencil $\St$  compute the undivided   differences  $$
+  \left[\St\right]:=h^{k-1}u[x_{i-k+b+1},\ldots,x_{i+ b}]$$
+%\pause
+\begin{itemize}
+  \item if  $\St$ is in a
+smooth region $\Rightarrow$
+$
+\left[\St\right]=O({h^{k-1}}) $
+%\pause
+\item if $u$ has a discontinuity
+ in { $(x_{i-k+b+1}, x_{i+b})$} $\Rightarrow$ $\left[\St\right]=O(1)$
+ \end{itemize}
+ %\pause
+ \item  select the stencil
+\[
+\left| \left[\Sts\right] \right| = \min_{b=1,\dots,k-1} \left| \left[\St\right] \right|,\]
+and define
+\[P^{ENO}_k(x):=\Ps(x).\]
+\end{enumerate}
+%\pause
+\begin{block}{}
+If $u$ is smooth in the convex hull of  $\Sts$
+$$
+\uunmezzo=P^{ENO}_k(\xunmezzo)+O(h^k).
+$$
+If $u$ has  a
+discontinuity at $[x_i,x_{i+1}]$, the accuracy  is lost, but $ P^{ENO}_k(x)$
+is \coll{monotone} in $[x_i,x_{i+1}]\Rightarrow$ \coll{no oscillations}.
+\end{block}
+
+  \end{frame}
+  \begin{frame}
+  \frametitle{WENO local polynomial interpolation}
+  $${P}^{WENO}_{2k-2}(\xunmezzo) = \sum_{b=1}^{k-1}\omega^{i,b}_k \Po(\xunmezzo)
+$$
+where
+$$
+ \omega_k^{i,b} \ge 0, \,\, \quad \sum_{b=1}^{k-1} \omega_k^{i,b}=1
+$$
+
+  are chosen to satisfy the following properties:
+  \vskip 0.2truecm
+
+\begin{itemize}
+\item $\omega_k^{i,b} \approx 0$ if the stencil $\St$ crosses a
+  discontinuity so that discontinuous stencils have essentially no
+  contribution to the convex combination;
+\vskip 0.2truecm
+
+\item $\omega_k^{i,b}$  near to some  optimal weights otherwise.
+\end{itemize}
+\end{frame}
+  \begin{frame}
+  \frametitle{WENO weights}
+
+$$
+\omega_k^{i,b}=\frac{\alpha_k^{i,b}}{\sum_{\ell=1}^{k-1} \alpha^{i,\ell}_k }
+\quad
+\hbox{with}
+\quad
+{\alpha_k^{i,b}=\frac{C_k^b}{(\epsilon +I_k^{i,b})^{\rho}},}
+$$
+where
+\small{
+\begin{itemize}
+\item $C_k^b\, |$ $C_k^b\ge0,$   $\sum_{b=1}^{k-1} C_k^b=1,\,\,$  and $\,\,\uunmezzo =\sum_{b=1}^{k-1}C^b_k
+ \Po(\xunmezzo)   + O(h^{2k-2})$
+%\pause
+\item $\epsilon$  avoids null
+  denominator and $\rho\in\mathbb{N}$ (usually   $\epsilon=h^2$  and $\rho\geq 2$)
+%\pause
+\item $I_k^{i,b}$ are \coll{smoothness indicators}  such that
+\begin{itemize}
+\item if all the stencils $\St$ are in a smooth region $\Rightarrow$ $\omega^{i,b}_k=C^b_k+O(h^{k-1}),$ and
+      $$\uunmezzo={P}^{WENO}_{2k-2}(\xunmezzo) +O(h^{2k-2})$$
+\item if $u$ is smooth in $[x_i,x_{i+1}]$ and  there is a discontinuity in  {$(x_{i-k+2},x_{i+k-1})$}, at least one stencil  \coll{ does not cross } the singularity and the approximation order is that of the corresponding \coll{ENO} polynomial
+    $$
+\uunmezzo={P}^{WENO}_{2k-2}(\xunmezzo) +O(h^{k})$$
+\end{itemize}
+\end{itemize}
+%\pause
+If there is a discontinuity in
+$[x_i,x_{i+1}]$, the WENO construction looses all accuracy but, as in
+the ENO case, it does
+not create spurious oscillations.}
+\end{frame}
+\section{WENO MQ-RBF local interpolation: $k=3,$ $b=2$}
+\subsection{}
+\begin{frame}\frametitle{Local multiquadric RBF 3-point interpolation}
+
+Polynomials are substituted by   MQ-
+interpolants  based on the 3-point stencils ${\cal
+  S}_3^{i,b}$
+$$
+\Rmqb_3(x,\varepsilon)=\lambda_1 \phi(|x-x_{i+b-2}|,\varepsilon)
++ \lambda_2 \phi(|x-x_{i+b-1}|,\varepsilon)
++ \lambda_3 \phi(|x-x_{i+b}|,\varepsilon),
+$$
+where $\phi(y,\varepsilon)= \sqrt{1+\ep  y^2
+ }.$
+
+The coefficients depend on {$ \phi(h,\varepsilon)$ and $\phi(2h,\varepsilon).$ Their expansion by Taylor series, } gives
+
+$$
+\Rmqb_3(x_{i+\frac12},\varepsilon)=\Rmqbb_3(x_{i+\frac12},\varepsilon)
++ O(h^6)\quad b=1,2
+$$
+with
+%\pause
+\begin{eqnarray*}
+\Rmqbb_3(x_{i+\frac12},\varepsilon)
+&=&\left(
+\frac{27}{1024}\,{\eps}^4\,h^4-\frac{1}{8}
+\right)u_{i+b-2}
++\left(
+%    -\frac{795\,{\eps}^6\,h^6}{1024}+
+\frac{171}{512}\,{\eps}^4\,h^4-\frac{3}{16}\,{\eps}^2\,h^2+\frac{3}{4}
+\right)u_{i+b-1}\\
+&+&\left(
+-\frac{441}{1024}\,{\eps}^4\,h^4+\frac{3}{16}\,{\eps}^2\,h^2+\frac{3}{8}
+ \right)u_{i+b}.
+\end{eqnarray*}
+
+%\pause
+Then, the approximation error is
+ $$\Emqb_3(x_{i+\frac12},\varepsilon)=\uunmezzo-\Rmqbb_3(x_{i+\frac12
+},\varepsilon) + O( h^6), \quad b=1,2.$$
+
+\end{frame}
+\begin{frame}\frametitle{Local multiquadric RBF 3-point interpolation}
+Expanding $\{u_{i+b-2},u_{i+b-1},u_{i+b}\}$
+ by %evaluating $u_{i+b-2},$ $u_{i+b-1}$ and $u_{i+b}$, $b=1,2$,
+         %by
+Taylor series  centered at $\xunmezzo,$ we get
+
+$$
+\Emqb_3(x_{i+\frac12},\varepsilon)= \frac{1}{16}(3 u_{i+\frac12}' \varepsilon^2 + u_{i+\frac12}''') h^3
+-\frac{3}{128}(3u_{i+\frac12}\varepsilon^4+u^{(iv)}_{i+\frac12}) h^4+
+O( h^5),  \quad b=1,2.
+$$
+
+Hence
+%The approximation order is improved by choosing
+$$\varepsilon_{\text{opt}}^2 := -\frac{u_{i+\frac12}'''}{3 u_{i+\frac12}'}
+%=- \frac{-u_{i-1}+3u_i-3u_{i+1}+u_{i+2}}{3(u_{i+1}-u_i)}\]
+\quad \Rightarrow \quad
+\Emqb_3(x_{i+\frac12},\varepsilon_{\text{opt}})=O(h^4),  \quad b=1,2,
+$$
+%In this case,  only a third order local approximation of $\uunmezzo$
+%can be computed via the formulas (\ref{eq:aprad31})  and
+%(\ref{eq:aprad3r}). Again, third order
+and a fourth-order approximation can be directly computed using $\Rmqbb_3(x_{i+\frac12
+},\varepsilon).$
+
+\vskip 0.3truecm
+%\pause
+In practice, \coll{the optimal  value} of $\varepsilon^2_{\text{opt}}$ needs to be
+approximated.%, since $u$ is unknown.
+\vskip 0.3truecm
+An approximation of  $\varepsilon_{\text{opt}}^2$ such that
+$$
+ \varepsilon^2=\varepsilon_{\text{opt}}^2 + O(h^p)\quad \Rightarrow \quad \Emqb_3(\xunmezzo,\varepsilon)=O(h^{\min\{p+3, 4\}}), \quad b=1,2.
+$$
+\end{frame}
+\begin{frame}\frametitle{Local multiquadric RBF 3-point interpolation}
+\begin{block}{Proposition}
+Let  $u$ \coll{smooth} in $([x_{i-1},x_{i+2}])$, then
+
+$$
+\bar{u}_{i+\frac12}^{'''}:=\frac{-u_{i-1}+3u_i-3u_{i+1}+u_{i+2}}{h^3}=\uunmezzo'''
++ O(h^2)$$ $$ \bar{u}_{i+\frac12}^{'}:=\frac{u_{i+1}-u_i}{h}=\uunmezzo'+O(h^2),$$
+ hence
+
+$$
+{{\varepsilon}_{lin}^2}:=-\frac{\bar{u}_{i+\frac12}^{'''}}{3 \bar{u}^{'}_{i+\frac12}}=
+{\varepsilon^2_{\text{opt}} + O(h^2) \quad\Rightarrow\quad}
+\Emqb_3(x_{i+\frac12},\varepsilon_{{lin}})=O(h^4).$$
+\end{block}
+\end{frame}
+\begin{frame}\frametitle{Local multiquadric RBF 3-point interpolation}
+\begin{block}{Proposition}
+%But if The unknown function has a discontinuity in the first of last interval of the considered stencils, the accuracy is lost.
+
+If $u$ \coll{has a discontinuity} in $[x_{i-1},x_i]$ (or in $[x_{i+1},x_{i+2}]$)
+then
+
+$$
+{\varepsilon_{lin}^2= O\left(\frac{1}{h^3}\right)},
+\quad\Rightarrow\quad
+\Emqb_3(x_{i+\frac12},\varepsilon_{\text{lin}})= O\left(\frac{1}{h^2}\right)
+\quad { \text{for} }\,\,  b=1  \quad ({\text{or} }\,\, b=2).
+$$
+\end{block}
+\begin{itemize}
+\vskip 0.3truecm
+
+%\pause
+\item
+If we plug this estimate in a WENO technique the accuracy in intervals adjacent to a discontinuity is lost.
+
+%\pause
+\vskip 0.3truecm
+
+\item This is the reason of switching to  polynomial WENO near non smooth regions, case that corresponds to the choice $\varepsilon=0.$\end{itemize}
+     \end{frame}
+     \begin{frame}
+     \frametitle{Local MQ-WENO interpolants}
+     \begin{eqnarray*}
+     R^{WENO}_{4}(x_{i+\frac12})& = &\sum_{b=1}^{2}\omega^{i,b}_3 \Rmqbb_{3}(x_{i+\frac12})\\
+%\pause
+&=& \omega_3^{i,1} \, \left(\frac{27}{1024}\,{\eps}^4\,h^4-\frac{1}{8}\right) \, u_{i-1}+ \omega_3^{i,1} \, \left(\frac{171}{512}\,{\eps}^4\,h^4-\frac{3}{16}\,{\eps}^2\,h^2+\frac{3}{4}\right)\,u_i\\
+&+& \omega_3^{i,2} \, \left(-\frac{441}{1024}\,{\eps}^4\,h^4+\frac{3}{16}\,{\eps}^2\,h^2+\frac{3}{8}\right)  \, u_i\\
+&+& \omega_3^{i,1} \, \left(-\frac{441}{1024}\,{\eps}^4\,h^4+\frac{3}{16}\,{\eps}^2\,h^2+\frac{3}{8}\right)\,u_{i+1}\\
+&+& \omega_3^{i,2} \, \left(\frac{171}{512}\,{\eps}^4\,h^4-\frac{3}{16}\,{\eps}^2\,h^2+\frac{3}{4}\right) \, u_{i+1}\\
+&+&\omega_3^{i,2} \, \left(\frac{27}{1024}\,{\eps}^4\,h^4-\frac{1}{8}\right) \, u_{i+2}.
+\end{eqnarray*}
+\end{frame}
+\begin{frame}
+     \frametitle{Local MQ-WENO interpolants}
+
+$$\omega_{3}^{i,b}=\frac{\alpha_{3}^{i,b}}{\sum_{\ell=1}^{2} \alpha^{i,\ell}_{3} },
+\quad
+\alpha_{3}^{i,b}={ \frac{1/2}{(h^2 +I_3^{i,b})^{2}} }, \ \ b=1,2,
+$$
+where the smoothness indicators $I_3^{i,b}$, $b=1,2$
+\begin{eqnarray*}
+I_3^{i,1}&=&\frac{13}{12} (u_{i-1}-2u_{i}+u_{i+1})^2+
+\frac{1}{4}(u_{i-1}-4u_{i}+3u_{i+1})^2,
+\\
+I_3^{i,2}&=&\frac{13}{12}(u_{i}-2u_{i+1}+u_{i+2})^2
++\frac{1}{4}(u_{i+2}-u_{i})^2
+\end{eqnarray*}
+guarantee that
+
+\begin{enumerate}
+\item If $u$ is smooth in $([x_{i-1}, x_{i+2}])$,
+$$\omega^{i,b}_3=\frac{1}{2}+O({h^2}), b=1,2;$$
+\item While if  $u$ has a discontinuity at $[x_{i+1}, x_{i+2}]$ (or
+  $[x_{i-1}, x_{i}]$)
+  $$
+  \omega^{i,1}_3=1+O({h^4})\quad \omega^{i,2}_3=O({h^4}) $$
+(or $\omega^{i,1}_3=O({h^4})$, $\omega^{i,2}_3=1+O({h^4})$)
+
+\end{enumerate}
+     \end{frame}
+     \begin{frame}
+
+     \frametitle{Local MQ-WENO interpolants}
+If $u$ is smooth in $ [x_{i-1}, x_{i+2}]$,  evaluating $u_{i-1},$ $u_i$, $u_{i+1}$ and $u_{i+2}$ by Taylor expansions centered at $\xunmezzo,$ provides
+\begin{eqnarray*}
+R^{WENO}_{4}(x_{i+\frac12})
+&= &(\omega_3^{i,1}+\omega_3^{i,2})\uunmezzo- \frac{1}{16}(3 u_{i+\frac12}' \varepsilon^2 + u_{i+\frac12}''')(\omega_3^{i,1}-\omega_3^{i,2})h^3\\
+&-&\frac{3}{128}(3u_{i+\frac12}\varepsilon^4+u^{(iv)}_{i+\frac12})(\omega_3^{i,1}+\omega_3^{i,2}) h^4+ O(h^5), \end{eqnarray*}
+
+%\pause
+\begin{block}{Proposition}
+If {$u$ is smooth in $([x_{i-1},x_{i+2}])$} then the weight are approximatively equal to one half and then
+$$\uunmezzo - R^{WENO}_{4}(x_{i+\frac12},\varepsilon) =
+%u_{i+\frac12} - R^{WENO}_{4}(x_{i+\frac12})   =
+ \frac{3}{128}(u^{(iv)}_{i+\frac12} + 3 \, \eps^4 \, u_{i+\frac12}) \, h^4+ O(h^5).
+$$
+\end{block}
+%\pause
+\begin{block}{Proposition}
+If {$u$}
+  and has
+a jump discontinuity at { $(x_{i+1},x_{i+2}]$} (or at { $[x_{i-1},x_{i})$}) then the weights  will tend to select the 3-point MQ-RBF interpolant based on the stencil  that does not
+cross the  discontinuity and the
+leading order of the error in the convex combination corresponds to
+that of the selected  3-point MQ-RBF interpolant
+$$\uunmezzo- R_4^{WENO}(x_{i+\frac12},\varepsilon)
+=
+\frac{1}{16}(3 u'_{i+\frac12} \varepsilon^2 + u'''_{i+\frac12}) h^3
+-\frac{3}{128}(3u_{i+\frac12}\varepsilon^4+u^{(iv)}_{i+\frac12}) h^4+  O(h^4).
+% \nonumber
+%O(h^3).
+$$
+\end{block}
+     \end{frame}
+     \begin{frame}
+     \frametitle{Enhancing accuracy in non smooth regions vs smooth regions  }
+
+\begin{block}{Method 1}
+The choice
+$$\varepsilon_{\text{opt}}^2 = -\frac{u_{i+\frac12}'''}{3 u_{i+\frac12}'} $$
+improves the accuracy in regions adjacent to a discontinuity.
+\end{block}
+%\pause
+    \begin{block}{Method 2}
+The choice
+\[ \varepsilon_{\text{opt}}^4 = -\frac{u^{(iv)}_{i+\frac12}}{3u_{i+\frac12}}\]
+improves the accuracy in smooth regions.
+\end{block}
+%\pause
+In \coll{both cases} an estimate of the shape parameter the preserves the improvement is obtained via a \coll{WENO-like adaptive} procedure.
+\end{frame}
+\begin{frame}
+\frametitle{Method 1: Weno-like adaptive estimation of $\varepsilon_{\text{opt}}$  }
+ We    consider one-sided first-order estimates
+of the third derivatives at the mid point and appropriate WENO-type weights:
+\begin{eqnarray*}
+%\hat
+{u}^{'''}_{i+\frac12,L}& = &
+ \frac{1}{h^3}( -u_{i-2} + 3 \, u_{i-1} -3 \, u_{i} +  \, u_{i+1})\,\,
+\\
+{u}^{'''}_{i+\frac12,R} &= &
+ \frac{1}{h^3}( -u_{i} +3 \, u_{i+1} -3 \, u_{i+2} + \, u_{i+3} ),
+%= u^{'''}_{i+\frac12}+ O(h),
+\end{eqnarray*}
+
+$${
+\varepsilon^2_{wen} := -
+\frac{\omega^{i,1}_4 {u}^{'''}_{i+\frac12 }
++ {\omega^{i,3}_4} {u}^{'''}_{i+\frac12 }} {3(u_{i+1}-u_{i})/h}
+},
+$$
+where
+$${
+\omega_{4}^{i,b}=\frac{\alpha_{4}^{i,b}}{ \alpha^{i,1}_{4}+ \alpha^{i,3}_{4} },
+\quad
+\alpha_{4}^{i,b}={ \frac{1/2}{(h^2 +I_4^{i,b})^{3}} }, \ \ b=1,3
+}
+$$
+with
+$$I_4^{i,b}=
+( - \, u_{i+b-3} + 3 \, u_{i+b-2} -3 \, u_{i+b-1} +  \, u_{i+b})^2,\quad b=1,3. $$
+\end{frame}
+\begin{frame}
+\frametitle{Method 1: Weno-like adaptive estimation of $\varepsilon_{\text{opt}}$  }
+
+\begin{block}{Proposition}
+\begin{enumerate}
+\item If {$u$ is smooth $[x_{i-1},x_{i+3}]$} or in $[x_{i-2},x_{i+2}]$ then
+\[ \varepsilon^2_{wen} =
+\varepsilon_{\text{opt}}^2 +O(h) \quad \Rightarrow \quad \uunmezzo-
+R_4^{WENO}(\xunmezzo,\varepsilon_{wen})=O(h^4).\]
+%\pause
+
+\vskip 0.4truecm
+\item If $u$ has a  discontinuity in $[x_{i-1},x_{i}]$
+(or in  $[x_{i+1},x_{i+2}]$)
+and it is smooth %\textcolor{blue}
+{in $[x_i,x_{i+3}]$ (or in
+  $[x_{i-2},x_{i+1}]$)}, then
+$$\varepsilon_{wen}^2=\varepsilon_{\text{opt}}^2+ O(h) \quad \Rightarrow \quad
+\uunmezzo- R_4^{WENO}(\xunmezzo,\varepsilon_{wen})= O(h^4).$$
+\end{enumerate}
+\end{block}
+     \end{frame}
+     \begin{frame}
+     \frametitle{Method 2: enhancing accuracy in smooth regions}
+ In smooth regions, the chpoice
+\[ \varepsilon_{\text{opt}}^4 := -\frac{u^{(iv)}_{i+\frac12}}{3u_{i+\frac12}}.
+%\quad (\mbox{or } \hat{\varepsilon}_{\text{opt}}^2 := \frac{u''_{i}}{u_{i}})
+\]
+provides a \coll{fifth} order accuracy.
+%\pause
+\begin{block}{Remark}
+$$\omega^{i,1}_3=\omega^{i,2}_3=\frac12 +
+O(h^2),$$ then the
+the term containing $\varepsilon^2 $ in $R^{WENO}_{4}(x_{i+\frac12})$ is
+$$
+\frac{3}{16}\,(u_{i+1}-u_i)(\omega_3^{i,1} -
+\omega_3^{i,2})\,{\eps}^2\,h^2=O(h^5)
+$$
+and it can be neglected as it is of the order of the error. \end{block}
+ \end{frame}
+
+\begin{frame}
+\frametitle{A modified MQ-WENO local interpolation}
+
+This observation leads us
+to consider the modified multiquadric WENO %based
+reconstruction technique
+
+$$
+G_4^{WENO}(\xunmezzo,\varepsilon):=\sum_{b=1}^{2}\omega^{i,b}_3
+G_{3}^{i,b} (x_{i+\frac12},\varepsilon)
+$$
+where
+
+$$
+G_{3}^{i,1}(\xunmezzo,\varepsilon)
+=\left(
+\frac{27}{1024}{\eps}^4\,h^4-\frac{1}{8}
+\right)u_{i-1}
++\left(
+\frac{171}{512}{\eps}^4\,h^4+\frac{3}{4}
+\right)u_{i}
++\left(
+-\frac{441}{1024}{\eps}^4\,h^4+\frac{3}{8}
+ \right)u_{i+1}
+ $$
+
+$$
+G_{3}^{i,2} (\xunmezzo,\varepsilon)
+=\left(
+\frac{27}{1024}{\eps}^4\,h^4-\frac{1}{8}
+\right)u_{i+2}
++\left(
+\frac{171}{512}{\eps}^4\,h^4+\frac{3}{4}
+\right)u_{i+1}
++\left(
+-\frac{441}{1024}{\eps}^4\,h^4+\frac{3}{8}
+ \right)u_{i}.
+$$
+\end{frame}
+\begin{frame}
+\frametitle{A modified MQ-WENO local interpolation}
+
+The computations are carried on  via  a \coll{Weno-like adaptive} estimation of $\varepsilon_{\text{opt}}$ by combining one-side estimates of ${u^{(iv)}_{i+\frac12}}$ that  allows to \coll{preserve}  order three of accuracy in the proximity of a discontinuity.
+
+%\pause
+\begin{block}{Proposition}
+\begin{enumerate}
+\item If $u$ is smooth in $[x_{i-3},x_{i+2}]$ or in $[x_{i-1},x_{i+4}]$ then
+\[ \varepsilon^2_{wen} =\varepsilon_{\text{opt}}^2 +O(h)  \quad
+\Rightarrow \quad \uunmezzo-
+G_4^{WENO}(\xunmezzo,\varepsilon_{wen})=O(h^5); \]
+%\pause
+\vskip 0.4truecm
+\item if $u$ has a discontinuity at $[x_{i-2},x_{i}]$ (or $[x_{i+1},x_{i+3}]$), then
+$$\varepsilon_{wen}^2=
+\varepsilon_{\text{opt}}^2+ O(h) \quad \Rightarrow \quad
+\uunmezzo- G_4^{WENO}(\xunmezzo,\varepsilon_{wen})= O(h^3).$$
+\end{enumerate}
+\end{block}
+\end{frame}
+\begin{frame}
+\frametitle{Summary: orders of accuracy}
+
+\begin{table}
+\begin{center}
+{$
+\begin{tabular}{|c|c|c|c|c|}
+\hline \\[-8pt]
+& \multicolumn{2}{|c|}{$\uunmezzo - R^{WENO}_{4}(x_{i+\frac12},
+\varepsilon$)
+}
+& \multicolumn{2}{|c|}{$\uunmezzo -G^{WENO}_{4}(x_{i+\frac12},
+\varepsilon)$
+}
+\\
+\cline{2-5}
+&    $smooth$ & $disc $&  $smooth$ & $disc $\\
+\hline
+$\varepsilon_{\text{opt}}$ &  $O(h^4)$& $O(h^4)$& $O(h^5)$& $O(h^3)$\\ \hline
+$\varepsilon_{lin}$ &  $O(h^4)$& $O(h^{-2})$& $O(h^5)$& $O(1)$\\ \hline
+$\varepsilon_{wen}$ & $O(h^4)$& $O(h^4)$& $O(h^5)$& $O(h^3)$\\ \hline
+\end{tabular}
+$}
+ \end{center}
+ \vskip 0.4truecm
+ \caption{Orders of accuracy for different reconstructions using stencils of $k=3$ points and different
+$\varepsilon$. The term
+{\em smooth} refers to the function $u$ being as
+  smooth as required by the theoretical Propositions. The term {\em disc}
+  refers to the function being
+ smooth in $[x_{i},x_{i+1}]$, with an
+  isolated discontinuity in an interval adjacent to $[x_i,x_{i+1}]$.
+}
+  \end{table}
+
+
+\end{frame}
+\section{Numerical experiments}
+\subsection{}
+\begin{frame}
+\frametitle{Numerical evidence of approximation orders}
+W consider and dyadic samples of increasing size
+$$\{ u^{\ell}_i=u( x_i^{\ell}) \}_{i=0, \ldots, 2^{\ell}}\quad {\ell}=6, 7, \ldots, 13, \quad x_i^{\ell}=\frac{i}{2^{\ell}}$$
+where
+$$u(x)=\left\{ \begin{array}{ccc}
+e^{(x-0.5)} & \mbox{ if } & 0 \leq x \leq 0.5,
+\\
+1+e^{(x-0.5)} & \mbox{ if } & 0.5 < x \leq 1.
+\end{array}
+ \right.
+$$
+
+Let $\Omega_d\subset [0,1]$, and consider the maximum absolute error in such sub interval
+$$
+e_{\ell}:=\max \left \{ |u(x^{{\ell}}_{i+\frac12}) - \hat{u}^{{\ell}+1}_{2i+1}|, \ x^{\ell}_{i+\frac12}=\frac{x_i^{\ell}+x_{i+1}^{\ell}}{2} \in \Omega_d \right \}
+$$
+
+\end{frame}
+\begin{frame}
+\frametitle{Smooth regions:  far from jump discontinuities $R_4^{WENO}$}
+\begin{table}[h!]
+\begin{center}
+%\scalebox{0.8}
+{$
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+& \multicolumn{4}{|c|}{ \  \ $\Omega_{d}=[0,0.25]$} \\
+%\hline
+\cline{2-5}
+${\ell}$ & \multicolumn{2}{|c|}{$\uunmezzo - R^{WENO}_4(x^{\ell}_{i+\frac12},
+\varepsilon_{lin})$}
+& \multicolumn{2}{|c|}{$\uunmezzo - R^{WENO}_4(x^{\ell}_{i+\frac12},
+\varepsilon_{wen})$}
+\\
+\cline{2-5}
+%${\ell}$
+&  $e_{\ell}$ & $\log_2(e_{{\ell}-1}/e_{{\ell}}) $
+ &$e_{\ell}$ & $\log_2(e_{{\ell}-1}/e_{{\ell}}) $\\
+\hline
+   6 & 1.4394e-09 & 3.9944e+00  & 1.4394e-09 & 3.9944e+00   \\
+   7 & 9.0311e-11 & 3.9972e+00  & 9.0313e-11 & 3.9972e+00   \\
+   8 & 5.6555e-12 & 3.9986e+00  & 5.6555e-12 & 3.9986e+00   \\
+   9 & 3.5381e-13 & 3.9993e+00  & 3.5381e-13 & 3.9993e+00   \\
+   10 & 2.2124e-14 & 3.9996e+00  & 2.2124e-14 & 3.9996e+00   \\
+   11 & 1.3831e-15 & 3.9998e+00  & 1.3831e-15 & 3.9998e+00   \\
+   12 & 8.6454e-17 & 3.9999e+00  & 8.6454e-17 & 3.9999e+00   \\
+   13 & 5.4037e-18 & 4.0000e+00  & 5.4037e-18 & 4.0000e+00   \\
+\hline
+\end{tabular}
+$}
+ \end{center}
+ \caption{Smooth region, far from jumps: Errors $e_{\ell}$ and estimates of the approximation order
+   for    $\hat{u}^{{\ell}+1}_{2i+1}=R_4^{WENO}(x^{\ell}_{i+\frac12},\varepsilon)$
+   with %parameter estimation
+$\varepsilon^2_{lin}$  and
+ $\varepsilon^2_{wen}.$
+}
+  \end{table}
+\end{frame}
+\begin{frame}
+\frametitle{Smooth regions:  far from jump discontinuities $G_4^{WENO}$}
+\begin{table}[h!]
+\begin{center}
+%\scalebox{1.2}
+{$
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+& \multicolumn{4}{|c|}{ \ $\Omega_{d}=[0,0.25]$} \\
+%\hline
+\cline{2-5}
+${\ell}$ & \multicolumn{2}{|c|}{$\uunmezzo -G^{WENO}_4(x^{\ell}_{i+\frac12}, \varepsilon_{lin})$}  &
+ \multicolumn{2}{|c|}{$\uunmezzo -G^{WENO}_4(x^{\ell}_{i+\frac12}, \varepsilon_{wen})$}
+\\
+\cline{2-5}
+%${\ell}$
+&  $e_{\ell}$ & $\log_2(e_{{\ell}-1}/e_{{\ell}}) $
+ &$e_{\ell}$ & $\log_2(e_{{\ell}-1}/e_{{\ell}}) $\\
+\hline
+  6 & 1.7380e-11 & 5.0110e+00  & 1.7644e-11 & 5.0217e+00   \\
+   7 & 5.3900e-13 & 5.0056e+00 & 5.4313e-13 & 5.0110e+00   \\
+   8 & 1.6779e-14 & 5.0028e+00  & 1.6844e-14 & 5.0056e+00   \\
+   9 & 5.2332e-16 & 5.0014e+00  & 5.2433e-16 & 5.0028e+00   \\
+   10 & 1.6338e-17 & 5.0007e+00  & 1.6354e-17 & 5.0014e+00   \\
+   11 & 5.1031e-19 & 5.0004e+00  & 5.1056e-19 & 5.0007e+00   \\
+   12 & 1.5943e-20 & 5.0002e+00  & 1.5947e-20 & 5.0004e+00   \\
+   13 & 4.9817e-22 & 5.0001e+00  & 4.9823e-22 & 5.0002e+00   \\
+\hline
+\end{tabular}
+$}
+ \end{center}
+ \caption{Smooth region, far from jumps: Errors $e_{\ell}$ and estimates of the approximation order for $\hat{u}^{{\ell}+1}_{2i+1}=G^{WENO}_4(x^{\ell}_{i+\frac12},\varepsilon)$ with parameter estimation
+$\varepsilon^4_{lin}$  and
+ $\varepsilon^4_{wen}.$
+}
+%\label{tab:r3b_smo}
+  \end{table}
+
+\end{frame}
+\begin{frame}
+\frametitle{Smooth regions: next to a jump discontinuity $R_4^{WENO} $}
+\begin{table}[h!]
+\begin{center}
+%\scalebox{0.8}
+{$
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+& \multicolumn{4}{|c|}{ \ $\Omega_{d}=[0,0.5]$} \\
+%\hline
+\cline{2-5}
+${\ell}$ & \multicolumn{2}{|c|}{$\uunmezzo -R^{WENO}_4(x^{\ell}_{i+\frac12},
+\varepsilon_{lin})$}
+& \multicolumn{2}{|c|}{$\uunmezzo -R^{WENO}_4(x^{\ell}_{i+\frac12}, \varepsilon_{wen})$}
+\\
+\cline{2-5}
+%${\ell}$
+&  $e_{\ell}$ & $\log_2(e_{{\ell}-1}/e_{{\ell}}) $
+ &$e_{\ell}$ & $\log_2(e_{{\ell}-1}/e_{{\ell}}) $\\
+\hline
+ 6& 3.5335e+01&-1.9294e+00& 1.4095e-08& 3.9822e+00   \\
+   7& 1.3458e+02&-1.9640e+00 &8.9187e-10& 3.9915e+00   \\
+   8& 5.2508e+02&-1.9819e+00 &5.6070e-11& 3.9959e+00   \\
+   9& 2.0741e+03&-1.9909e+00 &3.5144e-12& 3.9980e+00   \\
+   10& 8.2441e+03&-1.9954e+00 &2.1996e-13& 3.9990e+00   \\
+   11& 3.2872e+04&-1.9977e+00&  1.3757e-14& 3.9995e+00   \\
+   12& 1.3128e+05&-1.9989e+00&  8.6012e-16& 3.9997e+00   \\
+   13& 5.2470e+05&-1.9994e+00&  5.3767e-17& 3.9999e+00   \\
+\hline
+\end{tabular}
+$}
+ \end{center}
+ \caption{Smooth region: next to a jump. Errors $e_{\ell}$ and estimates of the approximation order
+   for    $\hat{u}^{{\ell}+1}_{2i+1}=R_4^{WENO}(x^{\ell}_{i+\frac12},\varepsilon)$
+   with %parameter estimation
+$\varepsilon^2_{lin}$  and
+ $\varepsilon^2_{wen}.$ }
+%\label{tab:r3a_dis}
+  \end{table}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Smooth regions: next to a jump discontinuity $ G^{WENO}_4$}
+\begin{table}[h!]
+\begin{center}
+%\scalebox{0.8}
+{$
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+& \multicolumn{4}{|c|}{ \ $\Omega_{d}=[0,0.5]$} \\
+%\hline
+\cline{2-5}
+${\ell}$ & \multicolumn{2}{|c|}{$\uunmezzo -G^{WENO}_4(x^{\ell}_{i+\frac12},
+\varepsilon_{lin})$}
+& \multicolumn{2}{|c|}{$\uunmezzo -G^{WENO}_4(x^{\ell}_{i+\frac12},
+\varepsilon_{wen})$}
+\\%[.5cm]
+%& \multicolumn{2}{|c|}{$\Rmqunob_2(x^{\ell}_{i+\frac12})$ \hbox{with} $\varepsilon^2_{wen}$}
+\cline{2-5}
+%${\ell}$
+&  $e_{\ell}$ & $\log_2(e_{{\ell}-1}/e_{{\ell}}) $
+&$e_{\ell}$ & $\log_2(e_{{\ell}-1}/e_{{\ell}}) $\\
+\hline
+   6& 2.5632e-02& 6.3092e-02&  2.2037e-07& 2.9429e+00   \\
+   7& 2.4536e-02& 3.2641e-02&  2.8658e-08& 2.9717e+00   \\
+   8& 2.3987e-02& 1.6608e-02&  3.6532e-09& 2.9859e+00   \\
+   9& 2.3712e-02& 8.3781e-03&  4.6114e-10& 2.9930e+00   \\
+   10& 2.3575e-02& 4.2078e-03&  5.7925e-11& 2.9965e+00   \\
+   11& 2.3506e-02& 2.1086e-03& 7.2583e-12& 2.9982e+00   \\
+   12& 2.3472e-02& 1.0555e-03&  9.0839e-13& 2.9991e+00   \\
+   13& 2.3455e-02& 5.2803e-04&  1.1362e-13& 2.9996e+00   \\
+\hline
+\end{tabular}
+$}
+ \end{center}
+ \caption{Smooth region: next to a jump. Errors $e_{\ell}$ and estimates of the approximation order for $\hat{u}^{{\ell}+1}_{2i+1}=G^{WENO}_4(x^{\ell}_{i+\frac12},\varepsilon)$ with parameter estimation
+$\varepsilon^4_{lin}$  and
+ $\varepsilon^4_{wen}.$
+}
+  \end{table}
+\end{frame}
+\begin{frame}
+\frametitle{Graphical results: initial resolution $\ell=4,$ final ${\ell}=8$}
+
+\begin{figure}[h!]
+  \begin{center}
+\begin{tabular}{ccc}
+$\varepsilon_{lin}$ &\includegraphics[width=4.5cm]{fig43_r3a_l.eps}\quad   &
+\includegraphics[width=4.5cm]{fig43_r3b_l.eps} \\[.2cm]
+$\varepsilon_{wen}$ &\includegraphics[width=4.5cm]{fig43_r3a_w.eps}\quad   &
+\includegraphics[width=4.5cm]{fig43_r3b_w.eps} \\
+%\includegraphics[width=5.8cm]{fig43_r2_wen_lim.eps}  &
+%\includegraphics[width=5.8cm]{fig43_r3_wen_lim.eps} \\
+& $R^{WENO}_4$ & $G^{WENO}_4$\\
+\end{tabular}
+  \end{center}
+%\caption{Central area of reconstruction (dotted lines) from 17 initial
+%  values of the  test function  obtained from the
+%  recursive use of  $R^{WENO}_4$ and $G^{WENO}_4$
+%  considering  different approximations to
+% $\varepsilon_{\text{opt}}$.
+%First row:  $\varepsilon_{lin}$. Second row:   $\varepsilon_{wen}.$
+%}
+\end{figure}
+\end{frame}
+\begin{frame}
+\vskip 2truecm
+\centerline{{\Large\coll{\bf....THANK YOU!......}}}
+\end{frame}
+%
+%\begin{frame}
+%
+%\vs
+%\begin{figure}
+%  \centering
+%  \includegraphics[width=20mm, angle=-90]{rita.eps}
+%  \end{figure}
+%
+%
+%
+%This research has been accomplished within RITA (Rete ITaliana di Approssimazione)
+%
+%\centerline{{\large\col{\bf....THANK YOU!......}}}
+%\end{frame}
+\begin{thebibliography}{10}
+\bibitem[Ar\`andiga et a. 04]{AB04}
+{ F. Ar\`andiga and A. M. Belda}, Weighted ENO interpolation and applications, Communications in Nonlinear Science
+and Numerical Simulation 9 (2004) 187--195.
+
+\bibitem{Ara} F. Ar\`andiga, A. Cohen, R. Donat and N. Dyn, Interpolation and approximation of piecewise smooth functions, SIAM J. Numer. Anal. 43 (2005) 41--57.
+\bibitem[Ar\`andiga et a. 10]{ABM10}
+{ F. Ar\`andiga, A. M. Belda and P. Mulet},
+Point-value {WENO} multiresolution applications to stable image compression, J. Sci. Comput. 43(2) (2010) 158--182.
+
+\bibitem{BR13}
+M. Bozzini and M. Rossini, The detection and recovery of discontinuity curves from scattered data, J. Comput. Appl. Math. 240 (2013) 148--162.
+
+\bibitem{BR14} M. Bozzini, L. Lenarduzzi and M. Rossini, Non-regular surface approximation. In:  Floater M., Lyche T., Mazure ML., M{\o}rken K., Schumaker L.L. (eds) Mathematical methods for curves and surfaces. Lecture Notes in Computer Science, vol. 8177, 68--87. Springer, Heidelberg, (2014).
+
+\bibitem{CM05}
+A. Crampton and J.C. Mason, Detecting and approximating fault lines from randomly scattered data, Numer. Algorithms 39 (1–3) (2005) 115--130.
+
+\bibitem[De Marchi et al. 18]{DeMP}
+S. De Marchi, F. Marchetti and E. Perracchione, Jumping with variably scaled discontinuos kernels (VSDK),
+https://www.math.unipd.it/$\tilde{}$demarchi/papers/Draft$\_$DMP$\_$V8.2.pdf
+
+%\bibitem{DD}
+%G. Deslauriers and S. Dubuc, Symmetric iterative interpolation, Constr. Approx. 5 (1989) 49--68.
+
+%\bibitem{Eckhoff}
+%K.S. Eckhoff, Accurate and efficient reconstruction of discontinuous functions from truncated series expansions, Mathematics of Computation 61(204) (1993), 745--763.
+
+\bibitem[Erb et al. 19]{erb} W. Erb, S. De Marchi, F. Marchetti, E. Perracchione and M. Rossini Shape-Driven Interpolation with Discontinuous Kernels: Error Analysis, Edge Extraction and Applications in MPI, (2019) arXiv:1903.03095 [math.NA].
+
+
+\bibitem{Gout08}
+C. Gout, C. Le Guyader, L. Romani, A.-G. Saint-Guirons, Approximation of surfaces with fault(s) and/or rapidly varying data, using a segmentation process, Dm-splines and the finite element method, Numer. Algorithms 48 (1–3) (2008) 67--92.
+
+\bibitem[Guo et al. 17a]{GJ17a}
+J. Guo and J.-H. Jung, A RBF-WENO finite volume method for hyperbolic conservation laws with the monotone polynomial interpolation method,
+Appl. Numer. Math., 112 (2017) 27--50.
+
+\bibitem[Guo et al. 17b]{GJ17b}
+J. Guo, J.-H. Jung, Radial basis function ENO and WENO finite difference methods based on the optimization of shape parameters,
+J. Sci. Comput., 70 (2017) 551--575.
+
+
+\bibitem{HEOC2}
+A. Harten, B. Engquist, S. Osher, S. Chakravarthy, Some results on uniformly high-order accurate essentially nonoscillatory schemes,
+Applied Numerical Mathematics 2 (1986) 347--377.
+
+
+\bibitem{Harten87}
+A. Harten, B. Engquist, S. Osher, S. Chakravarthy, Uniformly high order accurate essentially non-oscillatory schemes III,
+J. Comput. Phys. 71 (1987) 231--303.
+
+\bibitem{Harten89} A. Harten, ENO schemes with subcell resolution, J. Comput. Phys. 83 (1989) 148--184.
+
+
+\bibitem{JS96}
+G.-S. Jiang and C-W Shu, Efficient implementation of weighted {ENO} schemes, J. Comput. Phys. 126 (1996) 202--228.
+
+
+\bibitem{Jung}
+J.-H. Jung, A note on the Gibbs phenomenon with multiquadric radial basis functions, Appl. Numer. Math. 57 (2007), 213--219.
+
+
+\bibitem{keller}
+{
+E. Isaacson and H. B. Keller, Analysis of Numerical Methods. Wiley, New York, 1966.
+}
+
+
+%\bibitem{yoon}
+%B.-G. Lee, Y. J. Lee and J. Yoon, Stationary binary subdivision schemes using
+%radial basis function interpolation, Adv. Comput. Math. 25 (2006) 57--72.
+
+\bibitem{LS17}
+L. Lenarduzzi and R. Schaback, Kernel-based adaptive approximation of functions with discontinuities, Appl. Math. Comput. 307 (2017) 113--123.
+
+\bibitem{LiuChan94}
+X.-D. Liu, S. Osher and T. Chan, Weighted essentially non-oscillatory schemes, J. Comput. Phys. 115 (1994) 200--212.
+
+\bibitem{romani}[Romani et al. 18] L. Romani, M. Rossini, D. Schenone, Edge detection methods based on RBF interpolation, J. Comput. Appl.
+Math. 349 (2019), 532--547.
+
+\bibitem{shu} C. W Shu, Essentially non-oscillatory and weighted essentially non-oscillatory schemes for hyperbolic
+conservation laws. In: Quarteroni, A. (ed.) Advanced Numerical Approximation of Nonlinear Hyperbolic
+Equations. Lecture Notes in Mathematics, vol. 1697,  325--432. Springer, Berlin, Heidelberg (1998)
+
+\end{thebibliography}
+
+\end{document}
+
+
