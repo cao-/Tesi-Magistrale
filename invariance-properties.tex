@@ -167,9 +167,9 @@ The proof has not been completed yet, because it remains to see what happens whe
 
 
 Property~\ref[scaleprop] and~Property~\ref[translprop] together say that the vector~$\Bm Q\.$ in the flat limit is invariant under a bijective linear transformation of the set~$F$ of function values.
-This kind of transformation is nothing more than the $1$-dimensional case of a {\em similarity}.  In general, in dimension~$N$, a similarity is defined as a transformation~${\cal T}:\R^{N\!}→\R^{N\!}$ that can be written as
+This kind of transformation is nothing more than the $1$-dimensional case of a {\em similarity}.  In general, in dimension~$d$, a similarity is defined as a transformation~${\cal T}:\R^{d\!}→\R^{d\!}$ that can be written as
 $$
-\Cal T(x) = \rho\, \Cal O(x) + t,\quad x\in\R^N\!\!\!,
+\Cal T(x) = \rho\, \Cal O(x) + t,\quad x\in\R^d\!\!,
 $$
 with $\rho$ being a positive real number, $\cal O$ an orthogonal\fnote{A transformation is {\em orthogonal} if it can be represented by an orthogonal matrix, that is a matrix whose inverse equals its transpose.  An orthogonal transformation is a rotation, a reflection, or a combination of them.} transformation, and~$t$ a point of~$\R^N\!\!\!$.\,\,   A similarity can be viewed simply as a transformation that preserves the {\em shape} of the object (in our case, of the set of points) to which it is applied.  
 
@@ -181,7 +181,7 @@ Y = \{\range y_N/\}
   = \{\Cal T(x_1),\.\Cal T(x_2),\, \dots,\,\Cal T(x_N)\}
   \eqcolon  \Cal T(X),
 $$
-by means of a similarity~$\Cal T\!$, something similar happens---$\Bm Q$ doesn't change in the flat limit.  We state this fact separated into two properties, considering first a uniform dilation ($\Cal O = \hbox{\EBGaramond\rm Identity}$, $t = 0\in\R^N$) and then a Euclidean transformation ($\.\rho = 1$).  Here the set~$F$ of function values is fixed, so the subscript we'll be used to mark the dependence on the data sites: for instance, $\Bm Q_{X\!}$ will denote the vector~$\Bm Q$ associated to~$(X, F)$, and $\Bm Q_{Y\!}$ will stand for the vector~$\Bm Q$ associated to the transformed data~$(Y, F)$.
+by means of a similarity~$\Cal T\!$, something similar happens---$\Bm Q$ doesn't change in the flat limit.  We state this fact separated into two properties, considering first a uniform dilation ($\Cal O = \hbox{\EBGaramond\rm Identity}$, $t = 0\in\R^d$) and then a Euclidean transformation ($\.\rho = 1$).  Here the set~$F$ of function values is fixed, so the subscript we'll be used to mark the dependence on the data sites: for instance, $\Bm Q_{X\!}$ will denote the vector~$\Bm Q$ associated to~$(X, F)$, and $\Bm Q_{Y\!}$ will stand for the vector~$\Bm Q$ associated to the transformed data~$(Y, F)$.
 
 \preskip
 \property
@@ -197,7 +197,7 @@ $$
 $$
 If $X$ becomes~$Y = \rho X$, then each element~$(A_X)_{i,j}$ becomes
 $$
-(A_Y)_{i,j} = \phi(ε\.\norm{\.\rho\.x_i - r\.x_j}) = \phi(\.\rho\.ε\.\norm{x_i - x_j}).
+(A_Y)_{i,j} = \phi(ε\.\norm{\.\rho\.x_i - \rho\.x_j}) = \phi(\.\rho\.ε\.\norm{x_i - x_j}).
 $$
 The constant~$\rho$ uniformly multiplies every occurrence of the parameter~$ε$ in the transformed matrix~$\Bm A_Y$, therefore the change made by~$\rho$ is irrelevant when the limit~$ε→0$ is considered.~\QED
 \postskip
@@ -214,7 +214,7 @@ The constant~$\rho$ uniformly multiplies every occurrence of the parameter~$ε$ 
 \egroup
 \kern-6ex
 \caption/f
-Three similar sets of data~$(X, F)$, with $X\subset\R$, meaning that they can be transformed one into another by applying a similarity map both on the data sites and the data values.  Intuitively they all have the same regularity, whatever this means.  Indeed, we showed that in the flat limit the regularity vector~$\Bm Q$ is the same for all of them.
+Three similar sets of data~$(X, F)$, with $X\subset\R$, meaning that they can be transformed one into another by applying a similarity map both on the data sites and the data values.  Intuitively they all have the same regularity, whatever this means.  Indeed, we showed that in the flat limit the regularity vector~$\Bm Q$ is the same for all of~them.
 \bigskip
 \endinsert
 
@@ -222,7 +222,7 @@ Three similar sets of data~$(X, F)$, with $X\subset\R$, meaning that they can be
 Actually, as it is clear from the proof, the scaling parameter~$\rho$ could also have been taken negative.  But the change of sign (the symmetry) is already included in the next result.
 
 \preskip
-\property If $Y=\Cal O(X) + t$ for some orthogonal transformation~$\Cal O$ and some point~$t\in\R^N\!\!\!$,\,\, then $\Bm Q_{Y\!} = \Bm Q_{X}$.
+\property If $Y=\Cal O(X) + t$ for some orthogonal transformation~$\Cal O$ and some point~$t\in\R^d\!\!$,\,\, then $\Bm Q_{Y\!} = \Bm Q_{X}$.
 \proof
 This simply follows from the fact that the interpolation process made with a radial positive definite function is invariant under a Euclidean transformation applied to the data sites.~\QED
 \postskip

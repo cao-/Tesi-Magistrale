@@ -4,6 +4,13 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{bm}
+\usepackage{pgffor}
+\usepackage{microtype}
+\usepackage{graphicx}
+\graphicspath{ {./pic/} }
+
+
+
 
 
 
@@ -30,6 +37,11 @@
 \usefonttheme[]{structurebold}
 \useinnertheme[shadow]{rounded}
 %\useoutertheme[left]{sidebar}
+\useinnertheme[shadow]{rounded}
+%\setbeamertemplate{items}[ball unnumbered]
+\setbeamersize{text margin left=.7cm,
+			   text margin right=.7cm} 
+
 
 
 
@@ -48,6 +60,8 @@
 \def\lXf{{\lower.5ex\hbox{$\scriptstyle X, f$}}}
 \def\lXyf{{\lower.5ex\hbox{$\scriptstyle X\cup\{y\}, f$}}}
 
+\def\line#1{\hbox to\hsize{#1}}
+
 
 \begin{document}
 
@@ -63,7 +77,10 @@
 
 
 \begin{frame}
-...introduzione al problema...
+\null\vskip.1cm
+\line{\includegraphics[width=.42\hsize]{f1intro_ori.pdf}\hfil
+\includegraphics[width=.42\hsize]{f1intro_rec.pdf}}
+\line{\hfil\includegraphics[width=.5\hsize]{f1intro_datasites.pdf}\hfil}
 \end{frame}
 
 
@@ -77,7 +94,7 @@ Ricostruire  una \alert{funzione discontinua}~$f:\Omega\to\R$, con $\Omega\subse
 \end{itemize}
 
 \bigskip
-\alert{Ipotesi}: $f$ regolare (almeno continua) su sottoinsiemi~$\Omega_j$ disgiunti tali che $\Omega = \cup_j \Omega_j$, ed è discontinua lungo $\partial \Omega_j$.
+\alert{Ipotesi}: $f$ regolare (almeno continua) su sottoinsiemi~$\Omega_j$ disgiunti tali che $\Omega = \cup_j \Omega_j$, e discontinua lungo $\partial \Omega_j$.
 
 \medskip
 Non si hanno informazioni sui sottoinsiemi $\Omega_j$ né sulle curve di discontinuità.
@@ -240,7 +257,7 @@ $$
 Poiché $X=X^{(k)}\cup\{x_k\}$, il termine $U_k$
 indica quanto accuratamente il modello $s^{(k)}$ prevede $f$ nel punto $x_k$.
 \item
-Con questo processo di \alert{cross-validation} si ottiene  un vettore $\bm U = (U_1,U_2,\dots, U_N)$.
+Con questo processo di \alert{leave-one-out cross-validation} si ottiene  un vettore $\bm U = (U_1,U_2,\dots, U_N)$.
 %\item
 %$\bm U$ dipende dalla funzione di base radiale $\phi$ scelta e dal suo parametro di forma $\varepsilon$.
 \end{itemize}
@@ -281,33 +298,214 @@ $$
 
 \alert{Proprietà}:
 \begin{itemize}
-\item Esiste $\lim_{\varepsilon\to 0} \bm Q = \widetilde{\bm Q}$
-\item $\widetilde{\bm Q}$ non varia se $f$ viene sostituita da $g = \gamma f + \eta$, con $\gamma\neq 0$
-\item $\widetilde{\bm Q}$ non varia se $X$ viene sostituito da $Y = \rho\, \Cal O(X) + t$, con $\Cal O$ trasformazione ortogonale, e $t\in\R^d$.
+\item Esiste $\lim_{\varepsilon\to 0} \bm Q = \widehat{\bm Q}$
+\item $\widehat{\bm Q}$ non varia se $f$ viene sostituita da $g = \gamma f + \eta$, con $\gamma\neq 0$
+\item $\widehat{\bm Q}$ non varia se $X$ viene sostituito da $Y = \rho\, \Cal O(X) + t$, con $\rho>0$,  $\Cal O$~trasformazione ortogonale, e $t\in\R^d$.
 \end{itemize}
 
 Lo strumento principale utilizzato per dimostrare queste proprietà è lo sviluppo in serie di Laurent della matrice $\bm C = \bm A^{-1}$, 
 $$
 \bm C = \bm{\Cal C}_{\bm{-p}}\,\varepsilon^{-p} + \bm{\Cal C}_{\bm{-p+1}}\,\varepsilon^{-p+1} +  \bm{\Cal C}_{\bm{-p+2}}\,\varepsilon^{-p+2}+\cdots\qquad \text{per $\varepsilon\to0$,}
 $$
-derivante dallo sviluppo in serie di potenze di $\phi$ centrato in $\varepsilon = 0$.
-
-
+derivante dallo sviluppo in serie di potenze di $\phi$ centrato in $0$.
 
 \end{frame}
 
+
+\begin{frame}
+\begin{itemize}
+\item $\widehat{\bm Q}$ dipende da $\phi$ ma non da $\varepsilon$
+\item  $\widehat{\bm Q}$ dipende dalla configurazione dei dati, ma non dai loro effettivi valori, infatti è invariante per similitudini applicate a $X$ o $F = f(X)$
+\item Se $\phi$ ha regolarità bassa (Wendland $\Cal C^0$, $\Cal C^2$) tipicamente non si hanno problemi dal punto di vista numerico a calcolare una buona approssimazione di $\widehat{\bm Q}$ utilizzando un $\varepsilon$ sufficientemente piccolo.
+\end{itemize}
+
+\bigskip
+Possiamo classificare un insieme di dati $(X, F)$ utilizzando una funzione $\phi$ e una soglia $\tau>0$, in base all’evidenza che i dati verificano il modello individuato da $\phi$:
+
+$$
+\Cal R(X, F) = \begin{cases}
+				\phantom{-}1& \text{ se $\norm{\widehat{\bm Q}}_1 \leq \tau$\qquad “regolare”} \\
+				-1& \text{ se $\norm{\hbyw{3ex}{0em}\widehat{\bm Q}}_1 > \tau$\qquad “non regolare”}. 
+			   \end{cases}
+$$
+
+La scelta di $\tau$  {\em non} dipende dai dati che si devono classificare, ma solo dall’evidenza richiesta per la classificazione.
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Esempi: scelta di $\norm{\>}_1$}
+\end{frame}
+
+
+
+
+\begin{frame}
+\frametitle{Esempi: ruolo di $\phi$}
+\end{frame}
 
 
 \section{Suddivisione del dominio}
 \begin{frame}
+\frametitle{Suddivisione del dominio}
+\alert{Problema}:  Ricostruire  fedelmente una funzione $f:\Omega\to\R$ a partire da un insieme di dati $(X, f(X))$, sapendo che $f$ è regolare su sottoinsiemi $\Omega_j$ disgiunti tali che $\Omega = \cup_j \Omega_j$, ed è discontinua lungo $\partial \Omega_j$, senza avere informazioni sui sottodomini $\Omega_j$.
+
+\bigskip
+
+È possibile utilizzare $\widehat{\bm Q}$ e il classificatore di regolarità $\Cal R$ per analizzare localmente in $\Omega$ i dati $(X, f(X))$ e raggrupparli in base al loro sottodominio di appartenenza, ottenendo sottoinsiemi $X_j$ tali che $X_j\subset \Omega_j$.
+\begin{itemize} 
+\item
+Tramite $\Cal R$ si stabilisce se un insieme locale di nodi $Y \subset X$ è contenuto in un solo dominio $\Omega_j$
+\item
+Procedendo con successive analisi locali si cerca di estendere l’insieme di nodi fino ad includere tutti i punti $X_j\subset\Omega_j$
+\item
+Quando $\Cal R(Y, f(Y)) = -1$, si utilizza $\widehat{\bm Q}$ per capire quali punti rimuovere, poiché  appartenenti ad un differente  sottodominio 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\null\vskip.2cm
+\foreach \i in {1,2,...,27}{
+\only<\i>{\line{\hfil\includegraphics[width=.65\hsize]{anim\i.pdf}\hfil}}
+}
+\end{frame}
+
+
+\begin{frame}
+\def\franke{\operatorname{franke}}
+%%%%%%%%%%%%%%%%%
+\line{%
+\includegraphics[width=.5\hsize]{f1_ori.pdf}
+\hfil
+\includegraphics[width=.5\hsize]{f1.pdf}}
+\vskip.5cm
+\line{\hfil$h_1(x,y) = \begin{cases}\franke(x,y), & \text{if $y\geq {1\over2}-{1\over5}\sin(5x)$} \\
+                  \franke(x,y) - {1\over2}, & \text{if $y\leq {1\over2}-{1\over5}\sin(5x)$}
+                  \end{cases}$\hfil}
+
+\end{frame}
+
+
+\begin{frame}
+\def\franke{\operatorname{franke}}
+%%%%%%%%%%%%%%%%%
+\line{%
+\includegraphics[width=.5\hsize]{f4_ori.pdf}
+\hfil
+\includegraphics[width=.5\hsize]{f4.pdf}}
+\vskip.5cm
+\line{\hfil$h_2(x,y) = \begin{cases}x^2, & \text{se $(x-{1\over2})^2+(y-{1\over2})^2<({1\over5})^2$} \\
+                   y^2-{1\over2}, & \text{se $(x-{1\over2})^2+(y-{1\over2})^2\geq({1\over5})^2$}
+                  \end{cases}$\hfil}
+
+\end{frame}
+
+
+\begin{frame}
+\def\franke{\operatorname{franke}}
+%%%%%%%%%%%%%%%%%
+\line{%
+\includegraphics[width=.5\hsize]{f9_ori.pdf}
+\hfil
+\includegraphics[width=.5\hsize]{f9.pdf}}
+\vskip.5cm
+\line{\hfil$h_3(x,y) = h_1(x,y) + 2h_1(x, y-{\textstyle{1\over3}})$\hfil}
+
 \end{frame}
 
 \section{Ricostruzione}
 \begin{frame}
+\frametitle{Ricostruzione}
+Una volta separato $X$ in sottoinsiemi $X_j$ tali che $X_j\subset\Omega_j$ bisogna effettivamente ricostruire i sottodomini $\Omega_j$.
+
+\bigskip
+
+Supponendo di aver ottenuto delle ricostruzioni $\widetilde\Omega_j$ di ciascun $\Omega_j$, la ricostruzione $s$ della funzione campionata $f$ si ottiene nel seguente modo:
+$$
+s(y) = \begin{cases}
+		s_1(y) & \text{se $y\in\widetilde\Omega_1$}\\
+		s_2(y) & \text{se $y\in\widetilde\Omega_2$}\\
+		\hbyw{0ex}{1em}\vdots & \hbyw{0ex}{2em}\vdots \\
+		s_M(y) & \text{se $y\in\widetilde\Omega_M$}\\
+            \end{cases}\qquad\text{$s_j$ interpolante di $(X_j, f(X_j))$.}
+$$
+
+\bigskip
+
+Per ottenere $\{\widetilde\Omega_j\}_{j=1}^M$ a partire da $\{X_j\}_{j=1}^M$ utilizziamo le \alert{Support Vector Machines} (SVM). 
 \end{frame}
 
 
 
+\begin{frame}
+\frametitle{Support Vector Machines}
+Supponiamo di avere soltanto due sottoinsiemi di locazioni, $X_1$, $X_2$.
+\begin{itemize}
+\item Si usa una funzione~$\Theta:\R^2\to V$ (\alert{feature map}) per trasformare ciascun $X_j\subset\R^2$ in $\Theta(X_j) = \{\Theta(x):x\in X_j\}\subset V$, con $\dim V >> 2$.
+\item Si determina un iperpiano in $V$ che separa $\Theta(X_1)$ da $\Theta(X_2)$, descritto implicitamente da
+$$
+h(x) = \langle \omega, \Theta(x) \rangle_V + b, \quad \omega, b\in V, \quad x\in\Omega
+$$
+\item Si ottengono infine i sottodomini $\widetilde\Omega_1$, $\widetilde\Omega_2$ nel seguente modo:
+$$
+\begin{aligned}
+\widetilde\Omega_1 &= \{x\in \Omega : h(x) \geq 0\}\\
+\widetilde\Omega_2 &= \{x\in \Omega : h(x) < 0\}
+\end{aligned}
+$$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+Per trovare $h(x) = \langle \omega, \Theta(x) \rangle_V + b$ si risolve un problema di ottimizzazione:
+$$
+\max_{\bm \lambda}\biggl(\sum_{i=1}^N\lambda_i - {\frac12}\sum_{i=1}^N\sum_{j=1}^N\lambda_i z_i\,\langle \Theta(x_i), \Theta(x_j)\rangle_V\, \lambda_j z_j\biggr), \quad z_k = \begin{cases}\phantom-1 & \text{se $x_k\in X_1$}\\
+			-1 & \text{se $x_k\in X_2$}
+\end{cases}
+$$
+soggetto ai vincoli
+$$
+\left\{\begin{aligned}&\textstyle\sum_{i=1}^N\lambda_i z_i = 0\\
+                & 0\leq\lambda_i\leq C\quad\text{for all~$i$,}\end{aligned}\right.
+$$
+ottenendo $w = \sum_{j=1}^N \lambda_j z_j x_j, \qquad b =\sum_{j=1}^N\lambda_j z_j\langle \Theta(x_i), \Theta(x_j)\rangle_V\, - z_i$.
+
+
+\bigskip
+
+\alert{Nota}: Il problema dipende da $x_j\in X$ solo tramite i prodotti scalari 
+$$\langle \Theta(x_i), \Theta(x_j)\rangle_V.$$
+\end{frame}
+
+
+\begin{frame}
+\alert{Kernel trick}: $K(x,y) = \langle \Theta(x), \Theta(y)\rangle_V$.\\
+Si basa sul \alert{teorema di Mercer}, secondo il quale ogni kernel $K:\Omega\times\Omega\to\R$ simmetrico e definito positivo si decompone in
+$$
+K(x,y) = \langle \Theta(x_i), \Theta(x_j)\rangle_V = \sum_{i=1}^\infty \Theta_i(x)\Theta_i(y), \quad x,y\in\Omega,
+$$
+con $\Theta_i$ autofunzioni dell’operatore $f\mapsto\int_\Omega f(x)K(x,y)\,dx$.
+
+\bigskip
+Il kernel più utilizzato è quello gaussiano,
+$$
+K(x,y) = \exp(-\varepsilon^2\,\norm{x-y}^2),\quad x,y\in\Omega,
+$$
+con il quale $\dim V =\infty$.
+
+\bigskip
+\alert{Generalizzazione}: È possibile estendere il modello binario SVM ad un modello multiclasse, che permette di separare un numero arbitrario $M$ di insiemi di punti $\{X_j\}_{j=1}^M$.
+\end{frame}
+
+%\begin{frame}
+%\nocite{*}
+%\bibliographystyle{plainnat}
+%\bibliography{biblist} 
+%\end{frame}
 
 
 \end{document}
