@@ -72,10 +72,16 @@
 \headcommand {\beamer@framepages {54}{54}}
 \headcommand {\slideentry {4}{0}{8}{55/55}{}{1}}
 \headcommand {\beamer@framepages {55}{55}}
-\headcommand {\slideentry {4}{0}{9}{56/56}{}{1}}
+\headcommand {\partentry {Bibliography}{2}}
+\headcommand {\beamer@partpages {2}{55}}
+\headcommand {\beamer@sectionpages {48}{55}}
+\headcommand {\beamer@subsectionpages {48}{55}}
+\headcommand {\slideentry {4}{0}{9}{56/56}{}{2}}
 \headcommand {\beamer@framepages {56}{56}}
-\headcommand {\beamer@partpages {2}{56}}
-\headcommand {\beamer@subsectionpages {48}{56}}
-\headcommand {\beamer@sectionpages {48}{56}}
-\headcommand {\beamer@documentpages {56}}
-\headcommand {\gdef \inserttotalframenumber {30}}
+\headcommand {\slideentry {4}{0}{9}{56/57}{}{2}}
+\headcommand {\beamer@framepages {56}{57}}
+\headcommand {\beamer@partpages {56}{57}}
+\headcommand {\beamer@subsectionpages {56}{57}}
+\headcommand {\beamer@sectionpages {56}{57}}
+\headcommand {\beamer@documentpages {57}}
+\headcommand {\gdef \inserttotalframenumber {31}}

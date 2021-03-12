@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2020)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: presentazione.aux
+The style file: amsalpha.bst
+Database file #1: biblist.bib
+Warning--missing booktitle in ha_quang-niyogi-yao_1970
+You've used 9 entries,
+            2624 wiz_defined-function locations,
+            620 strings with 5981 characters,
+and the built_in function-call counts, 3959 in all, are:
+= -- 363
+> -- 169
+< -- 4
++ -- 57
+- -- 55
+* -- 327
+:= -- 613
+add.period$ -- 9
+call.type$ -- 9
+change.case$ -- 55
+chr.to.int$ -- 9
+cite$ -- 10
+duplicate$ -- 175
+empty$ -- 307
+format.name$ -- 67
+if$ -- 826
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 19
+newline$ -- 38
+num.names$ -- 29
+pop$ -- 64
+preamble$ -- 1
+purify$ -- 64
+quote$ -- 0
+skip$ -- 145
+stack$ -- 0
+substring$ -- 269
+swap$ -- 47
+text.length$ -- 4
+text.prefix$ -- 4
+top$ -- 0
+type$ -- 68
+warning$ -- 1
+while$ -- 32
+width$ -- 12
+write$ -- 106
+(There was 1 warning)

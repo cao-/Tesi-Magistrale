@@ -1,0 +1,55 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{DMEM{\etalchar{+}}20}
+
+\bibitem[DMEM{\etalchar{+}}20]{Erb_2020}
+S.~De~Marchi, W.~Erb, F.~Marchetti, E.~Perracchione, and M.~Rossini,
+  \emph{Shape-driven interpolation with discontinuous kernels: error analysis,
+  edge extraction, and applications in magnetic particle imaging}, SIAM J. Sci.
+  Comput. \textbf{42} (2020), no.~2, B472–B491. \MR{4080390}
+
+\bibitem[HQNY70]{ha_quang-niyogi-yao_1970}
+Minh Ha~Quang, Partha Niyogi, and Yuan Yao, \emph{Mercer’s theorem, feature
+  maps, and smoothing}, 01 1970, p.~154–168.
+
+\bibitem[Lan71]{langenhop_1971}
+C.E. Langenhop, \emph{The laurent expansion for a nearly singular matrix},
+  Linear Algebra and its Applications \textbf{4} (1971), no.~4, 329–340.
+
+\bibitem[LS17]{lenarduzzi-shaback_2017}
+Licia Lenarduzzi and Robert Schaback, \emph{Kernel-based adaptive approximation
+  of functions with discontinuities}, Applied Mathematics and Computation
+  \textbf{307} (2017), 113–123.
+
+\bibitem[Rip99]{rippa_1999}
+Shmuel Rippa, \emph{An algorithm for selecting a good parameter~$c$ in radial
+  basis function interpolation}, Advances in Computational Mathematics
+  \textbf{11} (1999), 193–210.
+
+\bibitem[RRS19]{romani-rossini-schenone}
+Lucia Romani, Milvia Rossini, and Daniela Schenone, \emph{Edge detection
+  methods based on rbf interpolation}, Journal of Computational and Applied
+  Mathematics \textbf{349} (2019), 532–547.
+
+\bibitem[Sch99]{shaback_1999}
+Robert Schaback, \emph{Native hilbert spaces for radial basis functions i}, New
+  Developments in Approximation Theory (Basel) (Manfred~W. Müller, Martin~D.
+  Buhmann, Detlef~H. Mache, and Michael Felten, eds.), BirkhÃ¤user Basel,
+  1999, p.~255–282.
+
+\bibitem[SW06]{shaback_2006}
+Robert Schaback and J.~Werner, \emph{Linearly constrained reconstruction of
+  functions by kernels with applications to machine learning}, Advances in
+  Computational Mathematics \textbf{25} (2006), 237–258.
+
+\bibitem[Wen04]{wendland_2004}
+Holger Wendland, \emph{Scattered data approximation}, Cambridge Monographs on
+  Applied and Computational Mathematics, Cambridge University Press, 2004.
+
+\end{thebibliography}
