@@ -79,9 +79,9 @@
 
 \begin{frame}
 \null\vskip.1cm
-\line{\includegraphics[width=.42\hsize]{f1intro_ori.pdf}\hfil
-\includegraphics[width=.42\hsize]{f1intro_rec.pdf}}
-\line{\hfil\includegraphics[width=.5\hsize]{f1intro_datasites.pdf}\hfil}
+\line{\kern-.3cm\vbox{\hbox{\includegraphics[width=.5\hsize]{f1intro_ori.pdf}}\vfil
+\hbox{\includegraphics[width=.5\hsize]{f1intro_rec.pdf}}}
+\hfil\raise1cm\hbox{\includegraphics[width=.5\hsize]{f1intro_datasites.pdf}}\kern-.3cm}
 \end{frame}
 
 
@@ -367,11 +367,11 @@ La scelta di $\tau$  {\em non} dipende dai dati che si devono classificare.
 \line{\kern-.8cm
 \includegraphics[width=.55\hsize]{reg_sin.pdf}
 \hss
-\raise 1.5cm\vbox{%
+\raise 1.4cm\vbox{%
 \hbox{\small$\Cal C^0$}
-\kern 1.3cm
+\kern 1.4cm
 \hbox{\small$\Cal C^2$}
-\kern 1.3cm
+\kern 1.4cm
 \hbox{\small$\Cal C^4$}
 \vfil
 }
@@ -387,11 +387,11 @@ La scelta di $\tau$  {\em non} dipende dai dati che si devono classificare.
 \line{\kern-.8cm
 \includegraphics[width=.55\hsize]{reg_abs.pdf}
 \hss
-\raise 1.5cm\vbox{%
+\raise 1.4cm\vbox{%
 \hbox{\small$\Cal C^0$}
-\kern 1.3cm
+\kern 1.4cm
 \hbox{\small$\Cal C^2$}
-\kern 1.3cm
+\kern 1.4cm
 \hbox{\small$\Cal C^4$}
 \vfil
 }
@@ -443,12 +443,13 @@ Quando $\Cal R(Y, f(Y)) = -1$, si utilizza $\widehat{\bm Q}$ per capire quali pu
 \def\franke{\operatorname{franke}}
 %%%%%%%%%%%%%%%%%
 \line{%
-\kern-1cm
-\includegraphics[width=.57\hsize]{f1_ori.pdf}
+\kern-1.3cm
+\includegraphics[width=.6\hsize]{f1_ori.pdf}
 \hss
-\includegraphics[width=.53\hsize]{f1.pdf}}
+\includegraphics[width=.55\hsize]{f1.pdf}
+\kern-.5cm}
 \vskip.5cm
-\line{\small\hfil$h_1(x,y) = \begin{cases}\franke(x,y), & \text{if $y\geq \frac12-\frac15\sin(5x)$} \\
+\line{\scriptsize\hfil$h_1(x,y) = \begin{cases}\franke(x,y), & \text{if $y\geq \frac12-\frac15\sin(5x)$} \\
                   \franke(x,y) - \frac12, & \text{if $y\leq \frac12-\frac15\sin(5x)$}
                   \end{cases}$\hfil}
 
@@ -459,12 +460,13 @@ Quando $\Cal R(Y, f(Y)) = -1$, si utilizza $\widehat{\bm Q}$ per capire quali pu
 \def\franke{\operatorname{franke}}
 %%%%%%%%%%%%%%%%%
 \line{%
-\kern-1cm
-\includegraphics[width=.57\hsize]{f4_ori.pdf}
+\kern-1.3cm
+\includegraphics[width=.6\hsize]{f4_ori.pdf}
 \hss
-\includegraphics[width=.53\hsize]{f4.pdf}}
+\includegraphics[width=.55\hsize]{f4.pdf}
+\kern-.5cm}
 \vskip.5cm
-\line{\small\hfil$h_2(x,y) = \begin{cases}x^2, & \text{se $(x-\frac12)^2+(y-\frac12)^2<(\frac15)^2$} \\
+\line{\scriptsize\hfil$h_2(x,y) = \begin{cases}x^2, & \text{se $(x-\frac12)^2+(y-\frac12)^2<(\frac15)^2$} \\
                    y^2-\frac12, & \text{se $(x-\frac12)^2+(y-\frac12)^2\geq(\frac15)^2$}
                   \end{cases}$\hfil}
 
@@ -474,12 +476,13 @@ Quando $\Cal R(Y, f(Y)) = -1$, si utilizza $\widehat{\bm Q}$ per capire quali pu
 \def\franke{\operatorname{franke}}
 %%%%%%%%%%%%%%%%%
 \line{%
-\kern-1cm
-\includegraphics[width=.57\hsize]{f9_ori.pdf}
+\kern-1.3cm
+\includegraphics[width=.6\hsize]{f9_ori.pdf}
 \hss
-\includegraphics[width=.53\hsize]{f9.pdf}}
+\includegraphics[width=.55\hsize]{f9.pdf}
+\kern-.5cm}
 \vskip.5cm
-\line{\small\hfil$h_3(x,y) = h_1(x,y) + 2h_1(x, y-{\textstyle\frac13})$\hfil}
+\line{\scriptsize\hfil$h_3(x,y) = h_1(x,y) + 2h_1(x, y-{\textstyle\frac13})$\hfil}
 
 \end{frame}
 
@@ -488,12 +491,13 @@ Quando $\Cal R(Y, f(Y)) = -1$, si utilizza $\widehat{\bm Q}$ per capire quali pu
 \def\franke{\operatorname{franke}}
 %%%%%%%%%%%%%%%%%
 \line{%
-\kern-1cm
-\includegraphics[width=.57\hsize]{f6_ori.pdf}
+\kern-1.3cm
+\includegraphics[width=.6\hsize]{f6_ori.pdf}
 \hss
-\includegraphics[width=.53\hsize]{f6.pdf}}
+\includegraphics[width=.55\hsize]{f6.pdf}
+\kern-.5cm}
 \vskip.5cm
-\line{\small\hfil$h_4(x,y) = \left|\frac12-xy\right|$\hfil}
+\line{\scriptsize\hfil$h_4(x,y) = \left|\frac12-xy\right|$\hfil}
 
 \end{frame}
 
