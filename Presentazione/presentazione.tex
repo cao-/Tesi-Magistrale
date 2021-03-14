@@ -10,26 +10,6 @@
 \graphicspath{ {./pic/} }
 
 
-
-
-
-
-\theoremstyle{definition}
-\newtheorem{definizione}{Definizione}
-\theoremstyle{plain}
-\newtheorem{teorema}{Teorema}
-%\newtheorem{lemma}{Lemma}
-
-\setbeamertemplate{navigation symbols}{}
-%\mode<presentation>
-
-\title{ON THE PROBLEM OF RECOVERING\\
-	  DISCONTINUOUS FUNCTIONS\\
-	  FROM SCATTERED DATA}
-\author{Matteo Caoduro}
-\date{18 marzo 2021}
-\institute{\normalsize \emph{Relatore:} Prof.ssa\, Milvia Francesca Rossini}
-
 \usetheme{Singapore}
 \usecolortheme[rgb={1,.1,.1}]{structure}
 %carini NavyBlue RoyalBlue JungleGreen
@@ -43,6 +23,16 @@
 			   text margin right=.9cm} 
 
 
+
+
+\theoremstyle{definition}
+\newtheorem{definizione}{Definizione}
+\theoremstyle{plain}
+\newtheorem{teorema}{Teorema}
+%\newtheorem{lemma}{Lemma}
+
+\setbeamertemplate{navigation symbols}{}
+%\mode<presentation>
 
 
 \def\R{\mathbb R}
@@ -62,6 +52,18 @@
 \def\lXyf{{\lower.5ex\hbox{$\scriptstyle X\cup\{y\}, f$}}}
 
 \def\line#1{\hbox to\hsize{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\title{ON THE PROBLEM OF RECOVERING\\
+	  DISCONTINUOUS FUNCTIONS\\
+	  FROM SCATTERED DATA}
+\author{Matteo Caoduro}
+\date{18 marzo 2021}
+\institute{\normalsize \emph{Relatore:} Prof.ssa\, Milvia Francesca Rossini}
+
 
 
 \begin{document}
@@ -230,7 +232,7 @@ $$
 \item 
 $P_\lX$ è esprimibile esplicitamente in funzione di $K$ (quindi di $\phi$) e di~$X$
 $$
-P_X(y) = \sqrt{\phi(0)-\bm t(y)^{\!T\,}\bm A^{-1}\, \bm t(y)},\qquad \bm t(y)_{\lower.4ex\hbox{$\scriptstyle j$}} = \phi_\varepsilon(\norm{y-x_j}),
+P_\lX(y) = \sqrt{\phi(0)-\bm t(y)^{\!T\,}\bm A^{-1}\, \bm t(y)},\qquad \bm t(y)_{\lower.4ex\hbox{$\scriptstyle j$}} = \phi_\varepsilon(\norm{y-x_j}),
 $$
 ed è tale che
 $$
@@ -449,8 +451,8 @@ Quando $\Cal R(Y, f(Y)) = -1$, si utilizza $\widehat{\bm Q}$ per capire quali pu
 \includegraphics[width=.55\hsize]{f1.pdf}
 \kern-.5cm}
 \vskip.5cm
-\line{\scriptsize\hfil$h_1(x,y) = \begin{cases}\franke(x,y), & \text{if $y\geq \frac12-\frac15\sin(5x)$} \\
-                  \franke(x,y) - \frac12, & \text{if $y\leq \frac12-\frac15\sin(5x)$}
+\line{\scriptsize\hfil$h_1(x,y) = \begin{cases}\franke(x,y), & \text{se $y\geq \frac12-\frac15\sin(5x)$} \\
+                  \franke(x,y) - \frac12, & \text{se $y\leq \frac12-\frac15\sin(5x)$}
                   \end{cases}$\hfil}
 
 \end{frame}
