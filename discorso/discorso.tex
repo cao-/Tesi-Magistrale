@@ -1,0 +1,75 @@
+\def\R{R}
+
+\parindent 0pt
+\parskip 2ex plus .3ex minus .3ex
+
+In questa tesi mi sono occupato del problema della ricostruzione di una funzione discontinua a partire da dati sparsi.
+
+Con {\em dati sparsi} si intende che l'insieme di locazioni in cui la funzione è stata campionata non ha una disposizione strutturata all'interno del dominio, e in generale non si hanno particolari ipotesi su tale disposizione. In figure a destra è raffigurato un insieme di locazioni sparse nel quadrato unitario.
+A sinistra in alto è visualizzato il grafico di una funzione discontinua, la cui curva di discontinuità è riportata anche sulla destra nel suo dominio, assieme alle locazioni in cui è stata campionata. 
+
+Se si trascura il fatto che la funzione possiede delle discontinuità e si tenta di ricostruire direttamente la funzione a partire dai dati campionati, si può incorrere nel fenomeno di Gibbs, per cui la funzione ricostruita presenta forti oscillazioni indesiderate nei pressi delle curve di discontinuità, come nell'esempio di ricostruzione mostrato in basso a sinistra.  
+
+
+
+L'obiettivo del lavoro di tesi consiste nel proporre una tecnica che permetta di ricostruire accuratamente una funzione di due variabili, cioè definita su un sottoinsieme~$\Omega\subset\R^2$, a partire da un insieme di dati sparsi, che consiste di un insieme~$X$ di locazioni contenuto in~$\Omega$ e di un insieme~$f(X)$ di valori assunti dalla funzione in tali locazioni.  Si vuole dunque evitare che si manifesti il fenomeno di Gibbs, e si vuole riprodurre fedelmente la funzione in prossimità delle sue curve di discontinuità, preservando altrove la sua regolarità.  L'ipotesi semplificativa del problema è che la funzione $f$ campionata sia regolare su certi sottoinsiemi~$\Omega_j$ che partizionano~$\Omega$, e che $f$ sia discontinua lungo il bordo di ciascun sottoinsieme:  cioè si assume che $f$ sia discontinua lungo delle curve in~$\Omega$ e che non abbia ad esempio discontinuità in punti isolati.  Tuttavia non si hanno informazioni sui sottodomini~$\Omega_j$ né sulle curve di discontinuità.
+
+
+Per poter ricostruire accuratamente la funzione è necessario dunque innanzitutto  recuperare i sottodomini in cui essa è regolare, a partire solamente dall'insieme dei valori campionati dalla funzione.  La tecnica che si propone consiste di tre fasi:
+\begitems
+* Inizialmente si raggruppa l'insieme di locazioni $X$ in sottoinsiemi~$X_j$ tali che ciascun sottoinsieme sia contenuto completamente nel suo corrispettivo sottodominio~$\Omega_j$.  Cioè si ricostruisce una prima versione discreta dei sottodomini~$\Omega_j$.   In questa fase si analizzano localmente i dati tramite un {\em classificatore} di regolarità, che sarà definito in seguito, costruito utilizzando interpolanti con basi radiali;
+*Successivamente, a partire da questo raggruppamento dei dati si ricostruiscono effettivamente i sottodomini~$\Omega_j$.  In questa seconda fase si utilizza un modello di machine learning chiamato {\em support vector machines}.
+* Infine, nell'ultima fase, si interpolano i dati su ogni sottodominio separatamente, utilizzando interpolanti con basi radiali.
+\enditems
+
+
+Per poter definire il classificatore di regolarità e quindi spiegare la prima fase del metodo proposto, introduco i concetti di {\em kernel} e {\em spazi nativi} che sono alla base delle tecniche di interpolazione utilizzate nel contesto di dati sparsi.
+Un kernel~$K$ definito su un dominio $\Omega$ contenuto in~$\R^d$ è una funzione da $\Omega{\times}\Omega$ a valori in~$\R$ che è simmetrica e definita positiva.  Essa genera uno spazio di Hilbert~${\cal N}_K$, chiamato {\em spazio nativo} di~$K$, in cui $K$ risulta essere {\em riproducente}.
+Lo spazio nativo è definito come il completamento dello spazio lineare generato dalle traslate del nucleo, secondo il prodotto scalare indicato al centro della diapositiva:  Il prodotto scalare di due combinazioni lineari di traslate del kernel è definito combinando opportunamente i coefficienti che determinano le due funzioni con i valori del nucleo.
+
+
+Nello spazio nativo il problema dell'interpolazione ha sempre soluzione.  Infatti una funzione che interpola i valori di $f$ sulle locazioni~$X$ si può ottenere tramite combinazione lineare di traslate del nucleo centrate nelle locazioni~$X$.   I coefficienti di questa combinazione lineare derivano dalla risoluzione di un sistema lineare la cui matrice è definita positiva.
+  La funzione interpolante così definita è la funzione dello spazio nativo che interpola i dati e ha norma minima.  
+ La sua norma  è una quantità effettivamente calcolabile, infatti si ottiene semplicemente considerando il prodotto scalare tra i coefficienti di interpolazione e i valori campionati dalla funzione, come indicato in basso. 
+
+
+
+
+
+I kernel più utilizzati nel contesto dell'interpolazione sono i kernel {\em radiali}.  Un kernel si dice radiale se è definito tramite una funzione $\phi$ di una variabile, cioè se il suo valore in una qualsiasi coppia di punti $x,y$ si ottiene valutando $\phi$ sulla norma euclidea della differenza tra $x$ e~$y$.  Un kernel radiale genera dunque uno spazio nativo in cui il processo di interpolazione è invariante per trasformazioni euclidee sull'insieme di locazioni.
+Esistono varie classi di funzioni $\phi$ che vengono utilizzate e che si differenziano per regolarità e per la compattezza o meno del loro supporto.  Tra le più utilizzate ad esempio ci sono le funzioni di Wenland, che hanno supporto compatto e espressioni polinomiali.  Qui sono riportate ad esempio quelle di classe ${\cal C}^0$, ${\cal C}^2$ e~${\cal C}^4$; oppure la funzione gaussiana e l'inversa multiquadrica che sono lisce e supportate su tutto l'insieme dei numeri reali.
+In generale si usano versioni scalate $\phi_\varepsilon$ di queste funzioni, come indicato in basso.  Il parametro~$\varepsilon$ viene chiamato {\em parametro di forma} poiché, nel caso delle funzioni a supporto compatto, determina l'ampiezza del supporto.  
+
+
+
+Dato uno spazio nativo generato da un kernel radiale e un insieme~$X$ di locazioni, si può considerare il funzionale che esprime l'{\em errore puntuale} di interpolazione in~$y$, cioè quel funzionale che associa a ogni funzione~$f$ dello spazio nativo la differenza tra i valori in $y$ di $f$ e della sua interpolante sull'insieme~$X$ di locazioni.  A partire da questo funzionale, considerando la sua norma operatoriale, si definisce la {\em funzione potenza} associata all'insieme di locazioni~$X$.  La funzione potenza dipende solamente (dal kernel) e dalle locazioni, ed è una quantità esplicitamente calcolabile.  Essa assume valori positivi e limitati superiormente, e tali valori dipendono esclusivamente dalla posizione del punto considerato rispetto all'insieme di locazioni~$X$: la funzione potenza in $y$ vale $0$ se $y$ è uno dei punti di~$X$,  e si allontana in maniera continua dal valore~$0$ man mano che $y$ si allontana dai punti di~$X$.
+Tipicamente la funzione potenza viene utilizzata per ottenere una maggiorazione sull'errore di interpolazione, come indicato in basso.  L'errore di interpolazione infatti si può maggiorare con il prodotto tra due termini: la funzione potenza che dipende solo da~$X$ ma non dalla funzione~$f$ interpolata; e la norma di $f$ nello spazio nativo, che dipende solo da $f$ e non da~$X$.
+
+
+Quando si considera un insieme $X$ di locazioni e a tale insieme si aggiunge un nuovo punto $y$, la norma dell'interpolante aumenta.  l'incremento della norma tiene in considerazione la differenza nel punto~$y$ tra il valore reale della funzione~$f$ e il valore della sua interpolante definita dalle locazioni~$X$ --- che è la quantità che compare a numeratore della frazione indicata --- e tiene in considerazione anche la posizione di $y$ rispetto all'insieme di punti~$X$, tramite la funzione potenza --- che compare a denominatore della frazione.  Perciò la differenza tra i quadrati delle norme delle interpolanti indica quanto accuratamente il valore di~$f$ nel punto~$y$ viene previsto dal modello (cioè dall'interpolante) determinato dai dati sulle locazioni~$X$: ci si aspetta infatti che la previsione sia più accurata per punti $y$ vicini alle locazioni~$X$, rispetto a punti~$y$ distanti da esse.
+
+
+
+Per poter determinare la regolarità di una funzione a partire da un campione di~$N$ dati, quindi si può vedere come la norma dell'interpolante varia quando si rimuove un punto per volta dall'insieme di dati.  Per ogni indice $k$ tra $1$ ed~$N$ si può considerare la differenza tra i 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+\bye

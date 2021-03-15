@@ -149,42 +149,8 @@ $K$ è \emph{riproducente} in $\Cal N_K$:
 \item $K(\cdot, y) \in\Cal N_K$, \quad per ogni $y\in\Omega$,
 \item  $\form{K(\cdot, y)}f_{\lK} = f(y)$.
 \end{itemize}
-
-\medskip\item
-Un kernel $K$ si dice \alert{radiale} se:
-$$
-K(x, y) = \phi(\norm{x - y}), \quad x,y\in\Omega.
-$$
-per qualche funzione  $\phi:[0,\infty)\to\R$ .
 \end{itemize}
 \end{frame}
-
-
-\begin{frame}
-
-Tra le funzioni $\phi$ più usate abbiamo:
-\begin{itemize}
-\item $\phi(r) =  (1- r)_+^2$\hfill Wendland $\Cal C^0$\hbyw{0ex}{5em}
-\item $\phi(r) = (4r+1)(1- r)^4_+$\hfill Wendland $\Cal C^2$\hbyw{0ex}{5em}
-\item $\phi(r) = (35r^2 +18r+1)(1- r)^6_+$\hfill Wendland $\Cal C^4$\hbyw{0ex}{5em}
-
-\bigskip
-
-\item $\phi(r) = \exp(-r^2)$\hfill Gaussiana\hbyw{0ex}{6.3em}
-\item $\phi(r) = \dfrac1{\sqrt{1+r^2}}$ \hfill Inversa multiquadrica.\hbyw{0ex}{1.3em}
-\end{itemize}
-
-\bigskip
-
-Si usano in generale le loro versioni scalate
-$$
-\phi_\varepsilon(r) = \phi(\varepsilon r), \quad \varepsilon>0.
-$$
-
-\end{frame}
-
-
-
 
 
 \begin{frame}
@@ -213,6 +179,41 @@ $$
 $$
 \end{itemize}
 \end{frame}
+
+
+
+\begin{frame}
+Un kernel $K$ si dice \alert{radiale} se:
+$$
+K(x, y) = \phi(\norm{x - y}), \quad x,y\in\Omega.
+$$
+per qualche funzione  $\phi:[0,\infty)\to\R$ .
+
+\medskip
+
+Tra le funzioni $\phi$ più usate abbiamo:
+\begin{itemize}
+\item $\phi(r) =  (1- r)_+^2$\hfill Wendland $\Cal C^0$\hbyw{0ex}{5em}
+\item $\phi(r) = (4r+1)(1- r)^4_+$\hfill Wendland $\Cal C^2$\hbyw{0ex}{5em}
+\item $\phi(r) = (35r^2 +18r+1)(1- r)^6_+$\hfill Wendland $\Cal C^4$\hbyw{0ex}{5em}
+
+\bigskip
+
+\item $\phi(r) = \exp(-r^2)$\hfill Gaussiana\hbyw{0ex}{6.3em}
+\item $\phi(r) = \dfrac1{\sqrt{1+r^2}}$ \hfill Inversa multiquadrica.\hbyw{0ex}{1.3em}
+\end{itemize}
+
+\bigskip
+
+Si usano in generale le loro versioni scalate
+$$
+\phi_\varepsilon(r) = \phi(\varepsilon r), \quad \varepsilon>0.
+$$
+
+\end{frame}
+
+
+
 
 
 \begin{frame}
