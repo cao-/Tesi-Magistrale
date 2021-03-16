@@ -9,6 +9,8 @@
 \usepackage{graphicx}
 \graphicspath{ {./pic/} }
 
+\long\def\comment#1\endcomment{}
+
 
 \usetheme{Singapore}
 \usecolortheme[rgb={1,.1,.1}]{structure}
@@ -62,7 +64,7 @@
 	  FROM SCATTERED DATA}
 \author{Matteo Caoduro}
 \date{18 marzo 2021}
-\institute{\normalsize \emph{Relatore:} Prof.ssa\, Milvia Francesca Rossini}
+%\institute{\normalsize \emph{Relatore:} Prof.ssa\, Milvia Francesca Rossini}
 
 
 
@@ -89,14 +91,15 @@
 
 \begin{frame}
 \frametitle{Obiettivo}
-Ricostruire  una \alert{funzione discontinua}~$f:\Omega\to\R$, con $\Omega\subset\R^2$, conoscendo i valori $f(X) = \{f_1,f_2,\dots f_N\}$ che essa assume su un insieme di \alert{dati sparsi} $X=\{x_1,x_2,\dots,x_N\}\subset\Omega$
+Ricostruire  una \alert{funzione discontinua}~$f:\Omega\to\R$, con $\Omega\subset\R^2$, conoscendo i valori $F = f(X) = \{f_1,f_2,\dots f_N\}$ che essa assume su un insieme di \alert{dati sparsi} $X=\{x_1,x_2,\dots,x_N\}\subset\Omega$
 
 \begin{itemize}
 \item evitando il fenomeno di Gibbs,
 \item riproducendo fedelmente $f$ in prossimità delle curve di discontinuità.
 \end{itemize}
 
-\bigskip
+\bigskip\medskip
+
 \alert{Ipotesi}: $f$ regolare (almeno continua) su sottoinsiemi~$\Omega_j$ disgiunti tali che $\Omega = \cup_j \Omega_j$, e discontinua lungo $\partial \Omega_j$.
 
 \medskip
@@ -112,16 +115,18 @@ Non si hanno informazioni sui sottoinsiemi $\Omega_j$ né sulle curve di discont
 
 %\medskip
 Tre fasi:
-\medskip
+
+\bigskip\smallskip
+
 \begin{itemize}
 \item Raggruppare  $X$ in sottoinsiemi $X_j$ tali che $X_j\subset \Omega_j$:
 	 si utilizza un \alert{classificatore} di regolarità basato su interpolanti con basi radiali per analizzare localmente in $\Omega$ i dati $(X,f(X))$;
 
-\medskip
+\bigskip\smallskip
 
 \item Ricostruire i sottoinsiemi $\Omega_j$  mediante {\em Support Vector Machines};
 
-\medskip
+\bigskip\smallskip
 
 \item Interpolare $(X_j, f(X_j))$ su $\Omega_j$ usando basi radiali.
 \end{itemize}
@@ -147,7 +152,7 @@ $$
 $K$ è \emph{riproducente} in $\Cal N_K$:
 \begin{itemize}
 \item $K(\cdot, y) \in\Cal N_K$, \quad per ogni $y\in\Omega$,
-\item  $\form{K(\cdot, y)}f_{\lK} = f(y)$.
+\item  $\form{K(\cdot, y)}f_{\lK} = f(y)$,\quad per ogni $f\in\Cal N_K$, $y\in\Omega$.
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -159,7 +164,7 @@ $K$ è \emph{riproducente} in $\Cal N_K$:
 \item 
 In $\Cal N_K$ il problema dell’interpolazione ha sempre soluzione.  Infatti la matrice $\bm A$ con elementi
 $$
-A_{i,j} = K(x_i, x_j) = \phi_\varepsilon( \norm{x_i-x_j}), \quad  X=\{x_1,x_2,\dots,x_N\}
+A_{i,j} = K(x_i, x_j), \qquad  X=\{x_1,x_2,\dots,x_N\}
 $$
 è definita positiva.
 
@@ -231,18 +236,11 @@ P_\lX(y) = \opnorm{\epsilon_y}_\lK = \sup_{f\neq 0} \frac{|\epsilon_y(f)|}{\,\,\
 $$
 
 \item 
-$P_\lX$ è esprimibile esplicitamente in funzione di $K$ (quindi di $\phi$) e di~$X$
+$P_\lX$ è esprimibile esplicitamente in funzione di~$X$ e di~$K$
 $$
-P_\lX(y) = \sqrt{\phi(0)-\bm t(y)^{\!T\,}\bm A^{-1}\, \bm t(y)},\qquad \bm t(y)_{\lower.4ex\hbox{$\scriptstyle j$}} = \phi_\varepsilon(\norm{y-x_j}),
+P_\lX(y) = \sqrt{K(y,y)-\bm t(y)^{\!T\,}\bm A^{-1}\, \bm t(y)},\qquad \bm t(y)_{\lower.4ex\hbox{$\scriptstyle j$}} = K(y, x_j),
 $$
-ed è tale che
-$$
-0\leq P_\lX(y)\leq\sqrt{\phi(0)}.
-$$
-
-\medskip
-
-\item $|f(y)-s_\lXf(y)| \leq P_\lX(y)\, \norm f_\lK$.
+ed è tale che $0\leq P_\lX(y)\leq\sqrt{\hbyw{1.92ex}{0em}K(y,y)}$.
 
 \end{itemize}
 
@@ -257,11 +255,19 @@ $$
 $$
 \norm{s_\lXyf}^2_\lK = \norm{s_\lXf}^2_\lK + \frac{(f(y) - s_\lXf(y))^2}{P^2_\lX(y)}.
 $$
+
+\bigskip
+
 \item
 La quantità $\norm{s_\lXyf}^2_\lK - \norm{s_\lXf}^2_\lK$ indica quanto accuratamente il valore di $f$ nel nuovo punto~$y$ viene previsto dal modello~$s_\lXf$.
 
+\bigskip
+
 \item
-Il modello $s_\lXf$ dipende dalla funzione~$\phi$ scelta e quindi dalla sua regolarità.  
+$\norm{s_\lXf}^2_\lK\leq\norm{s_\lXyf}^2_\lK\leq\norm f_\lK^2$, se $f\in\Cal N_K$.
+
+%\item
+%Il modello $s_\lXf$ dipende dalla funzione~$\phi$ scelta e quindi dalla sua regolarità.  
 \end{itemize}
 \end{frame}
 
@@ -270,7 +276,8 @@ Il modello $s_\lXf$ dipende dalla funzione~$\phi$ scelta e quindi dalla sua rego
 \section{Classificazione della regolarità}
 \begin{frame}
 \frametitle{Classificazione della regolarità}
-\alert{Obiettivo}: determinare la regolarità di una funzione~$f$ a partire da un campione di $N$ dati $(X, f(X))$.
+%\alert{Obiettivo}: determinare la regolarità di una funzione~$f$ a partire da un campione di $N$ dati $(X, f(X))$.
+\alert{Obiettivo}: Stabilire se un insieme di $N$ dati $(X, F)$ proviene da un solo modello determinato da~$K$.
 \bigskip
 
 \alert{Idea}: Per ogni~$k\in\{1,2,\dots, N\}$ consideriamo~$X^{(k)} = X\setminus \{x_k\}$, l’interpolante $s^{(k)} = s_{\hbox{$\scriptstyle X^{(k)}\!,\, f$}}$ e la quantità
@@ -296,24 +303,23 @@ Con questo processo di \alert{leave-one-out cross-validation} si ottiene  un vet
 $$
 U_k = \norm{s_\lXf}^2_\lK - \norm{s^{(k)}}^2_\lK = \bm \alpha^{\!T\!}\bm A\,\bm\alpha - (\bm\alpha^{(k)})^{\!T\!}\bm A^{(k)}\,\bm\alpha^{(k)},
 $$
-con $\bm A$,  $\bm A^{(k)}$ matrici quadrate di dimensione $N$ e $N-1$, e $\bm\alpha$, $\bm\alpha^{(k)}$ soluzioni dei sistemi lineari
-$$
-\bm A\,\bm\alpha =\bm f,\quad \bm A^{(k)} \bm\alpha^{(k)} = \bm f^{(k)}.
-$$ 
+con $\bm A$,  $\bm A^{(k)}$ matrici quadrate di dimensione $N$ e $N-1$, e $\bm\alpha$, $\bm\alpha^{(k)}$ soluzioni dei sistemi lineari $\bm A\,\bm\alpha =\bm f$, \ $\quad \bm A^{(k)} \bm\alpha^{(k)} = \bm f^{(k)}$.
 
 %\item
 %Quindi, apparentemente, per calcolare $\bm U$ bisogna risolvere un sistema lineare costituito da $N$ equazioni, e $N$ sistemi lineari costituiti da $N-1$ equazioni ciascuno.
 
+\smallskip
+
 \item
-È possibile calcolare $\bm U$ risolvendo un solo sistema lineare di dimensione $N$.  Infatti si dimostra che:
+È possibile calcolare $\bm U$ in maniera più efficiente.  Infatti si dimostra che:
 $$
 U_k = \frac{\alpha_k^2}{C_{k,k}}, \qquad \bm C = \bm A^{-1}.
 $$
-\end{itemize}
-\end{frame}
 
-\begin{frame}
-Possiamo considerare gli incrementi relativi delle norme, definendo il vettore
+\smallskip
+
+\item
+Si considerino gli incrementi relativi delle norme, definendo il vettore
 $$
 \bm Q = \begin{cases}\displaystyle
 			\frac{\bm U}{\norm{s_\lXf}^2_K} & \text{se $s_\lXf \neq 0$}\\
@@ -321,9 +327,20 @@ $$
 	       \end{cases}
 $$
 
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+Sia $K(x,y) = \phi_\varepsilon(\norm{x-y}) = \phi(\varepsilon\norm{x-y})$,\quad$x,y\in \Omega$
+\  un kernel radiale.
+
+\medskip
+
 \alert{Proprietà}:
 \begin{itemize}
-\item Esiste $\lim_{\varepsilon\to 0} \bm Q = \widehat{\bm Q}$
+\item Esiste $\lim_{\varepsilon\to 0} \bm Q = \widehat{\bm Q}$, con $\varepsilon$ parametro di~$\phi_\epsilon$.
 \item $\widehat{\bm Q}$ non varia se $f$ viene sostituita da $g = \gamma f + \eta$, con $\gamma\neq 0$
 \item $\widehat{\bm Q}$ non varia se $X$ viene sostituito da $Y = \rho\, \Cal O(X) + t$, con $\rho>0$,  $\Cal O$~trasformazione ortogonale, e $t\in\R^d$.
 \end{itemize}
@@ -337,34 +354,10 @@ derivante dallo sviluppo in serie di potenze di $\phi_\varepsilon$ centrato in $
 \end{frame}
 
 
-\begin{frame}
-\begin{itemize}
-\item $\widehat{\bm Q}$ dipende da $\phi$, dalla configurazione dei dati, ma non dai loro effettivi valori in quanto è invariante per similitudini applicate a $X$ o $F = f(X)$
-\item Se $\phi$ ha regolarità bassa (Wendland $\Cal C^0$, $\Cal C^2$) tipicamente non si hanno problemi numerici nel calcolare una buona approssimazione di $\widehat{\bm Q}$ con un $\varepsilon$ sufficientemente piccolo.
-\end{itemize}
-
-\bigskip
-Possiamo classificare la regolarità di $f$ mediante i dati $(X, F)$ utilizzando una funzione $\phi$ e una soglia $\tau>0$:
-$$
-\Cal R(X, F) = \begin{cases}
-				\phantom{-}1& \text{ se $\norm{\widehat{\bm Q}}_1 \leq \tau$\qquad “regolare”} \\
-				-1& \text{ se $\norm{\hbyw{3ex}{0em}\widehat{\bm Q}}_1 > \tau$\qquad “non regolare”}. 
-			   \end{cases}
-$$
-
-La scelta di $\tau$  {\em non} dipende dai dati che si devono classificare.
-
-\end{frame}
 
 
 
-%\begin{frame}
-%\frametitle{Esempi: scelta di $\norm{\>}_1$}
-%\end{frame}
-
-
-
-
+\comment
 \begin{frame}
 \null\vskip.3cm
 \line{\kern-.8cm
@@ -403,6 +396,44 @@ La scelta di $\tau$  {\em non} dipende dai dati che si devono classificare.
 \kern-.7cm}
 \vss
 \end{frame}
+\endcomment
+
+
+
+
+
+
+
+\begin{frame}
+
+\bigskip
+\begin{itemize}
+\item
+Dal punto di vista operativo, $\widehat{\bm Q}$ si calcola come $\bar{\bm Q} = \bm Q(\bar\varepsilon)$ per un opportuno~$\bar\varepsilon$.
+%Possiamo classificare la regolarità di $f$ mediante i dati $(X, F)$ utilizzando una funzione $\phi$ e una soglia $\tau>0$:
+
+\bigskip\medskip
+
+\item
+Possiamo classificare la regolarità di un insieme di dati $(X,F)$ utilizzando una funzione~$\phi$ e una soglia~$\tau>0$:
+$$
+\Cal R(X, F) = \begin{cases}
+				\phantom{-}1& \text{ se $\norm{\bar{\bm Q}}_1 \leq \tau$\qquad “regolare”} \\
+				-1& \text{ se $\norm{\hbyw{3ex}{0em}\bar{\bm Q}}_1 > \tau$\qquad “non regolare”}. 
+			   \end{cases}
+$$
+\end{itemize}
+%La scelta di $\tau$  {\em non} dipende dai dati che si devono classificare.
+
+
+\end{frame}
+
+
+
+%\begin{frame}
+%\frametitle{Esempi: scelta di $\norm{\>}_1$}
+%\end{frame}
+
 
 
 
@@ -413,7 +444,7 @@ La scelta di $\tau$  {\em non} dipende dai dati che si devono classificare.
 
 %\bigskip
 
-È possibile utilizzare $\widehat{\bm Q}$ e il classificatore di regolarità $\Cal R$ per analizzare localmente in $\Omega$ i dati $(X, f(X))$ e assegnarli al loro sottodominio di appartenenza, ottenendo sottoinsiemi $X_j$ tali che $X_j\subset \Omega_j$.
+È possibile utilizzare $\bar{\bm Q}$ e il classificatore di regolarità $\Cal R$ per analizzare localmente in $\Omega$ i dati $(X, f(X))$ e assegnarli al loro sottodominio di appartenenza, ottenendo sottoinsiemi $X_j$ tali che $X_j\subset \Omega_j$.
 
 \medskip
 
@@ -424,12 +455,12 @@ Tramite $\Cal R$ si stabilisce se un sottoinsieme $Y \subset X$ è contenuto in 
 \medskip
 
 \item
-Procedendo con successive analisi locali si cerca di estendere l’insieme di nodi fino ad includere tutti i punti $X_j\subset\Omega_j$.
+Procedendo con successive analisi locali si  estende l’insieme di nodi fino ad includere tutti i punti $X_j\subset\Omega_j$.
 
 \medskip
 
 \item
-Quando $\Cal R(Y, f(Y)) = -1$, si utilizza $\widehat{\bm Q}$ per capire quali punti rimuovere, poiché  appartenenti ad un differente  sottodominio .
+Quando $\Cal R(Y, f(Y)) = -1$, si utilizza $\bar{\bm Q}$ per capire quali punti rimuovere, poiché  appartenenti ad un differente  sottodominio .
 \end{itemize}
 \end{frame}
 
@@ -445,6 +476,11 @@ Quando $\Cal R(Y, f(Y)) = -1$, si utilizza $\widehat{\bm Q}$ per capire quali pu
 \begin{frame}
 \def\franke{\operatorname{franke}}
 %%%%%%%%%%%%%%%%%
+\rlap{\vbox to 0pt{\hsize=.5\hsize \scriptsize 
+							$\phi = \hbox{Wendland } \Cal C^0$, \quad $\tau = 0.2$ \\
+							\vskip1ex
+							$N = 2^{10}$ (Halton),\quad $\,\,\,k = 8^2$\\
+							\vss}}
 \line{%
 \kern-1.3cm
 \includegraphics[width=.6\hsize]{f1_ori.pdf}
@@ -462,6 +498,11 @@ Quando $\Cal R(Y, f(Y)) = -1$, si utilizza $\widehat{\bm Q}$ per capire quali pu
 \begin{frame}
 \def\franke{\operatorname{franke}}
 %%%%%%%%%%%%%%%%%
+\rlap{\vbox to 0pt{\hsize=.5\hsize \scriptsize 
+							$\phi = \hbox{Wendland } \Cal C^0$, \quad $\tau = 0.2$ \\
+							\vskip1ex
+							$N = 2^{10}$ (Halton),\quad $\,\,\,k = 8^2$\\
+							\vss}}
 \line{%
 \kern-1.3cm
 \includegraphics[width=.6\hsize]{f4_ori.pdf}
@@ -478,6 +519,11 @@ Quando $\Cal R(Y, f(Y)) = -1$, si utilizza $\widehat{\bm Q}$ per capire quali pu
 \begin{frame}
 \def\franke{\operatorname{franke}}
 %%%%%%%%%%%%%%%%%
+\rlap{\vbox to 0pt{\hsize=.5\hsize \scriptsize 
+							$\phi = \hbox{Wendland } \Cal C^0$, \quad $\tau = 0.2$ \\
+							\vskip1ex
+							$N = 2^{10}$ (Halton),\quad $\,\,\,k = 8^2$\\
+							\vss}}
 \line{%
 \kern-1.3cm
 \includegraphics[width=.6\hsize]{f9_ori.pdf}
@@ -493,6 +539,11 @@ Quando $\Cal R(Y, f(Y)) = -1$, si utilizza $\widehat{\bm Q}$ per capire quali pu
 \begin{frame}
 \def\franke{\operatorname{franke}}
 %%%%%%%%%%%%%%%%%
+\rlap{\vbox to 0pt{\hsize=.5\hsize \scriptsize 
+							$\phi = \hbox{Wendland } \Cal C^2$, \quad $\tau = 0.2$ \\
+							\vskip1ex
+							$N = 2^{10}$ (Halton),\quad $\,\,\,k = 8^2$\\
+							\vss}}
 \line{%
 \kern-1.3cm
 \includegraphics[width=.6\hsize]{f6_ori.pdf}
@@ -532,6 +583,10 @@ Per ottenere $\{\widetilde\Omega_j\}_{j=1}^M$ a partire da $\{X_j\}_{j=1}^M$ uti
 
 \begin{frame}
 \frametitle{Support Vector Machines}
+SVM sono modelli binari.  Tuttavia si possono estendere a modelli multiclasse, che permettono di separare un numero arbitrario $M$ di insiemi di punti $\{X_j\}_{j=1}^M$.
+
+\bigskip
+
 Supponiamo di avere soltanto due sottoinsiemi di locazioni, $X_1$, $X_2$.
 \begin{itemize}
 \item Si usa una funzione~$\Theta:\R^2\to V$ (\alert{feature map}) per trasformare ciascun $X_j\subset\R^2$ in $\Theta(X_j) = \{\Theta(x):x\in X_j\}\subset V$, con $\dim V >> 2$.
@@ -567,7 +622,7 @@ ottenendo $w = \sum_{j=1}^N \lambda_j z_j x_j, \qquad b =\sum_{j=1}^N\lambda_j z
 
 \bigskip
 
-\alert{Nota}: Il problema dipende da $x_j\in X$ solo tramite i prodotti scalari 
+\alert{Nota}: Il problema dipende da $x_j\in X$ solo direttamente o tramite i prodotti scalari 
 $$\langle \Theta(x_i), \Theta(x_j)\rangle_V.$$
 \end{frame}
 
@@ -576,25 +631,23 @@ $$\langle \Theta(x_i), \Theta(x_j)\rangle_V.$$
 \alert{Kernel trick}: $K(x,y) = \langle \Theta(x), \Theta(y)\rangle_V$.\\\smallskip
 Si basa sul \alert{teorema di Mercer}, secondo il quale ogni kernel $K:\Omega\times\Omega\to\R$ simmetrico e definito positivo si decompone in
 $$
-K(x,y) = \langle \Theta(x_i), \Theta(x_j)\rangle_V = \sum_{i=1}^\infty \Theta_i(x)\Theta_i(y), \quad x,y\in\Omega,
+K(x,y) = \langle \Theta(x), \Theta(y)\rangle_V = \sum_{i=1}^\infty \Theta_i(x)\Theta_i(y), \quad x,y\in\Omega,
 $$
 con $\Theta_i$ autofunzioni dell’operatore $f\mapsto\int_\Omega f(x)K(x,y)\,dx$.
 
 \bigskip
 Il kernel più utilizzato è quello gaussiano,
 $$
-K(x,y) = \exp(-\varepsilon^2\,\norm{x-y}^2),\quad x,y\in\Omega,
+K(x,y) = \exp(-\delta^2\,\norm{x-y}^2),\quad x,y\in\Omega,
 $$
 con il quale $\dim V =\infty$.
 
-\bigskip
-\alert{Generalizzazione}: È possibile estendere il modello binario SVM ad un modello multiclasse, che permette di separare un numero arbitrario $M$ di insiemi di punti $\{X_j\}_{j=1}^M$.
 \end{frame}
 
 
 
 
-\foreach \i in {1,4,9, 6}{
+\foreach \i in {1,4,9}{
 \begin{frame}
 \null\vskip.1cm
 \line{\kern-.5cm
@@ -619,6 +672,19 @@ con il quale $\dim V =\infty$.
 \bibliographystyle{unsrt}
 \bibliography{biblist.bib} 
 \end{frame}
+
+
+\foreach \i in {6}{
+\begin{frame}
+\null\vskip.1cm
+\line{\kern-.5cm
+\vbox{\hbox{\includegraphics[width=.45\hsize]{f\i_ori.pdf}}
+\hbox{\includegraphics[width=.45\hsize]{f\i_rec.pdf}}}
+\hss
+\raise.3cm\hbox{\includegraphics[width=.6\hsize]{f\i_curves.pdf}}}
+\end{frame}
+}
+
 
 
 \end{document}
