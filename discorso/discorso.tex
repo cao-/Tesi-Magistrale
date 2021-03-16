@@ -7,7 +7,7 @@
 \def\R{R}
 
 \parindent 0pt
-\parskip 2ex plus .3ex minus .3ex
+\parskip 3ex plus .3ex minus .3ex
 
 
 \def\begitems{\_bgroup\_begitems\_parskip=1.5\lineskip \_removelastskip}
@@ -18,81 +18,66 @@
 In questa tesi mi sono occupato del problema della ricostruzione di una funzione discontinua a partire da dati sparsi.
 
 Con {\em dati sparsi} si intende che l'insieme di locazioni in cui la funzione è stata campionata non ha una disposizione strutturata all'interno del dominio, e in generale non si hanno particolari ipotesi su tale disposizione. 
-Qui è visualizzato il grafico di una funzione discontinua, definita sul quadrato unitario, e questa è la sua curva di discontinuità.    Se si tenta di ricostruire direttamente una tale  funzione a partire da un insieme di dati sparsi, senza particolari accorgimenti, si incorre nel fenomeno di Gibbs, per cui la funzione ricostruita presenta forti oscillazioni nei pressi delle curve di discontinuità.   %Qui è rappresentato l’insieme di punti in cui la funzione è stata campionata, insieme alla 
+Qui è visualizzato il grafico di una funzione, definita sul quadrato unitario, e discontinua lungo questa curva.    Se si tenta di ricostruire direttamente una tale  funzione senza particolari accorgimenti, si incorre nel fenomeno di Gibbs, per cui la funzione ricostruita presenta forti oscillazioni nei pressi delle curve di discontinuità. 
 
 
+L'obiettivo del lavoro di tesi consiste nel proporre una tecnica che permetta di ricostruire accuratamente una funzione di due variabili a partire da un insieme di dati sparsi, costituito da un insieme~$X$ di locazioni contenuto in sottoinsieme~$\Omega$ di $\R^2$ e da un insieme~$F$ di valori assunti dalla funzione in tali locazioni.  Si vuole dunque evitare che si manifesti il fenomeno di Gibbs, e si vuole riprodurre fedelmente la funzione in tutto il dominio e in particolare nei pressi delle sue curve di discontinuità.  L'ipotesi del problema è che la funzione $f$ campionata sia regolare su certi sottoinsiemi~$\Omega_j$ che partizionano~$\Omega$, e che $f$ sia discontinua lungo il bordo di ciascun sottoinsieme:  cioè si assume che $f$ sia discontinua lungo delle curve in~$\Omega$ e che non abbia ad esempio discontinuità in punti isolati.  Tuttavia non si hanno informazioni sui sottodomini~$\Omega_j$ né sulle curve di discontinuità.
 
-L'obiettivo del lavoro di tesi consiste nel proporre una tecnica che permetta di ricostruire accuratamente una funzione di due variabili, cioè definita su un sottoinsieme~$\Omega\subset\R^2$, a partire da un insieme di dati sparsi, costituito da un insieme~$X$ di locazioni contenuto in~$\Omega$ e da un insieme~$f(X)$ di valori assunti dalla funzione in tali locazioni.  Si vuole dunque evitare che si manifesti il fenomeno di Gibbs, e si vuole riprodurre fedelmente la funzione in tutto il dominio e in particolare nei pressi delle sue curve di discontinuità.  L'ipotesi semplificativa del problema è che la funzione $f$ campionata sia regolare su certi sottoinsiemi~$\Omega_j$ che partizionano~$\Omega$, e che $f$ sia discontinua lungo il bordo di ciascun sottoinsieme:  cioè si assume che $f$ sia discontinua lungo delle curve in~$\Omega$ e che non abbia ad esempio discontinuità in punti isolati.  Tuttavia non si hanno informazioni sui sottodomini~$\Omega_j$ né sulle curve di discontinuità.
 
-
-Per poter ricostruire accuratamente la funzione è necessario dunque innanzitutto  recuperare i sottodomini in cui essa è regolare, partendo dall'insieme dei valori campionati dalla funzione.  La tecnica che si propone consiste di tre fasi:
+Per ricostruire accuratamente la funzione è necessario dunque innanzitutto  recuperare i sottodomini in cui essa è regolare, partendo dall'insieme dei valori campionati dalla funzione.  La tecnica che si propone consiste di tre fasi:
 \begitems
 * Inizialmente si raggruppa l'insieme di locazioni $X$ in sottoinsiemi~$X_j$ tali che ciascun sottoinsieme sia contenuto completamente nel suo corrispettivo sottodominio~$\Omega_j$.  Cioè si ricostruisce una prima versione discreta dei sottodomini~$\Omega_j$.   In questa fase si analizzano localmente i dati tramite un {\em classificatore} di regolarità, costruito utilizzando interpolanti con basi radiali;
 *Successivamente, a partire da questo raggruppamento dei dati si ricostruiscono effettivamente i sottodomini~$\Omega_j$.  In questa seconda fase si utilizza un modello di machine learning chiamato {\em support vector machines}.
 * Infine, nell'ultima fase, si interpolano i dati su ogni sottodominio separatamente, utilizzando ancora le basi radiali.
-\enditems
+\enditems\null
 
 
 Per poter definire il classificatore di regolarità e quindi spiegare la prima fase del metodo proposto, introduco i concetti di {\em kernel} e {\em spazi nativi} che sono alla base delle tecniche di interpolazione utilizzate nel contesto di dati sparsi.
 Un kernel~$K$ definito su un dominio $\Omega$ contenuto in~$\R^d$ è una funzione da $\Omega{\times}\Omega$ a valori in~$\R$ che è simmetrica e definita positiva.  Essa genera uno spazio di Hilbert~${\cal N}_K$, chiamato {\em spazio nativo} di~$K$, in cui $K$ risulta essere {\em riproducente}.
 Lo spazio nativo è definito come il completamento dello spazio lineare generato dalle traslate del kernel, secondo il prodotto scalare qui  indicato.
 
-Nello spazio nativo il problema dell'interpolazione ha sempre soluzione.  Infatti una funzione che interpola i valori di $f$ sulle locazioni~$X$ si può ottenere tramite combinazione lineare di traslate del kernel centrate nelle locazioni~$X$.   I coefficienti di questa combinazione lineare derivano dalla risoluzione di un sistema lineare la cui matrice è definita positiva.
-  La funzione interpolante così definita è la funzione dello spazio nativo che interpola i dati e ha norma minima.  
- La sua norma  è una quantità effettivamente calcolabile, infatti si ottiene semplicemente considerando il prodotto scalare tra i coefficienti di interpolazione e i valori campionati dalla funzione.
+Nello spazio nativo il problema dell'interpolazione di dati con locazioni distinte ha sempre soluzione.  Infatti una funzione che interpola i valori di $f$ sulle locazioni~$X$ si può ottenere tramite combinazione lineare di traslate del kernel centrate nelle locazioni~$X$.   I coefficienti di questa combinazione lineare derivano dalla risoluzione di un sistema lineare la cui matrice è definita positiva.
+ La norma dell’interpolante  è una quantità effettivamente calcolabile, infatti si ottiene semplicemente considerando il prodotto scalare tra i coefficienti di interpolazione e i valori campionati dalla funzione.
 
 
 
 
 
 I kernel più utilizzati nel contesto dell'interpolazione di dati sparsi sono i kernel {\em radiali}.  Un kernel si dice radiale se è definito tramite una funzione $\phi$ di una variabile, cioè se il suo valore in una qualsiasi coppia di punti $x,y$ si ottiene valutando $\phi$ sulla norma euclidea della differenza tra $x$ e~$y$.  
-Tra le funzioni più utilizzate ad esempio ci sono le funzioni di Wendland, che hanno supporto compatto e espressioni polinomiali.  Qui sono riportate ad esempio quelle di classe ${\cal C}^0$, ${\cal C}^2$ e~${\cal C}^4$; oppure la funzione gaussiana e l'inversa multiquadrica che sono  supportate su tutto l'insieme dei numeri reali.
+Tra le funzioni più utilizzate ad esempio ci sono le funzioni di Wendland con differenti regolarità e con supporto compatto; oppure la ben nota funzione gaussiana e l'inversa multiquadrica.
 In generale si usano versioni scalate $\phi_\varepsilon$ di queste funzioni, definite tramite un parametro di forma~$\varepsilon$.
 
 
 
-Dato uno spazio nativo generato da un kernel radiale e un insieme~$X$ di locazioni, si può considerare il funzionale che esprime l'{\em errore puntuale} di interpolazione in~$y$, cioè quel funzionale che associa a ogni funzione~$f$ dello spazio nativo la differenza tra i valori in $y$ di $f$ e della sua interpolante sull'insieme~$X$ di locazioni.  A partire da questo funzionale, considerando la sua norma operatoriale, si definisce la {\em funzione potenza} associata all'insieme di locazioni~$X$.  La funzione potenza dipende solamente dalle locazioni (e ovviamente dal kernel), ed è una quantità esplicitamente calcolabile.  Essa assume valori positivi e limitati superiormente, e tali valori dipendono esclusivamente dalla posizione del punto considerato rispetto all'insieme di locazioni~$X$: la funzione potenza in $y$ vale $0$ se $y$ è uno dei punti di~$X$,  e si allontana in maniera continua dal valore~$0$ man mano che $y$ si allontana dai punti di~$X$.
-
-(Grafici potenza???)
-
+Dato uno spazio nativo generato da un kernel radiale e un insieme~$X$ di locazioni, si può considerare il funzionale che esprime l'{\em errore puntuale} di interpolazione in~$y$, cioè quel funzionale che associa a ogni funzione~$f$ dello spazio nativo la differenza tra i valori in $y$ di $f$ e della sua interpolante sull'insieme~$X$ di locazioni.  A partire da questo funzionale, considerando la sua norma operatoriale, si definisce la {\em funzione potenza} associata all'insieme di locazioni~$X$.  La funzione potenza dipende solamente dalle locazioni (e ovviamente dal kernel), ed è una quantità esplicitamente calcolabile.  Essa assume valori positivi e limitati superiormente, e tali valori dipendono esclusivamente dalla posizione del punto considerato rispetto all'insieme di locazioni~$X$.
 
 Quando si considera un insieme $X$ di locazioni e a tale insieme si aggiunge un nuovo punto $y$, la norma dell'interpolante aumenta.  L'incremento della norma tiene in considerazione la differenza nel punto~$y$ tra il valore reale della funzione~$f$ e il valore della sua interpolante definita dalle locazioni~$X$ --- che è la quantità che compare a numeratore di questa frazione --- e tiene in considerazione anche la posizione di $y$ rispetto all'insieme di punti~$X$, tramite la funzione potenza --- che compare a denominatore della frazione.  Perciò la differenza tra i quadrati delle norme delle interpolanti indica quanto accuratamente il valore di~$f$ nel punto~$y$ viene previsto dalla funzione che interpola i dati sulle locazioni~$X$: ci si aspetta infatti che la previsione sia più accurata per punti $y$ vicini alle locazioni~$X$, rispetto a punti~$y$ distanti da esse.
 Se $f$ appartiene allo spazio nativo del kernel, allora la  norma  dell’interpolante è limitata dalla norma di $f$.  Se l’insieme di locazioni~$X$ è già abbastanza numeroso per cui la differenza tra la norma di $f$ e della sua interpolante è piccola,  un eccessivo aumento della norma dell’interpolante quando si aggiunge un nuovo punto indica che il nuovo dato aggiunto vìola il modello corrente, ossia che l’insieme complessivo dei dati non proviene da una singola funzione $f$ nello spazio nativo del kernel considerato.
-% In base alla regolarità della funzione base utilizzata è possibile dunque individuare per esempio la presenza di una discontinuità nella funzione, oppure
 
 
+Per vedere se tutti i punti provengono da uno stesso modello --- il modello prescritto dal kernel e quindi dalla funzione~$\phi$ --- possiamo dunque effettuare un processo di {\em leave-one-out cross-validation}, osservando la variazione della norma dell’interpolante quando si rimuove ciascun punto per volta dall’insieme di dati.  Consideriamo dunque il vettore~$U$ la cui $k$-esima componente~$U_k$ è definita come la differenza tra il quadrato della norma dell’interpolante su tutti i dati e il quadrato della norma dell’interpolante~$s^{(k)}$ definita dall’insieme di dati privato del $k$-esimo punto.  Il termine $U_k$, per quanto detto prima, indica quanto accuratamente il valore di $f$ nel punto~$x_k$ viene previsto dalla funzione che interpola $f$ sulle altre locazioni.  Un valore elevato di~$U_k$ segnala dunque che il $k$-esimo dato devìa molto dal modello descritto dagli altri dati.  Ad esempio, nel caso di un campione di dati proveniente da una funzione discontinua, i dati vicini alle discontinuità della funzione avranno un corrispondente valore elevato nel vettore~$U$. 
 
-Per vedere se tutti i punti provengono da uno stesso modello --- il modello prescritto dal kernel e quindi dalla funzione~$\phi$ --- possiamo dunque effettuare un processo di {\em leave-one-out cross-validation}, osservando la variazione della norma dell’interpolante quando si rimuove ciascun punto per volta dall’insieme di dati.  Consideriamo dunque il vettore~$U$ la cui $k$-esima componente~$U_k$ è definita come la differenza tra il quadrato della norma dell’interpolante su tutti i dati e il quadrato della norma dell’interpolante~$s^{(k)}$ definita dall’insieme di dati privato del $k$-esimo punto.  Il termine $U_k$, per quanto detto prima, indica quanto accuratamente il valore di $f$ nel punto~$x_k$ viene previsto dalla funzione che interpola $f$ sulle altre locazioni.  Un valore elevato di~$U_k$ segnala dunque che il $k$-esimo dato devìa molto dal modello descritto dagli altri dati.  Ad esempio, nel caso di un campione di dati proveniente da una funzione discontinua, i dati vicini alle discontinuità della funzione avranno un corrispondente valore elevato nel vettore~$U$. % se $x_k$ è vicino alla discontinuità, $U_k$ è elevato.
 
 Se $U$ viene calcolato in base alla sua definizione, ossia calcolando le norme di tutte le interpolanti~$s^{(k)}$, il costo computazionale risulta essere elevato, poiché è necessario risolvere $N$ sistemi lineari di dimensione~$N{-}1$.
-Tuttavia si dimostra che esiste una formula alternativa e più efficiente per calcolare~$U$.  Il $k$-esimo termine~$U_k$ si può esprimere infatti come rapporto tra il quadrato del $k$-esimo coefficiente di interpolazione~$\alpha_k$ dell’interpolante definita dall’insieme completo~$X$ di locazioni, e il $k$-esimo elemento della diagonale della matrice~$C$, definita come l’inversa della matrice di interpolazione~$A$ associata anch’essa all’insieme completo~$X$ di locazioni.  Dunque per calcolare il vettore~$U$ è sufficiente operare con una sola matrice di dimensione~$N$ anziché $N$ matrici distinte di dimensione~$N{-}1$. 
+Tuttavia si dimostra che esiste una formula alternativa e più efficiente per calcolare~$U$.  Il $k$-esimo termine~$U_k$ si può esprimere infatti come rapporto tra il quadrato del $k$-esimo coefficiente di interpolazione~$\alpha_k$ dell’interpolante definita dall’insieme completo~$X$ di locazioni, e il $k$-esimo elemento della diagonale dell’inversa della matrice di interpolazione~$A$ associata anch’essa all’insieme completo di locazioni.  Dunque per calcolare il vettore~$U$ è sufficiente operare con una sola matrice di dimensione~$N$ anziché $N$ matrici distinte di dimensione~$N{-}1$. 
+Anziché considerare semplicemente gli incrementi assoluti dei quadrati delle norme, è opportuno considerare i loro incrementi relativi, dividendo ciascun termine del vettore~$U$ per il quadrato della norma della funzione che interpola tutti i dati.  Si definisce così dunque un nuovo vettore~$Q$.
 
 
-Anziché considerare semplicemente gli incrementi assoluti dei quadrati delle norme, è opportuno considerare i loro incrementi relativi, dividendo ciascun termine del vettore~$U$ per il quadrato della norma della funzione che interpola tutti i dati.  Si definisce così dunque un vettore~$Q$ che soddisfa le seguenti proprietà:
+D’ora in poi consideriamo solo kernel radiali, descritti da una funzione~$\phi$ e un parametro di forma~$\varepsilon$.
+ Sotto questa ipotesi il  vettore $Q$  soddisfa le seguenti proprietà:
 \begitems
-* Se si considera il parametro di forma~$\varepsilon$ della funzione~$\phi$ che genera il kernel radiale dello spazio nativo, e si fa tendere $\varepsilon$ a zero, il vettore $Q$ converge a un vettore limite~$\hat Q$.
+* $Q$ converge a un vettore limite~$\hat Q$ quando $\varepsilon$ tende a zero.
 * Il vettore limite $\hat Q$ non varia se si applica una trasformazione lineare non-nulla alla funzione~$f$ o equivalentemente all’insieme di valori campionati.
-* $\hat Q$ non varia inoltre se si applica una similitudine all’insieme di locazioni~$X$, cioè non varia se si applica una trasformazione euclidea o una dilatazione uniforme.
+* $\hat Q$ non varia inoltre se si applica una similitudine all’insieme di locazioni~$X$.
 \enditems
+Quindi l’informazione contenuta nelle componenti di~$\hat Q$ dipende solo dalla configurazione dei dati, ma non dai loro effettivi valori.
 Per analizzare il comportamento di $Q$ quando $\varepsilon$ tende a zero, e quindi per dimostrare le proprietà elencate, lo strumento principale che si è utilizzato è lo sviluppo in serie di Laurent della matrice~$C$, ossia dell’inversa della matrice di interpolazione~$A$, derivante dallo sviluppo in serie di potenze della funzione~$\phi_\varepsilon$ centrato in~$\varepsilon = 0$.
-
 
 
 Le componenti di $\widehat Q$ indicano quanto ciascun dato devìa dal modello prescritto dagli altri dati.  L’informazione contenuta nelle componenti di $\widehat Q$  dipende solo dalla configurazione dei dati, ma non dai loro effettivi valori, poiché per quanto detto prima, $\widehat Q$ è invariante per similitudini applicate alle locazioni o ai valori campionati nelle locazioni.
 Confrontando la somma delle componenti di $\widehat Q$, ovvero la sua norma-1, con una fissata soglia~$\tau$, si può decidere se un insieme di dati ha un comportamento regolare, dove la regolarità è determinata dalla funzione~$\phi$.  Si decide perciò, in base alla soglia $\tau$, se l’insieme di dati proviene da un unico modello appartenente allo spazio nativo del kernel radiale definito dalla funzione~$\phi$. 
  La soglia di decisione~$\tau$ rappresenta l’evidenza richiesta per la classificazione:  più il valore scelto per~$\tau$ è piccolo, maggiore è l’evidenza richiesta affinché il classificatore~$\cal R$ etichetti un campione di dati come “regolare”.
 Dal punto di vista operativo si osserva che $\widehat Q$ si può ottenere considerando un valore di $\varepsilon$ opportunamente piccolo, senza incorrere in problemi di malcondizionamento, quando la funzione $\phi$ considerata ha regolarità bassa, ad esempio nel caso della funzione di Wendland ${\cal C}^0$ o ${\cal C}^2$.
-
-
-
-
-
-%Sommando le componenti di $Q$, ossia le deviazioni di ciascun dato dal modello prescritto dagli altri dati, si  ha  complessivo dei dati provenga da una funzione dello spazio nativo del kernel considerato, e quindi segua un determinato modello di regolarità.
-
-
-%La proprietà di invarianza di $\widehat Q$ rispetto a similitudini applicate alle locazioni o ai valori della funzione,  permette di scegliere una soglia $\tau$ in maniera indipendente dagli effettivi valori dei dati.   La soglia $\tau$ stabilisce semplicemente l’evidenza richiesta per la classificazione.
-
-%In virtù delle proprietà descritte, $\hat Q$ dipende  dalla configurazione dei dati, ma non dai loro effettivi valori, nel senso che è invariante per similitudini applicate all’insieme di locazioni o all’insieme dei valori campionati nelle locazioni. Ciò permette di 
 
 
 Ritornando al problema iniziale --- cioè di ricostruire una funzione discontinua a partire da dati sparsi --- mostro ora come il vettore~$\widehat Q$ e il classificatore~$\cal R$ appena definito possono essere impiegati per raggruppare le locazioni~$X$ in base al loro sottodominio di appartenenza.
@@ -102,9 +87,10 @@ Quando si trova un sottoinsieme locale di punti che non proviene dallo stesso mo
 
 
 Mostro ora un esempio concreto, in cui si applica la tecnica descritta.  In un insieme di dati sparsi nel quadrato unitario  si è campionata una funzione discontinua.  Essa possiede una sola curva di discontinuità, che è quella qui rappresentata.  Il dominio~$\Omega$ perciò risulta diviso in due sottodomini~$\Omega_1$, $\Omega_2$, che devono essere determinati a partire dai dati.
-Per poter analizzare localmente il dominio, si utilizza la triangolazione di Delaunay dei dati.  Si seleziona casualmente un triangolo, e quindi il suo circocentro.   Si considera successivamente un insieme locale $k$ di punti attorno al circocentro, dove $k$ è un numero  fissato.  Tramite il classificatore $\cal R$ si stabilisce se l’insieme di dati considerato è regolare, ossia se tutti i dati appartengono allo stesso sottodominio.   In questo caso ciò si verifica, e quindi i punti vengono utilizzati per iniziare a costruire il sottodominio.  I triangoli verdi sono quelli formati dai punti considerati, mentre i triangoli gialli invece sono i triangoli di bordo.  A partire da un triangolo di bordo scelto casualmente si ripete la stesso identico procedimento, includendo così nel dominio altri punti appartenenti allo stesso modello.  Si procede per estensioni successive finché non ci si imbatte in un insieme di punti che viene classificato come non regolare, poiché include dati provenienti da due modelli differenti.  A questo punto, utilizzando informazioni sia sul sottodominio finora costruito, sia sulle componenti del vettore~$\widehat Q$, si rimuovono punti che presumibilmente non appartengono al modello considerato, finché non si ottiene un sottoinsieme di punti che viene etichettato come “regolare”, e lo si ingloba quindi nel dominio.  Proseguendo successivamente alla stessa maniera, ci si può imbattere in un ultimo caso, quello in cui il triangolo considerato ha vertici appartenenti  a sottodomini differenti.  In questo caso non esiste alcun sottoinsieme di dati “regolare” contenente tutti i vertici del triangolo, quindi si conclude che il triangolo si trova al confine di due sottodomini, e lo si colora di rosso.   Proseguendo ulteriormente finché non si sono esauriti i triangoli gialli di bordo, e successivamente ripetendo l’intero procedimento su i triagoli non ancora analizzati, si arriva ad una situazione di questo tipo.
+Per poter analizzare localmente il dominio, si utilizza la triangolazione di Delaunay dei dati.  Si seleziona casualmente un triangolo, e quindi il suo circocentro.   Si considera successivamente l’insieme dei $k$ punti più vicini al circocentro, dove $k$ è un numero  fissato.  Tramite il classificatore $\cal R$ si stabilisce se l’insieme di dati considerato è regolare, ossia se tutti i dati appartengono allo stesso sottodominio.   In questo caso ciò si verifica, e quindi i punti vengono utilizzati per iniziare a costruire il sottodominio.  I triangoli verdi sono quelli formati dai punti considerati, mentre i triangoli gialli invece sono i triangoli di bordo.  A partire da un triangolo di bordo scelto casualmente si ripete la stesso identico procedimento, includendo così nel dominio altri punti appartenenti allo stesso modello.  Si procede per estensioni successive finché non ci si imbatte in un insieme di punti che viene classificato come non regolare, poiché include dati provenienti da due modelli differenti.  A questo punto, utilizzando informazioni sia sul sottodominio finora costruito, sia sulle componenti del vettore~$\widehat Q$, si rimuovono punti che presumibilmente non appartengono al modello considerato, finché non si ottiene un sottoinsieme di punti che viene etichettato come “regolare”, e lo si ingloba quindi nel dominio.  Proseguendo successivamente alla stessa maniera, ci si può imbattere in un ultimo caso, quello in cui il triangolo considerato ha vertici appartenenti  a sottodomini differenti.  In questo caso non esiste alcun sottoinsieme di dati “regolare” contenente tutti i vertici del triangolo, quindi si conclude che il triangolo si trova al confine di due sottodomini, e lo si colora di rosso.   Proseguendo ulteriormente finché non si sono esauriti i triangoli gialli di bordo, e successivamente ripetendo l’intero procedimento su i triagoli non ancora analizzati, si arriva ad una situazione di questo tipo.
 
 
+...
 
 
 
@@ -114,7 +100,7 @@ Per effettivamente ottenere le ricostruzioni~$\tilde\Omega_j$ a partire dai sott
 
 
 Nella loro versione base le SVM sono modelli binari che permettono di separare solo una coppia di insiemi di dati.  Tuttavia esse si possono estendere a modelli multiclasse che permettono di separare un numero arbitrario di insiemi di punti.
-Per la descrizione mi limito al caso binario, in cui bisogna separare soltanto due sottoinsiemi di locazioni $X_1$, $X_2$ e quindi ricostruire i loro associati sottodomini $\Omega_1$ e ~$\Omega_2$.
+Per la descrizione mi limito al caso binario.
 Innanzitutto si trasformano i punti di ciascuno dei due sottoinsiemi in punti appartenenti ad  uno spazio vettoriale~$V$ di dimensione superiore, tramite una funzione~$\Theta$, detta {\em feature map}.  
  Successivamente si determina un iperpiano nello spazio $V$ che separa i due insiemi di punti $\Theta(X_1)$ e $\Theta(X_2)$.  Questo iperpiano viene determinato massimizzando il margine geometrico, tra i due insiemi di dati, in senso stretto nel caso i due insiemi siano linearmente separabili, o in un senso debole nel caso contrario.
 L’iperpiano che si determina è espresso in forma implicita da una funzione~$h$.  La funzione $h$ viene utilizzata poi per classificare i punti del dominio~$\Omega$, determinando i due sottoinsiemi~$\tilde\Omega_1$ e $\tilde\Omega_2$.    
@@ -122,10 +108,13 @@ In questo modo, cioè determinando una curva di separazione lineare nello spazio
 
 
 
-Per determinare effettivamente l’iperpiano di separazione~$h$ si risolve un problema di ottimizzazione vincolato.  La caratteristica principale di questo problema è che dipende dai dati originali o direttamente o  mediante prodotti scalari dei loro trasformati tramite~$\Theta$.   Dato che tipicamente lo spazio $V$ ha dimensione elevata, è necessario un metodo efficiente per calcolare i prodotti scalari in~$V$, diverso dall’utilizzo della semplice definizione di prodotto scalare.
+Per determinare effettivamente l’iperpiano di separazione~$h$ si risolve un problema di ottimizzazione vincolato che dipende dai dati originali o direttamente o  mediante prodotti scalari dei dati trasformati tramite~$\Theta$.   Se si vuole considerare uno spazio~$V$ di dimensione elevata, è necessario un metodo efficiente per calcolare i prodotti scalari in~$V$, diverso dall’utilizzo della semplice definizione di prodotto scalare.
 
 Per questo scopo si sfrutta il teorema di Mercer.  Esso afferma che ogni kernel $K$ simmetrico e definito positivo si può decomporre per mezzo di una funzione~$\Theta$, che si determina considerando le autofunzioni di un certo operatore integrale associato a~$K$.  Perciò, se come feature map si sceglie la funzione~$\Theta$ che decompone un kernel noto, allora il calcolo dei prodotti scalari dei dati trasformati tramite~$\Theta$ si riduce alla semplice valutazione del kernel nei dati originali.  Inoltre, utilizzando questa tecnica detta {\em kernel trick}, per poter definire il modello SVM non è necessario conoscere esplicitamente la feature map utilizzata, ma è sufficiente conoscere soltanto il suo kernel associato.  Uno dei kernel più utilizzati, ad esempio, è il kernel gaussiano, per il quale è noto che lo spazio di arrivo della feature map ha dimensione infinita.
 
+Concludo quindi mostrando degli esempi ...
+
+Vi ringrazio per l’attenzione.
 
 
 
