@@ -409,7 +409,7 @@ derivante dallo sviluppo in serie di potenze di $\phi_\varepsilon$ centrato in $
 \bigskip
 \begin{itemize}
 \item
-Dal punto di vista operativo, $\widehat{\bm Q}$ si approssima con $\bar{\bm Q} = \bm Q(\bar\varepsilon)$ per un opportuno~$\bar\varepsilon$.
+Dal punto di vista operativo, $\widehat{\bm Q}$ si approssima con $\widetilde{\bm Q} = \bm Q(\bar\varepsilon)$ per un opportuno~$\bar\varepsilon$.
 %Possiamo classificare la regolarità di $f$ mediante i dati $(X, F)$ utilizzando una funzione $\phi$ e una soglia $\tau>0$:
 
 \bigskip\medskip
@@ -418,8 +418,8 @@ Dal punto di vista operativo, $\widehat{\bm Q}$ si approssima con $\bar{\bm Q} =
 Possiamo classificare la regolarità di un insieme di dati $(X,F)$ utilizzando una funzione~$\phi$ e una soglia~$\tau>0$:
 $$
 \Cal R(X, F) = \begin{cases}
-				\phantom{-}1& \text{ se $\norm{\bar{\bm Q}}_1 \leq \tau$\qquad “regolare”} \\
-				-1& \text{ se $\norm{\hbyw{3ex}{0em}\bar{\bm Q}}_1 > \tau$\qquad “non regolare”}. 
+				\phantom{-}1& \text{ se $\norm{\widetilde{\bm Q}}_1 \leq \tau$\qquad “regolare”} \\
+				-1& \text{ se $\norm{\hbyw{3ex}{0em}\widetilde{\bm Q}}_1 > \tau$\qquad “non regolare”}. 
 			   \end{cases}
 $$
 \end{itemize}
@@ -444,7 +444,7 @@ $$
 
 %\bigskip
 
-È possibile utilizzare $\bar{\bm Q}$ e il classificatore di regolarità $\Cal R$ per analizzare localmente in $\Omega$ i dati $(X, f(X))$ e assegnarli al loro sottodominio di appartenenza, ottenendo sottoinsiemi $X_j$ tali che $X_j\subset \Omega_j$.
+È possibile utilizzare $\widetilde{\bm Q}$ e il classificatore di regolarità $\Cal R$ per analizzare localmente in $\Omega$ i dati $(X, f(X))$ e assegnarli al loro sottodominio di appartenenza, ottenendo sottoinsiemi $X_j$ tali che $X_j\subset \Omega_j$.
 
 \medskip
 
@@ -460,7 +460,7 @@ Procedendo con successive analisi locali si  estende l’insieme di nodi fino ad
 \medskip
 
 \item
-Quando $\Cal R(Y, f(Y)) = -1$, si utilizza $\bar{\bm Q}$ per capire quali punti rimuovere, poiché  appartenenti ad un differente  sottodominio .
+Quando $\Cal R(Y, f(Y)) = -1$, si utilizza $\widetilde{\bm Q}$ per capire quali punti rimuovere, poiché  appartenenti ad un differente  sottodominio .
 \end{itemize}
 \end{frame}
 
@@ -629,7 +629,7 @@ $$\langle \Theta(x_i), \Theta(x_j)\rangle_V.$$
 
 \begin{frame}
 \alert{Kernel trick}: $K(x,y) = \langle \Theta(x), \Theta(y)\rangle_V$.\\\smallskip
-Si basa sul \alert{teorema di Mercer}, secondo il quale ogni kernel $K:\Omega\times\Omega\to\R$ simmetrico e definito positivo si decompone in
+Si basa sul \alert{teorema di Mercer}, secondo il quale ogni kernel $K:\Omega\times\Omega\to\R$ continuo simmetrico e definito positivo si decompone in
 $$
 K(x,y) = \langle \Theta(x), \Theta(y)\rangle_V = \sum_{i=1}^\infty \Theta_i(x)\Theta_i(y), \quad x,y\in\Omega,
 $$
