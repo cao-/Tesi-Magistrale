@@ -3,5 +3,11 @@
 *.pdf
 *.synctex.gz
 *.fmt
+*.aux
+*.nav
+*.snm
+*.toc
+*.bbl
+*.blg
 #*#
 *~
